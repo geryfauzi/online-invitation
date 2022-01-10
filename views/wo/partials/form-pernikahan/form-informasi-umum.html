@@ -1,0 +1,78 @@
+<div v-show="sideMenuIndex == 1">
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                <div class="col">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Tambah Data Pernikahan Baru</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="nama">Nama Pernikahan*</label>
+                                <input type="text" class="form-control" v-model="form.nama" id="nama"
+                                       placeholder="Contoh : Nikahan Gery Akbar & Igeta Hiroe">
+                            </div>
+                            <div class="form-group">
+                                <label>Tanggal Pernikahan*</label>
+                                <div class="input-group date" id="tanggal" data-target-input="nearest">
+                                    <vuejs-datepicker v-model="form.tanggal"
+                                                      :format="formatDate"></vuejs-datepicker>
+                                    <div class="input-group-append" data-target="#tanggal" data-toggle="tanggal">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="alamat">Alamat Pernikahan*</label>
+                                <input type="text" class="form-control" v-model="form.alamat" id="alamat"
+                                       placeholder="Contoh : Jln. In Aja No. xx">
+                            </div>
+                            <div class="form-group">
+                                <label for="url_gmaps">URL Gmaps*</label>
+                                <input type="text" class="form-control" v-model="form.url_gmaps" id="url_gmaps"
+                                       placeholder="Masukkan link url Google Maps">
+                            </div>
+                            <div class="form-group">
+                                <label for="photo">Foto Cover*</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="photo"
+                                               v-on:change="onPhotoChange">
+                                        <label class="custom-file-label" id="labelphoto" for="photo">Pilih
+                                            File</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Cover Quote*</label>
+                                <textarea name="quote" id=quote" class="form-control" rows="3"
+                                          placeholder="Masukkan kutipan / quote untuk undangan anda. Quote akan ditampilkan bersamaan dengan foto cover"
+                                          spellcheck="false" v-model="form.quote_cover"></textarea>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <% if (locals.id) { %>
+                        <div class="card-footer">
+                            <button type="submit" style="float: right; margin-right: 20px" class="btn btn-primary"
+                                    v-on:click="onUpdate()">Perbarui Informasi Umum
+                            </button>
+                        </div>
+                        <% } else { %>
+                        <div class="card-footer">
+                            <button type="submit" style="float: right; margin-right: 20px" class="btn btn-primary"
+                                    v-on:click="onSave()">Simpan Informasi Umum
+                            </button>
+                        </div>
+                        <% } %>
+                    </div>
+                </div>
+                <!-- ./col -->
+            </div>
+            <!-- /.row -->
+
+        </div>
+    </section>
+</div>

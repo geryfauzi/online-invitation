@@ -1,0 +1,92 @@
+<%- include('./partials/header.html') %>
+<body class="hold-transition login-page">
+<div class="login-box">
+    <!-- /.login-logo -->
+    <div class="card card-outline card-primary" id="form-login">
+        <div class="card-header text-center">
+            <a href="/admin" class="h1"><b>Panel WO</b></a>
+        </div>
+        <div class="card-body">
+            <p class="login-box-msg">Silahkan Login untuk masuk ke halaman WO</p>
+
+            <div class="input-group mb-3">
+                <input type="email" class="form-control" name="email" id="email" required placeholder="Email"
+                       v-model="form.email">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-envelope"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <input type="password" name="password" id="password" required class="form-control"
+                       placeholder="Password" v-model="form.password">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="social-auth-links text-center mt-2 mb-3">
+                <button type="submit" class="btn btn-primary btn-block"
+                        v-on:click="onLogin">Login
+                </button>
+            </div>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</div>
+<%- include('./partials/footer.html') %>
+<script type="application/javascript">
+    var app = new Vue({
+        el: '#form-login',
+        data: {
+            form: {
+                email: '',
+                password: ''
+            }
+        },
+        methods: {
+            validation: function () {
+                let isValid = true
+                if (this.form.email == null || this.form.email === "")
+                    isValid = false
+                if (this.form.password == null || this.form.password === "")
+                    isValid = false
+                return isValid
+            },
+            onLogin: async function () {
+                try {
+                    if (!this.validation())
+                        toastr.warning("Harap isi email dan password!")
+                    else {
+                        let formData = {...this.form}
+                        const result = await fetch('/api/wo/login', {
+                            method: 'POST',
+                            body: JSON.stringify(formData),
+                            headers: {'Content-Type': "application/json"}
+                        })
+                        const data = await result.json()
+                        if(data.code === 0)
+                            toastr.error(data.message)
+                        else{
+                            toastr.success(data.message)
+                            let _this = this
+                            setTimeout(() => {
+                                window.removeEventListener('beforeunload', _this.leaving, true)
+                                window.location = "/wo/";
+                            }, 1000);
+                        }//endif
+                    }//endif
+                } catch (e) {
+
+                }
+
+            }
+        },
+        mounted() {
+
+        }
+    })
+</script>

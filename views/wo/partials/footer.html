@@ -1,0 +1,7 @@
+<% if(locals.loadJS){ %>
+    <% locals.loadJS.forEach(e =>{ %>
+        <script src="<%= e.src %>"></script>
+    <% }) %>
+<% } %>
+</body>
+</html>

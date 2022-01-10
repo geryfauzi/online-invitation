@@ -1,0 +1,81 @@
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="/wo" class="brand-link">
+        <img src="/assets/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+             style="opacity: .8">
+        <span class="brand-text font-weight-light">Dashboard WO</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="https://www.shareicon.net/data/2016/09/15/829466_man_512x512.png"
+                     class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block"><%= locals.nama %></a>
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+                     with font-awesome or any other icon font library -->
+                <li class="nav-item">
+                    <a href="javascript:void(0)" v-on:click="setSideMenuIndex(1)" v-bind:class="[isActiveSideMenu(1) ? 'active' : '', 'nav-link']">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Informasi Umum
+                        </p>
+                    </a>
+                </li>
+                <% if (locals.id) { %>
+                <li class="nav-item">
+                    <a href="javascript:void(0)" v-on:click="setSideMenuIndex(2)"  v-bind:class="[isActiveSideMenu(2) ? 'active' : '', 'nav-link']">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>
+                            Pengantin Pria
+                        </p>
+                    </a>
+                </li>
+                <% } %>
+                <% if (locals.id) { %>
+                <li class="nav-item">
+                    <a href="javascript:void(0)" v-on:click="setSideMenuIndex(3)"  v-bind:class="[isActiveSideMenu(3) ? 'active' : '', 'nav-link']">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>
+                            Pengguna
+                        </p>
+                    </a>
+                </li>
+                <% } %>
+                <% if (locals.id) { %>
+                <li class="nav-item">
+                    <a href="javascript:void(0)" v-on:click="setSideMenuIndex(4)"  v-bind:class="[isActiveSideMenu(4) ? 'active' : '', 'nav-link']">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Tamu
+                        </p>
+                    </a>
+                </li>
+                <% } %>
+                <% if (locals.id) { %>
+                <li class="nav-item">
+                    <a href="javascript:void(0)" v-on:click="setSideMenuIndex(5)"  v-bind:class="[isActiveSideMenu(5) ? 'active' : '', 'nav-link']">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Foto
+                        </p>
+                    </a>
+                </li>
+                <% } %>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

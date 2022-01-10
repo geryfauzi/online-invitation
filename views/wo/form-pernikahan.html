@@ -1,0 +1,175 @@
+<%- include('./partials/header.html') %>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper" id="form-pernikahan">
+
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+        </ul>
+
+        <!-- Right navbar links -->
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                </a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="/wo/logout" class="nav-link">Logout</a>
+            </li>
+        </ul>
+    </nav>
+
+    <%- include('./partials/pernikahan-navbar.html') %>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" id="form-divisi">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <%- include('./partials/form-pernikahan/form-informasi-umum.html') %>
+    </div>
+</div>
+<footer class="main-footer">
+    <strong>Copyright &copy; 2022 Kawin Lari</strong>
+    All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+        <b>Version</b> 1.0
+    </div>
+</footer>
+<%- include('./partials/footer.html') %>
+<script type="application/javascript">
+    <% if (locals.id) { %>
+        let idNikahan = <%= id %>;
+        <% } %>
+    let emailWO = "<%= email %>";
+</script>
+<script type="application/javascript">
+    var app = new Vue({
+        el: '#form-pernikahan',
+        data: {
+            sideMenuIndex: 1,
+            formatDate: "yyyy-MM-dd",
+            form: {
+                id: '',
+                id_wo: '',
+                id_pengantin: '',
+                nama: '',
+                tanggal: '',
+                nama_cpp: '',
+                image_cpp: null,
+                ayah_cpp: '',
+                ibu_cpp: '',
+                nama_cpw: '',
+                image_cpw: null,
+                ayah_cpw: '',
+                ibu_cpw: '',
+                quote_cover: '',
+                image_cover: null,
+                alamat: '',
+                url_gmaps: ''
+            }
+        },
+        methods: {
+            isActiveSideMenu: function (id) {
+                return this.sideMenuIndex === id
+            },
+            setSideMenuIndex: function (idx) {
+                this.sideMenuIndex = idx
+            },
+            onPhotoChange: function (e) {
+                try {
+                    let [file] = e.target.files;
+                    if (!file) throw Error("File kosong");
+                    this.form.image_cover = file;
+                    document.getElementById("labelphoto").innerHTML = this.form.image_cover.name;
+                } catch (error) {
+                    console.error(error)
+                }
+            },
+            validationGeneralInformation: function () {
+              let isValid = true
+              if(this.form.nama === '')
+                  isValid = false
+              if(this.form.tanggal === '')
+                  isValid = false
+              if(this.form.alamat === '')
+                  isValid = false
+              if(this.form.url_gmaps === '')
+                  isValid = false
+              if(this.form.image_cover === null)
+                  isValid = false
+              if(this.form.quote_cover === '')
+                  isValid = false
+              return isValid
+            },
+            onSave: async function (){
+                try{
+                    if(!this.validationGeneralInformation())
+                        toastr.warning("Harap isi semua form yang wajib diisi!")
+                    else {
+                        let formData = {...this.form}
+                        //Format Date
+                        const offset = formData.tanggal.getTimezoneOffset()
+                        formData.tanggal = new Date(formData.tanggal.getTime() - (offset*60*1000))
+                        formData.tanggal.toISOString().split('T')[0]
+                        //Image Upload
+                        formData.image_cover = await this.photoUpload();
+                        //Insert To Database
+                        formData.id = Date.now()
+                        const res = await fetch('/api/pernikahan', {
+                            method: 'POST',
+                            body: JSON.stringify(formData),
+                            headers: {'Content-Type': "application/json"}
+                        });
+                        const data = await res.json();
+                        //
+                        if (data.code == 0)
+                            toastr.error(data.message);
+                        else {
+                            toastr.success(data.message);
+                            let _this = this
+                            setTimeout(() => {
+                                window.removeEventListener('beforeunload', _this.leaving, true)
+                                window.location = "/wo/pernikahan";
+                            }, 1000);
+                        }
+                    }
+                }catch (e) {
+
+                }
+            },
+            photoUpload: async function () {
+                try {
+                    toastr.warning("Harap Tunggu");
+                    let formData = new FormData();
+                    formData.append('file', this.form.image_cover)
+                    const params = {method: 'POST', body: formData};
+                    const res = await fetch('/api/upload-image', params);
+                    if (res.status != 200) throw Error("Upload photo gagal!");
+                    const data = await res.json();
+                    return Promise.resolve(data.path);
+                } catch (err) {
+                    return Promise.reject(err);
+                }
+            }
+        },
+        components: {
+            vuejsDatepicker
+        },
+        mounted() {
+            this.form.id_wo = emailWO
+        }
+    })
+</script>
