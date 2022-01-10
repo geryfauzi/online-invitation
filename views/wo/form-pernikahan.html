@@ -39,6 +39,10 @@
 
         <!-- Main content -->
         <%- include('./partials/form-pernikahan/form-informasi-umum.html') %>
+        <% if (locals.id) { %>
+        <%- include('./partials/form-pernikahan/form-informasi-cpp.html') %>
+        <%- include('./partials/form-pernikahan/form-informasi-cpw.html') %>
+        <% } %>
     </div>
 </div>
 <footer class="main-footer">
@@ -61,6 +65,9 @@
         data: {
             sideMenuIndex: 1,
             formatDate: "yyyy-MM-dd",
+            defaultImageCover : '',
+            defaultImageCPP : '',
+            defaultImageCPW : '',
             form: {
                 id: '',
                 id_wo: '',
@@ -82,6 +89,12 @@
             }
         },
         methods: {
+            checkID: function () {
+              if(idNikahan) {
+                  this.form.id = idNikahan
+                  this.loadData()
+              }
+            },
             isActiveSideMenu: function (id) {
                 return this.sideMenuIndex === id
             },
@@ -98,21 +111,97 @@
                     console.error(error)
                 }
             },
+            onPhotoCPPChange: function (e) {
+                try {
+                    let [file] = e.target.files;
+                    if (!file) throw Error("File kosong");
+                    this.form.image_cpp = file;
+                    document.getElementById("image_cpp").innerHTML = this.form.image_cpp.name;
+                } catch (error) {
+                    console.error(error)
+                }
+            },
+            onPhotoCPWChange: function (e) {
+                try {
+                    let [file] = e.target.files;
+                    if (!file) throw Error("File kosong");
+                    this.form.image_cpw = file;
+                    document.getElementById("image_cpw").innerHTML = this.form.image_cpw.name;
+                } catch (error) {
+                    console.error(error)
+                }
+            },
             validationGeneralInformation: function () {
               let isValid = true
-              if(this.form.nama === '')
+              if(this.form.nama === '' || this.form.nama == null)
                   isValid = false
-              if(this.form.tanggal === '')
+              if(this.form.tanggal === '' || this.form.tanggal == null)
                   isValid = false
-              if(this.form.alamat === '')
+              if(this.form.alamat === '' || this.form.alamat == null)
                   isValid = false
-              if(this.form.url_gmaps === '')
+              if(this.form.url_gmaps === '' || this.form.url_gmaps == null)
                   isValid = false
               if(this.form.image_cover === null)
                   isValid = false
-              if(this.form.quote_cover === '')
+              if(this.form.quote_cover === '' || this.form.quote_cover == null)
                   isValid = false
               return isValid
+            },
+            validationCPPInformation: function () {
+                let isValid = true
+                if(this.form.nama_cpp === '' || this.form.nama_cpp == null)
+                    isValid = false
+                if(this.form.ayah_cpp === '' || this.form.ayah_cpp == null)
+                    isValid = false
+                if(this.form.ibu_cpp === '' || this.form.ibu_cpp == null)
+                    isValid = false
+                if(this.form.image_cpp === '' || this.form.image_cpp == null)
+                    isValid = false
+                return isValid
+            },
+            updateValidation: function () {
+                let isValid = true
+                if(this.sideMenuIndex ===1) {
+                    if (!this.validationGeneralInformation())
+                        isValid = false
+                }
+                else if(this.sideMenuIndex === 2) {
+                    if (!this.validationCPPInformation())
+                        isValid = false
+                }
+                return isValid
+            },
+            onUpdate: async function (){
+              try{
+                  if(!this.updateValidation())
+                      toastr.warning("Harap mengisi semua form yang wajib diisi!")
+                  else {
+                      let formData = {...this.form}
+                      //Image Upload
+                      if(formData.image_cover != null && formData.image_cover !== this.defaultImageCover)
+                          formData.image_cover = await this.photoUpload();
+                      if(formData.image_cpp != null && formData.image_cpp !== this.defaultImageCPP)
+                          formData.image_cpp = await this.photoUpload();
+                      if(formData.image_cpw != null && formData.image_cpw !== this.defaultImageCPW)
+                          formData.image_cpw = await this.photoUpload();
+                      //Update ke Database
+                      const res = await fetch('/api/pernikahan', {
+                          method: 'PUT',
+                          body: JSON.stringify(formData),
+                          headers: {'Content-Type': "application/json"}
+                      });
+                      const data = await res.json();
+                      //
+                      if (data.code == 0)
+                          toastr.error(data.message);
+                      else {
+                          toastr.success(data.message);
+                          this.checkID()
+                      }
+                  }
+              }catch (e) {
+                console.log(e)
+              }
             },
             onSave: async function (){
                 try{
@@ -120,10 +209,6 @@
                         toastr.warning("Harap isi semua form yang wajib diisi!")
                     else {
                         let formData = {...this.form}
-                        //Format Date
-                        const offset = formData.tanggal.getTimezoneOffset()
-                        formData.tanggal = new Date(formData.tanggal.getTime() - (offset*60*1000))
-                        formData.tanggal.toISOString().split('T')[0]
                         //Image Upload
                         formData.image_cover = await this.photoUpload();
                         //Insert To Database
@@ -154,7 +239,12 @@
                 try {
                     toastr.warning("Harap Tunggu");
                     let formData = new FormData();
-                    formData.append('file', this.form.image_cover)
+                    if(this.sideMenuIndex ===1)
+                        formData.append('file', this.form.image_cover)
+                    else if (this.sideMenuIndex === 2)
+                        formData.append('file',this.form.image_cpp)
+                    else if (this.sideMenuIndex === 3)
+                        formData.append('file',this.form.image_cpw)
                     const params = {method: 'POST', body: formData};
                     const res = await fetch('/api/upload-image', params);
                     if (res.status != 200) throw Error("Upload photo gagal!");
@@ -163,6 +253,27 @@
                 } catch (err) {
                     return Promise.reject(err);
                 }
+            },
+            loadData: async function(){
+                try{
+                    const res = await fetch(`/api/pernikahan/${this.form.id}`)
+                    const data = await res.json()
+                    this.form = data.data[0]
+                    if(this.form.image_cover !== null) {
+                        this.defaultImageCover = this.form.image_cover
+                        document.getElementById("labelphoto").innerHTML = this.form.image_cover
+                    }
+                    if(this.form.image_cpp !== null){
+                        this.defaultImageCPP = this.form.image_cpp
+                        document.getElementById("image_cpp").innerHTML = this.form.image_cpp
+                    }
+                    if(this.form.image_cpw !== null){
+                        this.defaultImageCPW = this.form.image_cpw
+                        document.getElementById("image_cpw").innerHTML = this.form.image_cpw
+                    }
+                }catch (e) {
+
+                }
             }
         },
         components: {
@@ -170,6 +281,7 @@
         },
         mounted() {
             this.form.id_wo = emailWO
+            this.checkID()
         }
     })
 </script>

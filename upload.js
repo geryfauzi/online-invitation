@@ -6,7 +6,7 @@ const uploadImage = async (req,res) => {
             if(error)
                 res.json({code : 0, message : error});
             else{
-                res.json({code : 1, message : "Sukses upload file", path : `/${file.name}`});
+                res.json({code : 1, message : "Sukses upload file", path : `${file.name}`});
             }
         });
     } catch(err){

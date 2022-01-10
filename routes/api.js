@@ -12,5 +12,7 @@ router.post('/upload-image', Upload.uploadImage)
 
 //Area Pernikahan
 router.post('/pernikahan', Pernikahan.insertPernikahan)
+router.get('/pernikahan/:id', Pernikahan.getOnePernikahan)
+router.put('/pernikahan', Pernikahan.updatePernikahan)
 
 module.exports = router

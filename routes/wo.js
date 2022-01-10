@@ -65,7 +65,7 @@ router.get('/pernikahan', (req, res) => {
     try {
         //Query Select
         connect.query("SELECT * FROM pernikahan ORDER BY tanggal DESC", (error, result) => {
-            return res.render('wo/pernikahan', {title,result, nama, routePath, loadCSS, loadJS})
+            return res.render('wo/pernikahan', {title, result, nama, routePath, loadCSS, loadJS})
         })
     } catch (e) {
         console.log(e)
@@ -93,6 +93,31 @@ router.get('/tambah-pernikahan', (req, res) => {
         loadCSS,
         nama,
         email
+    })
+})
+
+router.get('/pernikahan/:id', (req, res) => {
+    const nama = req.session.namaWO
+    const id = req.params.id
+    const email = req.session.emailWO
+    const loadJS = [
+        {src: "https://code.jquery.com/jquery-3.6.0.min.js"},
+        {src: "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"},
+        {src: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"},
+        {src: "https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0-rc/js/adminlte.min.js"},
+        {src: "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"},
+        {src: "https://unpkg.com/vuejs-datepicker@1.6.2/dist/vuejs-datepicker.min.js"},
+    ];
+    const loadCSS = [
+        {src: "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"}
+    ];
+    return res.render('wo/form-pernikahan', {
+        title: "WO - Edit Pernikahan",
+        loadJS,
+        loadCSS,
+        nama,
+        email,
+        id
     })
 })
 
