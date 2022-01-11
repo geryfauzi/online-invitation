@@ -42,6 +42,7 @@
         <% if (locals.id) { %>
         <%- include('./partials/form-pernikahan/form-informasi-cpp.html') %>
         <%- include('./partials/form-pernikahan/form-informasi-cpw.html') %>
+        <%- include('./partials/form-pernikahan/form-sesi.html') %>
         <% } %>
     </div>
 </div>
@@ -53,6 +54,21 @@
     </div>
 </footer>
 <%- include('./partials/footer.html') %>
+<script>
+    window.onload = function () {
+        if (window.jQuery) {
+            $('#sesi').dataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        }
+    }
+</script>
 <script type="application/javascript">
     <% if (locals.id) { %>
         let idNikahan = <%= id %>;
@@ -65,9 +81,12 @@
         data: {
             sideMenuIndex: 1,
             formatDate: "yyyy-MM-dd",
-            defaultImageCover : '',
-            defaultImageCPP : '',
-            defaultImageCPW : '',
+            defaultImageCover: '',
+            defaultImageCPP: '',
+            defaultImageCPW: '',
+            addSession: false,
+            editSession: false,
+            session: [],
             form: {
                 id: '',
                 id_wo: '',
@@ -86,14 +105,50 @@
                 image_cover: null,
                 alamat: '',
                 url_gmaps: ''
+            },
+            formSession: {
+                id: '',
+                id_pernikahan: '',
+                nama_sesi: '',
+                waktu_mulai: '',
+                waktu_selesai: ''
             }
         },
         methods: {
+            setEditSession : function (params, index) {
+                this.editSession = params
+                if(params && this.addSession === true)
+                    this.addSession = false
+                if(params){
+                    this.formSession.id = this.session[index].id
+                    this.formSession.nama_sesi = this.session[index].nama_sesi
+                    this.formSession.waktu_mulai = this.session[index].waktu_mulai
+                    this.formSession.waktu_selesai = this.session[index].waktu_selesai
+                } else
+                    this.clearSessionForm()
+            },
+            setAddSession: function (params) {
+                this.addSession = params
+                if (params && this.editSession === true) {
+                    this.clearSessionForm()
+                    this.editSession = false
+                }
+                if (!params)
+                    this.clearSessionForm()
+            },
+            clearSessionForm: function () {
+                this.formSession.id = ''
+                this.formSession.nama_sesi = ''
+                this.formSession.waktu_mulai = ''
+                this.formSession.waktu_selesai = ''
+            },
             checkID: function () {
-              if(idNikahan) {
-                  this.form.id = idNikahan
-                  this.loadData()
-              }
+                if (idNikahan) {
+                    this.formSession.id_pernikahan = idNikahan
+                    this.form.id = idNikahan
+                    this.loadData()
+                    this.loadSession()
+                }
             },
             isActiveSideMenu: function (id) {
                 return this.sideMenuIndex === id
@@ -132,80 +187,89 @@
                 }
             },
             validationGeneralInformation: function () {
-              let isValid = true
-              if(this.form.nama === '' || this.form.nama == null)
-                  isValid = false
-              if(this.form.tanggal === '' || this.form.tanggal == null)
-                  isValid = false
-              if(this.form.alamat === '' || this.form.alamat == null)
-                  isValid = false
-              if(this.form.url_gmaps === '' || this.form.url_gmaps == null)
-                  isValid = false
-              if(this.form.image_cover === null)
-                  isValid = false
-              if(this.form.quote_cover === '' || this.form.quote_cover == null)
-                  isValid = false
-              return isValid
+                let isValid = true
+                if (this.form.nama === '' || this.form.nama == null)
+                    isValid = false
+                if (this.form.tanggal === '' || this.form.tanggal == null)
+                    isValid = false
+                if (this.form.alamat === '' || this.form.alamat == null)
+                    isValid = false
+                if (this.form.url_gmaps === '' || this.form.url_gmaps == null)
+                    isValid = false
+                if (this.form.image_cover === null)
+                    isValid = false
+                if (this.form.quote_cover === '' || this.form.quote_cover == null)
+                    isValid = false
+                return isValid
             },
             validationCPPInformation: function () {
                 let isValid = true
-                if(this.form.nama_cpp === '' || this.form.nama_cpp == null)
+                if (this.form.nama_cpp === '' || this.form.nama_cpp == null)
                     isValid = false
-                if(this.form.ayah_cpp === '' || this.form.ayah_cpp == null)
+                if (this.form.ayah_cpp === '' || this.form.ayah_cpp == null)
                     isValid = false
-                if(this.form.ibu_cpp === '' || this.form.ibu_cpp == null)
+                if (this.form.ibu_cpp === '' || this.form.ibu_cpp == null)
                     isValid = false
-                if(this.form.image_cpp === '' || this.form.image_cpp == null)
+                if (this.form.image_cpp === '' || this.form.image_cpp == null)
+                    isValid = false
+                return isValid
+            },
+            validationSessionInformation: function () {
+                let isValid = true
+                if (this.formSession.nama_sesi === '' || this.formSession.nama_sesi == null)
+                    isValid = false
+                if (this.formSession.waktu_mulai === '' || this.formSession.waktu_mulai == null)
+                    isValid = false
+                if (this.formSession.waktu_selesai === '' || this.formSession.waktu_selesai == null)
                     isValid = false
                 return isValid
             },
             updateValidation: function () {
                 let isValid = true
-                if(this.sideMenuIndex ===1) {
+                if (this.sideMenuIndex === 1) {
                     if (!this.validationGeneralInformation())
                         isValid = false
-                }
-                else if(this.sideMenuIndex === 2) {
+                } else if (this.sideMenuIndex === 2) {
                     if (!this.validationCPPInformation())
                         isValid = false
                 }
                 return isValid
             },
-            onUpdate: async function (){
-              try{
-                  if(!this.updateValidation())
-                      toastr.warning("Harap mengisi semua form yang wajib diisi!")
-                  else {
-                      let formData = {...this.form}
-                      //Image Upload
-                      if(formData.image_cover != null && formData.image_cover !== this.defaultImageCover)
-                          formData.image_cover = await this.photoUpload();
-                      if(formData.image_cpp != null && formData.image_cpp !== this.defaultImageCPP)
-                          formData.image_cpp = await this.photoUpload();
-                      if(formData.image_cpw != null && formData.image_cpw !== this.defaultImageCPW)
-                          formData.image_cpw = await this.photoUpload();
-                      //Update ke Database
-                      const res = await fetch('/api/pernikahan', {
-                          method: 'PUT',
-                          body: JSON.stringify(formData),
-                          headers: {'Content-Type': "application/json"}
-                      });
-                      const data = await res.json();
-                      //
-                      if (data.code == 0)
-                          toastr.error(data.message);
-                      else {
-                          toastr.success(data.message);
-                          this.checkID()
-                      }
-                  }
-              }catch (e) {
-                console.log(e)
-              }
+            onUpdate: async function () {
+                try {
+                    if (!this.updateValidation())
+                        toastr.warning("Harap mengisi semua form yang wajib diisi!")
+                    else {
+                        let formData = {...this.form}
+                        //Image Upload
+                        if (formData.image_cover != null && formData.image_cover !== this.defaultImageCover)
+                            formData.image_cover = await this.photoUpload();
+                        if (formData.image_cpp != null && formData.image_cpp !== this.defaultImageCPP)
+                            formData.image_cpp = await this.photoUpload();
+                        if (formData.image_cpw != null && formData.image_cpw !== this.defaultImageCPW)
+                            formData.image_cpw = await this.photoUpload();
+                        //Update ke Database
+                        const res = await fetch('/api/pernikahan', {
+                            method: 'PUT',
+                            body: JSON.stringify(formData),
+                            headers: {'Content-Type': "application/json"}
+                        });
+                        const data = await res.json();
+                        //
+                        if (data.code == 0)
+                            toastr.error(data.message);
+                        else {
+                            toastr.success(data.message);
+                            this.checkID()
+                        }
+                    }
+                } catch (e) {
+                    console.log(e)
+                }
             },
-            onSave: async function (){
-                try{
-                    if(!this.validationGeneralInformation())
+            onSave: async function () {
+                try {
+                    if (!this.validationGeneralInformation())
                         toastr.warning("Harap isi semua form yang wajib diisi!")
                     else {
                         let formData = {...this.form}
@@ -231,7 +295,60 @@
                             }, 1000);
                         }
                     }
-                }catch (e) {
+                } catch (e) {
+
+                }
+            },
+            onSaveSession: async function () {
+                try {
+                    if (!this.validationSessionInformation())
+                        toastr.warning("Harap isi semua form yang wajib diisi!")
+                    else {
+                        let formData = {...this.formSession}
+                        //Insert To Database
+                        formData.id = Date.now()
+                        const res = await fetch('/api/sesi', {
+                            method: 'POST',
+                            body: JSON.stringify(formData),
+                            headers: {'Content-Type': "application/json"}
+                        });
+                        const data = await res.json();
+                        //
+                        if (data.code === 0)
+                            toastr.error(data.message);
+                        else {
+                            toastr.success(data.message);
+                            this.setAddSession(false)
+                            this.loadSession()
+                        }
+                    }
+                } catch (e) {
+
+                }
+            },
+            onUpdateSession: async function () {
+                try {
+                    if (!this.validationSessionInformation())
+                        toastr.warning("Harap isi semua form yang wajib diisi!")
+                    else {
+                        let formData = {...this.formSession}
+                        //Update Database
+                        const res = await fetch('/api/sesi', {
+                            method: 'PUT',
+                            body: JSON.stringify(formData),
+                            headers: {'Content-Type': "application/json"}
+                        });
+                        const data = await res.json();
+                        //
+                        if (data.code === 0)
+                            toastr.error(data.message);
+                        else {
+                            toastr.success(data.message);
+                            this.setEditSession(false)
+                            this.loadSession()
+                        }
+                    }
+                } catch (e) {
 
                 }
             },
@@ -239,12 +356,12 @@
                 try {
                     toastr.warning("Harap Tunggu");
                     let formData = new FormData();
-                    if(this.sideMenuIndex ===1)
+                    if (this.sideMenuIndex === 1)
                         formData.append('file', this.form.image_cover)
                     else if (this.sideMenuIndex === 2)
-                        formData.append('file',this.form.image_cpp)
+                        formData.append('file', this.form.image_cpp)
                     else if (this.sideMenuIndex === 3)
-                        formData.append('file',this.form.image_cpw)
+                        formData.append('file', this.form.image_cpw)
                     const params = {method: 'POST', body: formData};
                     const res = await fetch('/api/upload-image', params);
                     if (res.status != 200) throw Error("Upload photo gagal!");
@@ -254,24 +371,33 @@
                     return Promise.reject(err);
                 }
             },
-            loadData: async function(){
-                try{
+            loadData: async function () {
+                try {
                     const res = await fetch(`/api/pernikahan/${this.form.id}`)
                     const data = await res.json()
                     this.form = data.data[0]
-                    if(this.form.image_cover !== null) {
+                    if (this.form.image_cover !== null) {
                         this.defaultImageCover = this.form.image_cover
                         document.getElementById("labelphoto").innerHTML = this.form.image_cover
                     }
-                    if(this.form.image_cpp !== null){
+                    if (this.form.image_cpp !== null) {
                         this.defaultImageCPP = this.form.image_cpp
                         document.getElementById("image_cpp").innerHTML = this.form.image_cpp
                     }
-                    if(this.form.image_cpw !== null){
+                    if (this.form.image_cpw !== null) {
                         this.defaultImageCPW = this.form.image_cpw
                         document.getElementById("image_cpw").innerHTML = this.form.image_cpw
                     }
-                }catch (e) {
+                } catch (e) {
+
+                }
+            },
+            loadSession: async function () {
+                try {
+                    const res = await fetch(`/api/sesi/${this.form.id}`)
+                    const data = await res.json()
+                    this.session = data.data
+                } catch (e) {
 
                 }
             }
