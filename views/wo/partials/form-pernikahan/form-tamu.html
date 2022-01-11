@@ -1,0 +1,198 @@
+<div v-show="sideMenuIndex == 5">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-2" style="float: right; margin-right: 10px; margin-bottom: 20px">
+                    <button type="button" v-on:click="setAddGuest(true)" class="btn btn-block btn-primary">Tambah Data
+                    </button>
+                </div><!-- /.col -->
+            </div>
+            <div class="row" v-show="addGuest == true">
+                <div class="col">
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Tambah Tamu Baru</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label for="nama" class="col-sm-2 col-form-label">Nama Tamu*</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama Tamu"
+                                           v-model="formGuest.nama">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="telepon" class="col-sm-2 col-form-label">Nomor Telepon*</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="telepon"
+                                           placeholder="Contoh : 085156xxx"
+                                           v-model="formGuest.telepon">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="jumlah" class="col-sm-2 col-form-label">Jumlah Tamu*</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="jumlah"
+                                           placeholder="Masukkan Jumlah Tamu"
+                                           v-model="formGuest.jumlah">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="jenis_tamu" class="col-sm-2 col-form-label">Jenis Tamu (Opsional)</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="jenis_tamu"
+                                           placeholder="Masukkan Jumlah Tamu"
+                                           v-model="formGuest.jenis_tamu">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="id_sesi" class="col-sm-2 col-form-label">Sesi Pernikahan*</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="id_sesi" v-model="formGuest.id_sesi">
+                                        <option value="" selected disabled>Di sesi manakah tamu ini ?</option>
+                                        <option v-for="data in session" v-bind:value="data.id">{{data.nama_sesi}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="is_vip" class="col-sm-2 col-form-label">VIP*</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="is_vip" v-model="formGuest.is_vip">
+                                        <option value="" selected disabled>Apakah Tamu Ini Termasuk VIP ?</option>
+                                        <option value="Ya">Ya</option>
+                                        <option value="Tidak">Tidak</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button class="btn btn-default float-right"
+                                    v-on:click="setAddGuest(false)">Batal
+                            </button>
+                            <button class="btn btn-info float-right" style="margin-right: 20px"
+                                    v-on:click="onSaveGuest()">Simpan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" v-show="editGuest == true">
+                <div class="col">
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Edit Tamu</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label for="nama" class="col-sm-2 col-form-label">Nama Tamu*</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama Tamu"
+                                           v-model="formGuest.nama">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="telepon" class="col-sm-2 col-form-label">Nomor Telepon*</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="telepon"
+                                           placeholder="Contoh : 085156xxx"
+                                           v-model="formGuest.telepon">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="jumlah" class="col-sm-2 col-form-label">Jumlah Tamu*</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="jumlah"
+                                           placeholder="Masukkan Jumlah Tamu"
+                                           v-model="formGuest.jumlah">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="jenis_tamu" class="col-sm-2 col-form-label">Jenis Tamu (Opsional)</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="jenis_tamu"
+                                           placeholder="Masukkan Jumlah Tamu"
+                                           v-model="formGuest.jenis_tamu">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="id_sesi" class="col-sm-2 col-form-label">Sesi Pernikahan*</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="id_sesi" v-model="formGuest.id_sesi">
+                                        <option value="" selected disabled>Di sesi manakah tamu ini ?</option>
+                                        <option v-for="data in session" v-bind:value="data.id">{{data.nama_sesi}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="is_vip" class="col-sm-2 col-form-label">VIP*</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="is_vip" v-model="formGuest.is_vip">
+                                        <option value="" selected disabled>Apakah Tamu Ini Termasuk VIP ?</option>
+                                        <option value="Ya">Ya</option>
+                                        <option value="Tidak">Tidak</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button class="btn btn-default float-right"
+                                    v-on:click="setEditGuest(false)">Batal
+                            </button>
+                            <button class="btn btn-info float-right" style="margin-right: 20px"
+                                    v-on:click="onUpdateGuest()">Simpan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Data Tamu</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="tamu" class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>Telepon</th>
+                                    <th>Jumlah</th>
+                                    <th>Jenis Tamu</th>
+                                    <th>Sesi</th>
+                                    <th>VIP</th>
+                                    <th>Kode RSVP</th>
+                                    <th>Aksi</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr v-for="(item,index) in guest">
+                                    <td>{{index + 1}}</td>
+                                    <td>{{item.nama}}</td>
+                                    <td>{{item.telepon}}</td>
+                                    <td>{{item.jumlah}}</td>
+                                    <td>{{item.jenis_tamu}}</td>
+                                    <td>{{item.nama_sesi}}</td>
+                                    <td>{{item.is_vip}}</td>
+                                    <td>{{item.kode}}</td>
+                                    <td>
+                                        <button type="button" v-on:click="setEditGuest(true,index)"
+                                                class="btn btn-block btn-primary">Edit
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -43,6 +43,7 @@
         <%- include('./partials/form-pernikahan/form-informasi-cpp.html') %>
         <%- include('./partials/form-pernikahan/form-informasi-cpw.html') %>
         <%- include('./partials/form-pernikahan/form-sesi.html') %>
+        <%- include('./partials/form-pernikahan/form-tamu.html') %>
         <% } %>
     </div>
 </div>
@@ -54,21 +55,6 @@
     </div>
 </footer>
 <%- include('./partials/footer.html') %>
-<script>
-    window.onload = function () {
-        if (window.jQuery) {
-            $('#sesi').dataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
-        }
-    }
-</script>
 <script type="application/javascript">
     <% if (locals.id) { %>
         let idNikahan = <%= id %>;
@@ -86,7 +72,10 @@
             defaultImageCPW: '',
             addSession: false,
             editSession: false,
+            addGuest : false,
+            editGuest : false,
             session: [],
+            guest: [],
             form: {
                 id: '',
                 id_wo: '',
@@ -112,6 +101,20 @@
                 nama_sesi: '',
                 waktu_mulai: '',
                 waktu_selesai: ''
+            },
+            formGuest : {
+                id : '',
+                id_sesi : '',
+                id_pernikahan : '',
+                nama : '',
+                telepon : '',
+                jumlah : '',
+                jenis_tamu : '',
+                rsvp : '',
+                kehadiran : '',
+                kode : '',
+                is_vip : '',
+                ucapan : ''
             }
         },
         methods: {
@@ -127,6 +130,25 @@
                 } else
                     this.clearSessionForm()
             },
+            setEditGuest : function (params, index) {
+                this.editGuest = params
+                if(params && this.addGuest === true)
+                    this.addGuest = false
+                if(params){
+                    this.formGuest.id = this.guest[index].id
+                    this.formGuest.id_sesi = this.guest[index].id_sesi
+                    this.formGuest.nama = this.guest[index].nama
+                    this.formGuest.telepon = this.guest[index].telepon
+                    this.formGuest.jumlah = this.guest[index].jumlah
+                    this.formGuest.jenis_tamu = this.guest[index].jenis_tamu
+                    this.formGuest.rsvp = this.guest[index].rsvp
+                    this.formGuest.kehadiran = this.guest[index].kehadiran
+                    this.formGuest.kode = this.guest[index].kode
+                    this.formGuest.is_vip = this.guest[index].is_vip
+                    this.formGuest.ucapan = this.guest[index].ucapan
+                } else
+                    this.clearGuestForm()
+            },
             setAddSession: function (params) {
                 this.addSession = params
                 if (params && this.editSession === true) {
@@ -136,19 +158,50 @@
                 if (!params)
                     this.clearSessionForm()
             },
+            setAddGuest: function (params) {
+                this.addGuest = params
+                if (params && this.editGuest === true) {
+                    this.clearGuestForm()
+                    this.editGuest = false
+                }
+                if (!params)
+                    this.clearGuestForm()
+            },
             clearSessionForm: function () {
                 this.formSession.id = ''
                 this.formSession.nama_sesi = ''
                 this.formSession.waktu_mulai = ''
                 this.formSession.waktu_selesai = ''
             },
+            clearGuestForm: function () {
+                this.formGuest.id = ''
+                this.formGuest.id_sesi = ''
+                this.formGuest.nama = ''
+                this.formGuest.telepon = ''
+                this.formGuest.jumlah = ''
+                this.formGuest.jenis_tamu = ''
+                this.formGuest.rsvp = ''
+                this.formGuest.kehadiran = ''
+                this.formGuest.kode = ''
+                this.formGuest.is_vip = ''
+                this.formGuest.ucapan = ''
+            },
             checkID: function () {
                 if (idNikahan) {
                     this.formSession.id_pernikahan = idNikahan
                     this.form.id = idNikahan
+                    this.formGuest.id_pernikahan = idNikahan
                     this.loadData()
                     this.loadSession()
+                    this.loadGuest()
                 }
+            },
+            generateCode: function () {
+                let text = "";
+                let possible = "abcdefghijklmnopqrstuvwxyz0123456789";
+                for (let i = 0; i <= 5; i++)
+                    text += possible.charAt(Math.floor(Math.random() * possible.length));
+                return text;
             },
             isActiveSideMenu: function (id) {
                 return this.sideMenuIndex === id
@@ -224,6 +277,20 @@
                     isValid = false
                 return isValid
             },
+            validationGuestInformation: function () {
+                let isValid = true
+                if (this.formGuest.nama === '' || this.formGuest.nama == null)
+                    isValid = false
+                if (this.formGuest.telepon === '' || this.formGuest.telepon == null)
+                    isValid = false
+                if (this.formGuest.jumlah === '' || this.formGuest.jumlah == null)
+                    isValid = false
+                if (this.formGuest.id_sesi === '' || this.formGuest.id_sesi == null)
+                    isValid = false
+                if (this.formGuest.is_vip === '' || this.formGuest.is_vip == null)
+                    isValid = false
+                return isValid
+            },
             updateValidation: function () {
                 let isValid = true
                 if (this.sideMenuIndex === 1) {
@@ -293,6 +360,59 @@
                                 window.removeEventListener('beforeunload', _this.leaving, true)
                                 window.location = "/wo/pernikahan";
                             }, 1000);
+                        }
+                    }
+                } catch (e) {
+
+                }
+            },
+            onSaveGuest: async function () {
+                try {
+                    if (!this.validationGuestInformation())
+                        toastr.warning("Harap isi semua form yang wajib diisi!")
+                    else {
+                        let formData = {...this.formGuest}
+                        //Mengisi data yang masih kosong
+                        formData.kode = this.generateCode()
+                        const res = await fetch('/api/tamu', {
+                            method: 'POST',
+                            body: JSON.stringify(formData),
+                            headers: {'Content-Type': "application/json"}
+                        });
+                        const data = await res.json();
+                        //
+                        if (data.code === 0)
+                            toastr.error(data.message);
+                        else {
+                            toastr.success(data.message);
+                            this.setAddGuest(false)
+                            this.loadGuest()
+                        }
+                    }
+                } catch (e) {
+
+                }
+            },
+            onUpdateGuest: async function () {
+                try {
+                    if (!this.validationGuestInformation())
+                        toastr.warning("Harap isi semua form yang wajib diisi!")
+                    else {
+                        let formData = {...this.formGuest}
+                        //Update Database
+                        const res = await fetch('/api/tamu', {
+                            method: 'PUT',
+                            body: JSON.stringify(formData),
+                            headers: {'Content-Type': "application/json"}
+                        });
+                        const data = await res.json();
+                        //
+                        if (data.code === 0)
+                            toastr.error(data.message);
+                        else {
+                            toastr.success(data.message);
+                            this.setEditGuest(false)
+                            this.loadGuest()
                         }
                     }
                 } catch (e) {
@@ -397,6 +517,15 @@
                     const res = await fetch(`/api/sesi/${this.form.id}`)
                     const data = await res.json()
                     this.session = data.data
+                } catch (e) {
+
+                }
+            },
+            loadGuest: async function () {
+                try {
+                    const res = await fetch(`/api/tamu/${this.form.id}`)
+                    const data = await res.json()
+                    this.guest = data.data
                 } catch (e) {
 
                 }
