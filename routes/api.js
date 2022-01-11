@@ -20,6 +20,7 @@ router.put('/pernikahan', Pernikahan.updatePernikahan)
 //Area Sesi
 router.post('/sesi', Sesi.insertSession)
 router.get('/sesi/:id', Sesi.getWeddingSession)
+router.get('/sesi/detail/:id', Sesi.getDetailWeddingSession)
 router.put('/sesi', Sesi.updateSession)
 
 //Area Tamu

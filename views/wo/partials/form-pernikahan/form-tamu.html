@@ -47,15 +47,6 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="id_sesi" class="col-sm-2 col-form-label">Sesi Pernikahan*</label>
-                                <div class="col-sm-10">
-                                    <select class="form-control" id="id_sesi" v-model="formGuest.id_sesi">
-                                        <option value="" selected disabled>Di sesi manakah tamu ini ?</option>
-                                        <option v-for="data in session" v-bind:value="data.id">{{data.nama_sesi}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
                                 <label for="is_vip" class="col-sm-2 col-form-label">VIP*</label>
                                 <div class="col-sm-10">
                                     <select class="form-control" id="is_vip" v-model="formGuest.is_vip">
@@ -64,6 +55,43 @@
                                         <option value="Tidak">Tidak</option>
                                     </select>
                                 </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="is_family" class="col-sm-2 col-form-label">Bagian Keluarga*</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="is_family" v-model="formGuest.is_family">
+                                        <option value="" selected disabled>Apakah Tamu Ini Termasuk Bagian Keluarga
+                                            Pengantin ?
+                                        </option>
+                                        <option value="Ya">Ya</option>
+                                        <option value="Tidak">Tidak</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_sesi">Sesi Pernikahan*</label>
+                                <select class="form-control" id="id_sesi" v-model="formGuest.sesi[0]">
+                                    <option value="" selected disabled>Di sesi manakah tamu ini ?</option>
+                                    <option v-for="data in session" v-bind:value="data.id">{{data.nama_sesi}}</option>
+                                </select>
+                                <div class="row" v-for="(data,index) in formGuest.sesi.slice(1)"
+                                     v-if="formGuest.is_family =='Ya'">
+                                    <div class="col-sm-10 col-form-label"><select class="form-control" id="sesi"
+                                                                                  v-model="formGuest.sesi[index+1]">
+                                        <option value="" selected disabled>Di sesi manakah tamu ini ?</option>
+                                        <option v-for="data in session.filter(x => !formGuest.sesi.includes(x.id))"
+                                                v-bind:value="data.id">{{data.nama_sesi}}
+                                        </option>
+                                    </select></div>
+                                    <div class="col-sm-2" style="margin-top: 7px">
+                                        <button class="btn btn-default"
+                                                v-on:click="deleteOneSession(index+1)">Hapus Sesi
+                                        </button>
+                                    </div>
+                                </div>
+                                <button v-if="formGuest.is_family =='Ya'" class="btn btn-default"
+                                        v-on:click="addAnotherSession">Tambah Sesi
+                                </button>
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -113,17 +141,8 @@
                                 <label for="jenis_tamu" class="col-sm-2 col-form-label">Jenis Tamu (Opsional)</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="jenis_tamu"
-                                           placeholder="Masukkan Jumlah Tamu"
+                                           placeholder="Contoh : Teman SMK Calon Pengantin Pria"
                                            v-model="formGuest.jenis_tamu">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="id_sesi" class="col-sm-2 col-form-label">Sesi Pernikahan*</label>
-                                <div class="col-sm-10">
-                                    <select class="form-control" id="id_sesi" v-model="formGuest.id_sesi">
-                                        <option value="" selected disabled>Di sesi manakah tamu ini ?</option>
-                                        <option v-for="data in session" v-bind:value="data.id">{{data.nama_sesi}}</option>
-                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -135,6 +154,42 @@
                                         <option value="Tidak">Tidak</option>
                                     </select>
                                 </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="is_family" class="col-sm-2 col-form-label">Bagian Keluarga*</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="is_family" v-model="formGuest.is_family">
+                                        <option value="" selected disabled>Apakah Tamu Ini Termasuk Bagian Keluarga
+                                            Pengantin ?
+                                        </option>
+                                        <option value="Ya">Ya</option>
+                                        <option value="Tidak">Tidak</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_sesi">Sesi Pernikahan*</label>
+                                <select class="form-control" id="id_sesi" v-model="formGuest.sesi[0]">
+                                    <option value="" selected disabled>Di sesi manakah tamu ini ?</option>
+                                    <option v-for="data in session" v-bind:value="data.id">{{data.nama_sesi}}</option>
+                                </select>
+                                <div class="row" v-for="(data,index) in formGuest.sesi.slice(1)"
+                                     v-if="formGuest.is_family =='Ya'">
+                                    <div class="col-sm-10 col-form-label"><select class="form-control" id="sesi"
+                                                                                  v-model="formGuest.sesi[index+1]">
+                                        <option value="" selected disabled>Di sesi manakah tamu ini ?</option>
+                                        <option v-for="data in session" v-bind:value="data.id">{{data.nama_sesi}}
+                                        </option>
+                                    </select></div>
+                                    <div class="col-sm-2" style="margin-top: 7px">
+                                        <button class="btn btn-default"
+                                                v-on:click="deleteOneSession(index+1)">Hapus Sesi
+                                        </button>
+                                    </div>
+                                </div>
+                                <button v-if="formGuest.is_family =='Ya'" class="btn btn-default"
+                                        v-on:click="addAnotherSession">Tambah Sesi
+                                </button>
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -165,7 +220,6 @@
                                     <th>Telepon</th>
                                     <th>Jumlah</th>
                                     <th>Jenis Tamu</th>
-                                    <th>Sesi</th>
                                     <th>VIP</th>
                                     <th>Kode RSVP</th>
                                     <th>Aksi</th>
@@ -178,7 +232,6 @@
                                     <td>{{item.telepon}}</td>
                                     <td>{{item.jumlah}}</td>
                                     <td>{{item.jenis_tamu}}</td>
-                                    <td>{{item.nama_sesi}}</td>
                                     <td>{{item.is_vip}}</td>
                                     <td>{{item.kode}}</td>
                                     <td>

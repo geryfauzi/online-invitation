@@ -54,8 +54,23 @@ const getWeddingSession = async (req, res) => {
     }
 }
 
+const getDetailWeddingSession = async (req, res) => {
+    let connect = DB.config
+    let id = req.params.id
+    try {
+        connect.query("SELECT * FROM detail_sesi WHERE id_tamu = ?", [id], (error, result) => {
+            return res.json({
+                data: result
+            })
+        })
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 module.exports = {
     getWeddingSession,
     insertSession,
-    updateSession
+    updateSession,
+    getDetailWeddingSession
 }

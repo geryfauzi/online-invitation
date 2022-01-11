@@ -104,7 +104,6 @@
             },
             formGuest : {
                 id : '',
-                id_sesi : '',
                 id_pernikahan : '',
                 nama : '',
                 telepon : '',
@@ -114,10 +113,18 @@
                 kehadiran : '',
                 kode : '',
                 is_vip : '',
-                ucapan : ''
+                is_family : '',
+                ucapan : '',
+                sesi : []
             }
         },
         methods: {
+            addAnotherSession: function () {
+              this.formGuest.sesi.push(0)
+            },
+            deleteOneSession: function (index) {
+              this.formGuest.sesi.splice(index,1)
+            },
             setEditSession : function (params, index) {
                 this.editSession = params
                 if(params && this.addSession === true)
@@ -130,13 +137,13 @@
                 } else
                     this.clearSessionForm()
             },
-            setEditGuest : function (params, index) {
+            setEditGuest : async function (params, index) {
                 this.editGuest = params
                 if(params && this.addGuest === true)
                     this.addGuest = false
                 if(params){
                     this.formGuest.id = this.guest[index].id
-                    this.formGuest.id_sesi = this.guest[index].id_sesi
+                    this.formGuest.is_family = this.guest[index].is_family
                     this.formGuest.nama = this.guest[index].nama
                     this.formGuest.telepon = this.guest[index].telepon
                     this.formGuest.jumlah = this.guest[index].jumlah
@@ -146,6 +153,16 @@
                     this.formGuest.kode = this.guest[index].kode
                     this.formGuest.is_vip = this.guest[index].is_vip
                     this.formGuest.ucapan = this.guest[index].ucapan
+                    //Mengambil data sesi
+                    try {
+                        const res = await fetch(`/api/sesi/detail/${this.formGuest.id}`)
+                        const data = await res.json()
+                        data.data.forEach(item => {
+                            this.formGuest.sesi.push(item.id_sesi)
+                        })
+                    } catch (e) {
+                        console.log(e)
+                    }
                 } else
                     this.clearGuestForm()
             },
@@ -175,7 +192,8 @@
             },
             clearGuestForm: function () {
                 this.formGuest.id = ''
-                this.formGuest.id_sesi = ''
+                this.formGuest.is_family = ''
+                this.formGuest.sesi = []
                 this.formGuest.nama = ''
                 this.formGuest.telepon = ''
                 this.formGuest.jumlah = ''
@@ -285,9 +303,11 @@
                     isValid = false
                 if (this.formGuest.jumlah === '' || this.formGuest.jumlah == null)
                     isValid = false
-                if (this.formGuest.id_sesi === '' || this.formGuest.id_sesi == null)
-                    isValid = false
                 if (this.formGuest.is_vip === '' || this.formGuest.is_vip == null)
+                    isValid = false
+                if(this.formGuest.sesi[0] === '' || this.formGuest.sesi[0] == null)
+                    isValid = false
+                if(this.formGuest.sesi[0] === '' || this.formGuest.sesi[0] == null)
                     isValid = false
                 return isValid
             },
