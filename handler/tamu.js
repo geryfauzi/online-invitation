@@ -4,7 +4,7 @@ const getWeddingGuest = async (req, res) => {
     let connect = DB.config
     let id = req.params.id
     try {
-        connect.query("SELECT * FROM tamu  WHERE id_pernikahan = ?", [id], (error, result) => {
+        connect.query("SELECT tamu.id, tamu.nama, tamu.telepon, tamu.jumlah, tamu.jenis_tamu, tamu.rsvp, tamu.kehadiran, tamu.id_pernikahan, tamu.kode, tamu.is_vip, tamu.is_family, tamu.ucapan, COUNT(detail_sesi.id_sesi) AS jumlah_sesi FROM tamu LEFT JOIN detail_sesi ON tamu.id = detail_sesi.id_tamu WHERE tamu.id_pernikahan = ? GROUP BY tamu.id ORDER BY tamu.id DESC", [id], (error, result) => {
             console.log(result)
             return res.json({
                 data: result

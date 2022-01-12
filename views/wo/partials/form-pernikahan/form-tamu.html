@@ -79,7 +79,7 @@
                                     <div class="col-sm-10 col-form-label"><select class="form-control" id="sesi"
                                                                                   v-model="formGuest.sesi[index+1]">
                                         <option value="" selected disabled>Di sesi manakah tamu ini ?</option>
-                                        <option v-for="data in session.filter(x => !formGuest.sesi.includes(x.id))"
+                                        <option v-for="data in session"
                                                 v-bind:value="data.id">{{data.nama_sesi}}
                                         </option>
                                     </select></div>
@@ -220,6 +220,7 @@
                                     <th>Telepon</th>
                                     <th>Jumlah</th>
                                     <th>Jenis Tamu</th>
+                                    <th>Sesi</th>
                                     <th>VIP</th>
                                     <th>Kode RSVP</th>
                                     <th>Aksi</th>
@@ -232,6 +233,7 @@
                                     <td>{{item.telepon}}</td>
                                     <td>{{item.jumlah}}</td>
                                     <td>{{item.jenis_tamu}}</td>
+                                    <td>{{item.jumlah_sesi}} Sesi</td>
                                     <td>{{item.is_vip}}</td>
                                     <td>{{item.kode}}</td>
                                     <td>
