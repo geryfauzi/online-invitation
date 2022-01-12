@@ -106,7 +106,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Data Pernikahan</h3>
+                            <h3 class="card-title">Data Sesi</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -114,6 +114,7 @@
                                 <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>ID</th>
                                     <th>Nama Sesi</th>
                                     <th>Waktu Mulai</th>
                                     <th>Waktu Selesai</th>
@@ -123,6 +124,7 @@
                                 <tbody>
                                 <tr v-for="(item,index) in session">
                                     <td>{{index + 1}}</td>
+                                    <td>{{item.id}}</td>
                                     <td>{{item.nama_sesi}}</td>
                                     <td>{{item.waktu_mulai}}</td>
                                     <td>{{item.waktu_selesai}}</td>

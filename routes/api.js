@@ -5,6 +5,7 @@ const Upload = require('../upload')
 const Pernikahan = require('../handler/pernikahan')
 const Sesi = require('../handler/sesi')
 const Tamu = require('../handler/tamu')
+const Gallery = require('../handler/gallery')
 
 //Area WO
 router.post('/wo/login', WO.login)
@@ -27,5 +28,10 @@ router.put('/sesi', Sesi.updateSession)
 router.get('/tamu/:id', Tamu.getWeddingGuest)
 router.post('/tamu', Tamu.insertGuest)
 router.put('/tamu', Tamu.updateGuest)
+
+//Area Gallery
+router.post('/gallery', Gallery.insertGallery)
+router.get('/gallery/:id', Gallery.getWeddingGallery)
+router.delete('/gallery',Gallery.deleteWeddingGallery)
 
 module.exports = router

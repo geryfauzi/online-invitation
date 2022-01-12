@@ -112,13 +112,15 @@ router.get('/pernikahan/:id', (req, res) => {
         {src: "https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.js"},
         {src: "https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"},
         {src: "https://cdn.datatables.net/buttons/2.0.0/js/buttons.bootstrap4.min.js"},
-        {src: "https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.js"}
+        {src: "https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.js"},
+        {src: "https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"}
     ];
     const loadCSS = [
         {src: "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"},
         {src: "https://cdn.datatables.net/1.11.2/css/dataTables.bootstrap4.min.css"},
         {src: "https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css"},
-        {src: "https://cdn.datatables.net/buttons/2.0.0/css/buttons.bootstrap4.min.css"}
+        {src: "https://cdn.datatables.net/buttons/2.0.0/css/buttons.bootstrap4.min.css"},
+        {src : "https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css"}
     ];
     return res.render('wo/form-pernikahan', {
         title: "WO - Edit Pernikahan",
