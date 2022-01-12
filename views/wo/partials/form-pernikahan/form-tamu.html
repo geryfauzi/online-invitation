@@ -223,6 +223,8 @@
                                     <th>Sesi</th>
                                     <th>VIP</th>
                                     <th>Kode RSVP</th>
+                                    <th>RSVP</th>
+                                    <th>Kehadiran</th>
                                     <th>Aksi</th>
                                 </tr>
                                 </thead>
@@ -236,6 +238,8 @@
                                     <td>{{item.jumlah_sesi}} Sesi</td>
                                     <td>{{item.is_vip}}</td>
                                     <td>{{item.kode}}</td>
+                                    <td>{{item.rsvp}}</td>
+                                    <td>{{item.kehadiran}}</td>
                                     <td>
                                         <button type="button" v-on:click="setEditGuest(true,index)"
                                                 class="btn btn-block btn-primary">Edit
