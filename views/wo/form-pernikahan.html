@@ -146,6 +146,7 @@
                     this.formSession.nama_sesi = this.session[index].nama_sesi
                     this.formSession.waktu_mulai = this.session[index].waktu_mulai
                     this.formSession.waktu_selesai = this.session[index].waktu_selesai
+                    window.scrollTo(0, 0)
                 } else
                     this.clearSessionForm()
             },
@@ -175,6 +176,7 @@
                     } catch (e) {
                         console.log(e)
                     }
+                    window.scrollTo(0, 0)
                 } else
                     this.clearGuestForm()
             },
@@ -678,6 +680,19 @@
                     const res = await fetch(`/api/sesi/${this.form.id}`)
                     const data = await res.json()
                     this.session = data.data
+                    setTimeout(() => {
+                        $('#sesi').DataTable({
+                            "destroy": true,
+                            "retrieve": true,
+                            "paging": true,
+                            "lengthChange": true,
+                            "searching": true,
+                            "ordering": true,
+                            "info": true,
+                            "autoWidth": false,
+                            "responsive": true,
+                        });
+                    }, 300)
                 } catch (e) {
 
                 }
@@ -687,6 +702,19 @@
                     const res = await fetch(`/api/tamu/${this.form.id}`)
                     const data = await res.json()
                     this.guest = data.data
+                    setTimeout(() => {
+                        $('#tamu').DataTable({
+                            "destroy": true,
+                            "retrieve": true,
+                            "paging": true,
+                            "lengthChange": true,
+                            "searching": true,
+                            "ordering": true,
+                            "info": true,
+                            "autoWidth": false,
+                            "responsive": true,
+                        });
+                    }, 300)
                 } catch (e) {
 
                 }

@@ -229,7 +229,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr v-for="(item,index) in guest">
+                                <tr v-for="(item,index) in guest" :key="item.id">
                                     <td>{{index + 1}}</td>
                                     <td>{{item.nama}}</td>
                                     <td>{{item.telepon}}</td>
