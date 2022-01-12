@@ -252,6 +252,35 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card card-info">
+                        <div class="card-header"><h3 class="card-title">Tambah Data Tamu Dari File Excel</h3></div>
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">File Excel*</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input"
+                                                   v-on:change="onExcelChange"
+                                                   accept=".xlsx, application/vnd.ms-excel">
+                                            <label class="custom-file-label" id="excel">Pilih
+                                                File Excel</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" v-on:click="onUploadExcel" class="btn btn-info"
+                                    style="float: right; margin-right: 20px;">
+                                Upload File Excel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </div>

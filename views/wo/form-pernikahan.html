@@ -124,6 +124,10 @@
                 id_pernikahan : '',
                 image : null,
                 keterangan : ''
+            },
+            formExcel : {
+                id_pernikahan : '',
+                excel : null
             }
         },
         methods: {
@@ -218,6 +222,7 @@
                     this.form.id = idNikahan
                     this.formGuest.id_pernikahan = idNikahan
                     this.formGallery.id_pernikahan = idNikahan
+                    this.formExcel.id_pernikahan = idNikahan
                     this.loadData()
                     this.loadSession()
                     this.loadGuest()
@@ -243,6 +248,16 @@
                     if (!file) throw Error("File kosong");
                     this.form.image_cover = file;
                     document.getElementById("labelphoto").innerHTML = this.form.image_cover.name;
+                } catch (error) {
+                    console.error(error)
+                }
+            },
+            onExcelChange: function (e) {
+                try {
+                    let [file] = e.target.files;
+                    if (!file) throw Error("File kosong");
+                    this.formExcel.excel = file;
+                    document.getElementById("excel").innerHTML = this.formExcel.excel.name;
                 } catch (error) {
                     console.error(error)
                 }
@@ -379,6 +394,33 @@
                 } catch (e) {
                     console.log(e)
                 }
+            },
+            onUploadExcel: async function(){
+              try{
+                  if(this.formExcel.excel == null)
+                      toastr.warning("Harap pilih file excel sebelum upload!")
+                  else {
+                      let formData = {...this.formExcel}
+                      formData.excel = await this.excelUpload()
+                      const res = await fetch('/api/tamu/excel', {
+                          method: 'POST',
+                          body: JSON.stringify(formData),
+                          headers: {'Content-Type': "application/json"}
+                      });
+                      const data = await res.json();
+                      //
+                      if (data.code === 0)
+                          toastr.error(data.message);
+                      else {
+                          toastr.success(data.message);
+                          this.formExcel.excel = null
+                          document.getElementById("excel").innerHTML = "Pilih File Excel"
+                          this.loadGuest()
+                      }
+                  }
+              }catch (e) {
+
+              } 
             },
             onSave: async function () {
                 try {
@@ -533,6 +575,20 @@
                     const params = {method: 'POST', body: formData};
                     const res = await fetch('/api/upload-image', params);
                     if (res.status != 200) throw Error("Upload photo gagal!");
+                    const data = await res.json();
+                    return Promise.resolve(data.path);
+                } catch (err) {
+                    return Promise.reject(err);
+                }
+            },
+            excelUpload: async function () {
+                try {
+                    toastr.warning("Harap Tunggu");
+                    let formData = new FormData();
+                    formData.append('file', this.formExcel.excel)
+                    const params = {method: 'POST', body: formData};
+                    const res = await fetch('/api/upload-excel', params);
+                    if (res.status != 200) throw Error("Upload excel gagal!");
                     const data = await res.json();
                     return Promise.resolve(data.path);
                 } catch (err) {

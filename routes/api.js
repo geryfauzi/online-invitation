@@ -12,6 +12,7 @@ router.post('/wo/login', WO.login)
 
 //Other Area
 router.post('/upload-image', Upload.uploadImage)
+router.post('/upload-excel', Upload.uploadExcel)
 
 //Area Pernikahan
 router.post('/pernikahan', Pernikahan.insertPernikahan)
@@ -28,10 +29,11 @@ router.put('/sesi', Sesi.updateSession)
 router.get('/tamu/:id', Tamu.getWeddingGuest)
 router.post('/tamu', Tamu.insertGuest)
 router.put('/tamu', Tamu.updateGuest)
+router.post('/tamu/excel', Tamu.insertFromExcel)
 
 //Area Gallery
 router.post('/gallery', Gallery.insertGallery)
 router.get('/gallery/:id', Gallery.getWeddingGallery)
-router.delete('/gallery',Gallery.deleteWeddingGallery)
+router.delete('/gallery', Gallery.deleteWeddingGallery)
 
 module.exports = router

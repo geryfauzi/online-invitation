@@ -1,4 +1,15 @@
 const DB = require('./config')
+const fs = require('fs')
+const excel = require('read-excel-file/node')
+const path = require('path')
+
+function generateCode() {
+    let text = "";
+    let possible = "abcdefghijklmnopqrstuvwxyz0123456789";
+    for (let i = 0; i <= 5; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    return text;
+}
 
 const getWeddingGuest = async (req, res) => {
     let connect = DB.config
@@ -46,6 +57,58 @@ const insertGuest = async (req, res) => {
     }
 }
 
+const insertFromExcel = async (req, res) => {
+    let connect = DB.config
+    let data = req.body
+    let filePath = path.join(__dirname + '/../public/uploads/excel/' + data.excel)
+    console.log(filePath)
+    try {
+        let isError = false
+        //Pertama, insert ke tabel tamu dulu dari data ms excel
+        excel(filePath).then((rows) => {
+            rows.shift()
+            rows.forEach((item) => {
+                connect.query("INSERT INTO tamu(nama,telepon,jumlah,jenis_tamu,id_pernikahan,kode,is_vip,is_family) VALUES(?,?,?,?,?,?,?,?)", [
+                    item[0],
+                    item[1],
+                    item[2],
+                    item[3],
+                    data.id_pernikahan,
+                    generateCode(),
+                    item[4],
+                    item[5]
+                ], (error, result) => {
+                    if (!error) {
+                        //Insert data sesi
+                        let sesi = item[6]
+                        connect.query("INSERT INTO detail_sesi VALUES(?,?)", [sesi, result.insertId], (error1, result1) => {
+                            if (error1) {
+                                console.log(error1)
+                                isError = true
+                            }
+                        })
+                        fs.unlink(filePath, (error) => {
+                        })
+                    } else
+                        isError = true
+                })
+            })
+            if (!isError)
+                return res.json({
+                    code: 1,
+                    message: "Berhasil menambahkan tamu!"
+                })
+            else
+                return res.json({
+                    code: 0,
+                    message: "Terjadi kesalahan!"
+                })
+        })
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 const updateGuest = async (req, res) => {
     let connect = DB.config
     let data = req.body
@@ -82,5 +145,6 @@ const updateGuest = async (req, res) => {
 module.exports = {
     getWeddingGuest,
     insertGuest,
-    updateGuest
+    updateGuest,
+    insertFromExcel
 }
