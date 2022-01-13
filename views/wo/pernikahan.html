@@ -56,7 +56,6 @@
                   <th>No</th>
                   <th>Nama</th>
                   <th>Tanggal</th>
-                  <th>Alamat</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>
@@ -70,7 +69,6 @@
                   <td><%= new Date(data.tanggal).toLocaleDateString('id-ID', { weekday:"long",
                     year:"numeric", month:"short", day:"numeric"}); %>
                   </td>
-                  <td><%= data.alamat; %></td>
                   <td> <a href="/wo/pernikahan/<%= data.id %>"> <button type="button" class="btn btn-block btn-primary">Edit</button></a></td>
                 </tr>
                   <% nomor++; %>

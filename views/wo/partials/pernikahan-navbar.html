@@ -38,7 +38,7 @@
                     <a href="javascript:void(0)" v-on:click="setSideMenuIndex(2)"  v-bind:class="[isActiveSideMenu(2) ? 'active' : '', 'nav-link']">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
-                            Pengantin Pria
+                            Informasi CPP
                         </p>
                     </a>
                 </li>
@@ -48,7 +48,7 @@
                     <a href="javascript:void(0)" v-on:click="setSideMenuIndex(3)"  v-bind:class="[isActiveSideMenu(3) ? 'active' : '', 'nav-link']">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
-                            Pengguna
+                            Informasi CPW
                         </p>
                     </a>
                 </li>
@@ -58,7 +58,7 @@
                     <a href="javascript:void(0)" v-on:click="setSideMenuIndex(4)"  v-bind:class="[isActiveSideMenu(4) ? 'active' : '', 'nav-link']">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
-                            Tamu
+                            Sesi
                         </p>
                     </a>
                 </li>
@@ -68,7 +68,27 @@
                     <a href="javascript:void(0)" v-on:click="setSideMenuIndex(5)"  v-bind:class="[isActiveSideMenu(5) ? 'active' : '', 'nav-link']">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
-                            Foto
+                            Grup Tamu
+                        </p>
+                    </a>
+                </li>
+                <% } %>
+                <% if (locals.id) { %>
+                <li class="nav-item">
+                    <a href="javascript:void(0)" v-on:click="setSideMenuIndex(6)"  v-bind:class="[isActiveSideMenu(6) ? 'active' : '', 'nav-link']">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Tamu
+                        </p>
+                    </a>
+                </li>
+                <% } %>
+                <% if (locals.id) { %>
+                <li class="nav-item">
+                    <a href="javascript:void(0)" v-on:click="setSideMenuIndex(7)"  v-bind:class="[isActiveSideMenu(7) ? 'active' : '', 'nav-link']">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Gallery
                         </p>
                     </a>
                 </li>
