@@ -43,6 +43,20 @@
                                     </div>
                                     <!-- /.form group -->
                                 </div>
+                                <div class="form-group row">
+                                    <label for="alamat" class="col-sm-2 col-form-label">Alamat Sesi*</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="alamat" placeholder="Masukkan Alamat Untuk Sesi ini"
+                                               v-model="formSession.alamat">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="url_gmaps" class="col-sm-2 col-form-label">URL Gmaps*</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="url_gmaps" placeholder="Masukkan URL Google Maps Untuk Sesi ini"
+                                               v-model="formSession.url_gmaps">
+                                    </div>
+                                </div>
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer">
@@ -91,6 +105,20 @@
                                 </div>
                                 <!-- /.form group -->
                             </div>
+                            <div class="form-group row">
+                                <label for="alamat" class="col-sm-2 col-form-label">Alamat Sesi*</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="alamat" placeholder="Masukkan Alamat Untuk Sesi ini"
+                                           v-model="formSession.alamat">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="url_gmaps" class="col-sm-2 col-form-label">URL Gmaps*</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="url_gmaps" placeholder="Masukkan URL Google Maps Untuk Sesi ini"
+                                           v-model="formSession.url_gmaps">
+                                </div>
+                            </div>
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
@@ -116,6 +144,7 @@
                                     <th>No</th>
                                     <th>ID</th>
                                     <th>Nama Sesi</th>
+                                    <th>Alamat</th>
                                     <th>Waktu Mulai</th>
                                     <th>Waktu Selesai</th>
                                     <th>Aksi</th>
@@ -126,6 +155,7 @@
                                     <td>{{index + 1}}</td>
                                     <td>{{item.id}}</td>
                                     <td>{{item.nama_sesi}}</td>
+                                    <td>{{item.alamat}}</td>
                                     <td>{{item.waktu_mulai}}</td>
                                     <td>{{item.waktu_selesai}}</td>
                                     <td>

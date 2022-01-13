@@ -28,7 +28,7 @@ const updatePernikahan = async (req, res) => {
     let data = req.body
     console.log(data)
     try {
-        connect.query("UPDATE pernikahan SET nama = ?, tanggal = ?, nama_cpp = ?, ayah_cpp = ?, ibu_cpp = ?, nama_cpw = ?, ayah_cpw = ?, ibu_cpw = ?, image_cpp = ?, image_cpw = ?, quote_cover = ?, image_cover = ?, alamat = ?, url_gmaps = ? WHERE id = ?", [data.nama, data.tanggal, data.nama_cpp, data.ayah_cpp, data.ibu_cpp, data.nama_cpw, data.ayah_cpw, data.ibu_cpw, data.image_cpp, data.image_cpw, data.quote_cover, data.image_cover, data.alamat, data.url_gmaps, data.id], (error, result) => {
+        connect.query("UPDATE pernikahan SET nama = ?, tanggal = ?, nama_cpp = ?, ayah_cpp = ?, ibu_cpp = ?, nama_cpw = ?, ayah_cpw = ?, ibu_cpw = ?, image_cpp = ?, image_cpw = ?, quote_cover = ?, image_cover = ? WHERE id = ?", [data.nama, data.tanggal, data.nama_cpp, data.ayah_cpp, data.ibu_cpp, data.nama_cpw, data.ayah_cpw, data.ibu_cpw, data.image_cpp, data.image_cpw, data.quote_cover, data.image_cover, data.id], (error, result) => {
             if (!error)
                 return res.json({
                     code: 1,

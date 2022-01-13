@@ -100,7 +100,9 @@
                 id_pernikahan: '',
                 nama_sesi: '',
                 waktu_mulai: '',
-                waktu_selesai: ''
+                waktu_selesai: '',
+                alamat : '',
+                url_gmaps : ''
             },
             formGuest : {
                 id : '',
@@ -144,6 +146,8 @@
                     this.formSession.nama_sesi = this.session[index].nama_sesi
                     this.formSession.waktu_mulai = this.session[index].waktu_mulai
                     this.formSession.waktu_selesai = this.session[index].waktu_selesai
+                    this.formSession.alamat = this.session[index].alamat
+                    this.formSession.url_gmaps = this.session[index].url_gmaps
                     window.scrollTo(0, 0)
                 } else
                     this.clearSessionForm()
@@ -201,6 +205,8 @@
                 this.formSession.nama_sesi = ''
                 this.formSession.waktu_mulai = ''
                 this.formSession.waktu_selesai = ''
+                this.formSession.alamat = ''
+                this.formSession.url_gmaps = ''
             },
             clearGuestForm: function () {
                 this.formGuest.id = ''
@@ -321,6 +327,10 @@
                 if (this.formSession.waktu_mulai === '' || this.formSession.waktu_mulai == null)
                     isValid = false
                 if (this.formSession.waktu_selesai === '' || this.formSession.waktu_selesai == null)
+                    isValid = false
+                if (this.formSession.alamat === '' || this.formSession.alamat == null)
+                    isValid = false
+                if (this.formSession.url_gmaps === '' || this.formSession.url_gmaps == null)
                     isValid = false
                 return isValid
             },
@@ -672,18 +682,21 @@
                     const res = await fetch(`/api/sesi/${this.form.id}`)
                     const data = await res.json()
                     this.session = data.data
+                    $('#sesi').DataTable().destroy()
                     setTimeout(() => {
-                        $('#sesi').DataTable({
-                            "destroy": true,
-                            "retrieve": true,
-                            "paging": true,
-                            "lengthChange": true,
-                            "searching": true,
-                            "ordering": true,
-                            "info": true,
-                            "autoWidth": false,
-                            "responsive": true,
-                        });
+                        this.$nextTick(function() {
+                            $('#sesi').DataTable({
+                                "destroy": true,
+                                "retrieve": true,
+                                "paging": true,
+                                "lengthChange": true,
+                                "searching": true,
+                                "ordering": true,
+                                "info": true,
+                                "autoWidth": false,
+                                "responsive": true,
+                            })
+                        })
                     }, 300)
                 } catch (e) {
 
@@ -694,18 +707,21 @@
                     const res = await fetch(`/api/tamu/${this.form.id}`)
                     const data = await res.json()
                     this.guest = data.data
+                    $('#tamu').DataTable().destroy()
                     setTimeout(() => {
-                        $('#tamu').DataTable({
-                            "destroy": true,
-                            "retrieve": true,
-                            "paging": true,
-                            "lengthChange": true,
-                            "searching": true,
-                            "ordering": true,
-                            "info": true,
-                            "autoWidth": false,
-                            "responsive": true,
-                        });
+                        this.$nextTick(function() {
+                            $('#tamu').DataTable({
+                                "destroy": true,
+                                "retrieve": true,
+                                "paging": true,
+                                "lengthChange": true,
+                                "searching": true,
+                                "ordering": true,
+                                "info": true,
+                                "autoWidth": false,
+                                "responsive": true,
+                            })
+                        })
                     }, 300)
                 } catch (e) {
 
