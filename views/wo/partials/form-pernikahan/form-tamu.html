@@ -39,11 +39,12 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="jenis_tamu" class="col-sm-2 col-form-label">Jenis Tamu (Opsional)</label>
+                                <label for="id_grup" class="col-sm-2 col-form-label">Grup (Opsional)</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="jenis_tamu"
-                                           placeholder="Masukkan Jumlah Tamu"
-                                           v-model="formGuest.jenis_tamu">
+                                    <select class="form-control" id="id_grup" v-model="formGuest.id_grup">
+                                        <option value="" selected disabled>Termasuk Grup Manakah Tamu Ini ?</option>
+                                        <option v-for="data in group" v-bind:value="data.id">{{data.nama}}</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -138,11 +139,12 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="jenis_tamu" class="col-sm-2 col-form-label">Jenis Tamu (Opsional)</label>
+                                <label for="id_grup" class="col-sm-2 col-form-label">Grup (Opsional)</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="jenis_tamu"
-                                           placeholder="Contoh : Teman SMK Calon Pengantin Pria"
-                                           v-model="formGuest.jenis_tamu">
+                                    <select class="form-control" id="id_grup" v-model="formGuest.id_grup">
+                                        <option value="" selected disabled>Termasuk Grup Manakah Tamu Ini ?</option>
+                                        <option v-for="data in group" v-bind:value="data.id">{{data.nama}}</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -219,7 +221,7 @@
                                     <th>Nama</th>
                                     <th>Telepon</th>
                                     <th>Jumlah</th>
-                                    <th>Jenis Tamu</th>
+                                    <th>Grup</th>
                                     <th>Sesi</th>
                                     <th>VIP</th>
                                     <th>Kode RSVP</th>
@@ -234,7 +236,7 @@
                                     <td>{{item.nama}}</td>
                                     <td>{{item.telepon}}</td>
                                     <td>{{item.jumlah}}</td>
-                                    <td>{{item.jenis_tamu}}</td>
+                                    <td>{{item.nama_grup}}</td>
                                     <td>{{item.jumlah_sesi}} Sesi</td>
                                     <td>{{item.is_vip}}</td>
                                     <td>{{item.kode}}</td>

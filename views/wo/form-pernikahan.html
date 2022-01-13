@@ -112,10 +112,10 @@
             formGuest : {
                 id : '',
                 id_pernikahan : '',
+                id_grup : '',
                 nama : '',
                 telepon : '',
                 jumlah : '',
-                jenis_tamu : '',
                 rsvp : '',
                 kehadiran : '',
                 kode : '',
@@ -181,10 +181,10 @@
                 if(params){
                     this.formGuest.id = this.guest[index].id
                     this.formGuest.is_family = this.guest[index].is_family
+                    this.formGuest.id_grup = this.guest[index].id_grup
                     this.formGuest.nama = this.guest[index].nama
                     this.formGuest.telepon = this.guest[index].telepon
                     this.formGuest.jumlah = this.guest[index].jumlah
-                    this.formGuest.jenis_tamu = this.guest[index].jenis_tamu
                     this.formGuest.rsvp = this.guest[index].rsvp
                     this.formGuest.kehadiran = this.guest[index].kehadiran
                     this.formGuest.kode = this.guest[index].kode
@@ -251,7 +251,6 @@
                 this.formGuest.nama = ''
                 this.formGuest.telepon = ''
                 this.formGuest.jumlah = ''
-                this.formGuest.jenis_tamu = ''
                 this.formGuest.rsvp = ''
                 this.formGuest.kehadiran = ''
                 this.formGuest.kode = ''
