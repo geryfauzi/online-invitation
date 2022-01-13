@@ -141,196 +141,13 @@
             }
         },
         methods: {
-            addAnotherSession: function () {
-              this.formGuest.sesi.push(0)
-            },
-            deleteOneSession: function (index) {
-              this.formGuest.sesi.splice(index,1)
-            },
-            setEditSession : function (params, index) {
-                this.editSession = params
-                if(params && this.addSession === true)
-                    this.addSession = false
-                if(params){
-                    this.formSession.id = this.session[index].id
-                    this.formSession.nama_sesi = this.session[index].nama_sesi
-                    this.formSession.tanggal = this.session[index].tanggal
-                    this.formSession.waktu_mulai = this.session[index].waktu_mulai
-                    this.formSession.waktu_selesai = this.session[index].waktu_selesai
-                    this.formSession.alamat = this.session[index].alamat
-                    this.formSession.url_gmaps = this.session[index].url_gmaps
-                    window.scrollTo(0, 0)
-                } else
-                    this.clearSessionForm()
-            },
-            setEditGroup : function (params, index) {
-                this.editGroup = params
-                if(params && this.addGroup === true)
-                    this.addGroup = false
-                if(params){
-                    this.formGroup.id = this.group[index].id
-                    this.formGroup.nama = this.group[index].nama
-                    window.scrollTo(0, 0)
-                } else
-                    this.clearGroupForm()
-            },
-            setEditGuest : async function (params, index) {
-                this.editGuest = params
-                if(params && this.addGuest === true)
-                    this.addGuest = false
-                if(params){
-                    this.formGuest.id = this.guest[index].id
-                    this.formGuest.is_family = this.guest[index].is_family
-                    this.formGuest.id_grup = this.guest[index].id_grup
-                    this.formGuest.nama = this.guest[index].nama
-                    this.formGuest.telepon = this.guest[index].telepon
-                    this.formGuest.jumlah = this.guest[index].jumlah
-                    this.formGuest.rsvp = this.guest[index].rsvp
-                    this.formGuest.kehadiran = this.guest[index].kehadiran
-                    this.formGuest.kode = this.guest[index].kode
-                    this.formGuest.is_vip = this.guest[index].is_vip
-                    this.formGuest.ucapan = this.guest[index].ucapan
-                    //Mengambil data sesi
-                    try {
-                        const res = await fetch(`/api/sesi/detail/${this.formGuest.id}`)
-                        const data = await res.json()
-                        data.data.forEach(item => {
-                            this.formGuest.sesi.push(item.id_sesi)
-                        })
-                    } catch (e) {
-                        console.log(e)
-                    }
-                    window.scrollTo(0, 0)
-                } else
-                    this.clearGuestForm()
-            },
-            setAddSession: function (params) {
-                this.addSession = params
-                if (params && this.editSession === true) {
-                    this.clearSessionForm()
-                    this.editSession = false
-                }
-                if (!params)
-                    this.clearSessionForm()
-            },
-            setAddGroup: function (params) {
-                this.addGroup = params
-                if (params && this.editGroup === true) {
-                    this.clearGroupForm()
-                    this.editGroup = false
-                }
-                if (!params)
-                    this.clearGroupForm()
-            },
-            setAddGuest: function (params) {
-                this.addGuest = params
-                if (params && this.editGuest === true) {
-                    this.clearGuestForm()
-                    this.editGuest = false
-                }
-                if (!params)
-                    this.clearGuestForm()
-            },
-            clearSessionForm: function () {
-                this.formSession.id = ''
-                this.formSession.nama_sesi = ''
-                this.formSession.tanggal = ''
-                this.formSession.waktu_mulai = ''
-                this.formSession.waktu_selesai = ''
-                this.formSession.alamat = ''
-                this.formSession.url_gmaps = ''
-            },
-            clearGroupForm: function () {
-                this.formGroup.id = ''
-                this.formGroup.nama = ''
-            },
-            clearGuestForm: function () {
-                this.formGuest.id = ''
-                this.formGuest.is_family = ''
-                this.formGuest.sesi = []
-                this.formGuest.nama = ''
-                this.formGuest.telepon = ''
-                this.formGuest.jumlah = ''
-                this.formGuest.rsvp = ''
-                this.formGuest.kehadiran = ''
-                this.formGuest.kode = ''
-                this.formGuest.is_vip = ''
-                this.formGuest.ucapan = ''
-            },
-            checkID: function () {
-                if (idNikahan) {
-                    this.formSession.id_pernikahan = idNikahan
-                    this.form.id = idNikahan
-                    this.formGuest.id_pernikahan = idNikahan
-                    this.formGallery.id_pernikahan = idNikahan
-                    this.formExcel.id_pernikahan = idNikahan
-                    this.formGroup.id_pernikahan = idNikahan
-                    this.loadData()
-                    this.loadSession()
-                    this.loadGuest()
-                    this.loadGallery()
-                    this.loadGroup()
-                }
-            },
-            generateCode: function () {
-                let text = "";
-                let possible = "abcdefghijklmnopqrstuvwxyz0123456789";
-                for (let i = 0; i <= 5; i++)
-                    text += possible.charAt(Math.floor(Math.random() * possible.length));
-                return text;
-            },
-            isActiveSideMenu: function (id) {
-                return this.sideMenuIndex === id
-            },
-            setSideMenuIndex: function (idx) {
-                this.sideMenuIndex = idx
-            },
+            //Area Informasi General
             onPhotoChange: function (e) {
                 try {
                     let [file] = e.target.files;
                     if (!file) throw Error("File kosong");
                     this.form.image_cover = file;
                     document.getElementById("labelphoto").innerHTML = this.form.image_cover.name;
-                } catch (error) {
-                    console.error(error)
-                }
-            },
-            onExcelChange: function (e) {
-                try {
-                    let [file] = e.target.files;
-                    if (!file) throw Error("File kosong");
-                    this.formExcel.excel = file;
-                    document.getElementById("excel").innerHTML = this.formExcel.excel.name;
-                } catch (error) {
-                    console.error(error)
-                }
-            },
-            onGalleryChange: function (e) {
-                try {
-                    let [file] = e.target.files;
-                    if (!file) throw Error("File kosong");
-                    this.formGallery.image = file;
-                    document.getElementById("image_gallery").innerHTML = this.formGallery.image.name;
-                } catch (error) {
-                    console.error(error)
-                }
-            },
-            onPhotoCPPChange: function (e) {
-                try {
-                    let [file] = e.target.files;
-                    if (!file) throw Error("File kosong");
-                    this.form.image_cpp = file;
-                    document.getElementById("image_cpp").innerHTML = this.form.image_cpp.name;
-                } catch (error) {
-                    console.error(error)
-                }
-            },
-            onPhotoCPWChange: function (e) {
-                try {
-                    let [file] = e.target.files;
-                    if (!file) throw Error("File kosong");
-                    this.form.image_cpw = file;
-                    document.getElementById("image_cpw").innerHTML = this.form.image_cpw.name;
                 } catch (error) {
                     console.error(error)
                 }
@@ -343,68 +160,6 @@
                     isValid = false
                 if (this.form.image_cover === null)
                     isValid = false
-                return isValid
-            },
-            validationCPPInformation: function () {
-                let isValid = true
-                if (this.form.nama_cpp === '' || this.form.nama_cpp == null)
-                    isValid = false
-                if (this.form.ayah_cpp === '' || this.form.ayah_cpp == null)
-                    isValid = false
-                if (this.form.ibu_cpp === '' || this.form.ibu_cpp == null)
-                    isValid = false
-                if (this.form.image_cpp === '' || this.form.image_cpp == null)
-                    isValid = false
-                return isValid
-            },
-            validationCPWInformation: function () {
-                let isValid = true
-                if (this.form.nama_cpw === '' || this.form.nama_cpw == null)
-                    isValid = false
-                if (this.form.ayah_cpw === '' || this.form.ayah_cpw == null)
-                    isValid = false
-                if (this.form.ibu_cpw === '' || this.form.ibu_cpw == null)
-                    isValid = false
-                if (this.form.image_cpw === '' || this.form.image_cpw == null)
-                    isValid = false
-                return isValid
-            },
-            validationSessionInformation: function () {
-                let isValid = true
-                if (this.formSession.nama_sesi === '' || this.formSession.nama_sesi == null)
-                    isValid = false
-                if (this.formSession.waktu_mulai === '' || this.formSession.waktu_mulai == null)
-                    isValid = false
-                if (this.formSession.tanggal === '' || this.formSession.tanggal == null)
-                    isValid = false
-                if (this.formSession.waktu_selesai === '' || this.formSession.waktu_selesai == null)
-                    isValid = false
-                if (this.formSession.alamat === '' || this.formSession.alamat == null)
-                    isValid = false
-                if (this.formSession.url_gmaps === '' || this.formSession.url_gmaps == null)
-                    isValid = false
-                return isValid
-            },
-            validationGuestInformation: function () {
-                let isValid = true
-                if (this.formGuest.nama === '' || this.formGuest.nama == null)
-                    isValid = false
-                if (this.formGuest.telepon === '' || this.formGuest.telepon == null)
-                    isValid = false
-                if (this.formGuest.jumlah === '' || this.formGuest.jumlah == null)
-                    isValid = false
-                if (this.formGuest.is_vip === '' || this.formGuest.is_vip == null)
-                    isValid = false
-                if(this.formGuest.sesi[0] === '' || this.formGuest.sesi[0] == null)
-                    isValid = false
-                if(this.formGuest.sesi[0] === '' || this.formGuest.sesi[0] == null)
-                    isValid = false
-                return isValid
-            },
-            validationGallery: function () {
-              let isValid = true
-              if(this.formGallery.image == null || this.formGallery === '')
-                  isValid = false
                 return isValid
             },
             updateValidation: function () {
@@ -453,33 +208,6 @@
                     console.log(e)
                 }
             },
-            onUploadExcel: async function(){
-              try{
-                  if(this.formExcel.excel == null)
-                      toastr.warning("Harap pilih file excel sebelum upload!")
-                  else {
-                      let formData = {...this.formExcel}
-                      formData.excel = await this.excelUpload()
-                      const res = await fetch('/api/tamu/excel', {
-                          method: 'POST',
-                          body: JSON.stringify(formData),
-                          headers: {'Content-Type': "application/json"}
-                      });
-                      const data = await res.json();
-                      //
-                      if (data.code === 0)
-                          toastr.error(data.message);
-                      else {
-                          toastr.success(data.message);
-                          this.formExcel.excel = null
-                          document.getElementById("excel").innerHTML = "Pilih File Excel"
-                          this.loadGuest()
-                      }
-                  }
-              }catch (e) {
-
-              } 
-            },
             onSave: async function () {
                 try {
                     if (!this.validationGeneralInformation())
@@ -511,6 +239,386 @@
                 } catch (e) {
 
                 }
+            },
+            loadData: async function () {
+                try {
+                    const res = await fetch(`/api/pernikahan/${this.form.id}`)
+                    const data = await res.json()
+                    this.form = data.data[0]
+                    if (this.form.image_cover !== null) {
+                        this.defaultImageCover = this.form.image_cover
+                        document.getElementById("labelphoto").innerHTML = this.form.image_cover
+                    }
+                    if (this.form.image_cpp !== null) {
+                        this.defaultImageCPP = this.form.image_cpp
+                        document.getElementById("image_cpp").innerHTML = this.form.image_cpp
+                    }
+                    if (this.form.image_cpw !== null) {
+                        this.defaultImageCPW = this.form.image_cpw
+                        document.getElementById("image_cpw").innerHTML = this.form.image_cpw
+                    }
+                } catch (e) {
+
+                }
+            },
+
+            //Area Informasi CPP
+            onPhotoCPPChange: function (e) {
+                try {
+                    let [file] = e.target.files;
+                    if (!file) throw Error("File kosong");
+                    this.form.image_cpp = file;
+                    document.getElementById("image_cpp").innerHTML = this.form.image_cpp.name;
+                } catch (error) {
+                    console.error(error)
+                }
+            },
+            validationCPPInformation: function () {
+                let isValid = true
+                if (this.form.nama_cpp === '' || this.form.nama_cpp == null)
+                    isValid = false
+                if (this.form.ayah_cpp === '' || this.form.ayah_cpp == null)
+                    isValid = false
+                if (this.form.ibu_cpp === '' || this.form.ibu_cpp == null)
+                    isValid = false
+                if (this.form.image_cpp === '' || this.form.image_cpp == null)
+                    isValid = false
+                return isValid
+            },
+
+            //Area Informasi CPW
+            validationCPWInformation: function () {
+                let isValid = true
+                if (this.form.nama_cpw === '' || this.form.nama_cpw == null)
+                    isValid = false
+                if (this.form.ayah_cpw === '' || this.form.ayah_cpw == null)
+                    isValid = false
+                if (this.form.ibu_cpw === '' || this.form.ibu_cpw == null)
+                    isValid = false
+                if (this.form.image_cpw === '' || this.form.image_cpw == null)
+                    isValid = false
+                return isValid
+            },
+            onPhotoCPWChange: function (e) {
+                try {
+                    let [file] = e.target.files;
+                    if (!file) throw Error("File kosong");
+                    this.form.image_cpw = file;
+                    document.getElementById("image_cpw").innerHTML = this.form.image_cpw.name;
+                } catch (error) {
+                    console.error(error)
+                }
+            },
+
+            //Area Informasi Sesi
+            addAnotherSession: function () {
+                this.formGuest.sesi.push(0)
+            },
+            deleteOneSession: function (index) {
+                this.formGuest.sesi.splice(index,1)
+            },
+            setEditSession : function (params, index) {
+                this.editSession = params
+                if(params && this.addSession === true)
+                    this.addSession = false
+                if(params){
+                    this.formSession.id = this.session[index].id
+                    this.formSession.nama_sesi = this.session[index].nama_sesi
+                    this.formSession.tanggal = this.session[index].tanggal
+                    this.formSession.waktu_mulai = this.session[index].waktu_mulai
+                    this.formSession.waktu_selesai = this.session[index].waktu_selesai
+                    this.formSession.alamat = this.session[index].alamat
+                    this.formSession.url_gmaps = this.session[index].url_gmaps
+                    window.scrollTo(0, 0)
+                } else
+                    this.clearSessionForm()
+            },
+            setAddSession: function (params) {
+                this.addSession = params
+                if (params && this.editSession === true) {
+                    this.clearSessionForm()
+                    this.editSession = false
+                }
+                if (!params)
+                    this.clearSessionForm()
+            },
+            clearSessionForm: function () {
+                this.formSession.id = ''
+                this.formSession.nama_sesi = ''
+                this.formSession.tanggal = ''
+                this.formSession.waktu_mulai = ''
+                this.formSession.waktu_selesai = ''
+                this.formSession.alamat = ''
+                this.formSession.url_gmaps = ''
+            },
+            validationSessionInformation: function () {
+                let isValid = true
+                if (this.formSession.nama_sesi === '' || this.formSession.nama_sesi == null)
+                    isValid = false
+                if (this.formSession.waktu_mulai === '' || this.formSession.waktu_mulai == null)
+                    isValid = false
+                if (this.formSession.tanggal === '' || this.formSession.tanggal == null)
+                    isValid = false
+                if (this.formSession.waktu_selesai === '' || this.formSession.waktu_selesai == null)
+                    isValid = false
+                if (this.formSession.alamat === '' || this.formSession.alamat == null)
+                    isValid = false
+                if (this.formSession.url_gmaps === '' || this.formSession.url_gmaps == null)
+                    isValid = false
+                return isValid
+            },
+            onSaveSession: async function () {
+                try {
+                    if (!this.validationSessionInformation())
+                        toastr.warning("Harap isi semua form yang wajib diisi!")
+                    else {
+                        let formData = {...this.formSession}
+                        //Insert To Database
+                        formData.id = Date.now()
+                        const res = await fetch('/api/sesi', {
+                            method: 'POST',
+                            body: JSON.stringify(formData),
+                            headers: {'Content-Type': "application/json"}
+                        });
+                        const data = await res.json();
+                        //
+                        if (data.code === 0)
+                            toastr.error(data.message);
+                        else {
+                            toastr.success(data.message);
+                            this.setAddSession(false)
+                            this.loadSession()
+                        }
+                    }
+                } catch (e) {
+
+                }
+            },
+            onUpdateSession: async function () {
+                try {
+                    if (!this.validationSessionInformation())
+                        toastr.warning("Harap isi semua form yang wajib diisi!")
+                    else {
+                        let formData = {...this.formSession}
+                        //Update Database
+                        const res = await fetch('/api/sesi', {
+                            method: 'PUT',
+                            body: JSON.stringify(formData),
+                            headers: {'Content-Type': "application/json"}
+                        });
+                        const data = await res.json();
+                        //
+                        if (data.code === 0)
+                            toastr.error(data.message);
+                        else {
+                            toastr.success(data.message);
+                            this.setEditSession(false)
+                            this.loadSession()
+                        }
+                    }
+                } catch (e) {
+
+                }
+            },
+            loadSession: async function () {
+                try {
+                    const res = await fetch(`/api/sesi/${this.form.id}`)
+                    const data = await res.json()
+                    this.session = data.data
+                    $('#sesi').DataTable().destroy()
+                    setTimeout(() => {
+                        this.$nextTick(function() {
+                            $('#sesi').DataTable({
+                                "destroy": true,
+                                "retrieve": true,
+                                "paging": true,
+                                "lengthChange": true,
+                                "searching": true,
+                                "ordering": true,
+                                "info": true,
+                                "autoWidth": false,
+                                "responsive": true,
+                            })
+                        })
+                    }, 300)
+                } catch (e) {
+
+                }
+            },
+
+            //
+            setEditGroup : function (params, index) {
+                this.editGroup = params
+                if(params && this.addGroup === true)
+                    this.addGroup = false
+                if(params){
+                    this.formGroup.id = this.group[index].id
+                    this.formGroup.nama = this.group[index].nama
+                    window.scrollTo(0, 0)
+                } else
+                    this.clearGroupForm()
+            },
+            setEditGuest : async function (params, index) {
+                this.editGuest = params
+                if(params && this.addGuest === true)
+                    this.addGuest = false
+                if(params){
+                    this.formGuest.id = this.guest[index].id
+                    this.formGuest.is_family = this.guest[index].is_family
+                    this.formGuest.id_grup = this.guest[index].id_grup
+                    this.formGuest.nama = this.guest[index].nama
+                    this.formGuest.telepon = this.guest[index].telepon
+                    this.formGuest.jumlah = this.guest[index].jumlah
+                    this.formGuest.rsvp = this.guest[index].rsvp
+                    this.formGuest.kehadiran = this.guest[index].kehadiran
+                    this.formGuest.kode = this.guest[index].kode
+                    this.formGuest.is_vip = this.guest[index].is_vip
+                    this.formGuest.ucapan = this.guest[index].ucapan
+                    //Mengambil data sesi
+                    try {
+                        const res = await fetch(`/api/sesi/detail/${this.formGuest.id}`)
+                        const data = await res.json()
+                        data.data.forEach(item => {
+                            this.formGuest.sesi.push(item.id_sesi)
+                        })
+                    } catch (e) {
+                        console.log(e)
+                    }
+                    window.scrollTo(0, 0)
+                } else
+                    this.clearGuestForm()
+            },
+            setAddGroup: function (params) {
+                this.addGroup = params
+                if (params && this.editGroup === true) {
+                    this.clearGroupForm()
+                    this.editGroup = false
+                }
+                if (!params)
+                    this.clearGroupForm()
+            },
+            setAddGuest: function (params) {
+                this.addGuest = params
+                if (params && this.editGuest === true) {
+                    this.clearGuestForm()
+                    this.editGuest = false
+                }
+                if (!params)
+                    this.clearGuestForm()
+            },
+            clearGroupForm: function () {
+                this.formGroup.id = ''
+                this.formGroup.nama = ''
+            },
+            clearGuestForm: function () {
+                this.formGuest.id = ''
+                this.formGuest.is_family = ''
+                this.formGuest.sesi = []
+                this.formGuest.nama = ''
+                this.formGuest.telepon = ''
+                this.formGuest.jumlah = ''
+                this.formGuest.rsvp = ''
+                this.formGuest.kehadiran = ''
+                this.formGuest.kode = ''
+                this.formGuest.is_vip = ''
+                this.formGuest.ucapan = ''
+            },
+            checkID: function () {
+                if (idNikahan) {
+                    this.formSession.id_pernikahan = idNikahan
+                    this.form.id = idNikahan
+                    this.formGuest.id_pernikahan = idNikahan
+                    this.formGallery.id_pernikahan = idNikahan
+                    this.formExcel.id_pernikahan = idNikahan
+                    this.formGroup.id_pernikahan = idNikahan
+                    this.loadData()
+                    this.loadSession()
+                    this.loadGuest()
+                    this.loadGallery()
+                    this.loadGroup()
+                }
+            },
+            generateCode: function () {
+                let text = "";
+                let possible = "abcdefghijklmnopqrstuvwxyz0123456789";
+                for (let i = 0; i <= 5; i++)
+                    text += possible.charAt(Math.floor(Math.random() * possible.length));
+                return text;
+            },
+            isActiveSideMenu: function (id) {
+                return this.sideMenuIndex === id
+            },
+            setSideMenuIndex: function (idx) {
+                this.sideMenuIndex = idx
+            },
+            onExcelChange: function (e) {
+                try {
+                    let [file] = e.target.files;
+                    if (!file) throw Error("File kosong");
+                    this.formExcel.excel = file;
+                    document.getElementById("excel").innerHTML = this.formExcel.excel.name;
+                } catch (error) {
+                    console.error(error)
+                }
+            },
+            onGalleryChange: function (e) {
+                try {
+                    let [file] = e.target.files;
+                    if (!file) throw Error("File kosong");
+                    this.formGallery.image = file;
+                    document.getElementById("image_gallery").innerHTML = this.formGallery.image.name;
+                } catch (error) {
+                    console.error(error)
+                }
+            },
+            validationGuestInformation: function () {
+                let isValid = true
+                if (this.formGuest.nama === '' || this.formGuest.nama == null)
+                    isValid = false
+                if (this.formGuest.telepon === '' || this.formGuest.telepon == null)
+                    isValid = false
+                if (this.formGuest.jumlah === '' || this.formGuest.jumlah == null)
+                    isValid = false
+                if (this.formGuest.is_vip === '' || this.formGuest.is_vip == null)
+                    isValid = false
+                if(this.formGuest.sesi[0] === '' || this.formGuest.sesi[0] == null)
+                    isValid = false
+                if(this.formGuest.sesi[0] === '' || this.formGuest.sesi[0] == null)
+                    isValid = false
+                return isValid
+            },
+            validationGallery: function () {
+              let isValid = true
+              if(this.formGallery.image == null || this.formGallery === '')
+                  isValid = false
+                return isValid
+            },
+            onUploadExcel: async function(){
+              try{
+                  if(this.formExcel.excel == null)
+                      toastr.warning("Harap pilih file excel sebelum upload!")
+                  else {
+                      let formData = {...this.formExcel}
+                      formData.excel = await this.excelUpload()
+                      const res = await fetch('/api/tamu/excel', {
+                          method: 'POST',
+                          body: JSON.stringify(formData),
+                          headers: {'Content-Type': "application/json"}
+                      });
+                      const data = await res.json();
+                      //
+                      if (data.code === 0)
+                          toastr.error(data.message);
+                      else {
+                          toastr.success(data.message);
+                          this.formExcel.excel = null
+                          document.getElementById("excel").innerHTML = "Pilih File Excel"
+                          this.loadGuest()
+                      }
+                  }
+              }catch (e) {
+
+              } 
             },
             onSaveGuest: async function () {
                 try {
@@ -617,59 +725,6 @@
 
                 }
             },
-            onSaveSession: async function () {
-                try {
-                    if (!this.validationSessionInformation())
-                        toastr.warning("Harap isi semua form yang wajib diisi!")
-                    else {
-                        let formData = {...this.formSession}
-                        //Insert To Database
-                        formData.id = Date.now()
-                        const res = await fetch('/api/sesi', {
-                            method: 'POST',
-                            body: JSON.stringify(formData),
-                            headers: {'Content-Type': "application/json"}
-                        });
-                        const data = await res.json();
-                        //
-                        if (data.code === 0)
-                            toastr.error(data.message);
-                        else {
-                            toastr.success(data.message);
-                            this.setAddSession(false)
-                            this.loadSession()
-                        }
-                    }
-                } catch (e) {
-
-                }
-            },
-            onUpdateSession: async function () {
-                try {
-                    if (!this.validationSessionInformation())
-                        toastr.warning("Harap isi semua form yang wajib diisi!")
-                    else {
-                        let formData = {...this.formSession}
-                        //Update Database
-                        const res = await fetch('/api/sesi', {
-                            method: 'PUT',
-                            body: JSON.stringify(formData),
-                            headers: {'Content-Type': "application/json"}
-                        });
-                        const data = await res.json();
-                        //
-                        if (data.code === 0)
-                            toastr.error(data.message);
-                        else {
-                            toastr.success(data.message);
-                            this.setEditSession(false)
-                            this.loadSession()
-                        }
-                    }
-                } catch (e) {
-
-                }
-            },
             photoUpload: async function () {
                 try {
                     toastr.warning("Harap Tunggu");
@@ -758,52 +813,6 @@
                     } else {
                         //TODO Nothing
                     }
-                } catch (e) {
-
-                }
-            },
-            loadData: async function () {
-                try {
-                    const res = await fetch(`/api/pernikahan/${this.form.id}`)
-                    const data = await res.json()
-                    this.form = data.data[0]
-                    if (this.form.image_cover !== null) {
-                        this.defaultImageCover = this.form.image_cover
-                        document.getElementById("labelphoto").innerHTML = this.form.image_cover
-                    }
-                    if (this.form.image_cpp !== null) {
-                        this.defaultImageCPP = this.form.image_cpp
-                        document.getElementById("image_cpp").innerHTML = this.form.image_cpp
-                    }
-                    if (this.form.image_cpw !== null) {
-                        this.defaultImageCPW = this.form.image_cpw
-                        document.getElementById("image_cpw").innerHTML = this.form.image_cpw
-                    }
-                } catch (e) {
-
-                }
-            },
-            loadSession: async function () {
-                try {
-                    const res = await fetch(`/api/sesi/${this.form.id}`)
-                    const data = await res.json()
-                    this.session = data.data
-                    $('#sesi').DataTable().destroy()
-                    setTimeout(() => {
-                        this.$nextTick(function() {
-                            $('#sesi').DataTable({
-                                "destroy": true,
-                                "retrieve": true,
-                                "paging": true,
-                                "lengthChange": true,
-                                "searching": true,
-                                "ordering": true,
-                                "info": true,
-                                "autoWidth": false,
-                                "responsive": true,
-                            })
-                        })
-                    }, 300)
                 } catch (e) {
 
                 }
