@@ -43,6 +43,7 @@
         <%- include('./partials/form-pernikahan/form-informasi-cpp.html') %>
         <%- include('./partials/form-pernikahan/form-informasi-cpw.html') %>
         <%- include('./partials/form-pernikahan/form-sesi.html') %>
+        <%- include('./partials/form-pernikahan/form-grup.html') %>
         <%- include('./partials/form-pernikahan/form-tamu.html') %>
         <%- include('./partials/form-pernikahan/form-gallery.html') %>
         <% } %>
@@ -75,9 +76,12 @@
             editSession: false,
             addGuest : false,
             editGuest : false,
+            addGroup : false,
+            editGroup : false,
             session: [],
             guest: [],
             gallery:[],
+            group: [],
             form: {
                 id: '',
                 id_wo: '',
@@ -99,6 +103,7 @@
                 id: '',
                 id_pernikahan: '',
                 nama_sesi: '',
+                tanggal : '',
                 waktu_mulai: '',
                 waktu_selesai: '',
                 alamat : '',
@@ -128,6 +133,11 @@
             formExcel : {
                 id_pernikahan : '',
                 excel : null
+            },
+            formGroup : {
+                id: '',
+                nama : '',
+                id_pernikahan : ''
             }
         },
         methods: {
@@ -144,6 +154,7 @@
                 if(params){
                     this.formSession.id = this.session[index].id
                     this.formSession.nama_sesi = this.session[index].nama_sesi
+                    this.formSession.tanggal = this.session[index].tanggal
                     this.formSession.waktu_mulai = this.session[index].waktu_mulai
                     this.formSession.waktu_selesai = this.session[index].waktu_selesai
                     this.formSession.alamat = this.session[index].alamat
@@ -151,6 +162,17 @@
                     window.scrollTo(0, 0)
                 } else
                     this.clearSessionForm()
+            },
+            setEditGroup : function (params, index) {
+                this.editGroup = params
+                if(params && this.addGroup === true)
+                    this.addGroup = false
+                if(params){
+                    this.formGroup.id = this.group[index].id
+                    this.formGroup.nama = this.group[index].nama
+                    window.scrollTo(0, 0)
+                } else
+                    this.clearGroupForm()
             },
             setEditGuest : async function (params, index) {
                 this.editGuest = params
@@ -191,6 +213,15 @@
                 if (!params)
                     this.clearSessionForm()
             },
+            setAddGroup: function (params) {
+                this.addGroup = params
+                if (params && this.editGroup === true) {
+                    this.clearGroupForm()
+                    this.editGroup = false
+                }
+                if (!params)
+                    this.clearGroupForm()
+            },
             setAddGuest: function (params) {
                 this.addGuest = params
                 if (params && this.editGuest === true) {
@@ -203,10 +234,15 @@
             clearSessionForm: function () {
                 this.formSession.id = ''
                 this.formSession.nama_sesi = ''
+                this.formSession.tanggal = ''
                 this.formSession.waktu_mulai = ''
                 this.formSession.waktu_selesai = ''
                 this.formSession.alamat = ''
                 this.formSession.url_gmaps = ''
+            },
+            clearGroupForm: function () {
+                this.formGroup.id = ''
+                this.formGroup.nama = ''
             },
             clearGuestForm: function () {
                 this.formGuest.id = ''
@@ -229,10 +265,12 @@
                     this.formGuest.id_pernikahan = idNikahan
                     this.formGallery.id_pernikahan = idNikahan
                     this.formExcel.id_pernikahan = idNikahan
+                    this.formGroup.id_pernikahan = idNikahan
                     this.loadData()
                     this.loadSession()
                     this.loadGuest()
                     this.loadGallery()
+                    this.loadGroup()
                 }
             },
             generateCode: function () {
@@ -320,11 +358,25 @@
                     isValid = false
                 return isValid
             },
+            validationCPWInformation: function () {
+                let isValid = true
+                if (this.form.nama_cpw === '' || this.form.nama_cpw == null)
+                    isValid = false
+                if (this.form.ayah_cpw === '' || this.form.ayah_cpw == null)
+                    isValid = false
+                if (this.form.ibu_cpw === '' || this.form.ibu_cpw == null)
+                    isValid = false
+                if (this.form.image_cpw === '' || this.form.image_cpw == null)
+                    isValid = false
+                return isValid
+            },
             validationSessionInformation: function () {
                 let isValid = true
                 if (this.formSession.nama_sesi === '' || this.formSession.nama_sesi == null)
                     isValid = false
                 if (this.formSession.waktu_mulai === '' || this.formSession.waktu_mulai == null)
+                    isValid = false
+                if (this.formSession.tanggal === '' || this.formSession.tanggal == null)
                     isValid = false
                 if (this.formSession.waktu_selesai === '' || this.formSession.waktu_selesai == null)
                     isValid = false
@@ -363,6 +415,9 @@
                         isValid = false
                 } else if (this.sideMenuIndex === 2) {
                     if (!this.validationCPPInformation())
+                        isValid = false
+                } else if(this.sideMenuIndex === 3){
+                    if(!this.validationCPWInformation())
                         isValid = false
                 }
                 return isValid
@@ -505,6 +560,58 @@
                             toastr.success(data.message);
                             this.setEditGuest(false)
                             this.loadGuest()
+                        }
+                    }
+                } catch (e) {
+
+                }
+            },
+            onSaveGroup: async function () {
+                try {
+                    if (this.formGroup.nama === '' || this.formGroup.nama == null)
+                        toastr.warning("Harap isi semua form yang wajib diisi!")
+                    else {
+                        let formData = {...this.formGroup}
+                        //Insert To Database
+                        formData.id = Date.now()
+                        const res = await fetch('/api/grup', {
+                            method: 'POST',
+                            body: JSON.stringify(formData),
+                            headers: {'Content-Type': "application/json"}
+                        });
+                        const data = await res.json();
+                        //
+                        if (data.code === 0)
+                            toastr.error(data.message);
+                        else {
+                            toastr.success(data.message);
+                            this.setAddGroup(false)
+                            this.loadGroup()
+                        }
+                    }
+                } catch (e) {
+
+                }
+            },
+            onUpdateGroup: async function () {
+                try {
+                    if (this.formGroup.nama === '' || this.formGroup.nama == null)
+                        toastr.warning("Harap isi semua form yang wajib diisi!")
+                    else {
+                        let formData = {...this.formGroup}
+                        const res = await fetch('/api/grup', {
+                            method: 'PUT',
+                            body: JSON.stringify(formData),
+                            headers: {'Content-Type': "application/json"}
+                        });
+                        const data = await res.json();
+                        //
+                        if (data.code === 0)
+                            toastr.error(data.message);
+                        else {
+                            toastr.success(data.message);
+                            this.setEditGroup(false)
+                            this.loadGroup()
                         }
                     }
                 } catch (e) {
@@ -711,6 +818,31 @@
                     setTimeout(() => {
                         this.$nextTick(function() {
                             $('#tamu').DataTable({
+                                "destroy": true,
+                                "retrieve": true,
+                                "paging": true,
+                                "lengthChange": true,
+                                "searching": true,
+                                "ordering": true,
+                                "info": true,
+                                "autoWidth": false,
+                                "responsive": true,
+                            })
+                        })
+                    }, 300)
+                } catch (e) {
+
+                }
+            },
+            loadGroup: async function () {
+                try {
+                    const res = await fetch(`/api/grup/${this.form.id}`)
+                    const data = await res.json()
+                    this.group = data.data
+                    $('#grup').DataTable().destroy()
+                    setTimeout(() => {
+                        this.$nextTick(function() {
+                            $('#grup').DataTable({
                                 "destroy": true,
                                 "retrieve": true,
                                 "paging": true,

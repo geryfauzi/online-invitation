@@ -6,6 +6,7 @@ const Pernikahan = require('../handler/pernikahan')
 const Sesi = require('../handler/sesi')
 const Tamu = require('../handler/tamu')
 const Gallery = require('../handler/gallery')
+const Group = require('../handler/grup')
 
 //Area WO
 router.post('/wo/login', WO.login)
@@ -35,5 +36,10 @@ router.post('/tamu/excel', Tamu.insertFromExcel)
 router.post('/gallery', Gallery.insertGallery)
 router.get('/gallery/:id', Gallery.getWeddingGallery)
 router.delete('/gallery', Gallery.deleteWeddingGallery)
+
+//Area Group
+router.post('/grup', Group.insertGroup)
+router.get('/grup/:id', Group.getWeddingGroup)
+router.put('/grup', Group.updateGroup)
 
 module.exports = router

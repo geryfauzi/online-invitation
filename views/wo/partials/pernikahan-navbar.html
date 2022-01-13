@@ -68,7 +68,7 @@
                     <a href="javascript:void(0)" v-on:click="setSideMenuIndex(5)"  v-bind:class="[isActiveSideMenu(5) ? 'active' : '', 'nav-link']">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
-                            Tamu
+                            Grup Tamu
                         </p>
                     </a>
                 </li>
@@ -76,6 +76,16 @@
                 <% if (locals.id) { %>
                 <li class="nav-item">
                     <a href="javascript:void(0)" v-on:click="setSideMenuIndex(6)"  v-bind:class="[isActiveSideMenu(6) ? 'active' : '', 'nav-link']">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Tamu
+                        </p>
+                    </a>
+                </li>
+                <% } %>
+                <% if (locals.id) { %>
+                <li class="nav-item">
+                    <a href="javascript:void(0)" v-on:click="setSideMenuIndex(7)"  v-bind:class="[isActiveSideMenu(7) ? 'active' : '', 'nav-link']">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
                             Gallery

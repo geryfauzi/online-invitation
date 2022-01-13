@@ -21,6 +21,18 @@
                                         v-model="formSession.nama_sesi">
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Tanggal Pernikahan*</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group date" id="tanggal" data-target-input="nearest">
+                                            <vuejs-datepicker v-model="formSession.tanggal"
+                                                              :format="formatDate"></vuejs-datepicker>
+                                            <div class="input-group-append" data-target="#tanggal" data-toggle="tanggal">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="bootstrap-timepicker">
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Mulai* (Format 24 Jam)</label>
@@ -81,6 +93,18 @@
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="nama_sesi" placeholder="Contoh : Akad Nikah"
                                            v-model="formSession.nama_sesi">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Tanggal Pernikahan*</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group date" id="tanggal" data-target-input="nearest">
+                                        <vuejs-datepicker v-model="formSession.tanggal"
+                                                          :format="formatDate"></vuejs-datepicker>
+                                        <div class="input-group-append" data-target="#tanggal" data-toggle="tanggal">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="bootstrap-timepicker">
@@ -145,6 +169,7 @@
                                     <th>ID</th>
                                     <th>Nama Sesi</th>
                                     <th>Alamat</th>
+                                    <th>Tanggal</th>
                                     <th>Waktu Mulai</th>
                                     <th>Waktu Selesai</th>
                                     <th>Aksi</th>
@@ -156,6 +181,8 @@
                                     <td>{{item.id}}</td>
                                     <td>{{item.nama_sesi}}</td>
                                     <td>{{item.alamat}}</td>
+                                    <td>{{ new Date(item.tanggal).toLocaleDateString('id-ID', { weekday:"long",
+                                        year:"numeric", month:"short", day:"numeric"}) }}</td>
                                     <td>{{item.waktu_mulai}}</td>
                                     <td>{{item.waktu_selesai}}</td>
                                     <td>
