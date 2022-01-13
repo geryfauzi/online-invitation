@@ -680,7 +680,7 @@
                         formData.append('file', this.form.image_cpp)
                     else if (this.sideMenuIndex === 3)
                         formData.append('file', this.form.image_cpw)
-                    else if (this.sideMenuIndex === 6)
+                    else if (this.sideMenuIndex === 7)
                         formData.append('file', this.formGallery.image)
                     const params = {method: 'POST', body: formData};
                     const res = await fetch('/api/upload-image', params);
