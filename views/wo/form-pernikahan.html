@@ -93,9 +93,7 @@
                 ayah_cpw: '',
                 ibu_cpw: '',
                 quote_cover: '',
-                image_cover: null,
-                alamat: '',
-                url_gmaps: ''
+                image_cover: null
             },
             formSession: {
                 id: '',
@@ -300,13 +298,7 @@
                     isValid = false
                 if (this.form.tanggal === '' || this.form.tanggal == null)
                     isValid = false
-                if (this.form.alamat === '' || this.form.alamat == null)
-                    isValid = false
-                if (this.form.url_gmaps === '' || this.form.url_gmaps == null)
-                    isValid = false
                 if (this.form.image_cover === null)
-                    isValid = false
-                if (this.form.quote_cover === '' || this.form.quote_cover == null)
                     isValid = false
                 return isValid
             },

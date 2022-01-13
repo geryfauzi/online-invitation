@@ -5,7 +5,7 @@ const insertPernikahan = async (req, res) => {
     let data = req.body
     console.log(data)
     try {
-        connect.query("INSERT INTO pernikahan(id,id_wo,nama,tanggal,quote_cover,image_cover,alamat,url_gmaps) VALUES(?,?,?,?,?,?,?,?)", [data.id, data.id_wo, data.nama, data.tanggal, data.quote_cover, data.image_cover, data.alamat, data.url_gmaps], (error, result) => {
+        connect.query("INSERT INTO pernikahan(id,id_wo,nama,tanggal,quote_cover,image_cover) VALUES(?,?,?,?,?,?)", [data.id, data.id_wo, data.nama, data.tanggal, data.quote_cover, data.image_cover], (error, result) => {
             if (!error)
                 return res.json({
                     code: 1,
