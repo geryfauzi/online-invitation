@@ -1,0 +1,52 @@
+<div v-show="sideMenuIndex == 8">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-2" style="float: right; margin-right: 10px; margin-bottom: 20px">
+                    <button type="button" v-on:click="downloadGuestBook" class="btn btn-block btn-primary">Download Buku Tamu
+                    </button>
+                </div><!-- /.col -->
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Buku Tamu</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="buku-tamu" class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>Telepon</th>
+                                    <th>Jumlah</th>
+                                    <th>Grup</th>
+                                    <th>VIP</th>
+                                    <th>Kode RSVP</th>
+                                    <th>RSVP</th>
+                                    <th>Kehadiran</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr v-for="(item,index) in guestBook" :key="item.id">
+                                    <td>{{index + 1}}</td>
+                                    <td>{{item.nama}}</td>
+                                    <td>{{item.telepon}}</td>
+                                    <td>{{item.jumlah}}</td>
+                                    <td>{{item.nama_grup}}</td>
+                                    <td>{{item.is_vip}}</td>
+                                    <td>{{item.kode}}</td>
+                                    <td>{{item.rsvp}}</td>
+                                    <td>{{item.kehadiran}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

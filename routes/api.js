@@ -31,6 +31,7 @@ router.get('/tamu/:id', Tamu.getWeddingGuest)
 router.post('/tamu', Tamu.insertGuest)
 router.put('/tamu', Tamu.updateGuest)
 router.post('/tamu/excel', Tamu.insertFromExcel)
+router.get('/tamu/buku/:id', Tamu.getGuestBook)
 
 //Area Gallery
 router.post('/gallery', Gallery.insertGallery)

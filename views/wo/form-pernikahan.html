@@ -46,6 +46,7 @@
         <%- include('./partials/form-pernikahan/form-grup.html') %>
         <%- include('./partials/form-pernikahan/form-tamu.html') %>
         <%- include('./partials/form-pernikahan/form-gallery.html') %>
+        <%- include('./partials/form-pernikahan/form-buku-tamu.html') %>
         <% } %>
     </div>
 </div>
@@ -80,6 +81,7 @@
             editGroup : false,
             session: [],
             guest: [],
+            guestBook : [],
             gallery:[],
             group: [],
             form: {
@@ -534,6 +536,7 @@
                     this.loadData()
                     this.loadSession()
                     this.loadGuest()
+                    this.loadGuestBook()
                     this.loadGallery()
                     this.loadGroup()
                 }
@@ -842,6 +845,31 @@
 
                 }
             },
+            loadGuestBook: async function () {
+                try {
+                    const res = await fetch(`/api/tamu/buku/${this.form.id}`)
+                    const data = await res.json()
+                    this.guestBook = data.data
+                    $('#buku-tamu').DataTable().destroy()
+                    setTimeout(() => {
+                        this.$nextTick(function() {
+                            $('#buku-tamu').DataTable({
+                                "destroy": true,
+                                "retrieve": true,
+                                "paging": true,
+                                "lengthChange": true,
+                                "searching": true,
+                                "ordering": true,
+                                "info": true,
+                                "autoWidth": false,
+                                "responsive": true,
+                            })
+                        })
+                    }, 300)
+                } catch (e) {
+
+                }
+            },
             loadGroup: async function () {
                 try {
                     const res = await fetch(`/api/grup/${this.form.id}`)
@@ -875,6 +903,12 @@
                 } catch (e) {
 
                 }
+            },
+            downloadGuestBook: function () {
+                window.jsPDF = window.jspdf.jsPDF;
+                var pdf = new jsPDF("p", "pt", "a4")
+                pdf.autoTable({ html: '#buku-tamu' })
+                pdf.save('Bukutamu-'+ this.form.tanggal.substring(0, 10) + '.pdf')
             }
         },
         components: {

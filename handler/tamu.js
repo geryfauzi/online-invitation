@@ -142,9 +142,24 @@ const updateGuest = async (req, res) => {
     }
 }
 
+const getGuestBook = async (req, res) => {
+    let connect = DB.config
+    let id = req.params.id
+    try {
+        connect.query("SELECT tamu.id, tamu.id_grup, grup.nama AS nama_grup, tamu.nama, tamu.telepon, tamu.jumlah,tamu.rsvp, tamu.kehadiran, tamu.id_pernikahan, tamu.kode, tamu.is_vip, tamu.is_family FROM tamu LEFT JOIN detail_sesi ON tamu.id = detail_sesi.id_tamu LEFT JOIN grup ON tamu.id_grup = grup.id WHERE tamu.id_pernikahan = ? AND tamu.kehadiran != 'Belum Dikonfirmasi' GROUP BY tamu.id ORDER BY tamu.id DESC", [id], (error, result) => {
+            return res.json({
+                data: result
+            })
+        })
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 module.exports = {
     getWeddingGuest,
     insertGuest,
     updateGuest,
-    insertFromExcel
+    insertFromExcel,
+    getGuestBook
 }
