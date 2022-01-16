@@ -242,6 +242,14 @@
 
                 }
             },
+            onCancel: function () {
+                let confirmAction = confirm("Apakah anda yakin ingin membatalkan?");
+                if (confirmAction) {
+                    window.history.back()
+                } else {
+                    //TODO Nothing
+                }
+            },
             loadData: async function () {
                 try {
                     const res = await fetch(`/api/pernikahan/${this.form.id}`)
