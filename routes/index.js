@@ -1,4 +1,5 @@
 module.exports = (app) => {
+    app.use('/', require('./web'))
     app.use('/wo', require('./wo'))
     app.use('/api', require('./api'))
     //404

@@ -156,10 +156,57 @@ const getGuestBook = async (req, res) => {
     }
 }
 
+const checkCode = async (req, res) => {
+    let data = req.body
+    let connect = DB.config
+    connect.query("SELECT * FROM tamu WHERE kode = ?", [data.kode], (error, result) => {
+        if (result.length > 0)
+            return res.json({code: 1, data: result[0]})
+        else
+            return res.json({code: 0})
+    })
+}
+
+const updateRSVP = async (req, res) => {
+    let data = req.body
+    let connect = DB.config
+    try {
+        connect.query("UPDATE tamu SET nama = ?, telepon = ?, jumlah = ?, alasan = ?, ucapan = ? WHERE kode = ?", [
+            data.nama, data.telepon, data.jumlah, data.alasan, data.ucapan, data.kode
+        ], (error, result) => {
+            if (!error)
+                return res.json({code: 1, message: "Berhasil memperbarui RSVP!"})
+            else {
+                console.log(error)
+                return res.json({code: 0, message: "Terjadi kesalahan saat memperbarui RSVP!"})
+            }
+        })
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+const getUcapan = async (req, res) => {
+    let connect = DB.config
+    let id = req.params.id
+    try {
+        connect.query("SELECT * FROM tamu WHERE id_pernikahan = ? AND ucapan IS NOT NULL", [id], (error, result) => {
+            return res.json({
+                data: result
+            })
+        })
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 module.exports = {
     getWeddingGuest,
     insertGuest,
     updateGuest,
     insertFromExcel,
-    getGuestBook
+    getGuestBook,
+    checkCode,
+    updateRSVP,
+    getUcapan
 }

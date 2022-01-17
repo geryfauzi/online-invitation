@@ -1,0 +1,32 @@
+.nav-link {
+  font-family: $txt-playfair;
+  color: $white;
+  &:hover {
+    color: $yellow100;
+  }
+  &:focus {
+    color: $white;
+  }
+}
+
+.navbar-mobile {
+  padding: 8px;
+  background-color: $brown100;
+  margin: 0 15px;
+  border-radius: 15px;
+  .nav-link {
+    font-family: $txt-playfair;
+    color: $white;
+    padding: 4px 0;
+    border-radius: 10px;
+    &:hover {
+      border-radius: 10px;
+      background-color: $brown70;
+      color: $white;
+    }
+  }
+}
+
+.fixed-bottom {
+  bottom: 15px;
+}
