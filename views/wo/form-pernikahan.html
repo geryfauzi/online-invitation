@@ -47,6 +47,7 @@
         <%- include('./partials/form-pernikahan/form-tamu.html') %>
         <%- include('./partials/form-pernikahan/form-gallery.html') %>
         <%- include('./partials/form-pernikahan/form-buku-tamu.html') %>
+        <%- include('./partials/form-pernikahan/form-story.html') %>
         <% } %>
     </div>
 </div>
@@ -79,11 +80,14 @@
             editGuest : false,
             addGroup : false,
             editGroup : false,
+            addStory : false,
+            editStory : false,
             session: [],
             guest: [],
             guestBook : [],
             gallery:[],
             group: [],
+            story : [],
             form: {
                 id: '',
                 id_wo: '',
@@ -141,6 +145,12 @@
                 id: '',
                 nama : '',
                 id_pernikahan : ''
+            },
+            formStory : {
+                id : '',
+                id_pernikahan : '',
+                tahun : '',
+                story : ''
             }
         },
         methods: {
@@ -469,6 +479,18 @@
                 } else
                     this.clearGroupForm()
             },
+            setEditStory : function (params, index) {
+                this.editStory = params
+                if(params && this.addStory === true)
+                    this.addStory = false
+                if(params){
+                    this.formStory.id = this.story[index].id
+                    this.formStory.tahun = this.story[index].tahun
+                    this.formStory.story = this.story[index].story
+                    window.scrollTo(0, 0)
+                } else
+                    this.clearStoryFrom()
+            },
             setEditGuest : async function (params, index) {
                 this.editGuest = params
                 if(params && this.addGuest === true)
@@ -517,6 +539,20 @@
                 if (!params)
                     this.clearGuestForm()
             },
+            setAddStory: function (params) {
+                this.addStory = params
+                if (params && this.editStory === true) {
+                    this.clearStoryFrom()
+                    this.editStory = false
+                }
+                if (!params)
+                    this.clearStoryFrom()
+            },
+            clearStoryFrom: function () {
+              this.formStory.id = ''
+              this.formStory.tahun = ''
+              this.formStory.story = ''
+            },
             clearGroupForm: function () {
                 this.formGroup.id = ''
                 this.formGroup.nama = ''
@@ -542,12 +578,14 @@
                     this.formGallery.id_pernikahan = idNikahan
                     this.formExcel.id_pernikahan = idNikahan
                     this.formGroup.id_pernikahan = idNikahan
+                    this.formStory.id_pernikahan = idNikahan
                     this.loadData()
                     this.loadSession()
                     this.loadGuest()
                     this.loadGuestBook()
                     this.loadGallery()
                     this.loadGroup()
+                    this.loadStory()
                 }
             },
             generateCode: function () {
@@ -631,6 +669,58 @@
               }catch (e) {
 
               } 
+            },
+            onSaveStory: async function () {
+                try {
+                    if (this.formStory.tahun === '' || this.formStory.story === '')
+                        toastr.warning("Harap isi semua form yang wajib diisi!")
+                    else {
+                        let formData = {...this.formStory}
+                        //Mengisi data yang masih kosong
+                        formData.id = Date.now()
+                        const res = await fetch('/api/story', {
+                            method: 'POST',
+                            body: JSON.stringify(formData),
+                            headers: {'Content-Type': "application/json"}
+                        });
+                        const data = await res.json();
+                        //
+                        if (data.code === 0)
+                            toastr.error(data.message);
+                        else {
+                            toastr.success(data.message);
+                            this.setAddStory(false)
+                            this.loadStory()
+                        }
+                    }
+                } catch (e) {
+
+                }
+            },
+            onUpdateStory: async function () {
+                try {
+                    if (this.formStory.tahun === '' || this.formStory.story === '')
+                        toastr.warning("Harap isi semua form yang wajib diisi!")
+                    else {
+                        let formData = {...this.formStory}
+                        const res = await fetch('/api/story', {
+                            method: 'PUT',
+                            body: JSON.stringify(formData),
+                            headers: {'Content-Type': "application/json"}
+                        });
+                        const data = await res.json();
+                        //
+                        if (data.code === 0)
+                            toastr.error(data.message);
+                        else {
+                            toastr.success(data.message);
+                            this.setEditStory(false)
+                            this.loadStory()
+                        }
+                    }
+                } catch (e) {
+                    console.log(e)
+                }
             },
             onSaveGuest: async function () {
                 try {
@@ -904,6 +994,31 @@
 
                 }
             },
+            loadStory: async function () {
+                try {
+                    const res = await fetch(`/api/story/${this.form.id}`)
+                    const data = await res.json()
+                    this.story = data.data
+                    $('#story').DataTable().destroy()
+                    setTimeout(() => {
+                        this.$nextTick(function() {
+                            $('#story').DataTable({
+                                "destroy": true,
+                                "retrieve": true,
+                                "paging": true,
+                                "lengthChange": true,
+                                "searching": true,
+                                "ordering": true,
+                                "info": true,
+                                "autoWidth": false,
+                                "responsive": true,
+                            })
+                        })
+                    }, 300)
+                } catch (e) {
+
+                }
+            },
             loadGallery: async function () {
                 try {
                     const res = await fetch(`/api/gallery/${this.form.id}`)
@@ -914,10 +1029,14 @@
                 }
             },
             downloadGuestBook: function () {
-                window.jsPDF = window.jspdf.jsPDF;
-                var pdf = new jsPDF("p", "pt", "a4")
-                pdf.autoTable({ html: '#buku-tamu' })
-                pdf.save('Bukutamu-'+ this.form.tanggal.substring(0, 10) + '.pdf')
+                if(this.guestBook.length === 0)
+                    toastr.warning("Maaf, belum ada data tamu untuk di download")
+                else {
+                    window.jsPDF = window.jspdf.jsPDF;
+                    var pdf = new jsPDF("p", "pt", "a4")
+                    pdf.autoTable({ html: '#buku-tamu' })
+                    pdf.save('Bukutamu-'+ this.form.tanggal.substring(0, 10) + '.pdf')
+                }
             }
         },
         components: {

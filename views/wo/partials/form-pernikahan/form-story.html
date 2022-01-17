@@ -1,0 +1,114 @@
+<div v-show="sideMenuIndex == 9">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-2" style="float: right; margin-right: 10px; margin-bottom: 20px">
+                    <button type="button" v-on:click="setAddStory(true)" class="btn btn-block btn-primary">Tambah Data
+                    </button>
+                </div><!-- /.col -->
+            </div>
+            <div class="row" v-show="addStory == true">
+                <div class="col">
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Tambah Story Baru</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label for="tahun" class="col-sm-2 col-form-label">Tahun Story*</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="tahun" placeholder="Contoh : 2017"
+                                           v-model="formStory.tahun">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Detail Story*</label>
+                                <textarea name="detail" id=detail" class="form-control" rows="3"
+                                          placeholder="Contoh : Ditahun ini, kami pertama bertemu di Sekolah xxx"
+                                          spellcheck="false" v-model="formStory.story"></textarea>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button class="btn btn-default float-right"
+                                    v-on:click="setAddStory(false)">Batal
+                            </button>
+                            <button class="btn btn-info float-right" style="margin-right: 20px"
+                                    v-on:click="onSaveStory()">Simpan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" v-show="editStory == true">
+                <div class="col">
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Edit Story</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label for="tahun" class="col-sm-2 col-form-label">Tahun Story*</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="tahun" placeholder="Contoh : 2017"
+                                           v-model="formStory.tahun">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Detail Story*</label>
+                                <textarea name="detail" id=detail" class="form-control" rows="3"
+                                          placeholder="Contoh : Ditahun ini, kami pertama bertemu di Sekolah xxx"
+                                          spellcheck="false" v-model="formStory.story"></textarea>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button class="btn btn-default float-right"
+                                    v-on:click="setEditStory(false)">Batal
+                            </button>
+                            <button class="btn btn-info float-right" style="margin-right: 20px"
+                                    v-on:click="onUpdateStory()">Perbarui
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Data Story</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="story" class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Tahun</th>
+                                    <th>Story</th>
+                                    <th>Aksi</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr v-for="(item,index) in story">
+                                    <td>{{index + 1}}</td>
+                                    <td>{{item.tahun}}</td>
+                                    <td>{{item.story}}</td>
+                                    <td>
+                                        <button type="button" v-on:click="setEditStory(true,index)"
+                                                class="btn btn-block btn-primary">Edit
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

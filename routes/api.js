@@ -7,9 +7,15 @@ const Sesi = require('../handler/sesi')
 const Tamu = require('../handler/tamu')
 const Gallery = require('../handler/gallery')
 const Group = require('../handler/grup')
+const Story = require('../handler/story')
 
 //Area WO
 router.post('/wo/login', WO.login)
+
+//Area Story
+router.get('/story/:id', Story.getStory)
+router.post('/story', Story.insertStory)
+router.put('/story', Story.updateStory)
 
 //Other Area
 router.post('/upload-image', Upload.uploadImage)
