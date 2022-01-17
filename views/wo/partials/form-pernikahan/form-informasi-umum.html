@@ -42,6 +42,19 @@
                                           placeholder="Masukkan kutipan / quote untuk undangan anda. Quote akan ditampilkan bersamaan dengan foto cover"
                                           spellcheck="false" v-model="form.quote_cover"></textarea>
                             </div>
+                            <% if (locals.id) { %>
+                            <div class="form-group">
+                                <label for="is_family">Template Undangan*</label>
+                                <select class="form-control" id="is_family" v-model="form.template">
+                                    <option value="" selected disabled>Pilih template untuk undangan Online (default
+                                        Template 1)
+                                    </option>
+                                    <option value="1">Template 1</option>
+                                    <option value="2">Template 2</option>
+                                    <option value="3">Template 3</option>
+                                </select>
+                            </div>
+                            <% } %>
                         </div>
                         <!-- /.card-body -->
                         <% if (locals.id) { %>
