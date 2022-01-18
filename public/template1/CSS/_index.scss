@@ -8,9 +8,6 @@ canvas {
 
 .section-header {
   height: 100vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../Asset/image/img.png);
-  background-size: cover;
-  background-position: center;
 
   .img-decoration {
     max-width: 380px;
@@ -37,7 +34,10 @@ canvas {
   }
 
   .img-person {
-    max-width: 280px;
+    height: 240px;
+    width: 240px;
+    object-fit: cover;
+    object-position: center;
     @media #{$mobile_device} {
       max-width: 200px;
     }

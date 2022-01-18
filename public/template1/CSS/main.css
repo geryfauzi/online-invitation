@@ -405,10 +405,6 @@ canvas {
 
 .section-header {
   height: 100vh;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))), url(../Asset/image/img.png);
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../Asset/image/img.png);
-  background-size: cover;
-  background-position: center;
 }
 
 .section-header .img-decoration {
@@ -444,7 +440,12 @@ canvas {
 }
 
 .section-about .img-person {
-  max-width: 280px;
+  height: 240px;
+  width: 240px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
 }
 
 @media (max-width: 767px) {
