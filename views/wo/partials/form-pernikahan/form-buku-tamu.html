@@ -3,7 +3,8 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-2" style="float: right; margin-right: 10px; margin-bottom: 20px">
-                    <button type="button" v-on:click="downloadGuestBook" class="btn btn-block btn-primary">Download Buku Tamu
+                    <button type="button" v-on:click="downloadGuestBook" class="btn btn-block btn-primary">Download Buku
+                        Tamu
                     </button>
                 </div><!-- /.col -->
             </div>
@@ -20,26 +21,16 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
-                                    <th>Telepon</th>
-                                    <th>Jumlah</th>
                                     <th>Grup</th>
-                                    <th>VIP</th>
-                                    <th>Kode RSVP</th>
-                                    <th>RSVP</th>
-                                    <th>Kehadiran</th>
+                                    <th>Waktu Checkin</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr v-for="(item,index) in guestBook" :key="item.id">
                                     <td>{{index + 1}}</td>
                                     <td>{{item.nama}}</td>
-                                    <td>{{item.telepon}}</td>
-                                    <td>{{item.jumlah}}</td>
                                     <td>{{item.nama_grup}}</td>
-                                    <td>{{item.is_vip}}</td>
-                                    <td>{{item.kode}}</td>
-                                    <td>{{item.rsvp}}</td>
-                                    <td>{{item.kehadiran}}</td>
+                                    <td>{{item.waktu_checkin}}</td>
                                 </tr>
                                 </tbody>
                             </table>

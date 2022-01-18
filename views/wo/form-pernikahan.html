@@ -122,7 +122,8 @@
                 id_grup : '',
                 nama : '',
                 telepon : '',
-                jumlah : '',
+                jumlah_dewasa : 1,
+                jumlah_anak : 0,
                 rsvp : '',
                 kehadiran : '',
                 kode : '',
@@ -501,7 +502,8 @@
                     this.formGuest.id_grup = this.guest[index].id_grup
                     this.formGuest.nama = this.guest[index].nama
                     this.formGuest.telepon = this.guest[index].telepon
-                    this.formGuest.jumlah = this.guest[index].jumlah
+                    this.formGuest.jumlah_dewasa = this.guest[index].jumlah_dewasa
+                    this.formGuest.jumlah_anak = this.guest[index].jumlah_anak
                     this.formGuest.rsvp = this.guest[index].rsvp
                     this.formGuest.kehadiran = this.guest[index].kehadiran
                     this.formGuest.kode = this.guest[index].kode
@@ -563,7 +565,8 @@
                 this.formGuest.sesi = []
                 this.formGuest.nama = ''
                 this.formGuest.telepon = ''
-                this.formGuest.jumlah = ''
+                this.formGuest.jumlah_dewasa = ''
+                this.formGuest.jumlah_anak = ''
                 this.formGuest.rsvp = ''
                 this.formGuest.kehadiran = ''
                 this.formGuest.kode = ''
@@ -590,7 +593,7 @@
             },
             generateCode: function () {
                 let text = "";
-                let possible = "abcdefghijklmnopqrstuvwxyz0123456789";
+                let possible = "0123456789";
                 for (let i = 0; i <= 5; i++)
                     text += possible.charAt(Math.floor(Math.random() * possible.length));
                 return text;
@@ -627,7 +630,7 @@
                     isValid = false
                 if (this.formGuest.telepon === '' || this.formGuest.telepon == null)
                     isValid = false
-                if (this.formGuest.jumlah === '' || this.formGuest.jumlah == null)
+                if (this.formGuest.jumlah_dewasa === '' || this.formGuest.jumlah_dewasa == null)
                     isValid = false
                 if (this.formGuest.is_vip === '' || this.formGuest.is_vip == null)
                     isValid = false

@@ -31,11 +31,19 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="jumlah" class="col-sm-2 col-form-label">Jumlah Tamu*</label>
+                                <label for="jumlah" class="col-sm-2 col-form-label">Jumlah Tamu (Dewasa)*</label>
                                 <div class="col-sm-10">
                                     <input type="number" class="form-control" id="jumlah"
                                            placeholder="Masukkan Jumlah Tamu"
-                                           v-model="formGuest.jumlah">
+                                           v-model="formGuest.jumlah_dewasa">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="jumlah" class="col-sm-2 col-form-label">Jumlah Tamu (Anak - Anak)*</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="jumlah"
+                                           placeholder="Masukkan Jumlah Tamu"
+                                           v-model="formGuest.jumlah_anak">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -131,11 +139,19 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="jumlah" class="col-sm-2 col-form-label">Jumlah Tamu*</label>
+                                <label for="jumlah" class="col-sm-2 col-form-label">Jumlah Tamu (Dewasa)*</label>
                                 <div class="col-sm-10">
                                     <input type="number" class="form-control" id="jumlah"
                                            placeholder="Masukkan Jumlah Tamu"
-                                           v-model="formGuest.jumlah">
+                                           v-model="formGuest.jumlah_dewasa">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="jumlah" class="col-sm-2 col-form-label">Jumlah Tamu (Anak - Anak)*</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="jumlah"
+                                           placeholder="Masukkan Jumlah Tamu"
+                                           v-model="formGuest.jumlah_anak">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -220,7 +236,8 @@
                                     <th>No</th>
                                     <th>Nama</th>
                                     <th>Telepon</th>
-                                    <th>Jumlah</th>
+                                    <th>Jumlah (Dewasa)</th>
+                                    <th>Jumlah (Anak - Anak)</th>
                                     <th>Grup</th>
                                     <th>Sesi</th>
                                     <th>VIP</th>
@@ -235,7 +252,8 @@
                                     <td>{{index + 1}}</td>
                                     <td>{{item.nama}}</td>
                                     <td>{{item.telepon}}</td>
-                                    <td>{{item.jumlah}}</td>
+                                    <td>{{item.jumlah_dewasa}}</td>
+                                    <td>{{item.jumlah_anak}}</td>
                                     <td>{{item.nama_grup}}</td>
                                     <td>{{item.jumlah_sesi}} Sesi</td>
                                     <td>{{item.is_vip}}</td>
