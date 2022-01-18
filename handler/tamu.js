@@ -172,8 +172,8 @@ const updateRSVP = async (req, res) => {
     let data = req.body
     let connect = DB.config
     try {
-        connect.query("UPDATE tamu SET nama = ?, telepon = ?, jumlah = ?, alasan = ?, ucapan = ? WHERE kode = ?", [
-            data.nama, data.telepon, data.jumlah, data.alasan, data.ucapan, data.kode
+        connect.query("UPDATE tamu SET nama = ?, telepon = ?, jumlah_dewasa = ?, alasan = ?, ucapan = ? WHERE kode = ?", [
+            data.nama, data.telepon, data.jumlah_dewasa, data.alasan, data.ucapan, data.kode
         ], (error, result) => {
             if (!error)
                 return res.json({code: 1, message: "Berhasil memperbarui RSVP!"})

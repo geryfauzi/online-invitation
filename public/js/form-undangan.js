@@ -11,7 +11,7 @@ var app = new Vue({
         formRSVP: {
             rsvp: 'Hadir',
             kode: '',
-            jumlah: 1,
+            jumlah_dewasa: 1,
             nama: '',
             alasan: '',
             ucapan: '',
@@ -116,20 +116,20 @@ var app = new Vue({
         },
         setJumlah: function (params) {
             if (params) {
-                if (this.formRSVP.jumlah === 4) {
+                if (this.formRSVP.jumlah_dewasa === 4) {
                     //TODO Nothing
                 } else
-                    this.formRSVP.jumlah = parseInt(this.formRSVP.jumlah) + 1
+                    this.formRSVP.jumlah_dewasa = parseInt(this.formRSVP.jumlah_dewasa) + 1
             } else {
-                if (this.formRSVP.jumlah === 1) {
+                if (this.formRSVP.jumlah_dewasa === 1) {
                     //TODO Nothing
                 } else
-                    this.formRSVP.jumlah = parseInt(this.formRSVP.jumlah) - 1
+                    this.formRSVP.jumlah_dewasa = parseInt(this.formRSVP.jumlah_dewasa) - 1
             }
         },
         onSave: async function () {
             try {
-                if (this.formRSVP.jumlah < 1 || this.formRSVP.jumlah > 4)
+                if (this.formRSVP.jumlah_dewasa < 1 || this.formRSVP.jumlah_dewasa > 4)
                     toastr.warning("Jumlah tamu minimal 1, maksimal 4!")
                 else {
                     let formData = {...this.formRSVP}
