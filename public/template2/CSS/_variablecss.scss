@@ -1,0 +1,60 @@
+// color
+$brown120: #a85a13;
+$brown100: #bb6516;
+$brown70: #cf935b;
+$brown50: #ddb28a;
+$brown30: #f8efe7;
+
+$pink120: #dd7070;
+$pink100: #f67d7d;
+$pink70: #f8a4a4;
+$pink50: #fabebe;
+$pink30: #fde5e5;
+
+$yellow120: #e5ad06;
+$yellow100: #ffc107;
+$yellow70: #ffd351;
+$yellow50: #ffe083;
+$yellow30: #ffecb4;
+
+$black100: #120a02;
+$black70: #413a34;
+$whitehover: #b7b5b3;
+$whitehover2: #cccccc;
+$white: #fff;
+
+// radius
+$rd-xs: 5px;
+$rd-sm: 10px;
+$rd-md: 15px;
+$rd-lg: 20px;
+
+// typeface
+
+@import url("https://fonts.googleapis.com/css2?family=Clicker+Script&family=Dancing+Script:wght@400;700&family=Philosopher:wght@700&family=Playfair+Display:wght@400;700&family=Poppins:wght@400;700&family=Sacramento&display=swap");
+@font-face {
+  font-family: KaylaKatrina;
+  src: url(../Asset/font/KaylaKatrina.otf);
+}
+$txt-clicker: "Clicker Script", cursive;
+$txt-sacramento: "Sacramento", cursive;
+$txt-dancing: "Dancing Script", cursive;
+$txt-playfair: "Playfair Display", serif;
+$txt-philosopher: "Philosopher", sans-serif;
+$txt-normal: "Poppins", sans-serif;
+
+//responsive
+/* Normal desktop :1200px. */
+$large_device: "(min-width: 1200px)";
+
+/* Small desktop :992px. */
+$mid_device: "(min-width: 992px) and (max-width: 1200px)";
+
+/* Tablet desktop :768px. */
+$tablet_device: "(min-width: 768px) and (max-width: 991px)";
+
+/* Large Mobile :480px. */
+$large_mobile: "only screen and (min-width: 480px) and (max-width: 767px)";
+
+/* small mobile :320px. */
+$mobile_device: "(max-width: 767px)";

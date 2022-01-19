@@ -127,7 +127,8 @@
             <% } %>
             <div class="container text-center my-auto txt-white" data-aos="fade-down" data-aos-duration="1000">
                 <h3 class="txt-kayla">Undangan Pernikahan</h3>
-                <h1 class="txt-kayla mt-72 txt-64"><%= data.nama %></h1>
+                <h1 class="txt-kayla mt-72 txt-64"><%= data.nama_cpp.substr(0,data.nama_cpp.indexOf(' '))
+                    %> & <%= data.nama_cpw.substr(0,data.nama_cpw.indexOf(' ')) %></h1>
                 <h3 class="txt-kayla mt-16"><%= new Date(data.tanggal).toLocaleDateString('id-ID', { weekday:"long",
                     year:"numeric", month:"long", day:"numeric"}); %></h3>
                 <img class="img-decoration mt-48" src="/assets/template1/Asset/image/decoration-1.svg" alt=""/>
@@ -295,7 +296,7 @@
                                 <input type="text" width="360" class="form-control input-large"
                                        placeholder="Masukkan alasan" v-model="formRSVP.alasan"/>
                             </div>
-                            <div class="mt-16" v-if="editMode === false">
+                            <div class="mt-16" v-if="editMode === false && formRSVP.rsvp === 'Hadir'">
                                 <h6 class="bold">Sesi Pernikahan</h6>
                                 <div class="row">
                                     <div class="col-6 event-session" v-for="data in guestSession">
@@ -325,7 +326,8 @@
                                 <p class="bold">{{formRSVP.rsvp}}</p>
                                 <p>{{formRSVP.nama}}</p>
                                 <p>{{formRSVP.telepon}}</p>
-                                <p>{{formRSVP.jumlah}} Orang</p>
+                                <p>{{formRSVP.jumlah_dewasa}} Dewasa</p>
+                                <p>{{formRSVP.jumlah_anak}} Anak - Anak</p>
                                 <p>{{formRSVP.ucapan}}</p>
                             </div>
                             <button v-on:click="setEditMode" v-if="editMode === true"
@@ -364,8 +366,7 @@
                                             <p class="mt-16">Kamu diundang diacara pernikahan! Silahkan tunjukan kartu
                                                 ini untuk scan QR Code pada saat masuk lokasi.</p>
                                             <div class="py-24 text-center">
-                                                <div class="qrcode">
-                                                    <div id="kode-qr"></div>
+                                                <div id="kode-qr" class="qrcode">
                                                 </div>
                                             </div>
                                             <p class="txt-14 mt-16">Link Website</p>

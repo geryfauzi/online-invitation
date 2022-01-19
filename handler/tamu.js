@@ -81,7 +81,7 @@ const insertFromExcel = async (req, res) => {
                 ], (error, result) => {
                     if (!error) {
                         //Insert data sesi
-                        let sesi = item[6]
+                        let sesi = item[4]
                         connect.query("INSERT INTO detail_sesi VALUES(?,?)", [sesi, result.insertId], (error1, result1) => {
                             if (error1) {
                                 console.log(error1)
@@ -117,7 +117,7 @@ const updateGuest = async (req, res) => {
         connect.query("UPDATE tamu SET nama = ?, telepon = ?, jumlah_dewasa = ?, jumlah_anak = ?, id_grup = ?, is_family = ?, is_vip = ? WHERE id = ?", [data.nama, data.telepon, data.jumlah_dewasa, data.jumlah_anak, data.id_grup, data.is_family, data.is_vip, data.id], (error, result) => {
             if (!error) {
                 data.sesi.forEach(item => {
-                    connect.query("DELETE FROM detail_sesi WHERE id_sesi = ? AND id_tamu = ?", [item, data.id], (error1, result1) => {
+                    connect.query("DELETE FROM detail_sesi WHERE id_tamu = ?", [data.id], (error1, result1) => {
                     })
                 })
                 data.sesi.forEach(item => {
@@ -174,8 +174,8 @@ const updateRSVP = async (req, res) => {
     let data = req.body
     let connect = DB.config
     try {
-        connect.query("UPDATE tamu SET nama = ?, telepon = ?, jumlah_dewasa = ?, jumlah_anak = ?, alasan = ?, ucapan = ? WHERE kode = ?", [
-            data.nama, data.telepon, data.jumlah_dewasa, data.jumlah_anak, data.alasan, data.ucapan, data.kode
+        connect.query("UPDATE tamu SET nama = ?, telepon = ?, jumlah_dewasa = ?, jumlah_anak = ?, alasan = ?, ucapan = ?, rsvp = ? WHERE kode = ?", [
+            data.nama, data.telepon, data.jumlah_dewasa, data.jumlah_anak, data.alasan, data.ucapan, data.rsvp, data.kode
         ], (error, result) => {
             if (!error) {
                 connect.query("SELECT tamu.kode, detail_sesi.id_sesi, detail_sesi.id_tamu, sesi.nama_sesi, sesi.tanggal, sesi.waktu_mulai, sesi.waktu_selesai FROM tamu JOIN detail_sesi ON tamu.id = detail_sesi.id_tamu JOIN sesi ON sesi.id = detail_sesi.id_sesi WHERE tamu.kode = ?", [data.kode], (error1, result1) => {

@@ -27,19 +27,31 @@ router.get('/pernikahan/:id', (req, res) => {
     let tanggal = "tanggal"
     try {
         connect.query("SELECT * FROM pernikahan WHERE id = ?", [id], (error, result) => {
-            connect.query("SELECT * FROM gallery WHERE id_pernikahan = ?", [id], (error1, result1) => {
-                if (result[0].template === '1') {
+            if (!error && result.length > 0) {
+                connect.query("SELECT * FROM gallery WHERE id_pernikahan = ?", [id], (error1, result1) => {
                     tanggal = formatDate(result[0].tanggal)
-                    return res.render('template1', {
-                        id : id,
-                        data: result[0],
-                        title: "Undangan " + result[0].nama,
-                        tanggal,
-                        date : result[0].tanggal,
-                        gallery: result1
-                    })
-                }
-            })
+                    if (result[0].template === '1') {
+                        return res.render('template1', {
+                            id: id,
+                            data: result[0],
+                            title: "Undangan " + result[0].nama,
+                            tanggal,
+                            date: result[0].tanggal,
+                            gallery: result1
+                        })
+                    } else if (result[0].template === '2') {
+                        return res.render('template2', {
+                            id: id,
+                            data: result[0],
+                            title: "Undangan " + result[0].nama,
+                            tanggal,
+                            date: result[0].tanggal,
+                            gallery: result1
+                        })
+                    }
+                })
+            } else
+                return res.render('404')
         })
     } catch (e) {
         console.log(e)

@@ -44,7 +44,7 @@ const getWeddingSession = async (req, res) => {
     let connect = DB.config
     let id = req.params.id
     try {
-        connect.query("SELECT * FROM sesi WHERE id_pernikahan = ?", [id], (error, result) => {
+        connect.query("SELECT * FROM sesi WHERE id_pernikahan = ? ORDER BY tanggal ASC", [id], (error, result) => {
             return res.json({
                 data: result
             })
@@ -58,7 +58,7 @@ const getDetailWeddingSession = async (req, res) => {
     let connect = DB.config
     let id = req.params.id
     try {
-        connect.query("SELECT * FROM detail_sesi WHERE id_tamu = ?", [id], (error, result) => {
+        connect.query("SELECT * FROM detail_sesi WHERE id_tamu = ? ORDER BY id_sesi ASC", [id], (error, result) => {
             return res.json({
                 data: result
             })
