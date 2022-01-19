@@ -259,7 +259,7 @@
                             </div>
 
                             <div class="mt-16" v-if="editMode === false && formRSVP.rsvp === 'Hadir'">
-                                <p>Jumlah Tamu</p>
+                                <p>Jumlah Tamu (Dewasa)</p>
                                 <div class="input-group inline-group">
                                     <div class="input-group-prepend">
                                         <button v-on:click="setJumlah(false)" class="btn btn-primary-lg btn-minus">-
@@ -274,10 +274,43 @@
                                 </div>
                             </div>
 
+                            <div class="mt-16" v-if="editMode === false && formRSVP.rsvp === 'Hadir'">
+                                <p>Jumlah Tamu (Anak - Anak)</p>
+                                <div class="input-group inline-group">
+                                    <div class="input-group-prepend">
+                                        <button v-on:click="setJumlahAnak(false)" class="btn btn-primary-lg btn-minus">-
+                                        </button>
+                                    </div>
+                                    <input class="form-control quantity txt-normal" min="1" max="5" name="quantity"
+                                           value="0" type="number" v-model="formRSVP.jumlah_anak"/>
+                                    <div class="input-group-append">
+                                        <button v-on:click="setJumlahAnak(true)" class="btn btn-primary-lg btn-plus">+
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="mt-16" v-if="editMode === false && formRSVP.rsvp === 'Tidak Hadir'">
                                 <label class="form-label">Alasan Tidak Hadir</label>
                                 <input type="text" width="360" class="form-control input-large"
                                        placeholder="Masukkan alasan" v-model="formRSVP.alasan"/>
+                            </div>
+                            <div class="mt-16" v-if="editMode === false">
+                                <h6 class="bold">Sesi Pernikahan</h6>
+                                <div class="row">
+                                    <div class="col-6 event-session" v-for="data in guestSession">
+                                        <h6 class="card-title bold">{{data.nama_sesi}}</h6>
+                                        <p class="txt-14">
+                                            {{new Date(data.tanggal).toLocaleDateString('id-ID', {
+                                            weekday: "long",
+                                            year: "numeric",
+                                            month: "long",
+                                            day: "numeric"
+                                        })}}</p>
+                                        <p class="txt-14">{{data.waktu_mulai.substr(0, 5)}} s/d
+                                            {{data.waktu_mulai.substr(0, 5)}}</p>
+                                    </div>
+                                </div>
                             </div>
                             <div class="mt-16" v-if="editMode === false">
                                 <label class="form-label">Ucapan</label>
@@ -313,7 +346,7 @@
                                         <div class="card-body">
                                             <h6 class="bold">Sesi Pernikahan</h6>
                                             <div class="row">
-                                                <div class="col-6 event-session" v-for="data in session">
+                                                <div class="col-6 event-session" v-for="data in guestSession">
                                                     <h6 class="card-title bold">{{data.nama_sesi}}</h6>
                                                     <p class="txt-14">
                                                         {{new Date(data.tanggal).toLocaleDateString('id-ID', {
@@ -331,7 +364,9 @@
                                             <p class="mt-16">Kamu diundang diacara pernikahan! Silahkan tunjukan kartu
                                                 ini untuk scan QR Code pada saat masuk lokasi.</p>
                                             <div class="py-24 text-center">
-                                                <img class="qrcode" src="/assets/template1/Asset/image/qrcode.png"/>
+                                                <div class="qrcode">
+                                                    <div id="kode-qr"></div>
+                                                </div>
                                             </div>
                                             <p class="txt-14 mt-16">Link Website</p>
                                             <p class="txt-14">undangan.com/romeo-juliet</p>
@@ -542,9 +577,9 @@
 <!-- html2canvas -->
 <script src="/assets/template1/Library/html2canvas/html2canvas.min.js"></script>
 
-<script src="/assets/template1/JS/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue-html2canvas@0.0.4/dist/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dom-to-image-more@2.9.5/dist/dom-to-image-more.min.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>

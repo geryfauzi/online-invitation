@@ -4,6 +4,7 @@ var app = new Vue({
         session: [],
         story: [],
         ucapan: [],
+        guestSession: [],
         error: false,
         confirmation: false,
         editMode: false,
@@ -12,6 +13,7 @@ var app = new Vue({
             rsvp: 'Hadir',
             kode: '',
             jumlah_dewasa: 1,
+            jumlah_anak: 0,
             nama: '',
             alasan: '',
             ucapan: '',
@@ -40,6 +42,7 @@ var app = new Vue({
                     this.confirmation = true
                     this.formRSVP = data.data
                     this.formRSVP.rsvp = this.rsvp
+                    this.guestSession = data.dataSesi
                 }
             }
         },
@@ -116,7 +119,7 @@ var app = new Vue({
         },
         setJumlah: function (params) {
             if (params) {
-                if (this.formRSVP.jumlah_dewasa === 4) {
+                if (this.formRSVP.jumlah_dewasa === 2) {
                     //TODO Nothing
                 } else
                     this.formRSVP.jumlah_dewasa = parseInt(this.formRSVP.jumlah_dewasa) + 1
@@ -127,10 +130,25 @@ var app = new Vue({
                     this.formRSVP.jumlah_dewasa = parseInt(this.formRSVP.jumlah_dewasa) - 1
             }
         },
+        setJumlahAnak: function (params) {
+            if (params) {
+                if (this.formRSVP.jumlah_anak === 2) {
+                    //TODO Nothing
+                } else
+                    this.formRSVP.jumlah_anak = parseInt(this.formRSVP.jumlah_anak) + 1
+            } else {
+                if (this.formRSVP.jumlah_anak === 1) {
+                    //TODO Nothing
+                } else
+                    this.formRSVP.jumlah_anak = parseInt(this.formRSVP.jumlah_anak) - 1
+            }
+        },
         onSave: async function () {
             try {
-                if (this.formRSVP.jumlah_dewasa < 1 || this.formRSVP.jumlah_dewasa > 4)
-                    toastr.warning("Jumlah tamu minimal 1, maksimal 4!")
+                if ((this.formRSVP.jumlah_dewasa) < 1 || this.formRSVP.jumlah_dewasa > 2)
+                    toastr.warning("Jumlah tamu dewasa minimal 1, maksimal 2!")
+                else if ((this.formRSVP.jumlah_anak) < 1 || this.formRSVP.jumlah_anak > 2)
+                    toastr.warning("Jumlah tamu anak - anak minimal 1, maksimal 2!")
                 else {
                     let formData = {...this.formRSVP}
                     const res = await fetch('/api/tamu/rsvp', {
@@ -144,26 +162,31 @@ var app = new Vue({
                         toastr.error(data.message);
                     else {
                         toastr.success(data.message);
+                        this.guestSession = data.data
                         this.editMode = true
                         this.loadUcapan()
-                        // this.$nextTick(function () {
-                        //     $(window).trigger('resize');
-                        //     var container = document.querySelector("#capture"); // full page
-                        //     window.html2canvas(container).then(function (canvas) {
-                        //         var link = document.querySelector("#download-card");
-                        //         link.download = "undangan.png";
-                        //         link.href = canvas.toDataURL("image/png");
-                        //     });
-                        // })
+                        this.$nextTick(function () {
+                            window.domtoimage = domtoimage
+                            var container = document.getElementById('capture')
+                            domtoimage.toPng(container).then(function (dataUrl) {
+                                var link = document.getElementById("download-card");
+                                link.download = "undangan.png";
+                                link.href = dataUrl;
+                            })
+                            //Set QR
+                            window.QRCode = window.QRCode
+                            new QRCode(document.getElementById("kode-qr"), this.formRSVP.kode);
+                            //
+                        })
                     }
                 }
             } catch (e) {
-
+                console.log(e)
             }
         },
         setEditMode: function () {
             this.editMode = false
-        },
+        }
     },
     mounted() {
         AOS.init();
@@ -171,8 +194,31 @@ var app = new Vue({
         this.loadTimer()
         this.loadStory()
         this.loadUcapan()
-    },
-    components: {
-        html2canvas
+        $(document).ready(function () {
+            // $("#start-modal").modal("toggle");
+            // detect scroll top or down
+            if ($(".smart-scroll").length > 0) {
+                // check if element exists
+                var last_scroll_top = 0;
+                $(window).on("scroll", function () {
+                    scroll_top = $(this).scrollTop();
+                    if (scroll_top < last_scroll_top) {
+                        $(".smart-scroll").removeClass("scrolled-down").addClass("scrolled-up");
+                    } else {
+                        $(".smart-scroll").removeClass("scrolled-up").addClass("scrolled-down");
+                    }
+                    last_scroll_top = scroll_top;
+                });
+            }
+        });
+        $(window).scroll(function () {
+            if ($(document).scrollTop() > 50) {
+                $("nav").addClass("bg-white");
+                $(".nav-link").addClass("txt-brown");
+            } else {
+                $("nav").removeClass("bg-white");
+                $(".nav-link").removeClass("txt-brown");
+            }
+        });
     }
 })

@@ -161,9 +161,11 @@ const checkCode = async (req, res) => {
     let data = req.body
     let connect = DB.config
     connect.query("SELECT * FROM tamu WHERE kode = ?", [data.kode], (error, result) => {
-        if (result.length > 0)
-            return res.json({code: 1, data: result[0]})
-        else
+        if (result.length > 0) {
+            connect.query("SELECT tamu.kode, detail_sesi.id_sesi, detail_sesi.id_tamu, sesi.nama_sesi, sesi.tanggal, sesi.waktu_mulai, sesi.waktu_selesai FROM tamu JOIN detail_sesi ON tamu.id = detail_sesi.id_tamu JOIN sesi ON sesi.id = detail_sesi.id_sesi WHERE tamu.kode = ?", [data.kode], (error1, result1) => {
+                return res.json({code: 1, data: result[0], dataSesi: result1})
+            })
+        } else
             return res.json({code: 0})
     })
 }
@@ -172,12 +174,14 @@ const updateRSVP = async (req, res) => {
     let data = req.body
     let connect = DB.config
     try {
-        connect.query("UPDATE tamu SET nama = ?, telepon = ?, jumlah_dewasa = ?, alasan = ?, ucapan = ? WHERE kode = ?", [
-            data.nama, data.telepon, data.jumlah_dewasa, data.alasan, data.ucapan, data.kode
+        connect.query("UPDATE tamu SET nama = ?, telepon = ?, jumlah_dewasa = ?, jumlah_anak = ?, alasan = ?, ucapan = ? WHERE kode = ?", [
+            data.nama, data.telepon, data.jumlah_dewasa, data.jumlah_anak, data.alasan, data.ucapan, data.kode
         ], (error, result) => {
-            if (!error)
-                return res.json({code: 1, message: "Berhasil memperbarui RSVP!"})
-            else {
+            if (!error) {
+                connect.query("SELECT tamu.kode, detail_sesi.id_sesi, detail_sesi.id_tamu, sesi.nama_sesi, sesi.tanggal, sesi.waktu_mulai, sesi.waktu_selesai FROM tamu JOIN detail_sesi ON tamu.id = detail_sesi.id_tamu JOIN sesi ON sesi.id = detail_sesi.id_sesi WHERE tamu.kode = ?", [data.kode], (error1, result1) => {
+                    return res.json({code: 1, message: "Berhasil memperbarui RSVP!", data: result1})
+                })
+            } else {
                 console.log(error)
                 return res.json({code: 0, message: "Terjadi kesalahan saat memperbarui RSVP!"})
             }

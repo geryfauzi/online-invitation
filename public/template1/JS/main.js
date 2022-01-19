@@ -16,13 +16,6 @@ $(document).ready(function () {
   }
 });
 
-var container = document.querySelector("#capture"); // full page
-html2canvas(container).then(function (canvas) {
-  var link = document.querySelector("#download-card");
-  link.download = "undangan.png";
-  link.href = canvas.toDataURL("image/png");
-});
-
 $(".btn-plus, .btn-minus").on("click", function (e) {
   const isNegative = $(e.target).closest(".btn-minus").is(".btn-minus");
   const input = $(e.target).closest(".input-group").find("input");
