@@ -48,6 +48,15 @@ router.get('/pernikahan/:id', (req, res) => {
                             date: result[0].tanggal,
                             gallery: result1
                         })
+                    } else if (result[0].template === '3') {
+                        return res.render('template3', {
+                            id: id,
+                            data: result[0],
+                            title: "Undangan " + result[0].nama,
+                            tanggal,
+                            date: result[0].tanggal,
+                            gallery: result1
+                        })
                     }
                 })
             } else

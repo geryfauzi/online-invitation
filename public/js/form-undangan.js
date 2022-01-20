@@ -137,7 +137,7 @@ var app = new Vue({
                 } else
                     this.formRSVP.jumlah_anak = parseInt(this.formRSVP.jumlah_anak) + 1
             } else {
-                if (this.formRSVP.jumlah_anak === 1) {
+                if (this.formRSVP.jumlah_anak === 0) {
                     //TODO Nothing
                 } else
                     this.formRSVP.jumlah_anak = parseInt(this.formRSVP.jumlah_anak) - 1
@@ -147,8 +147,8 @@ var app = new Vue({
             try {
                 if ((this.formRSVP.jumlah_dewasa) < 1 || this.formRSVP.jumlah_dewasa > 2)
                     toastr.warning("Jumlah tamu dewasa minimal 1, maksimal 2!")
-                else if ((this.formRSVP.jumlah_anak) < 1 || this.formRSVP.jumlah_anak > 2)
-                    toastr.warning("Jumlah tamu anak - anak minimal 1, maksimal 2!")
+                else if ((this.formRSVP.jumlah_anak) < 0 || this.formRSVP.jumlah_anak > 2)
+                    toastr.warning("Jumlah tamu anak - anak minimal 0, maksimal 2!")
                 else {
                     let formData = {...this.formRSVP}
                     const res = await fetch('/api/tamu/rsvp', {
