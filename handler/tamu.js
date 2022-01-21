@@ -81,7 +81,7 @@ const insertFromExcel = async (req, res) => {
                 ], (error, result) => {
                     if (!error) {
                         //Insert data sesi
-                        let sesi = item[4]
+                        let sesi = item[7]
                         connect.query("INSERT INTO detail_sesi VALUES(?,?)", [sesi, result.insertId], (error1, result1) => {
                             if (error1) {
                                 console.log(error1)
