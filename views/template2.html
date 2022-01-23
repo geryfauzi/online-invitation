@@ -24,23 +24,23 @@
 <body>
 <main id="form-undangan">
     <div class="container">
-        <nav class="navbar navbar-expand-lg py-24 fixed-top d-none d-md-none d-lg-block d-xl-block">
+        <nav class="navbar navbar-desktop navbar-expand-lg py-24 fixed-top d-none d-md-none d-lg-block d-xl-block">
             <div class="collapse navbar-collapse justify-content-center">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Acara</a>
+                        <a class="nav-link active" aria-current="page" href="#acara">Acara</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Kehadiran</a>
+                        <a class="nav-link" href="#rsvp">Kehadiran</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Galeri</a>
+                        <a class="nav-link" href="#galeri">Galeri</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Cerita</a>
+                        <a class="nav-link" href="#cerita">Cerita</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Ucapan</a>
+                        <a class="nav-link" href="#ucapan">Ucapan</a>
                     </li>
                 </ul>
             </div>
@@ -113,15 +113,15 @@
             </li>
         </ul>
     </nav>
-    <section class="section-header d-flex align-items-center">
+    <section class="section-header d-flex align-items-center" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/assets/uploads/<%= data.image_cover %>); background-size: cover; background-position: center">
         <div class="container my-auto" data-aos="fade-down" data-aos-duration="1000">
             <div class="row">
                 <div class="col-lg-6 col-12 text-center">
                     <img class="img-decoration" src="/assets/template2/Asset/image/decoration-1.svg"/>
-                    <h3 class="txt-kayla txt-pink mt-48">Undangan Pernikahan</h3>
-                    <h1 class="txt-kayla txt-pink mt-72 txt-64"><%= data.nama_cpp.substr(0,data.nama_cpp.indexOf(' '))
+                    <h3 class="txt-kayla txt-white mt-48">Undangan Pernikahan</h3>
+                    <h1 class="txt-kayla txt-white mt-72 txt-64"><%= data.nama_cpp.substr(0,data.nama_cpp.indexOf(' '))
                         %> & <%= data.nama_cpw.substr(0,data.nama_cpw.indexOf(' ')) %></h1>
-                    <h3 class="txt-kayla txt-pink mt-16"><%= new Date(data.tanggal).toLocaleDateString('id-ID', {
+                    <h3 class="txt-kayla txt-white mt-24"><%= new Date(data.tanggal).toLocaleDateString('id-ID', {
                         weekday:"long",
                         year:"numeric", month:"long", day:"numeric"}); %></h3>
                     <img class="img-decoration mt-48" src="/assets/template2/Asset/image/decoration-2.svg"/>
@@ -140,7 +140,7 @@
             </div>
             <div class="row mt-96 justify-content-center" data-aos="fade-up" data-aos-duration="800">
                 <div class="col-lg-3 col-12 text-center">
-                    <img class="img-person" src="/assets/uploads/<%= data.image_cpp %>"/>
+                    <img class="img-person rounded-circle" src="/assets/uploads/<%= data.image_cpp %>"/>
                 </div>
                 <div class="col-lg-3 col-12 text-center my-auto">
                     <h1 class="txt-kayla txt-pink txt-36 mt-32"><%= data.nama_cpp %></h1>
@@ -160,7 +160,7 @@
                     <p>Bapak <%= data.ayah_cpw %> & Ibu <%= data.ibu_cpw %></p>
                 </div>
                 <div class="col-lg-3 col-12 text-center">
-                    <img class="img-person" src="/assets/uploads/<%= data.image_cpw %>"/>
+                    <img class="img-person rounded-circle" src="/assets/uploads/<%= data.image_cpw %>"/>
                 </div>
             </div>
         </div>
@@ -222,8 +222,8 @@
         <div class="container" data-aos="fade-up" data-aos-duration="800">
             <div class="row justify-content-center">
                 <div class="col-12 text-center">
-                    <h2 class="txt-kayla txt-white">Apakah anda akan hadir?</h2>
-                    <p class="mt-16 txt-white">Masukkan kode undangan yang telah diberikan untuk konfirmasi
+                    <h2 class="txt-kayla txt-pink">Apakah anda akan hadir?</h2>
+                    <p class="mt-16">Masukkan kode undangan yang telah diberikan untuk konfirmasi
                         kehadiran</p>
                 </div>
             </div>
@@ -345,6 +345,7 @@
                                         <h4 class="txt-playfair text-center py-24"><%= data.nama %></h4>
                                     </div>
                                     <div class="card-body">
+                                        <h6 class="vip-badge">VIP Pass</h6>
                                         <h6 class="bold">Sesi Pernikahan</h6>
                                         <div class="row">
                                             <div class="col-6 event-session" v-for="data in guestSession">
@@ -363,10 +364,10 @@
                                         <h6 class="bold">{{formRSVP.nama}}</h6>
                                         <p class="mt-16">Kamu diundang diacara pernikahan! Silahkan tunjukan kartu ini
                                             untuk scan QR Code pada saat masuk lokasi.</p>
-                                        <div class="py-24 text-center">
+                                        <div class="py-24">
                                             <div id="kode-qr" class="qrcode">
                                             </div>
-                                            <p class="txt-14 mt-16">Link Website</p>
+                                            <p class="txt-14 mt-24">Link Website</p>
                                             <p class="txt-14">undangan.com/romeo-juliet</p>
                                             <p class="small mt-16">Powered by <span class="bold">Teras Teduh</span></p>
                                         </div>
@@ -584,6 +585,18 @@
 <script>
     let idNikahan = "<%= id %>";
     let tanggalNikahan = "<%= date %>";
+</script>
+
+<script>
+    $(window).scroll(function () {
+            if ($(document).scrollTop() > 50) {
+                $(".navbar-desktop").addClass("bg-white");
+                $(".nav-link").addClass("txt-pink");
+            } else {
+                $(".navbar-desktop").removeClass("bg-white");
+                $(".nav-link").removeClass("txt-pink");
+            }
+        });
 </script>
 <script type="application/javascript" src="/assets/js/form-undangan.js"></script>
 </body>

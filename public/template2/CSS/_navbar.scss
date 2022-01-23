@@ -1,8 +1,12 @@
 .nav-link {
   font-family: $txt-playfair;
-  color: $pink100;
+  color: $white;
   &:hover {
-    color: $pink120;
+    color: $pink50;
+  }
+
+  &:focus {
+    color: $pink100;
   }
 }
 

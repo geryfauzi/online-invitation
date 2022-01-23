@@ -133,11 +133,15 @@
 
 .nav-link {
   font-family: "Playfair Display", serif;
-  color: #f67d7d;
+  color: #fff;
 }
 
 .nav-link:hover {
-  color: #dd7070;
+  color: #fabebe;
+}
+
+.nav-link:focus {
+  color: #f67d7d;
 }
 
 .navbar-mobile {
@@ -404,6 +408,15 @@ canvas {
   margin-top: 24px;
 }
 
+@media (min-width: 768px) and (max-width: 991px) {
+  .reverse {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+}
+
 @media (max-width: 767px) {
   .reverse {
     -webkit-box-orient: vertical;
@@ -470,12 +483,18 @@ canvas {
 }
 
 .section-about .img-person {
-  max-width: 280px;
+  height: 240px;
+  width: 240px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
 }
 
 @media (max-width: 767px) {
   .section-about .img-person {
-    max-width: 200px;
+    height: 200px;
+    width: 200px;
   }
 }
 
@@ -494,10 +513,6 @@ canvas {
 
 .section-rsvp {
   padding: 96px 0;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))), url(../Asset/image/rsvp.png);
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../Asset/image/rsvp.png);
-  background-size: cover;
-  background-position: center;
 }
 
 @media (max-width: 767px) {
@@ -575,8 +590,25 @@ canvas {
   font-family: "Poppins", sans-serif;
 }
 
-.section-rsvp .form .card .qrcode {
-  max-width: 130px;
+.section-rsvp .form .card .vip-badge {
+  display: inline-block;
+  padding: 4px;
+  font-size: 12px;
+  background-color: #d19d3e;
+  color: #fff;
+  border-radius: 2px;
+}
+
+.section-rsvp .form .card .qrcode img {
+  margin: 0 auto;
+  width: 130px;
+  height: 130px;
+}
+
+@media (max-width: 767px) {
+  .section-rsvp .form .card .qrcode img {
+    margin: 0 auto;
+  }
 }
 
 .section-rsvp .form-control {
@@ -584,9 +616,9 @@ canvas {
 }
 
 .section-rsvp .form-control:focus {
-  border: 1px solid #ffc107;
-  -webkit-box-shadow: 0 0 5px #ffc107;
-          box-shadow: 0 0 5px #ffc107;
+  border: 1px solid #fabebe;
+  -webkit-box-shadow: 0 0 5px #f67d7d;
+          box-shadow: 0 0 5px #f67d7d;
 }
 
 .section-rsvp .form-control.input-small {

@@ -46,12 +46,21 @@
 
 .btn-primary-lg {
   color: #fff;
-  background-color: #a77d31;
+  background-color: #d19d3e;
   padding: 13px 16px;
   border: none;
   font-size: 16px;
   line-height: 1.5;
   border-radius: 0;
+}
+
+.btn-primary-lg.btn-gold {
+  background-color: #a77d31;
+}
+
+.btn-primary-lg.btn-gold:hover {
+  background-color: #deba77;
+  color: #fff;
 }
 
 .btn-primary-lg:hover {
@@ -468,21 +477,22 @@ canvas {
 
 .section-about .img-love {
   max-width: 170px;
-}
-
-@media (max-width: 767px) {
-  .section-about .img-love {
-    margin: 48px 0;
-  }
+  margin: 48px 0;
 }
 
 .section-about .img-person {
-  max-width: 280px;
+  height: 240px;
+  width: 240px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
 }
 
 @media (max-width: 767px) {
   .section-about .img-person {
-    max-width: 200px;
+    height: 200px;
+    width: 200px;
   }
 }
 
@@ -495,7 +505,7 @@ canvas {
 }
 
 .section-event .card {
-  color: #fff;
+  color: #120a02;
 }
 
 @media (max-width: 767px) {
@@ -506,10 +516,6 @@ canvas {
 
 .section-rsvp {
   padding: 96px 0;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))), url(../Asset/image/rsvp.png);
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../Asset/image/rsvp.png);
-  background-size: cover;
-  background-position: center;
 }
 
 @media (max-width: 767px) {
@@ -587,8 +593,19 @@ canvas {
   font-family: "Poppins", sans-serif;
 }
 
-.section-rsvp .form .card .qrcode {
-  max-width: 130px;
+.section-rsvp .form .vip-badge {
+  display: inline-block;
+  padding: 4px;
+  font-size: 12px;
+  background-color: #d19d3e;
+  color: #fff;
+  border-radius: 2px;
+}
+
+.section-rsvp .form .qrcode img {
+  margin: 0 auto;
+  width: 130px;
+  height: 130px;
 }
 
 .section-rsvp .form-control {

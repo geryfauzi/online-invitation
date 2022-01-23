@@ -18,12 +18,19 @@
 
 .btn-primary-lg {
   color: $white;
-  background-color: $gold120;
+  background-color: $gold100;
   padding: 13px 16px;
   border: none;
   font-size: 16px;
   line-height: 1.5;
   border-radius: 0;
+  &.btn-gold {
+    background-color: $gold120;
+    &:hover {
+      background-color: $gold70;
+      color: $white;
+    }
+  }
   &:hover {
     background-color: $gold70;
     color: $white;

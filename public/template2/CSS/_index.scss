@@ -7,6 +7,9 @@ canvas {
 }
 
 .reverse {
+  @media #{$tablet_device} {
+    flex-direction: column-reverse;
+  }
   @media #{$mobile_device} {
     flex-direction: column-reverse;
   }
@@ -54,9 +57,13 @@ canvas {
   }
 
   .img-person {
-    max-width: 280px;
+    height: 240px;
+    width: 240px;
+    object-fit: cover;
+    object-position: center;
     @media #{$mobile_device} {
-      max-width: 200px;
+      height: 200px;
+      width: 200px;
     }
   }
 }
@@ -76,9 +83,6 @@ canvas {
 
 .section-rsvp {
   padding: 96px 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../Asset/image/rsvp.png);
-  background-size: cover;
-  background-position: center;
   @media #{$mobile_device} {
     padding: 48px 0;
   }
@@ -132,16 +136,31 @@ canvas {
       p {
         font-family: $txt-normal;
       }
+      .vip-badge {
+        display: inline-block;
+        padding: 4px;
+        font-size: 12px;
+        background-color: $gold100;
+        color: $white;
+        border-radius: 2px;
+      }
       .qrcode {
-        max-width: 130px;
+        img {
+          margin: 0 auto;
+          width: 130px;
+          height: 130px;
+          @media #{$mobile_device} {
+            margin: 0 auto;
+          }
+        }
       }
     }
   }
   .form-control {
     border: 1px solid $pink100;
     &:focus {
-      border: 1px solid $yellow100;
-      box-shadow: 0 0 5px rgba(255, 193, 7, 1);
+      border: 1px solid $pink50;
+      box-shadow: 0 0 5px rgba(246, 125, 125, 1);
     }
     &.input-small {
       padding: 8px 16px;
