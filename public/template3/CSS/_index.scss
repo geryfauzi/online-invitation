@@ -19,9 +19,6 @@ canvas {
 .section-header {
   position: relative;
   height: 100vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../Asset/image/img.png);
-  background-size: cover;
-  background-position: center;
   .img-decoration {
     max-width: 380px;
     @media #{$mobile_device} {
