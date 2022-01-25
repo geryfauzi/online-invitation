@@ -1,0 +1,13 @@
+.card {
+  border: none;
+  border-radius: 0;
+  height: 100%;
+  @media #{$mobile_device} {
+    margin: 16px 0;
+    box-shadow: none;
+  }
+  @media #{$tablet_device} {
+    margin: 16px 0;
+    box-shadow: none;
+  }
+}

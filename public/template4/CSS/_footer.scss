@@ -1,0 +1,12 @@
+footer {
+  padding: 48px 0;
+  background-color: $green30;
+  a {
+    color: $green100;
+    margin: 0 16px;
+    &:hover {
+      color: $green70;
+      text-decoration: underline;
+    }
+  }
+}

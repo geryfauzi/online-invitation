@@ -1,0 +1,29 @@
+.nav-link {
+  font-family: $txt-normal;
+  color: $black100;
+  &:hover {
+    color: $green100;
+  }
+}
+
+.navbar-mobile {
+  padding: 8px;
+  background-color: $white;
+  margin: 0 15px;
+  border-radius: 15px;
+  .nav-link {
+    font-family: $txt-playfair;
+    color: $green100;
+    padding: 4px 0;
+    border-radius: 10px;
+    &:hover {
+      border-radius: 10px;
+      background-color: $green50;
+      color: $white;
+    }
+  }
+}
+
+.fixed-bottom {
+  bottom: 15px;
+}
