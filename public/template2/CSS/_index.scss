@@ -21,9 +21,9 @@ canvas {
 
 .section-header {
   height: 100vh;
-  background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(../Asset/image/img.png);
-  background-size: cover;
-  background-position: center;
+  @media #{$mobile_device} {
+    padding-bottom: 200px;
+  }
   @media #{$mobile_device} {
     background-position: left;
     // background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url(../Asset/image/img.png) !important;
@@ -149,9 +149,11 @@ canvas {
           margin: 0 auto;
           width: 130px;
           height: 130px;
-          @media #{$mobile_device} {
-            margin: 0 auto;
-          }
+        }
+        canvas {
+          margin: 0 auto;
+          width: 130px;
+          height: 130px;
         }
       }
     }
@@ -329,10 +331,6 @@ canvas {
 
 .section-ucapan {
   padding-top: 96px;
-  background-image: url(../Asset/image/background-3.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
 
   @media #{$mobile_device} {
     padding-top: 48px;

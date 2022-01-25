@@ -19,6 +19,10 @@ canvas {
 .section-header {
   position: relative;
   height: 100vh;
+  padding-bottom: 180px;
+  @media #{$mobile_device} {
+    padding-bottom: 200px;
+  }
   .img-decoration {
     max-width: 380px;
     @media #{$mobile_device} {
@@ -134,12 +138,17 @@ canvas {
       display: inline-block;
       padding: 4px;
       font-size: 12px;
-      background-color: $green100;
+      background-color: $gold100;
       color: $white;
       border-radius: 2px;
     }
     .qrcode {
       img {
+        margin: 0 auto;
+        width: 130px;
+        height: 130px;
+      }
+      canvas {
         margin: 0 auto;
         width: 130px;
         height: 130px;
@@ -177,7 +186,7 @@ canvas {
     height: 30vh;
     object-fit: cover;
     @media #{$mid_device} {
-      height: 10vh;
+      height: 20vh;
     }
     @media #{$tablet_device} {
       height: 20vh;

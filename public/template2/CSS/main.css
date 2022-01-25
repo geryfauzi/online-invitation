@@ -210,6 +210,10 @@ p {
   color: #f67d7d;
 }
 
+.txt-red {
+  color: red;
+}
+
 .txt-white {
   color: #fff;
 }
@@ -432,10 +436,12 @@ canvas {
 
 .section-header {
   height: 100vh;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.7)), to(rgba(255, 255, 255, 0.7))), url(../Asset/image/img.png);
-  background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(../Asset/image/img.png);
-  background-size: cover;
-  background-position: center;
+}
+
+@media (max-width: 767px) {
+  .section-header {
+    padding-bottom: 200px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -605,10 +611,10 @@ canvas {
   height: 130px;
 }
 
-@media (max-width: 767px) {
-  .section-rsvp .form .card .qrcode img {
-    margin: 0 auto;
-  }
+.section-rsvp .form .card .qrcode canvas {
+  margin: 0 auto;
+  width: 130px;
+  height: 130px;
 }
 
 .section-rsvp .form-control {
@@ -820,10 +826,6 @@ canvas {
 
 .section-ucapan {
   padding-top: 96px;
-  background-image: url(../Asset/image/background-3.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
 }
 
 @media (max-width: 767px) {

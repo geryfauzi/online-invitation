@@ -190,7 +190,7 @@ body {
   position: relative;
   background-color: #fff;
   font-size: 16px;
-  font-family: "Playfair Display", serif;
+  font-family: "Poppins", sans-serif;
 }
 
 a {
@@ -212,6 +212,10 @@ p {
 
 .txt-green {
   color: #719556;
+}
+
+.txt-red {
+  color: red;
 }
 
 .txt-white {
@@ -428,6 +432,13 @@ canvas {
 .section-header {
   position: relative;
   height: 100vh;
+  padding-bottom: 180px;
+}
+
+@media (max-width: 767px) {
+  .section-header {
+    padding-bottom: 200px;
+  }
 }
 
 .section-header .img-decoration {
@@ -577,12 +588,18 @@ canvas {
   display: inline-block;
   padding: 4px;
   font-size: 12px;
-  background-color: #719556;
+  background-color: #d19d3e;
   color: #fff;
   border-radius: 2px;
 }
 
 .section-rsvp .form .qrcode img {
+  margin: 0 auto;
+  width: 130px;
+  height: 130px;
+}
+
+.section-rsvp .form .qrcode canvas {
   margin: 0 auto;
   width: 130px;
   height: 130px;
@@ -633,7 +650,7 @@ canvas {
 
 @media (min-width: 992px) and (max-width: 1200px) {
   .section-gallery .img-gallery {
-    height: 10vh;
+    height: 20vh;
   }
 }
 

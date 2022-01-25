@@ -216,6 +216,10 @@ p {
   color: #d19d3e;
 }
 
+.txt-red {
+  color: red;
+}
+
 .txt-white {
   color: #fff;
 }
@@ -432,6 +436,12 @@ canvas {
   height: 100vh;
 }
 
+@media (max-width: 767px) {
+  .section-header {
+    padding-bottom: 200px;
+  }
+}
+
 .section-header .img-decoration {
   max-width: 380px;
 }
@@ -599,6 +609,12 @@ canvas {
 }
 
 .section-rsvp .form .qrcode img {
+  margin: 0 auto;
+  width: 130px;
+  height: 130px;
+}
+
+.section-rsvp .form .qrcode canvas {
   margin: 0 auto;
   width: 130px;
   height: 130px;
@@ -813,10 +829,6 @@ canvas {
 
 .section-ucapan {
   padding-top: 96px;
-  background-image: url(../Asset/image/background-3.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
 }
 
 @media (max-width: 767px) {

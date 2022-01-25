@@ -8,6 +8,10 @@ canvas {
 
 .section-header {
   height: 100vh;
+  padding-bottom: 180px;
+  @media #{$mobile_device} {
+    padding-bottom: 200px;
+  }
 
   .img-decoration {
     max-width: 380px;
@@ -117,6 +121,11 @@ canvas {
       }
       .qrcode {
         img {
+          margin: 0 auto;
+          width: 130px;
+          height: 130px;
+        }
+        canvas {
           margin: 0 auto;
           width: 130px;
           height: 130px;
@@ -297,10 +306,6 @@ canvas {
 
 .section-ucapan {
   padding-top: 96px;
-  background-image: url(../Asset/image/background-3.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
   @media #{$mobile_device} {
     padding-top: 48px;
   }

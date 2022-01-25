@@ -2,7 +2,7 @@ body {
   position: relative;
   background-color: $white;
   font-size: 16px;
-  font-family: $txt-playfair;
+  font-family: $txt-normal;
 }
 
 a {
@@ -23,6 +23,10 @@ p {
 
 .txt-green {
   color: $green100;
+}
+
+.txt-red {
+  color: red;
 }
 
 .txt-white {

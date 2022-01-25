@@ -113,10 +113,10 @@
             </li>
         </ul>
     </nav>
-    <section class="section-header d-flex align-items-center" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/assets/uploads/<%= data.image_cover %>); background-size: cover; background-position: center">
+    <section class="section-header d-flex align-items-center" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/assets/uploads/<%= data.image_cover %>); background-size: cover; background-position: center">
         <div class="container my-auto" data-aos="fade-down" data-aos-duration="1000">
             <div class="row">
-                <div class="col-lg-6 col-12 text-center">
+                <div class="col-12 text-center">
                     <img class="img-decoration" src="/assets/template2/Asset/image/decoration-1.svg"/>
                     <h3 class="txt-kayla txt-white mt-48">Undangan Pernikahan</h3>
                     <h1 class="txt-kayla txt-white mt-72 txt-64"><%= data.nama_cpp.substr(0,data.nama_cpp.indexOf(' '))
@@ -232,7 +232,7 @@
                     <p class="txt-white bg-red w-100 p-1 txt-14" v-if="error == true">Kode undangan tidak valid,
                         silahkan coba lagi!</p>
                     <input type="text" width="360" class="form-control input-large mt-8"
-                           placeholder="Masukkan kode undangan" v-model="formRSVP.kode"/>
+                           placeholder="Masukkan kode undangan" v-model="formRSVP.kode" required/>
                     <button v-on:click="checkCode()" class="btn btn-primary-lg mt-16">Konfirmasi</button>
                 </div>
             </div>
@@ -250,24 +250,27 @@
                         </div>
                         <div class="mt-24" v-if="editMode === false">
                             <label class="form-label">Nama</label>
+                            <span class="txt-red">*</span>
                             <input type="text" width="360" class="form-control input-large"
-                                   placeholder="Masukkan nama" v-model="formRSVP.nama"/>
+                                   placeholder="Masukkan nama" v-model="formRSVP.nama" required/>
                         </div>
                         <div class="mt-16" v-if="editMode === false">
                             <label class="form-label">No Telepon</label>
+                            <span class="txt-red">*</span>
                             <input type="number" width="360" class="form-control input-large"
-                                   placeholder="Masukkan no telepon" v-model="formRSVP.telepon"/>
+                                   placeholder="Masukkan no telepon" v-model="formRSVP.telepon" required/>
                         </div>
 
                         <div class="mt-16" v-if="editMode === false && formRSVP.rsvp === 'Hadir'">
-                            <p>Jumlah Tamu (Dewasa)</p>
+                            <label class="form-label">Jumlah Tamu (Dewasa)</label>
+                            <span class="txt-red">*</span>
                             <div class="input-group inline-group">
                                 <div class="input-group-prepend">
                                     <button v-on:click="setJumlah(false)" class="btn btn-primary-lg btn-minus">-
                                     </button>
                                 </div>
                                 <input class="form-control quantity txt-normal" min="1" max="5" name="quantity"
-                                       value="1" type="number" v-model="formRSVP.jumlah_dewasa"/>
+                                       value="1" type="number" v-model="formRSVP.jumlah_dewasa" required/>
                                 <div class="input-group-append">
                                     <button v-on:click="setJumlah(true)" class="btn btn-primary-lg btn-plus">+</button>
                                 </div>
@@ -275,14 +278,15 @@
                         </div>
 
                         <div class="mt-16" v-if="editMode === false && formRSVP.rsvp === 'Hadir'">
-                            <p>Jumlah Tamu (Anak - Anak)</p>
+                            <label class="form-label">Jumlah Tamu (Anak - Anak)</label>
+                            <span class="txt-red">*</span>
                             <div class="input-group inline-group">
                                 <div class="input-group-prepend">
                                     <button v-on:click="setJumlahAnak(false)" class="btn btn-primary-lg btn-minus">-
                                     </button>
                                 </div>
                                 <input class="form-control quantity txt-normal" min="1" max="5" name="quantity"
-                                       value="1" type="number" v-model="formRSVP.jumlah_anak"/>
+                                       value="1" type="number" v-model="formRSVP.jumlah_anak" required/>
                                 <div class="input-group-append">
                                     <button v-on:click="setJumlahAnak(true)" class="btn btn-primary-lg btn-plus">+
                                     </button>
@@ -364,7 +368,7 @@
                                         <h6 class="bold">{{formRSVP.nama}}</h6>
                                         <p class="mt-16">Kamu diundang diacara pernikahan! Silahkan tunjukan kartu ini
                                             untuk scan QR Code pada saat masuk lokasi.</p>
-                                        <div class="py-24">
+                                        <div class="py-24 text-center">
                                             <div id="kode-qr" class="qrcode">
                                             </div>
                                             <p class="txt-14 mt-24">Link Website</p>
@@ -452,7 +456,7 @@
                 <p class="mt-16 text-center">Doa dan ucapan untuk kedua mempelai</p>
             </div>
             <div class="ucapan">
-                <div class="row justify-content-center">
+                <div class="row">
                     <div class="col-lg-6 col-12" v-for="data in ucapan">
                         <div class="card-ucapan">
                             <h6 class="txt-pink bold">{{data.nama}}</h6>

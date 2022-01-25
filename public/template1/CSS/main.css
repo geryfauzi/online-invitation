@@ -214,6 +214,10 @@ p {
   color: #fff;
 }
 
+.txt-red {
+  color: red;
+}
+
 .bg-red {
   background-color: red;
 }
@@ -405,6 +409,13 @@ canvas {
 
 .section-header {
   height: 100vh;
+  padding-bottom: 180px;
+}
+
+@media (max-width: 767px) {
+  .section-header {
+    padding-bottom: 200px;
+  }
 }
 
 .section-header .img-decoration {
@@ -550,6 +561,12 @@ canvas {
 }
 
 .section-rsvp .form .card .qrcode img {
+  margin: 0 auto;
+  width: 130px;
+  height: 130px;
+}
+
+.section-rsvp .form .card .qrcode canvas {
   margin: 0 auto;
   width: 130px;
   height: 130px;
@@ -764,10 +781,6 @@ canvas {
 
 .section-ucapan {
   padding-top: 96px;
-  background-image: url(../Asset/image/background-3.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
 }
 
 @media (max-width: 767px) {
