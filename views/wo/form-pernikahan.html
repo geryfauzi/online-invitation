@@ -41,7 +41,6 @@
         <%- include('./partials/form-pernikahan/form-informasi-umum.html') %>
         <% if (locals.id) { %>
         <%- include('./partials/form-pernikahan/form-informasi-cpp.html') %>
-        <%- include('./partials/form-pernikahan/form-informasi-cpw.html') %>
         <%- include('./partials/form-pernikahan/form-sesi.html') %>
         <%- include('./partials/form-pernikahan/form-grup.html') %>
         <%- include('./partials/form-pernikahan/form-tamu.html') %>
@@ -76,23 +75,23 @@
             defaultImageCPW: '',
             addSession: false,
             editSession: false,
-            addGuest : false,
-            editGuest : false,
-            addGroup : false,
-            editGroup : false,
-            addStory : false,
-            editStory : false,
+            addGuest: false,
+            editGuest: false,
+            addGroup: false,
+            editGroup: false,
+            addStory: false,
+            editStory: false,
             session: [],
             guest: [],
-            guestBook : [],
-            gallery:[],
+            guestBook: [],
+            gallery: [],
             group: [],
-            story : [],
+            story: [],
             form: {
                 id: '',
                 id_wo: '',
                 id_pengantin: '',
-                template : '',
+                template: '',
                 nama: '',
                 tanggal: '',
                 nama_cpp: '',
@@ -110,48 +109,48 @@
                 id: '',
                 id_pernikahan: '',
                 nama_sesi: '',
-                tanggal : '',
+                tanggal: '',
                 waktu_mulai: '',
                 waktu_selesai: '',
-                alamat : '',
-                url_gmaps : ''
+                alamat: '',
+                url_gmaps: ''
             },
-            formGuest : {
-                id : '',
-                id_pernikahan : '',
-                id_grup : '',
-                nama : '',
-                telepon : '',
-                jumlah_dewasa : 1,
-                jumlah_anak : 0,
-                rsvp : '',
-                kehadiran : '',
-                kode : '',
-                is_vip : '',
-                is_family : '',
-                ucapan : '',
-                sesi : []
-            },
-            formGallery : {
-                id : '',
-                id_pernikahan : '',
-                image : null,
-                keterangan : ''
-            },
-            formExcel : {
-                id_pernikahan : '',
-                excel : null
-            },
-            formGroup : {
+            formGuest: {
                 id: '',
-                nama : '',
-                id_pernikahan : ''
+                id_pernikahan: '',
+                id_grup: '',
+                nama: '',
+                telepon: '',
+                jumlah_dewasa: 1,
+                jumlah_anak: 0,
+                rsvp: '',
+                kehadiran: '',
+                kode: '',
+                is_vip: '',
+                is_family: '',
+                ucapan: '',
+                sesi: []
             },
-            formStory : {
-                id : '',
-                id_pernikahan : '',
-                tahun : '',
-                story : ''
+            formGallery: {
+                id: '',
+                id_pernikahan: '',
+                image: null,
+                keterangan: ''
+            },
+            formExcel: {
+                id_pernikahan: '',
+                excel: null
+            },
+            formGroup: {
+                id: '',
+                nama: '',
+                id_pernikahan: ''
+            },
+            formStory: {
+                id: '',
+                id_pernikahan: '',
+                tahun: '',
+                story: ''
             }
         },
         methods: {
@@ -184,8 +183,8 @@
                 } else if (this.sideMenuIndex === 2) {
                     if (!this.validationCPPInformation())
                         isValid = false
-                } else if(this.sideMenuIndex === 3){
-                    if(!this.validationCPWInformation())
+                } else if (this.sideMenuIndex === 3) {
+                    if (!this.validationCPWInformation())
                         isValid = false
                 }
                 return isValid
@@ -198,11 +197,11 @@
                         let formData = {...this.form}
                         //Image Upload
                         if (formData.image_cover != null && formData.image_cover !== this.defaultImageCover)
-                            formData.image_cover = await this.photoUpload();
+                            formData.image_cover = await this.photoUpload(this.form.image_cover);
                         if (formData.image_cpp != null && formData.image_cpp !== this.defaultImageCPP)
-                            formData.image_cpp = await this.photoUpload();
+                            formData.image_cpp = await this.photoUpload(this.form.image_cpp);
                         if (formData.image_cpw != null && formData.image_cpw !== this.defaultImageCPW)
-                            formData.image_cpw = await this.photoUpload();
+                            formData.image_cpw = await this.photoUpload(this.form.image_cpw);
                         //Update ke Database
                         const res = await fetch('/api/pernikahan', {
                             method: 'PUT',
@@ -229,7 +228,7 @@
                     else {
                         let formData = {...this.form}
                         //Image Upload
-                        formData.image_cover = await this.photoUpload();
+                        formData.image_cover = await this.photoUpload(this.form.image_cover);
                         //Insert To Database
                         formData.id = Date.now()
                         const res = await fetch('/api/pernikahan', {
@@ -337,13 +336,13 @@
                 this.formGuest.sesi.push(0)
             },
             deleteOneSession: function (index) {
-                this.formGuest.sesi.splice(index,1)
+                this.formGuest.sesi.splice(index, 1)
             },
-            setEditSession : function (params, index) {
+            setEditSession: function (params, index) {
                 this.editSession = params
-                if(params && this.addSession === true)
+                if (params && this.addSession === true)
                     this.addSession = false
-                if(params){
+                if (params) {
                     this.formSession.id = this.session[index].id
                     this.formSession.nama_sesi = this.session[index].nama_sesi
                     this.formSession.tanggal = this.session[index].tanggal
@@ -449,7 +448,7 @@
                     this.session = data.data
                     $('#sesi').DataTable().destroy()
                     setTimeout(() => {
-                        this.$nextTick(function() {
+                        this.$nextTick(function () {
                             $('#sesi').DataTable({
                                 "destroy": true,
                                 "retrieve": true,
@@ -469,22 +468,22 @@
             },
 
             //
-            setEditGroup : function (params, index) {
+            setEditGroup: function (params, index) {
                 this.editGroup = params
-                if(params && this.addGroup === true)
+                if (params && this.addGroup === true)
                     this.addGroup = false
-                if(params){
+                if (params) {
                     this.formGroup.id = this.group[index].id
                     this.formGroup.nama = this.group[index].nama
                     window.scrollTo(0, 0)
                 } else
                     this.clearGroupForm()
             },
-            setEditStory : function (params, index) {
+            setEditStory: function (params, index) {
                 this.editStory = params
-                if(params && this.addStory === true)
+                if (params && this.addStory === true)
                     this.addStory = false
-                if(params){
+                if (params) {
                     this.formStory.id = this.story[index].id
                     this.formStory.tahun = this.story[index].tahun
                     this.formStory.story = this.story[index].story
@@ -492,11 +491,11 @@
                 } else
                     this.clearStoryFrom()
             },
-            setEditGuest : async function (params, index) {
+            setEditGuest: async function (params, index) {
                 this.editGuest = params
-                if(params && this.addGuest === true)
+                if (params && this.addGuest === true)
                     this.addGuest = false
-                if(params){
+                if (params) {
                     this.formGuest.id = this.guest[index].id
                     this.formGuest.is_family = this.guest[index].is_family
                     this.formGuest.id_grup = this.guest[index].id_grup
@@ -551,9 +550,9 @@
                     this.clearStoryFrom()
             },
             clearStoryFrom: function () {
-              this.formStory.id = ''
-              this.formStory.tahun = ''
-              this.formStory.story = ''
+                this.formStory.id = ''
+                this.formStory.tahun = ''
+                this.formStory.story = ''
             },
             clearGroupForm: function () {
                 this.formGroup.id = ''
@@ -565,8 +564,8 @@
                 this.formGuest.sesi = []
                 this.formGuest.nama = ''
                 this.formGuest.telepon = ''
-                this.formGuest.jumlah_dewasa = ''
-                this.formGuest.jumlah_anak = ''
+                this.formGuest.jumlah_dewasa = 1
+                this.formGuest.jumlah_anak = 0
                 this.formGuest.rsvp = ''
                 this.formGuest.kehadiran = ''
                 this.formGuest.kode = ''
@@ -634,44 +633,44 @@
                     isValid = false
                 if (this.formGuest.is_vip === '' || this.formGuest.is_vip == null)
                     isValid = false
-                if(this.formGuest.sesi[0] === '' || this.formGuest.sesi[0] == null)
+                if (this.formGuest.sesi[0] === '' || this.formGuest.sesi[0] == null)
                     isValid = false
-                if(this.formGuest.sesi[0] === '' || this.formGuest.sesi[0] == null)
+                if (this.formGuest.sesi[0] === '' || this.formGuest.sesi[0] == null)
                     isValid = false
                 return isValid
             },
             validationGallery: function () {
-              let isValid = true
-              if(this.formGallery.image == null || this.formGallery === '')
-                  isValid = false
+                let isValid = true
+                if (this.formGallery.image == null || this.formGallery === '')
+                    isValid = false
                 return isValid
             },
-            onUploadExcel: async function(){
-              try{
-                  if(this.formExcel.excel == null)
-                      toastr.warning("Harap pilih file excel sebelum upload!")
-                  else {
-                      let formData = {...this.formExcel}
-                      formData.excel = await this.excelUpload()
-                      const res = await fetch('/api/tamu/excel', {
-                          method: 'POST',
-                          body: JSON.stringify(formData),
-                          headers: {'Content-Type': "application/json"}
-                      });
-                      const data = await res.json();
-                      //
-                      if (data.code === 0)
-                          toastr.error(data.message);
-                      else {
-                          toastr.success(data.message);
-                          this.formExcel.excel = null
-                          document.getElementById("excel").innerHTML = "Pilih File Excel"
-                          this.loadGuest()
-                      }
-                  }
-              }catch (e) {
+            onUploadExcel: async function () {
+                try {
+                    if (this.formExcel.excel == null)
+                        toastr.warning("Harap pilih file excel sebelum upload!")
+                    else {
+                        let formData = {...this.formExcel}
+                        formData.excel = await this.excelUpload()
+                        const res = await fetch('/api/tamu/excel', {
+                            method: 'POST',
+                            body: JSON.stringify(formData),
+                            headers: {'Content-Type': "application/json"}
+                        });
+                        const data = await res.json();
+                        //
+                        if (data.code === 0)
+                            toastr.error(data.message);
+                        else {
+                            toastr.success(data.message);
+                            this.formExcel.excel = null
+                            document.getElementById("excel").innerHTML = "Pilih File Excel"
+                            this.loadGuest()
+                        }
+                    }
+                } catch (e) {
 
-              } 
+                }
             },
             onSaveStory: async function () {
                 try {
@@ -727,26 +726,34 @@
             },
             onSaveGuest: async function () {
                 try {
-                    if (!this.validationGuestInformation())
+                    if (!this.validationGuestInformation()) {
                         toastr.warning("Harap isi semua form yang wajib diisi!")
+                        return
+                    }
+                    if (this.formGuest.jumlah_dewasa < 1 || this.formGuest.jumlah_dewasa > 2) {
+                        toastr.warning("Jumlah tamu dewasa minimal 1 dan maksimal 2!")
+                        return
+                    }
+                    if (this.formGuest.jumlah_anak < 0 || this.formGuest.jumlah_anak > 2) {
+                        toastr.warning("Jumlah tamu anak - anak minimal 0 dan maksimal 2!")
+                        return
+                    }
+                    let formData = {...this.formGuest}
+                    //Mengisi data yang masih kosong
+                    formData.kode = this.generateCode()
+                    const res = await fetch('/api/tamu', {
+                        method: 'POST',
+                        body: JSON.stringify(formData),
+                        headers: {'Content-Type': "application/json"}
+                    });
+                    const data = await res.json();
+                    //
+                    if (data.code === 0)
+                        toastr.error(data.message);
                     else {
-                        let formData = {...this.formGuest}
-                        //Mengisi data yang masih kosong
-                        formData.kode = this.generateCode()
-                        const res = await fetch('/api/tamu', {
-                            method: 'POST',
-                            body: JSON.stringify(formData),
-                            headers: {'Content-Type': "application/json"}
-                        });
-                        const data = await res.json();
-                        //
-                        if (data.code === 0)
-                            toastr.error(data.message);
-                        else {
-                            toastr.success(data.message);
-                            this.setAddGuest(false)
-                            this.loadGuest()
-                        }
+                        toastr.success(data.message);
+                        this.setAddGuest(false)
+                        this.loadGuest()
                     }
                 } catch (e) {
 
@@ -754,9 +761,18 @@
             },
             onUpdateGuest: async function () {
                 try {
-                    if (!this.validationGuestInformation())
+                    if (!this.validationGuestInformation()) {
                         toastr.warning("Harap isi semua form yang wajib diisi!")
-                    else {
+                        return
+                    }
+                    if (this.formGuest.jumlah_dewasa < 1 || this.formGuest.jumlah_dewasa > 2) {
+                        toastr.warning("Jumlah tamu dewasa minimal 1 dan maksimal 2!")
+                        return
+                    }
+                    if (this.formGuest.jumlah_anak < 0 || this.formGuest.jumlah_anak > 2) {
+                        toastr.warning("Jumlah tamu anak - anak minimal 0 dan maksimal 2!")
+                        return
+                    }
                         let formData = {...this.formGuest}
                         //Update Database
                         const res = await fetch('/api/tamu', {
@@ -773,7 +789,6 @@
                             this.setEditGuest(false)
                             this.loadGuest()
                         }
-                    }
                 } catch (e) {
 
                 }
@@ -830,18 +845,11 @@
 
                 }
             },
-            photoUpload: async function () {
+            photoUpload: async function (files) {
                 try {
                     toastr.warning("Harap Tunggu");
                     let formData = new FormData();
-                    if (this.sideMenuIndex === 1)
-                        formData.append('file', this.form.image_cover)
-                    else if (this.sideMenuIndex === 2)
-                        formData.append('file', this.form.image_cpp)
-                    else if (this.sideMenuIndex === 3)
-                        formData.append('file', this.form.image_cpw)
-                    else if (this.sideMenuIndex === 7)
-                        formData.append('file', this.formGallery.image)
+                    formData.append('file', files)
                     const params = {method: 'POST', body: formData};
                     const res = await fetch('/api/upload-image', params);
                     if (res.status != 200) throw Error("Upload photo gagal!");
@@ -872,7 +880,7 @@
                     else {
                         let formData = {...this.formGallery}
                         //Image Upload
-                        formData.image = await this.photoUpload();
+                        formData.image = await this.photoUpload(this.formGallery.image);
                         //Insert To Database
                         formData.id = Date.now()
                         const res = await fetch('/api/gallery', {
@@ -929,7 +937,7 @@
                     this.guest = data.data
                     $('#tamu').DataTable().destroy()
                     setTimeout(() => {
-                        this.$nextTick(function() {
+                        this.$nextTick(function () {
                             $('#tamu').DataTable({
                                 "destroy": true,
                                 "retrieve": true,
@@ -954,7 +962,7 @@
                     this.guestBook = data.data
                     $('#buku-tamu').DataTable().destroy()
                     setTimeout(() => {
-                        this.$nextTick(function() {
+                        this.$nextTick(function () {
                             $('#buku-tamu').DataTable({
                                 "destroy": true,
                                 "retrieve": true,
@@ -979,7 +987,7 @@
                     this.group = data.data
                     $('#grup').DataTable().destroy()
                     setTimeout(() => {
-                        this.$nextTick(function() {
+                        this.$nextTick(function () {
                             $('#grup').DataTable({
                                 "destroy": true,
                                 "retrieve": true,
@@ -1004,7 +1012,7 @@
                     this.story = data.data
                     $('#story').DataTable().destroy()
                     setTimeout(() => {
-                        this.$nextTick(function() {
+                        this.$nextTick(function () {
                             $('#story').DataTable({
                                 "destroy": true,
                                 "retrieve": true,
@@ -1032,13 +1040,13 @@
                 }
             },
             downloadGuestBook: function () {
-                if(this.guestBook.length === 0)
+                if (this.guestBook.length === 0)
                     toastr.warning("Maaf, belum ada data tamu untuk di download")
                 else {
                     window.jsPDF = window.jspdf.jsPDF;
                     var pdf = new jsPDF("p", "pt", "a4")
-                    pdf.autoTable({ html: '#buku-tamu' })
-                    pdf.save('Bukutamu-'+ this.form.tanggal.substring(0, 10) + '.pdf')
+                    pdf.autoTable({html: '#buku-tamu'})
+                    pdf.save('Bukutamu-' + this.form.tanggal.substring(0, 10) + '.pdf')
                 }
             }
         },
