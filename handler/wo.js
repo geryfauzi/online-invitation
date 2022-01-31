@@ -21,6 +21,8 @@ const login = async (req, res) => {
                         return res.json({
                             code: 1,
                             message: "Selamat! Anda berhasil login!",
+                            email: result2[0].email,
+                            nama: result2[0].nama
                         })
                     } else
                         return res.json({

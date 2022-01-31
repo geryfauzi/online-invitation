@@ -160,7 +160,7 @@ const getGuestBook = async (req, res) => {
 const checkCode = async (req, res) => {
     let data = req.body
     let connect = DB.config
-    connect.query("SELECT * FROM tamu WHERE kode = ?", [data.kode], (error, result) => {
+    connect.query("SELECT * FROM tamu WHERE kode = ? AND id_pernikahan = ?", [data.kode, data.id_pernikahan], (error, result) => {
         if (result.length > 0) {
             connect.query("SELECT tamu.kode, detail_sesi.id_sesi, detail_sesi.id_tamu, sesi.nama_sesi, sesi.tanggal, sesi.waktu_mulai, sesi.waktu_selesai FROM tamu JOIN detail_sesi ON tamu.id = detail_sesi.id_tamu JOIN sesi ON sesi.id = detail_sesi.id_sesi WHERE tamu.kode = ?", [data.kode], (error1, result1) => {
                 return res.json({code: 1, data: result[0], dataSesi: result1})

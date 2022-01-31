@@ -18,6 +18,7 @@ var app = new Vue({
       alasan: "",
       ucapan: "",
       telepon: "",
+      id_pernikahan : ""
     },
   },
   methods: {
@@ -198,5 +199,6 @@ var app = new Vue({
         });
       }
     });
+    this.formRSVP.id_pernikahan = idNikahan
   },
 });
