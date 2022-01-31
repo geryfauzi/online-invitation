@@ -147,7 +147,7 @@ const getGuestBook = async (req, res) => {
     let connect = DB.config
     let id = req.params.id
     try {
-        connect.query("SELECT tamu.id, tamu.id_grup, grup.nama AS nama_grup, tamu.nama, tamu.telepon, tamu.jumlah_dewasa, tamu.jumlah_anak,tamu.rsvp, tamu.kehadiran, tamu.id_pernikahan, tamu.kode, tamu.is_vip, tamu.is_family, tamu.waktu_checkin, tamu.waktu_checkout FROM tamu LEFT JOIN detail_sesi ON tamu.id = detail_sesi.id_tamu LEFT JOIN grup ON tamu.id_grup = grup.id WHERE tamu.id_pernikahan = ? AND tamu.kehadiran != 'Belum Dikonfirmasi' GROUP BY tamu.id ORDER BY tamu.id DESC", [id], (error, result) => {
+        connect.query("SELECT tamu.ucapan, tamu.id, tamu.id_grup, grup.nama AS nama_grup, tamu.nama, tamu.telepon, tamu.jumlah_dewasa, tamu.jumlah_anak,tamu.rsvp, tamu.kehadiran, tamu.id_pernikahan, tamu.kode, tamu.is_vip, tamu.is_family, tamu.waktu_checkin, tamu.waktu_checkout FROM tamu LEFT JOIN detail_sesi ON tamu.id = detail_sesi.id_tamu LEFT JOIN grup ON tamu.id_grup = grup.id WHERE tamu.id_pernikahan = ? AND tamu.kehadiran != 'Belum Dikonfirmasi' GROUP BY tamu.id ORDER BY tamu.id DESC", [id], (error, result) => {
             return res.json({
                 data: result
             })

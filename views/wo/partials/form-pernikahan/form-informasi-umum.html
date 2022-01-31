@@ -52,6 +52,8 @@
                                     <option value="1">Template 1</option>
                                     <option value="2">Template 2</option>
                                     <option value="3">Template 3</option>
+                                    <option value="4">Template 4</option>
+                                    <option value="5">Template 5</option>
                                 </select>
                             </div>
                             <% } %>
@@ -59,8 +61,8 @@
                         <!-- /.card-body -->
                         <% if (locals.id) { %>
                         <div class="card-footer">
-                            <button type="submit" style="float: right; margin-right: 20px" class="btn btn-primary"
-                                    onclick="window.history.back()">Kembali
+                            <button type="submit" style="float: right; margin-right: 20px" class="btn btn-danger"
+                                    onclick="window.location.href='/wo/pernikahan'">Kembali
                             </button>
                             <button type="submit" style="float: right; margin-right: 20px" class="btn btn-primary"
                                     v-on:click="onUpdate()">Perbarui Informasi Umum
@@ -68,7 +70,7 @@
                         </div>
                         <% } else { %>
                         <div class="card-footer">
-                            <button type="submit" style="float: right; margin-right: 20px" class="btn btn-primary"
+                            <button type="submit" style="float: right; margin-right: 20px" class="btn btn-danger"
                                     v-on:click="onCancel()">Batal
                             </button>
                             <button type="submit" style="float: right; margin-right: 20px" class="btn btn-primary"
