@@ -205,6 +205,56 @@ const getUcapan = async (req, res) => {
     }
 }
 
+const insertGuestBook = async (req, res) => {
+    let connect = DB.config
+    let data = req.body
+    //Pengecekan untuk tamu yang cekin
+    try {
+        //Cek apakah kode valid
+        connect.query("SELECT * FROM tamu WHERE kode = ? AND id_pernikahan = ?", [data.kode, data.id_pernikahan], (kesalahan, hasil) => {
+            if (hasil.length <= 0)
+                return res.json({code: 0, message: "Kode tamu ini tidak valid!"})
+            else {
+                //Pengecekan Check In
+                if (data.status === "Check In") {
+                    connect.query("SELECT * FROM tamu WHERE kode = ?", [data.kode], (error, result) => {
+                        if (result[0].kehadiran === "Check In")
+                            return res.json({code: 0, message: "Tamu ini sudah melakukan Check In!"})
+                        else {
+                            connect.query("UPDATE tamu SET kehadiran = ?, waktu_checkin = CURTIME() WHERE kode = ? AND id_pernikahan = ?", [data.status, data.kode, data.id_pernikahan], (error1, result1) => {
+                                if (!error1)
+                                    return res.json({code: 1, message: "Berhasil menambahkan tamu ke buku tamu!"})
+                                else
+                                    return res.json({code: 0, message: "Terjadi kesalahan!"})
+                            })
+                        }
+                    })
+                } else {
+                    //Pengecekan Check Out
+                    connect.query("SELECT * FROM tamu WHERE kode = ?", [data.kode], (error, result) => {
+                        if (result[0].kehadiran === "Check Out")
+                            return res.json({code: 0, message: "Tamu ini sudah melakukan Check Out!"})
+                        else if (result[0].kehadiran === "Belum Dikonfirmasi")
+                            return res.json({code: 0, message: "Tamu ini belum melakukan Check In!"})
+                        else {
+                            connect.query("UPDATE tamu SET kehadiran = ?, waktu_checkout = CURTIME() WHERE kode = ? AND id_pernikahan = ?", [data.status, data.kode, data.id_pernikahan], (error1, result1) => {
+                                if (!error1)
+                                    return res.json({code: 1, message: "Berhasil memperbarui buku tamu!"})
+                                else
+                                    return res.json({code: 0, message: "Terjadi kesalahan!"})
+                            })
+                        }
+                    })
+                }
+            }
+        })
+
+    } catch (e) {
+        console.log(e)
+        return res.json({code: 0, message: "Terjadi kesalahan pada server!"})
+    }
+}
+
 module.exports = {
     getWeddingGuest,
     insertGuest,
@@ -213,5 +263,6 @@ module.exports = {
     getGuestBook,
     checkCode,
     updateRSVP,
-    getUcapan
+    getUcapan,
+    insertGuestBook
 }

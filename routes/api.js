@@ -42,6 +42,7 @@ router.get('/tamu/buku/:id', Tamu.getGuestBook)
 router.post('/tamu/kode', Tamu.checkCode)
 router.put('/tamu/rsvp', Tamu.updateRSVP)
 router.get('/tamu/ucapan/:id', Tamu.getUcapan)
+router.post('/tamu/kehadiran', Tamu.insertGuestBook)
 
 //Area Gallery
 router.post('/gallery', Gallery.insertGallery)

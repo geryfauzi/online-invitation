@@ -60,7 +60,7 @@
 <%- include('./partials/footer.html') %>
 <script type="application/javascript">
     <% if (locals.id) { %>
-        let idNikahan = <%= id %>;
+        let idNikahan = "<%= id %>";
         <% } %>
     let emailWO = "<%= email %>";
 </script>
@@ -81,6 +81,7 @@
             editGroup: false,
             addStory: false,
             editStory: false,
+            addGuestBook: false,
             session: [],
             guest: [],
             guestBook: [],
@@ -151,6 +152,11 @@
                 id_pernikahan: '',
                 tahun: '',
                 story: ''
+            },
+            formGuestBook: {
+                kode : '',
+                status : '',
+                id_pernikahan : ''
             }
         },
         methods: {
@@ -229,8 +235,12 @@
                         let formData = {...this.form}
                         //Image Upload
                         formData.image_cover = await this.photoUpload(this.form.image_cover);
+                        //Generate Code
+                        let kode = formData.nama.replaceAll(' ','_')
+                        kode = kode.replaceAll('&','dan')
+                        kode = kode.replaceAll('.','_')
                         //Insert To Database
-                        formData.id = Date.now()
+                        formData.id = kode
                         const res = await fetch('/api/pernikahan', {
                             method: 'POST',
                             body: JSON.stringify(formData),
@@ -415,6 +425,33 @@
 
                 }
             },
+            onSaveGuestBook: async function () {
+                try {
+                    if (this.formGuestBook.kode === "" || this.formGuestBook.status === "")
+                        toastr.warning("Harap isi semua form yang wajib diisi!")
+                    else {
+                        let formData = {...this.formGuestBook}
+                        //Insert To Database
+                        formData.id_pernikahan = idNikahan
+                        const res = await fetch('/api/tamu/kehadiran', {
+                            method: 'POST',
+                            body: JSON.stringify(formData),
+                            headers: {'Content-Type': "application/json"}
+                        });
+                        const data = await res.json();
+                        //
+                        if (data.code === 0)
+                            toastr.error(data.message);
+                        else {
+                            toastr.success(data.message);
+                            this.setAddGuestBook(false)
+                            this.loadGuestBook()
+                        }
+                    }
+                } catch (e) {
+
+                }
+            },
             onUpdateSession: async function () {
                 try {
                     if (!this.validationSessionInformation())
@@ -540,6 +577,10 @@
                 if (!params)
                     this.clearGuestForm()
             },
+            setAddGuestBook: function (params) {
+                this.clearGuestBookForm()
+                this.addGuestBook = params
+            },
             setAddStory: function (params) {
                 this.addStory = params
                 if (params && this.editStory === true) {
@@ -571,6 +612,10 @@
                 this.formGuest.kode = ''
                 this.formGuest.is_vip = ''
                 this.formGuest.ucapan = ''
+            },
+            clearGuestBookForm: function () {
+              this.formGuestBook.kode = ""
+              this.formGuestBook.status = ""
             },
             checkID: function () {
                 if (idNikahan) {

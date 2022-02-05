@@ -2,11 +2,49 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-2" style="float: right; margin-right: 10px; margin-bottom: 20px">
-                    <button type="button" v-on:click="downloadGuestBook" class="btn btn-block btn-primary">Download Buku
-                        Tamu
+                <div class="col-sm-2">
+                    <button type="button" v-on:click="setAddGuestBook(true)" class="btn btn-block btn-primary">Tambah Tamu
                     </button>
                 </div><!-- /.col -->
+            </div>
+            <div class="row" v-show="addGuestBook == true">
+                <div class="col">
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Tambah Tamu Baru</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label for="kode" class="col-sm-2 col-form-label">Kode Tamu*</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="kode" placeholder="Masukkan Kode Tamu"
+                                           v-model="formGuestBook.kode">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="status" class="col-sm-2 col-form-label">Status Kehadiran*</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="status" v-model="formGuestBook.status">
+                                        <option value="" selected disabled>Pilih status kehadiran untuk tamu ini
+                                        </option>
+                                        <option value="Check In">Check In</option>
+                                        <option value="Check Out">Check Out</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button class="btn btn-default float-right"
+                                    v-on:click="setAddGuestBook(false)">Batal
+                            </button>
+                            <button class="btn btn-info float-right" style="margin-right: 20px"
+                                    v-on:click="onSaveGuestBook()">Simpan
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-12">
@@ -36,6 +74,12 @@
                                 </tr>
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="card-footer">
+                            <button type="button" v-on:click="downloadGuestBook"
+                                    style="float: right; margin-right: 20px;" class="btn btn-primary">Download Buku
+                                Tamu
+                            </button>
                         </div>
                     </div>
                 </div>
