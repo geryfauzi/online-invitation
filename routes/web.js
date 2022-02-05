@@ -64,6 +64,15 @@ router.get("/pernikahan/:id", (req, res) => {
               date: result[0].tanggal,
               gallery: result1,
             });
+          } else if (result[0].template === "5") {
+            return res.render("template5", {
+              id: id,
+              data: result[0],
+              title: "Undangan " + result[0].nama,
+              tanggal,
+              date: result[0].tanggal,
+              gallery: result1,
+            });
           }
         });
       } else return res.render("404");
