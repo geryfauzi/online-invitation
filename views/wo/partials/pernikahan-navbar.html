@@ -103,6 +103,16 @@
                     </a>
                 </li>
                 <% } %>
+                <% if (locals.id) { %>
+                <li class="nav-item">
+                    <a href="javascript:void(0)" v-on:click="setSideMenuIndex(10)"  v-bind:class="[isActiveSideMenu(10) ? 'active' : '', 'nav-link']">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Link Undangan
+                        </p>
+                    </a>
+                </li>
+                <% } %>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

@@ -47,6 +47,7 @@
         <%- include('./partials/form-pernikahan/form-gallery.html') %>
         <%- include('./partials/form-pernikahan/form-buku-tamu.html') %>
         <%- include('./partials/form-pernikahan/form-story.html') %>
+        <%- include('./partials/form-pernikahan/form-link-undangan.html') %>
         <% } %>
     </div>
 </div>
@@ -1092,6 +1093,16 @@
                     var pdf = new jsPDF("p", "pt", "a4")
                     pdf.autoTable({html: '#buku-tamu'})
                     pdf.save('Bukutamu-' + this.form.tanggal.substring(0, 10) + '.pdf')
+                }
+            },
+            downloadInvitationLink: function () {
+                if(this.guest.length === 0)
+                    toastr.warning("Maaf, belum ada data tamu satupun!")
+                else {
+                    window.jsPDF = window.jspdf.jsPDF
+                    var pdf = new jsPDF("p","pt","a4")
+                    pdf.autoTable({html: '#undangan'})
+                    pdf.save('Link Undangan ' + this.form.nama + '.pdf')
                 }
             }
         },
