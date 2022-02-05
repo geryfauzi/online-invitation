@@ -147,8 +147,10 @@
                     <div class="col-lg-5 col-12 text-center" data-aos="fade-right" data-aos-duration="1500">
                         <img class="img-person rounded-circle" src="/assets/uploads/<%= data.image_cpp %>" alt=""/>
                         <h1 class="txt-kayla txt-brown txt-36 mt-32"><%= data.nama_cpp %></h1>
+                        <% if (locals.data.ayah_cpp) { %>
                         <p class="mt-16">Putra dari pasangan</p>
                         <p>Bapak <%= data.ayah_cpp %> & Ibu <%= data.ibu_cpp %></p>
+                        <% } %>
                     </div>
                     <div class="col-lg-2 col-12 text-center my-auto" data-aos="fade-up" data-aos-duration="1500">
                         <img class="img-love" src="/assets/template1/Asset/image/love.svg" alt=""/>
@@ -156,8 +158,10 @@
                     <div class="col-lg-5 col-12 text-center" data-aos="fade-left" data-aos-duration="1500">
                         <img class="img-person rounded-circle" src="/assets/uploads/<%= data.image_cpw %>" alt=""/>
                         <h1 class="txt-kayla txt-brown txt-36 mt-32"><%= data.nama_cpw %></h1>
+                        <% if (locals.data.ayah_cpw) { %>
                         <p class="mt-16">Putri dari pasangan</p>
-                        <p>Bapak <%= data.ibu_cpw %> & Ibu <%= data.ibu_cpw %></p>
+                        <p>Bapak <%= data.ayah_cpw %> & Ibu <%= data.ibu_cpw %></p>
+                        <% } %>
                     </div>
                 </div>
             </div>
@@ -597,14 +601,14 @@
 
 <script>
     $(window).scroll(function () {
-            if ($(document).scrollTop() > 50) {
-                $(".navbar-desktop").addClass("bg-white");
-                $(".nav-link").addClass("txt-brown");
-            } else {
-                $(".navbar-desktop").removeClass("bg-white");
-                $(".nav-link").removeClass("txt-brown");
-            }
-        });
+        if ($(document).scrollTop() > 50) {
+            $(".navbar-desktop").addClass("bg-white");
+            $(".nav-link").addClass("txt-brown");
+        } else {
+            $(".navbar-desktop").removeClass("bg-white");
+            $(".nav-link").removeClass("txt-brown");
+        }
+    });
 </script>
 <script type="application/javascript" src="/assets/js/form-undangan.js"></script>
 </body>

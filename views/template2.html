@@ -144,8 +144,10 @@
                 </div>
                 <div class="col-lg-3 col-12 text-center my-auto">
                     <h1 class="txt-kayla txt-pink txt-36 mt-32"><%= data.nama_cpp %></h1>
+                    <% if (locals.data.ayah_cpp) { %>
                     <p class="mt-16">Putra dari pasangan</p>
                     <p>Bapak <%= data.ayah_cpp %> & Ibu <%= data.ibu_cpp %></p>
+                    <% } %>
                 </div>
             </div>
             <div class="row mt-48 justify-content-center">
@@ -156,8 +158,10 @@
             <div class="row mt-48 justify-content-center reverse" data-aos="fade-up" data-aos-duration="800">
                 <div class="col-lg-3 col-12 text-center my-auto">
                     <h1 class="txt-kayla txt-pink txt-36 mt-32"><%= data.nama_cpw %></h1>
+                    <% if(locals.data.ayah_cpw) { %>
                     <p class="mt-16">Putri dari pasangan</p>
                     <p>Bapak <%= data.ayah_cpw %> & Ibu <%= data.ibu_cpw %></p>
+                    <% } %>
                 </div>
                 <div class="col-lg-3 col-12 text-center">
                     <img class="img-person rounded-circle" src="/assets/uploads/<%= data.image_cpw %>"/>
