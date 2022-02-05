@@ -25,6 +25,7 @@ router.post('/upload-excel', Upload.uploadExcel)
 router.post('/pernikahan', Pernikahan.insertPernikahan)
 router.get('/pernikahan/:id', Pernikahan.getOnePernikahan)
 router.put('/pernikahan', Pernikahan.updatePernikahan)
+router.get('/pernikahan', Pernikahan.getAllPernikahan)
 
 //Area Sesi
 router.post('/sesi', Sesi.insertSession)

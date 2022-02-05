@@ -61,8 +61,24 @@ const getOnePernikahan = async (req, res) => {
     }
 }
 
+const getAllPernikahan = async (req, res) => {
+    let connect = DB.config
+    try {
+        connect.query("SELECT * FROM pernikahan ORDER BY tanggal DESC", (error, result) => {
+            return res.json({
+                code: 1,
+                data: result
+            })
+        })
+    } catch (e) {
+        console.log(e)
+        return res.json({code: 0, message: "Terjadi kesalahan!"})
+    }
+}
+
 module.exports = {
     insertPernikahan,
     getOnePernikahan,
-    updatePernikahan
+    updatePernikahan,
+    getAllPernikahan
 }
