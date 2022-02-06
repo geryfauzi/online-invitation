@@ -2,11 +2,11 @@
   font-family: $txt-playfair;
   color: $white;
   &:hover {
-    color: $pink50;
+    color: $purple50;
   }
 
   &:focus {
-    color: $pink100;
+    color: $purple100;
   }
 }
 
@@ -17,12 +17,12 @@
   border-radius: 15px;
   .nav-link {
     font-family: $txt-playfair;
-    color: $pink100;
+    color: $purple100;
     padding: 4px 0;
     border-radius: 10px;
     &:hover {
       border-radius: 10px;
-      background-color: $pink50;
+      background-color: $purple100;
       color: $white;
     }
   }

@@ -117,14 +117,12 @@
         <div class="container my-auto" data-aos="fade-down" data-aos-duration="1000">
             <div class="row">
                 <div class="col-12 text-center">
-                    <img class="img-decoration" src="/assets/template2/Asset/image/decoration-1.svg"/>
                     <h3 class="txt-playfair txt-white mt-48">Undangan Pernikahan</h3>
                     <h1 class="txt-kayla txt-white mt-72 txt-64"><%= data.nama_cpp.substr(0,data.nama_cpp.indexOf(' '))
                         %> & <%= data.nama_cpw.substr(0,data.nama_cpw.indexOf(' ')) %></h1>
                     <h3 class="txt-playfair txt-white mt-24"><%= new Date(data.tanggal).toLocaleDateString('id-ID', {
                         weekday:"long",
                         year:"numeric", month:"long", day:"numeric"}); %></h3>
-                    <img class="img-decoration mt-48" src="/assets/template2/Asset/image/decoration-2.svg"/>
                 </div>
             </div>
         </div>
@@ -143,7 +141,7 @@
                     <img class="img-person rounded-circle" src="/assets/uploads/<%= data.image_cpp %>"/>
                 </div>
                 <div class="col-lg-3 col-12 text-center my-auto">
-                    <h1 class="txt-kayla txt-pink txt-36 mt-32"><%= data.nama_cpp %></h1>
+                    <h1 class="txt-kayla txt-purple txt-36 mt-32"><%= data.nama_cpp %></h1>
                     <% if (locals.data.ayah_cpp) { %>
                     <p class="mt-16">Putra dari pasangan</p>
                     <p>Bapak <%= data.ayah_cpp %> & Ibu <%= data.ibu_cpp %></p>
@@ -157,7 +155,7 @@
             </div>
             <div class="row mt-48 justify-content-center reverse" data-aos="fade-up" data-aos-duration="800">
                 <div class="col-lg-3 col-12 text-center my-auto">
-                    <h1 class="txt-kayla txt-pink txt-36 mt-32"><%= data.nama_cpw %></h1>
+                    <h1 class="txt-kayla txt-purple txt-36 mt-32"><%= data.nama_cpw %></h1>
                     <% if(locals.data.ayah_cpw) { %>
                     <p class="mt-16">Putri dari pasangan</p>
                     <p>Bapak <%= data.ayah_cpw %> & Ibu <%= data.ibu_cpw %></p>
@@ -173,7 +171,7 @@
         <div class="container text-center">
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-8 col-12 text-center">
-                    <h2 class="txt-kayla txt-pink mt-32">Jadwal Acara</h2>
+                    <h2 class="txt-kayla mt-32">Jadwal Acara</h2>
                     <p class="mt-16">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila, Bapak / Ibu / Saudara
                         / i. berkenan hadir untuk memberikan do'a restunya kami ucapkan terimakasih.</p>
                 </div>
@@ -183,7 +181,7 @@
                      data-aos-duration="800">
                     <div class="card py-24">
                         <div class="card-body">
-                            <h4 class="txt-kayla txt-pink">{{data.nama_sesi}}</h4>
+                            <h4 class="txt-kayla txt-purple">{{data.nama_sesi}}</h4>
                             <p class="mt-24">{{new Date(data.tanggal).toLocaleDateString('id-ID', {
                                 weekday: "long",
                                 year: "numeric",
@@ -199,7 +197,7 @@
                 </div>
             </div>
             <img class="mt-48 img-divider" src="/assets/template2/Asset/image/decoration-3.svg"/>
-            <h2 class="txt-kayla txt-pink text-center mt-48">Acara akan diselenggarakan</h2>
+            <h2 class="txt-kayla text-center mt-48">Acara akan diselenggarakan</h2>
             <div class="row justify-content-center mt-48">
                 <div class="col-2 text-center">
                     <h3 class="txt-kayla" id="hari">1</h3>
@@ -226,7 +224,7 @@
         <div class="container" data-aos="fade-up" data-aos-duration="800">
             <div class="row justify-content-center">
                 <div class="col-12 text-center">
-                    <h2 class="txt-kayla txt-pink">Apakah anda akan hadir?</h2>
+                    <h2 class="txt-kayla">Apakah anda akan hadir?</h2>
                     <p class="mt-16">Masukkan kode undangan yang telah diberikan untuk konfirmasi
                         kehadiran</p>
                 </div>
@@ -375,6 +373,7 @@
                                         <div class="py-24 text-center">
                                             <div id="kode-qr" class="qrcode">
                                             </div>
+                                            <p class="mt-4">287198</p>
                                             <p class="txt-14 mt-24">Link Website</p>
                                             <p class="txt-14">undangan.com/romeo-juliet</p>
                                             <p class="small mt-16">Powered by <span class="bold">Teras Teduh</span></p>
@@ -387,10 +386,13 @@
                 </div>
             </div>
     </section>
+    <div class="container text-center">
+        <img class="py-48 text-center img-divider" src="/assets/template2/Asset/image/decoration-3.svg"/>
+    </div>
     <section class="section-gallery" id="galeri">
         <div class="container">
             <div class="row justify-content-center">
-                <h2 class="txt-kayla txt-pink text-center">Galeri</h2>
+                <h2 class="txt-kayla text-center">Galeri</h2>
             </div>
             <div class="row spotlight-group mt-48">
                 <% for(data of gallery) { %>
@@ -438,7 +440,7 @@
     <section class="section-story" id="cerita">
         <div class="container">
             <div class="row justify-content-center">
-                <h2 class="txt-kayla txt-pink text-center">Cerita Kami</h2>
+                <h2 class="txt-kayla text-center">Cerita Kami</h2>
             </div>
             <div class="row justify-content-center mt-48">
                 <div class="timeline">
@@ -456,14 +458,14 @@
     <section class="section-ucapan" id="ucapan">
         <div class="container">
             <div class="row justify-content-center">
-                <h2 class="txt-kayla txt-pink text-center">Ucapan</h2>
+                <h2 class="txt-kayla text-center">Ucapan</h2>
                 <p class="mt-16 text-center">Doa dan ucapan untuk kedua mempelai</p>
             </div>
             <div class="ucapan">
                 <div class="row">
                     <div class="col-lg-6 col-12" v-for="data in ucapan">
                         <div class="card-ucapan">
-                            <h6 class="txt-pink bold">{{data.nama}}</h6>
+                            <h6 class="txt-purple bold">{{data.nama}}</h6>
                             <p class="mt-16">{{data.ucapan}}</p>
                         </div>
                     </div>
@@ -478,7 +480,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-5 col-12 text-center">
-                    <h2 class="txt-kayla txt-pink text-center">Protokol Kesehatan</h2>
+                    <h2 class="txt-kayla txt-purple text-center">Protokol Kesehatan</h2>
                     <p class="mt-16">Kami sudah berkoordinasi dengan semua pihak terkait pencegahan penularan COVID-19.
                         Dengan mengikuti prosedur protokol kesehatan untuk mencegah penularan COVID-19.</p>
                 </div>
@@ -529,7 +531,7 @@
               <div class="row justify-content-center text-center">
                 <div class="col-12">
                   <h5 class="txt-kayla">Undangan Pernikahan</h5>
-                  <h2 class="txt-kayla txt-36 txt-pink mt-24">Romeo & Juliet</h2>
+                  <h2 class="txt-kayla txt-36 txt-purple mt-24">Romeo & Juliet</h2>
                   <h5 class="txt-kayla mt-16">Selasa, 22 Februari 2022</h5>
                   <h5 class="mt-32">Undangan Special Untuk:</h5>
                   <h3 class="bold">Nama Tamu</h3>
@@ -599,10 +601,10 @@
     $(window).scroll(function () {
             if ($(document).scrollTop() > 50) {
                 $(".navbar-desktop").addClass("bg-white");
-                $(".nav-link").addClass("txt-pink");
+                $(".nav-link").addClass("txt-purple");
             } else {
                 $(".navbar-desktop").removeClass("bg-white");
-                $(".nav-link").removeClass("txt-pink");
+                $(".nav-link").removeClass("txt-purple");
             }
         });
 </script>
