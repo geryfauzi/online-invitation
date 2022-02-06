@@ -25,7 +25,7 @@
 
 .btn-primary-sm {
   color: #fff;
-  background-color: #bb6516;
+  background-color: #cc796b;
   padding: 8px 16px;
   border: none;
   font-size: 16px;
@@ -34,7 +34,7 @@
 }
 
 .btn-primary-sm:hover {
-  background-color: #cf935b;
+  background-color: #dba197;
   color: #fff;
 }
 
@@ -46,7 +46,7 @@
 
 .btn-primary-lg {
   color: #fff;
-  background-color: #bb6516;
+  background-color: #cc796b;
   padding: 13px 16px;
   border: none;
   font-size: 16px;
@@ -55,7 +55,7 @@
 }
 
 .btn-primary-lg:hover {
-  background-color: #cf935b;
+  background-color: #dba197;
   color: #fff;
 }
 
@@ -67,8 +67,8 @@
 }
 
 .btn-secondary-sm {
-  color: #bb6516;
-  border: 1px solid #bb6516;
+  color: #cc796b;
+  border: 1px solid #cc796b;
   padding: 8px 16px;
   font-size: 16px;
   line-height: 1.5;
@@ -76,7 +76,7 @@
 }
 
 .btn-secondary-sm:hover {
-  background-color: #cf935b;
+  background-color: #dba197;
   color: #fff;
 }
 
@@ -87,8 +87,8 @@
 }
 
 .btn-secondary-lg {
-  color: #bb6516;
-  border: 1px solid #bb6516;
+  color: #cc796b;
+  border: 1px solid #cc796b;
   padding: 13px 16px;
   font-size: 16px;
   line-height: 1.5;
@@ -96,7 +96,7 @@
 }
 
 .btn-secondary-lg:hover {
-  background-color: #cf935b;
+  background-color: #dba197;
   color: #fff;
 }
 
@@ -137,16 +137,16 @@
 }
 
 .nav-link:hover {
-  color: #ddb28a;
+  color: #e5bcb5;
 }
 
 .nav-link:focus {
-  color: #ddb28a;
+  color: #e5bcb5;
 }
 
 .navbar-mobile {
   padding: 8px;
-  background-color: #bb6516;
+  background-color: #cc796b;
   margin: 0 15px;
   border-radius: 15px;
 }
@@ -160,7 +160,7 @@
 
 .navbar-mobile .nav-link:hover {
   border-radius: 10px;
-  background-color: #cf935b;
+  background-color: #dba197;
   color: #fff;
 }
 
@@ -170,16 +170,16 @@
 
 footer {
   padding: 48px 0;
-  background-color: #f8efe7;
+  background-color: #efd6d2;
 }
 
 footer a {
-  color: #bb6516;
+  color: #cc796b;
   margin: 0 16px;
 }
 
 footer a:hover {
-  color: #cf935b;
+  color: #dba197;
   text-decoration: underline;
 }
 
@@ -206,8 +206,8 @@ p {
   font-weight: bold;
 }
 
-.txt-brown {
-  color: #bb6516;
+.txt-pink {
+  color: #cc796b;
 }
 
 .txt-white {
@@ -409,12 +409,19 @@ canvas {
 
 .section-header {
   height: 100vh;
+  background: url(/assets/template1/Asset/image/background-header.png);
+  background-size: cover;
+  background-position: center;
   padding-bottom: 180px;
 }
 
 @media (max-width: 767px) {
   .section-header {
     padding-bottom: 200px;
+    background: url(/assets/template1/Asset/image/background-header.png);
+    background-size: cover;
+    background-position: bottom;
+    padding-bottom: 50px;
   }
 }
 
@@ -429,16 +436,17 @@ canvas {
 }
 
 .section-about {
+  padding-top: 96px;
+  padding-bottom: 96px;
   overflow: hidden;
-  background: url(../Asset/image/background-1.png);
+  background: url(../Asset/image/background-about.png);
+  background-color: #cc796b;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 @media (max-width: 767px) {
   .section-about {
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.8)), to(rgba(255, 255, 255, 0.8))), url(../Asset/image/background-1.png);
-    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(../Asset/image/background-1.png);
     background-size: auto;
     background-repeat: repeat;
   }
@@ -496,8 +504,8 @@ canvas {
 }
 
 .section-rsvp .form .form-check-input:checked {
-  background-color: #bb6516;
-  border-color: #bb6516;
+  background-color: #cc796b;
+  border-color: #cc796b;
 }
 
 .section-rsvp .form .form-check-input:focus {
@@ -534,7 +542,7 @@ canvas {
 }
 
 .section-rsvp .form .card .card-header {
-  background-color: #bb6516;
+  background-color: #cc796b;
   color: #fff;
 }
 
@@ -573,11 +581,11 @@ canvas {
 }
 
 .section-rsvp .form-control {
-  border: 1px solid #bb6516;
+  border: 1px solid #cc796b;
 }
 
 .section-rsvp .form-control:focus {
-  border: 1px solid #ddb28a;
+  border: 1px solid #e5bcb5;
   -webkit-box-shadow: 0 0 5px #bb6516;
           box-shadow: 0 0 5px #bb6516;
 }
@@ -643,7 +651,7 @@ canvas {
 .section-story {
   margin-top: 96px;
   padding: 48px 0;
-  background-image: url(../Asset/image/background-2.png);
+  background-image: url(../Asset/image/background-ucapan.png);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -665,7 +673,7 @@ canvas {
   content: "";
   position: absolute;
   width: 6px;
-  background-color: #bb6516;
+  background-color: #efd6d2;
   top: 0;
   bottom: 0;
   left: 50%;
@@ -696,7 +704,7 @@ canvas {
 .section-story .container-story .content {
   padding: 20px 30px;
   background-color: #fff;
-  border: 1px solid #bb6516;
+  border: 1px solid #fff;
   position: relative;
   border-radius: 6px;
 }
@@ -708,7 +716,7 @@ canvas {
   height: 25px;
   right: -13px;
   background-color: #fff;
-  border: 4px solid #bb6516;
+  border: 4px solid #fff;
   top: 15px;
   border-radius: 50%;
   z-index: 1;
@@ -736,9 +744,9 @@ canvas {
   width: 0;
   z-index: 1;
   right: 30px;
-  border: medium solid #bb6516;
+  border: medium solid #fff;
   border-width: 10px 0 10px 10px;
-  border-color: transparent transparent transparent #bb6516;
+  border-color: transparent transparent transparent #fff;
 }
 
 @media (max-width: 767px) {
@@ -755,9 +763,9 @@ canvas {
   width: 0;
   z-index: 1;
   left: 30px;
-  border: medium solid #bb6516;
+  border: medium solid #fff;
   border-width: 10px 10px 10px 0;
-  border-color: transparent #bb6516 transparent transparent;
+  border-color: transparent #fff transparent transparent;
 }
 
 .section-story .right::after {
@@ -773,9 +781,9 @@ canvas {
 @media (max-width: 767px) {
   .section-story .container-story::before {
     left: 60px;
-    border: medium solid #bb6516;
+    border: medium solid #fff;
     border-width: 10px 10px 10px 0;
-    border-color: transparent #bb6516 transparent transparent;
+    border-color: transparent #fff transparent transparent;
   }
 }
 
@@ -795,7 +803,7 @@ canvas {
   overflow-x: hidden;
   margin-top: 48px;
   padding: 16px 24px;
-  border: 4px solid #bb6516;
+  border: 4px solid #cc796b;
   background-color: #fff;
 }
 
@@ -817,11 +825,11 @@ canvas {
 }
 
 .section-ucapan .form-ucapan .form-control {
-  border: 1px solid #bb6516;
+  border: 1px solid #cc796b;
 }
 
 .section-ucapan .form-ucapan .form-control:focus {
-  border: 2px solid #bb6516;
+  border: 2px solid #cc796b;
   -webkit-box-shadow: none;
           box-shadow: none;
 }

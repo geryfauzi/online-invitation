@@ -2,16 +2,16 @@
   font-family: $txt-playfair;
   color: $white;
   &:hover {
-    color: $brown50;
+    color: $pink50;
   }
   &:focus {
-    color: $brown50;
+    color: $pink50;
   }
 }
 
 .navbar-mobile {
   padding: 8px;
-  background-color: $brown100;
+  background-color: $pink100;
   margin: 0 15px;
   border-radius: 15px;
   .nav-link {
@@ -21,7 +21,7 @@
     border-radius: 10px;
     &:hover {
       border-radius: 10px;
-      background-color: $brown70;
+      background-color: $pink70;
       color: $white;
     }
   }
