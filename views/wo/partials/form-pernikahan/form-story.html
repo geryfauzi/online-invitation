@@ -18,7 +18,7 @@
                             <div class="form-group row">
                                 <label for="tahun" class="col-sm-2 col-form-label">Tahun Story*</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="tahun" placeholder="Contoh : 2017"
+                                    <input type="number" class="form-control" id="tahun" placeholder="Contoh : 2017"
                                            v-model="formStory.tahun">
                                 </div>
                             </div>
@@ -52,7 +52,7 @@
                             <div class="form-group row">
                                 <label for="tahun" class="col-sm-2 col-form-label">Tahun Story*</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="tahun" placeholder="Contoh : 2017"
+                                    <input type="number" class="form-control" id="tahun" placeholder="Contoh : 2017"
                                            v-model="formStory.tahun">
                                 </div>
                             </div>
@@ -100,6 +100,9 @@
                                     <td>
                                         <button type="button" v-on:click="setEditStory(true,index)"
                                                 class="btn btn-block btn-primary">Edit
+                                        </button>
+                                        <button type="button" v-on:click="onDeleteStory(index)"
+                                                class="btn btn-block btn-primary">Hapus
                                         </button>
                                     </td>
                                 </tr>

@@ -62,7 +62,9 @@
 <script type="application/javascript">
     <% if (locals.id) { %>
         let idNikahan = "<%= id %>";
-        <% } %>
+        <%
+    }
+    %>
     let emailWO = "<%= email %>";
 </script>
 <script type="application/javascript">
@@ -155,9 +157,9 @@
                 story: ''
             },
             formGuestBook: {
-                kode : '',
-                status : '',
-                id_pernikahan : ''
+                kode: '',
+                status: '',
+                id_pernikahan: ''
             }
         },
         methods: {
@@ -237,9 +239,9 @@
                         //Image Upload
                         formData.image_cover = await this.photoUpload(this.form.image_cover);
                         //Generate Code
-                        let kode = formData.nama.replaceAll(' ','_')
-                        kode = kode.replaceAll('&','dan')
-                        kode = kode.replaceAll('.','_')
+                        let kode = formData.nama.replaceAll(' ', '_')
+                        kode = kode.replaceAll('&', 'dan')
+                        kode = kode.replaceAll('.', '_')
                         //Insert To Database
                         formData.id = kode
                         const res = await fetch('/api/pernikahan', {
@@ -607,8 +609,8 @@
                 this.formGuest.ucapan = ''
             },
             clearGuestBookForm: function () {
-              this.formGuestBook.kode = ""
-              this.formGuestBook.status = ""
+                this.formGuestBook.kode = ""
+                this.formGuestBook.status = ""
             },
             checkID: function () {
                 if (idNikahan) {
@@ -811,22 +813,22 @@
                         toastr.warning("Jumlah tamu anak - anak minimal 0 dan maksimal 2!")
                         return
                     }
-                        let formData = {...this.formGuest}
-                        //Update Database
-                        const res = await fetch('/api/tamu', {
-                            method: 'PUT',
-                            body: JSON.stringify(formData),
-                            headers: {'Content-Type': "application/json"}
-                        });
-                        const data = await res.json();
-                        //
-                        if (data.code === 0)
-                            toastr.error(data.message);
-                        else {
-                            toastr.success(data.message);
-                            this.setEditGuest(false)
-                            this.loadGuest()
-                        }
+                    let formData = {...this.formGuest}
+                    //Update Database
+                    const res = await fetch('/api/tamu', {
+                        method: 'PUT',
+                        body: JSON.stringify(formData),
+                        headers: {'Content-Type': "application/json"}
+                    });
+                    const data = await res.json();
+                    //
+                    if (data.code === 0)
+                        toastr.error(data.message);
+                    else {
+                        toastr.success(data.message);
+                        this.setEditGuest(false)
+                        this.loadGuest()
+                    }
                 } catch (e) {
 
                 }
@@ -968,6 +970,108 @@
 
                 }
             },
+            onDeleteStory: async function (index) {
+                try {
+                    let confirmAction = confirm("Apakah anda ingin menghapus story ini ?");
+                    if (confirmAction) {
+                        let formData = {...this.story[index]}
+                        const res = await fetch('/api/story', {
+                            method: 'DELETE',
+                            body: JSON.stringify(formData),
+                            headers: {'Content-Type': "application/json"}
+                        });
+                        const data = await res.json();
+                        //
+                        if (data.code == 0)
+                            toastr.error(data.message);
+                        else {
+                            toastr.success(data.message);
+                            this.loadStory()
+                        }
+                    } else {
+                        //TODO Nothing
+                    }
+                } catch (e) {
+
+                }
+            },
+            onDeleteGuest: async function (index) {
+                try {
+                    let confirmAction = confirm("Apakah anda ingin menghapus tamu ini ?");
+                    if (confirmAction) {
+                        let formData = {...this.guest[index]}
+                        const res = await fetch('/api/tamu', {
+                            method: 'DELETE',
+                            body: JSON.stringify(formData),
+                            headers: {'Content-Type': "application/json"}
+                        });
+                        const data = await res.json();
+                        //
+                        if (data.code == 0)
+                            toastr.error(data.message);
+                        else {
+                            toastr.success(data.message);
+                            this.loadGuest()
+                            this.loadGuestBook()
+                        }
+                    } else {
+                        //TODO Nothing
+                    }
+                } catch (e) {
+
+                }
+            },
+            onDeleteGroup: async function (index) {
+                try {
+                    let confirmAction = confirm("Apakah anda ingin menghapus grup ini ?");
+                    if (confirmAction) {
+                        let formData = {...this.group[index]}
+                        const res = await fetch('/api/grup', {
+                            method: 'DELETE',
+                            body: JSON.stringify(formData),
+                            headers: {'Content-Type': "application/json"}
+                        });
+                        const data = await res.json();
+                        //
+                        if (data.code == 0)
+                            toastr.error(data.message);
+                        else {
+                            toastr.success(data.message);
+                            this.loadGroup()
+                            this.loadGuest()
+                        }
+                    } else {
+                        //TODO Nothing
+                    }
+                } catch (e) {
+
+                }
+            },
+            onDeleteSession: async function (index) {
+                try {
+                    let confirmAction = confirm("Apakah anda ingin menghapus sesi ini ?");
+                    if (confirmAction) {
+                        let formData = {...this.session[index]}
+                        const res = await fetch('/api/sesi', {
+                            method: 'DELETE',
+                            body: JSON.stringify(formData),
+                            headers: {'Content-Type': "application/json"}
+                        });
+                        const data = await res.json();
+                        //
+                        if (data.code == 0)
+                            toastr.error(data.message);
+                        else {
+                            toastr.success(data.message);
+                            this.loadSession()
+                        }
+                    } else {
+                        //TODO Nothing
+                    }
+                } catch (e) {
+
+                }
+            },
             loadGuest: async function () {
                 try {
                     const res = await fetch(`/api/tamu/${this.form.id}`)
@@ -1088,11 +1192,11 @@
                 }
             },
             downloadInvitationLink: function () {
-                if(this.guest.length === 0)
+                if (this.guest.length === 0)
                     toastr.warning("Maaf, belum ada data tamu satupun!")
                 else {
                     window.jsPDF = window.jspdf.jsPDF
-                    var pdf = new jsPDF("p","pt","a4")
+                    var pdf = new jsPDF("p", "pt", "a4")
                     pdf.autoTable({html: '#undangan'})
                     pdf.save('Link Undangan ' + this.form.nama + '.pdf')
                 }

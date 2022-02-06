@@ -255,6 +255,21 @@ const insertGuestBook = async (req, res) => {
     }
 }
 
+const deleteGuest = async (req, res) => {
+    let connect = DB.config
+    let {id} = req.body
+    try {
+        connect.query("DELETE FROM tamu WHERE id = ?", [id], (error, result) => {
+            if (!error)
+                return res.json({code: 1, message: "Berhasil menghapus data tamu!"})
+            else
+                return res.json({code: 0, message: "Terjadi kesalahan!"})
+        })
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 module.exports = {
     getWeddingGuest,
     insertGuest,
@@ -264,5 +279,6 @@ module.exports = {
     checkCode,
     updateRSVP,
     getUcapan,
-    insertGuestBook
+    insertGuestBook,
+    deleteGuest
 }

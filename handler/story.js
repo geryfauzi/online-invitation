@@ -70,8 +70,24 @@ const updateStory = async (req, res) => {
     }
 }
 
+const deleteStory = async (req, res) => {
+    let connect = DB.config
+    let {id} = req.body
+    try {
+        connect.query("DELETE FROM story WHERE id = ?", [id], (error, result) => {
+            if (!error)
+                return res.json({code: 1, message: "Berhasil menghapus story!"})
+            else
+                return res.json({code: 0, message: "Terjadi kesalahan!"})
+        })
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 module.exports = {
     getStory,
     insertStory,
-    updateStory
+    updateStory,
+    deleteStory
 }
