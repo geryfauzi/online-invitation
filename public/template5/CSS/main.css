@@ -25,7 +25,7 @@
 
 .btn-primary-sm {
   color: #fff;
-  background-color: #a77d31;
+  background-color: #735e64;
   padding: 8px 16px;
   border: none;
   font-size: 16px;
@@ -34,7 +34,7 @@
 }
 
 .btn-primary-sm:hover {
-  background-color: #deba77;
+  background-color: #b19fa4;
   color: #fff;
 }
 
@@ -46,7 +46,7 @@
 
 .btn-primary-lg {
   color: #fff;
-  background-color: #d19d3e;
+  background-color: #90767d;
   padding: 13px 16px;
   border: none;
   font-size: 16px;
@@ -54,17 +54,17 @@
   border-radius: 0;
 }
 
-.btn-primary-lg.btn-gold {
-  background-color: #a77d31;
+.btn-primary-lg.btn-purple {
+  background-color: #735e64;
 }
 
-.btn-primary-lg.btn-gold:hover {
-  background-color: #deba77;
+.btn-primary-lg.btn-purple:hover {
+  background-color: #b19fa4;
   color: #fff;
 }
 
 .btn-primary-lg:hover {
-  background-color: #deba77;
+  background-color: #b19fa4;
   color: #fff;
 }
 
@@ -76,8 +76,8 @@
 }
 
 .btn-secondary-sm {
-  color: #d19d3e;
-  border: 1px solid #d19d3e;
+  color: #90767d;
+  border: 1px solid #90767d;
   padding: 8px 16px;
   font-size: 16px;
   line-height: 1.5;
@@ -85,7 +85,7 @@
 }
 
 .btn-secondary-sm:hover {
-  background-color: #a77d31;
+  background-color: #735e64;
   color: #fff;
 }
 
@@ -96,8 +96,8 @@
 }
 
 .btn-secondary-lg {
-  color: #d19d3e;
-  border: 1px solid #d19d3e;
+  color: #90767d;
+  border: 1px solid #90767d;
   padding: 13px 16px;
   font-size: 16px;
   line-height: 1.5;
@@ -105,7 +105,7 @@
 }
 
 .btn-secondary-lg:hover {
-  background-color: #a77d31;
+  background-color: #735e64;
   color: #fff;
 }
 
@@ -120,8 +120,9 @@
   border: none;
   border-radius: 0;
   height: 100%;
-  -webkit-box-shadow: 0px 5px 15px rgba(246, 125, 125, 0.1);
-          box-shadow: 0px 5px 15px rgba(246, 125, 125, 0.1);
+  -webkit-box-shadow: 0px 5px 15px rgba(144, 118, 125, 0.1);
+          box-shadow: 0px 5px 15px rgba(144, 118, 125, 0.1);
+  background-color: #ffffff;
 }
 
 @media (max-width: 767px) {
@@ -129,6 +130,7 @@
     margin: 16px 0;
     -webkit-box-shadow: none;
             box-shadow: none;
+    background-color: #dcd3cf;
   }
 }
 
@@ -142,11 +144,11 @@
 
 .nav-link {
   font-family: "Poppins", sans-serif;
-  color: #d19d3e;
+  color: #fff;
 }
 
 .nav-link:hover {
-  color: #a77d31;
+  color: #c7babe;
 }
 
 .navbar-mobile {
@@ -158,14 +160,14 @@
 
 .navbar-mobile .nav-link {
   font-family: "Playfair Display", serif;
-  color: #d19d3e;
+  color: #90767d;
   padding: 4px 0;
   border-radius: 10px;
 }
 
 .navbar-mobile .nav-link:hover {
   border-radius: 10px;
-  background-color: #e8ce9e;
+  background-color: #90767d;
   color: #fff;
 }
 
@@ -175,22 +177,22 @@
 
 footer {
   padding: 48px 0;
-  background-color: #f5ebd8;
+  background-color: #f3f1f2;
 }
 
 footer a {
-  color: #d19d3e;
+  color: #90767d;
   margin: 0 16px;
 }
 
 footer a:hover {
-  color: #deba77;
+  color: #b19fa4;
   text-decoration: underline;
 }
 
 body {
   position: relative;
-  background-color: #fff;
+  background-color: #dcd3cf;
   font-size: 16px;
   font-family: "Playfair Display", serif;
 }
@@ -212,8 +214,8 @@ p {
   font-weight: bold;
 }
 
-.txt-gold {
-  color: #d19d3e;
+.txt-purple {
+  color: #90767d;
 }
 
 .txt-red {
@@ -432,6 +434,9 @@ canvas {
 }
 
 .section-header {
+  background: url(../Asset/image/img.png);
+  background-size: cover;
+  background-position: center;
   position: relative;
   height: 100vh;
 }
@@ -465,20 +470,12 @@ canvas {
 
 .section-about {
   overflow: hidden;
-  background: url(../Asset/image/background-1.png);
+  background: url(../Asset/image/background-about.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  padding-top: 96px;
   padding-bottom: 96px;
-}
-
-@media (max-width: 767px) {
-  .section-about {
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.8)), to(rgba(255, 255, 255, 0.8))), url(../Asset/image/background-1.png);
-    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(../Asset/image/background-1.png);
-    background-size: auto;
-    background-repeat: repeat;
-  }
 }
 
 .section-about .img-love {
@@ -504,7 +501,7 @@ canvas {
 
 .section-event {
   color: #fff;
-  background-color: #d19d3e;
+  background-color: #90767d;
   background-size: cover;
   background-position: center;
   padding: 48px 0;
@@ -544,8 +541,8 @@ canvas {
 }
 
 .section-rsvp .form .form-check-input:checked {
-  background-color: #d19d3e;
-  border-color: #d19d3e;
+  background-color: #90767d;
+  border-color: #90767d;
 }
 
 .section-rsvp .form .form-check-input:focus {
@@ -563,16 +560,16 @@ canvas {
 @media (max-width: 767px) {
   .section-rsvp .form .card {
     margin: 16px 0;
-    -webkit-box-shadow: 0px 5px 15px rgba(187, 101, 22, 0.1);
-            box-shadow: 0px 5px 15px rgba(187, 101, 22, 0.1);
+    -webkit-box-shadow: 0px 5px 15px rgba(144, 118, 125, 0.1);
+            box-shadow: 0px 5px 15px rgba(144, 118, 125, 0.1);
   }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
   .section-rsvp .form .card {
     margin: 16px 0;
-    -webkit-box-shadow: 0px 5px 15px rgba(187, 101, 22, 0.1);
-            box-shadow: 0px 5px 15px rgba(187, 101, 22, 0.1);
+    -webkit-box-shadow: 0px 5px 15px rgba(144, 118, 125, 0.1);
+            box-shadow: 0px 5px 15px rgba(144, 118, 125, 0.1);
   }
 }
 
@@ -582,7 +579,7 @@ canvas {
 }
 
 .section-rsvp .form .card .card-header {
-  background-color: #d19d3e;
+  background-color: #90767d;
   color: #fff;
 }
 
@@ -621,13 +618,13 @@ canvas {
 }
 
 .section-rsvp .form-control {
-  border: 1px solid #d19d3e;
+  border: 1px solid #90767d;
 }
 
 .section-rsvp .form-control:focus {
-  border: 1px solid #ffc107;
-  -webkit-box-shadow: 0 0 5px #ffc107;
-          box-shadow: 0 0 5px #ffc107;
+  border: 1px solid #90767d;
+  -webkit-box-shadow: 0 0 5px #90767d;
+          box-shadow: 0 0 5px #90767d;
 }
 
 .section-rsvp .form-control.input-small {
@@ -713,7 +710,7 @@ canvas {
   content: "";
   position: absolute;
   width: 6px;
-  background-color: #d19d3e;
+  background-color: #fff;
   top: 0;
   bottom: 0;
   left: 50%;
@@ -744,7 +741,7 @@ canvas {
 .section-story .container-story .content {
   padding: 20px 30px;
   background-color: #fff;
-  border: 1px solid #d19d3e;
+  border: 1px solid #90767d;
   position: relative;
   border-radius: 6px;
 }
@@ -756,7 +753,7 @@ canvas {
   height: 25px;
   right: -13px;
   background-color: #fff;
-  border: 4px solid #d19d3e;
+  border: 4px solid #fff;
   top: 15px;
   border-radius: 50%;
   z-index: 1;
@@ -784,9 +781,9 @@ canvas {
   width: 0;
   z-index: 1;
   right: 30px;
-  border: medium solid #d19d3e;
+  border: medium solid #fff;
   border-width: 10px 0 10px 10px;
-  border-color: transparent transparent transparent #d19d3e;
+  border-color: transparent transparent transparent #fff;
 }
 
 @media (max-width: 767px) {
@@ -803,9 +800,9 @@ canvas {
   width: 0;
   z-index: 1;
   left: 30px;
-  border: medium solid #d19d3e;
+  border: medium solid #fff;
   border-width: 10px 10px 10px 0;
-  border-color: transparent #d19d3e transparent transparent;
+  border-color: transparent #fff transparent transparent;
 }
 
 .section-story .right::after {
@@ -821,9 +818,9 @@ canvas {
 @media (max-width: 767px) {
   .section-story .container-story::before {
     left: 60px;
-    border: medium solid #d19d3e;
+    border: medium solid #fff;
     border-width: 10px 10px 10px 0;
-    border-color: transparent #d19d3e transparent transparent;
+    border-color: transparent #fff transparent transparent;
   }
 }
 
@@ -843,7 +840,7 @@ canvas {
   overflow-x: hidden;
   margin-top: 48px;
   padding: 16px 24px;
-  border: 4px solid #d19d3e;
+  border: 4px solid #90767d;
   background-color: #fff;
 }
 
@@ -856,7 +853,7 @@ canvas {
 .section-ucapan .ucapan .card-ucapan {
   margin-top: 16px;
   padding: 16px;
-  background-color: #faf5eb;
+  background-color: #f3f1f2;
   border-radius: 5px;
 }
 
@@ -865,11 +862,11 @@ canvas {
 }
 
 .section-ucapan .form-ucapan .form-control {
-  border: 1px solid #d19d3e;
+  border: 1px solid #90767d;
 }
 
 .section-ucapan .form-ucapan .form-control:focus {
-  border: 2px solid #d19d3e;
+  border: 2px solid #90767d;
   -webkit-box-shadow: none;
           box-shadow: none;
 }

@@ -1,8 +1,8 @@
 .nav-link {
   font-family: $txt-normal;
-  color: $gold100;
+  color: $white;
   &:hover {
-    color: $gold120;
+    color: $purple50;
   }
 }
 
@@ -13,12 +13,12 @@
   border-radius: 15px;
   .nav-link {
     font-family: $txt-playfair;
-    color: $gold100;
+    color: $purple100;
     padding: 4px 0;
     border-radius: 10px;
     &:hover {
       border-radius: 10px;
-      background-color: $gold50;
+      background-color: $purple100;
       color: $white;
     }
   }

@@ -1,13 +1,13 @@
 .btn-primary-sm {
   color: $white;
-  background-color: $gold120;
+  background-color: $purple120;
   padding: 8px 16px;
   border: none;
   font-size: 16px;
   line-height: 1.5;
   border-radius: 0;
   &:hover {
-    background-color: $gold70;
+    background-color: $purple70;
     color: $white;
   }
   &:focus {
@@ -18,21 +18,21 @@
 
 .btn-primary-lg {
   color: $white;
-  background-color: $gold100;
+  background-color: $purple100;
   padding: 13px 16px;
   border: none;
   font-size: 16px;
   line-height: 1.5;
   border-radius: 0;
-  &.btn-gold {
-    background-color: $gold120;
+  &.btn-purple {
+    background-color: $purple120;
     &:hover {
-      background-color: $gold70;
+      background-color: $purple70;
       color: $white;
     }
   }
   &:hover {
-    background-color: $gold70;
+    background-color: $purple70;
     color: $white;
   }
   &:focus {
@@ -43,14 +43,14 @@
 }
 
 .btn-secondary-sm {
-  color: $gold100;
-  border: 1px solid $gold100;
+  color: $purple100;
+  border: 1px solid $purple100;
   padding: 8px 16px;
   font-size: 16px;
   line-height: 1.5;
   border-radius: 0;
   &:hover {
-    background-color: $gold120;
+    background-color: $purple120;
     color: $white;
   }
   &:focus {
@@ -60,14 +60,14 @@
 }
 
 .btn-secondary-lg {
-  color: $gold100;
-  border: 1px solid $gold100;
+  color: $purple100;
+  border: 1px solid $purple100;
   padding: 13px 16px;
   font-size: 16px;
   line-height: 1.5;
   border-radius: 0;
   &:hover {
-    background-color: $gold120;
+    background-color: $purple120;
     color: $white;
   }
   &:focus {

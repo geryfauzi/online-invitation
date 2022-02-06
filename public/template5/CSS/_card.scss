@@ -2,10 +2,12 @@
   border: none;
   border-radius: 0;
   height: 100%;
-  box-shadow: 0px 5px 15px rgba(246, 125, 125, 0.1);
+  box-shadow: 0px 5px 15px rgba(144, 118, 125, 0.1);
+  background-color: #ffffff;
   @media #{$mobile_device} {
     margin: 16px 0;
     box-shadow: none;
+    background-color: #dcd3cf;
   }
   @media #{$tablet_device} {
     margin: 16px 0;
