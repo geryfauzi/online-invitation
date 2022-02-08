@@ -60,8 +60,24 @@ const updateGroup = async (req, res) => {
     }
 }
 
+const deleteGroup = async (req, res) => {
+    let connect = DB.config
+    let {id} = req.body
+    try {
+        connect.query("DELETE FROM grup WHERE id = ?", [id], (error, result) => {
+            if (!error)
+                return res.json({code: 1, message: "Berhasil menghapus grup!"})
+            else
+                return res.json({code: 0, message: "Terjadi kesalahan!"})
+        })
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 module.exports = {
     getWeddingGroup,
     insertGroup,
-    updateGroup
+    updateGroup,
+    deleteGroup
 }

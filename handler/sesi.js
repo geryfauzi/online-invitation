@@ -68,9 +68,25 @@ const getDetailWeddingSession = async (req, res) => {
     }
 }
 
+const deleteSession = async (req, res) => {
+    let connect = DB.config
+    let {id} = req.body
+    try {
+        connect.query("DELETE FROM sesi WHERE id = ?", [id], (error, result) => {
+            if (!error)
+                return res.json({code: 1, message: "Berhasil menghapus sesi!"})
+            else
+                return res.json({code: 0, message: "Terjadi kesalahan!"})
+        })
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 module.exports = {
     getWeddingSession,
     insertSession,
     updateSession,
-    getDetailWeddingSession
+    getDetailWeddingSession,
+    deleteSession
 }

@@ -47,6 +47,8 @@
         <%- include('./partials/form-pernikahan/form-gallery.html') %>
         <%- include('./partials/form-pernikahan/form-buku-tamu.html') %>
         <%- include('./partials/form-pernikahan/form-story.html') %>
+        <%- include('./partials/form-pernikahan/form-link-undangan.html') %>
+        <%- include('./partials/form-pernikahan/form-angpau.html') %>
         <% } %>
     </div>
 </div>
@@ -60,8 +62,10 @@
 <%- include('./partials/footer.html') %>
 <script type="application/javascript">
     <% if (locals.id) { %>
-        let idNikahan = <%= id %>;
-        <% } %>
+        let idNikahan = "<%= id %>";
+        <%
+    }
+    %>
     let emailWO = "<%= email %>";
 </script>
 <script type="application/javascript">
@@ -73,6 +77,7 @@
             defaultImageCover: '',
             defaultImageCPP: '',
             defaultImageCPW: '',
+            defaultImageQR : '',
             addSession: false,
             editSession: false,
             addGuest: false,
@@ -81,6 +86,7 @@
             editGroup: false,
             addStory: false,
             editStory: false,
+            addGuestBook: false,
             session: [],
             guest: [],
             guestBook: [],
@@ -151,6 +157,18 @@
                 id_pernikahan: '',
                 tahun: '',
                 story: ''
+            },
+            formGuestBook: {
+                kode: '',
+                status: '',
+                id_pernikahan: ''
+            },
+            formAngpau: {
+                id_pernikahan : '',
+                angpau_qr: '',
+                angpau_rek_bank: '',
+                angpau_rek_nomor: '',
+                angpau_rek_nama: ''
             }
         },
         methods: {
@@ -229,8 +247,12 @@
                         let formData = {...this.form}
                         //Image Upload
                         formData.image_cover = await this.photoUpload(this.form.image_cover);
+                        //Generate Code
+                        let kode = formData.nama.replaceAll(' ', '_')
+                        kode = kode.replaceAll('&', 'dan')
+                        kode = kode.replaceAll('.', '_')
                         //Insert To Database
-                        formData.id = Date.now()
+                        formData.id = kode
                         const res = await fetch('/api/pernikahan', {
                             method: 'POST',
                             body: JSON.stringify(formData),
@@ -282,6 +304,19 @@
 
                 }
             },
+            loadAngpau: async function(){
+              try{
+                  const res = await fetch(`/api/pernikahan/angpau/${idNikahan}`)
+                  const data = await res.json()
+                  this.formAngpau = data.data
+                  if(this.formAngpau.angpau_qr !== null){
+                      this.defaultImageQR = this.formAngpau.angpau_qr
+                      document.getElementById("image_qr").innerHTML = this.formAngpau.angpau_qr
+                  }
+              }  catch (e) {
+
+              }
+            },
 
             //Area Informasi CPP
             onPhotoCPPChange: function (e) {
@@ -298,10 +333,6 @@
                 let isValid = true
                 if (this.form.nama_cpp === '' || this.form.nama_cpp == null)
                     isValid = false
-                if (this.form.ayah_cpp === '' || this.form.ayah_cpp == null)
-                    isValid = false
-                if (this.form.ibu_cpp === '' || this.form.ibu_cpp == null)
-                    isValid = false
                 if (this.form.image_cpp === '' || this.form.image_cpp == null)
                     isValid = false
                 return isValid
@@ -311,10 +342,6 @@
             validationCPWInformation: function () {
                 let isValid = true
                 if (this.form.nama_cpw === '' || this.form.nama_cpw == null)
-                    isValid = false
-                if (this.form.ayah_cpw === '' || this.form.ayah_cpw == null)
-                    isValid = false
-                if (this.form.ibu_cpw === '' || this.form.ibu_cpw == null)
                     isValid = false
                 if (this.form.image_cpw === '' || this.form.image_cpw == null)
                     isValid = false
@@ -388,6 +415,17 @@
                     isValid = false
                 return isValid
             },
+            validationAngpau: function () {
+              let isValid = true
+              if(this.formAngpau.angpau_rek_bank !== '' || this.formAngpau.angpau_rek_bank !== null){
+                  if(this.formAngpau.angpau_rek_nomor === '' || this.formAngpau.angpau_rek_nomor === null)
+                      isValid = false
+                  if(this.formAngpau.angpau_rek_nama === '' || this.formAngpau.angpau_rek_nama === null)
+                      isValid = false
+              } else
+                  isValid = false
+                return isValid
+            },
             onSaveSession: async function () {
                 try {
                     if (!this.validationSessionInformation())
@@ -409,6 +447,58 @@
                             toastr.success(data.message);
                             this.setAddSession(false)
                             this.loadSession()
+                        }
+                    }
+                } catch (e) {
+
+                }
+            },
+            onSaveAngpau: async function () {
+                try {
+                    if (!this.validationAngpau())
+                        toastr.warning("Harap isi semua form!")
+                    else {
+                        let formData = {...this.formAngpau}
+                        //Insert To Database
+                        const res = await fetch('/api/pernikahan/angpau', {
+                            method: 'PUT',
+                            body: JSON.stringify(formData),
+                            headers: {'Content-Type': "application/json"}
+                        });
+                        const data = await res.json();
+                        //
+                        if (data.code === 0)
+                            toastr.error(data.message);
+                        else {
+                            toastr.success(data.message);
+                            this.loadAngpau()
+                        }
+                    }
+                } catch (e) {
+
+                }
+            },
+            onSaveGuestBook: async function () {
+                try {
+                    if (this.formGuestBook.kode === "" || this.formGuestBook.status === "")
+                        toastr.warning("Harap isi semua form yang wajib diisi!")
+                    else {
+                        let formData = {...this.formGuestBook}
+                        //Insert To Database
+                        formData.id_pernikahan = idNikahan
+                        const res = await fetch('/api/tamu/kehadiran', {
+                            method: 'POST',
+                            body: JSON.stringify(formData),
+                            headers: {'Content-Type': "application/json"}
+                        });
+                        const data = await res.json();
+                        //
+                        if (data.code === 0)
+                            toastr.error(data.message);
+                        else {
+                            toastr.success(data.message);
+                            this.setAddGuestBook(false)
+                            this.loadGuestBook()
                         }
                     }
                 } catch (e) {
@@ -540,6 +630,10 @@
                 if (!params)
                     this.clearGuestForm()
             },
+            setAddGuestBook: function (params) {
+                this.clearGuestBookForm()
+                this.addGuestBook = params
+            },
             setAddStory: function (params) {
                 this.addStory = params
                 if (params && this.editStory === true) {
@@ -572,6 +666,10 @@
                 this.formGuest.is_vip = ''
                 this.formGuest.ucapan = ''
             },
+            clearGuestBookForm: function () {
+                this.formGuestBook.kode = ""
+                this.formGuestBook.status = ""
+            },
             checkID: function () {
                 if (idNikahan) {
                     this.formSession.id_pernikahan = idNikahan
@@ -581,7 +679,9 @@
                     this.formExcel.id_pernikahan = idNikahan
                     this.formGroup.id_pernikahan = idNikahan
                     this.formStory.id_pernikahan = idNikahan
+                    this.formAngpau.id_pernikahan = idNikahan
                     this.loadData()
+                    this.loadAngpau()
                     this.loadSession()
                     this.loadGuest()
                     this.loadGuestBook()
@@ -619,6 +719,16 @@
                     if (!file) throw Error("File kosong");
                     this.formGallery.image = file;
                     document.getElementById("image_gallery").innerHTML = this.formGallery.image.name;
+                } catch (error) {
+                    console.error(error)
+                }
+            },
+            onQRChange: function (e) {
+                try {
+                    let [file] = e.target.files;
+                    if (!file) throw Error("File kosong");
+                    this.formAngpau.angpau_qr = file;
+                    document.getElementById("image_qr").innerHTML = this.formAngpau.angpau_qr.name;
                 } catch (error) {
                     console.error(error)
                 }
@@ -773,22 +883,22 @@
                         toastr.warning("Jumlah tamu anak - anak minimal 0 dan maksimal 2!")
                         return
                     }
-                        let formData = {...this.formGuest}
-                        //Update Database
-                        const res = await fetch('/api/tamu', {
-                            method: 'PUT',
-                            body: JSON.stringify(formData),
-                            headers: {'Content-Type': "application/json"}
-                        });
-                        const data = await res.json();
-                        //
-                        if (data.code === 0)
-                            toastr.error(data.message);
-                        else {
-                            toastr.success(data.message);
-                            this.setEditGuest(false)
-                            this.loadGuest()
-                        }
+                    let formData = {...this.formGuest}
+                    //Update Database
+                    const res = await fetch('/api/tamu', {
+                        method: 'PUT',
+                        body: JSON.stringify(formData),
+                        headers: {'Content-Type': "application/json"}
+                    });
+                    const data = await res.json();
+                    //
+                    if (data.code === 0)
+                        toastr.error(data.message);
+                    else {
+                        toastr.success(data.message);
+                        this.setEditGuest(false)
+                        this.loadGuest()
+                    }
                 } catch (e) {
 
                 }
@@ -873,6 +983,35 @@
                     return Promise.reject(err);
                 }
             },
+            onUploadQR: async function () {
+                try {
+                    if (this.formAngpau.angpau_qr === '' || this.formAngpau.angpau_qr === null ||
+                        this.formAngpau.angpau_qr === this.defaultImageQR)
+                        toastr.warning("Harap pilih file gambar QR nya!")
+                    else {
+                        let formData = {...this.formAngpau}
+                        //Image Upload
+                        formData.angpau_qr = await this.photoUpload(this.formAngpau.angpau_qr);
+                        //Insert To Database
+                        const res = await fetch('/api/pernikahan/qr', {
+                            method: 'POST',
+                            body: JSON.stringify(formData),
+                            headers: {'Content-Type': "application/json"}
+                        });
+                        const data = await res.json();
+                        //
+                        if (data.code == 0)
+                            toastr.error(data.message);
+                        else {
+                            toastr.success(data.message);
+                            document.getElementById("image_qr").innerHTML = "Silahkan pilih file foto"
+                            this.loadAngpau()
+                        }
+                    }
+                } catch (e) {
+
+                }
+            },
             onUploadGallery: async function () {
                 try {
                     if (!this.validationGallery())
@@ -922,6 +1061,108 @@
                         else {
                             toastr.success(data.message);
                             this.loadGallery()
+                        }
+                    } else {
+                        //TODO Nothing
+                    }
+                } catch (e) {
+
+                }
+            },
+            onDeleteStory: async function (index) {
+                try {
+                    let confirmAction = confirm("Apakah anda ingin menghapus story ini ?");
+                    if (confirmAction) {
+                        let formData = {...this.story[index]}
+                        const res = await fetch('/api/story', {
+                            method: 'DELETE',
+                            body: JSON.stringify(formData),
+                            headers: {'Content-Type': "application/json"}
+                        });
+                        const data = await res.json();
+                        //
+                        if (data.code == 0)
+                            toastr.error(data.message);
+                        else {
+                            toastr.success(data.message);
+                            this.loadStory()
+                        }
+                    } else {
+                        //TODO Nothing
+                    }
+                } catch (e) {
+
+                }
+            },
+            onDeleteGuest: async function (index) {
+                try {
+                    let confirmAction = confirm("Apakah anda ingin menghapus tamu ini ?");
+                    if (confirmAction) {
+                        let formData = {...this.guest[index]}
+                        const res = await fetch('/api/tamu', {
+                            method: 'DELETE',
+                            body: JSON.stringify(formData),
+                            headers: {'Content-Type': "application/json"}
+                        });
+                        const data = await res.json();
+                        //
+                        if (data.code == 0)
+                            toastr.error(data.message);
+                        else {
+                            toastr.success(data.message);
+                            this.loadGuest()
+                            this.loadGuestBook()
+                        }
+                    } else {
+                        //TODO Nothing
+                    }
+                } catch (e) {
+
+                }
+            },
+            onDeleteGroup: async function (index) {
+                try {
+                    let confirmAction = confirm("Apakah anda ingin menghapus grup ini ?");
+                    if (confirmAction) {
+                        let formData = {...this.group[index]}
+                        const res = await fetch('/api/grup', {
+                            method: 'DELETE',
+                            body: JSON.stringify(formData),
+                            headers: {'Content-Type': "application/json"}
+                        });
+                        const data = await res.json();
+                        //
+                        if (data.code == 0)
+                            toastr.error(data.message);
+                        else {
+                            toastr.success(data.message);
+                            this.loadGroup()
+                            this.loadGuest()
+                        }
+                    } else {
+                        //TODO Nothing
+                    }
+                } catch (e) {
+
+                }
+            },
+            onDeleteSession: async function (index) {
+                try {
+                    let confirmAction = confirm("Apakah anda ingin menghapus sesi ini ?");
+                    if (confirmAction) {
+                        let formData = {...this.session[index]}
+                        const res = await fetch('/api/sesi', {
+                            method: 'DELETE',
+                            body: JSON.stringify(formData),
+                            headers: {'Content-Type': "application/json"}
+                        });
+                        const data = await res.json();
+                        //
+                        if (data.code == 0)
+                            toastr.error(data.message);
+                        else {
+                            toastr.success(data.message);
+                            this.loadSession()
                         }
                     } else {
                         //TODO Nothing
@@ -1047,6 +1288,16 @@
                     var pdf = new jsPDF("p", "pt", "a4")
                     pdf.autoTable({html: '#buku-tamu'})
                     pdf.save('Bukutamu-' + this.form.tanggal.substring(0, 10) + '.pdf')
+                }
+            },
+            downloadInvitationLink: function () {
+                if (this.guest.length === 0)
+                    toastr.warning("Maaf, belum ada data tamu satupun!")
+                else {
+                    window.jsPDF = window.jspdf.jsPDF
+                    var pdf = new jsPDF("p", "pt", "a4")
+                    pdf.autoTable({html: '#undangan'})
+                    pdf.save('Link Undangan ' + this.form.nama + '.pdf')
                 }
             }
         },

@@ -1,0 +1,65 @@
+<div v-show="sideMenuIndex == 10">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-2" style="float: right; margin-right: 10px; margin-bottom: 20px">
+                    <button type="button" v-on:click="downloadInvitationLink" class="btn btn-block btn-primary">Unduh Link
+                        Tamu
+                    </button>
+                </div><!-- /.col -->
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Link Undangan</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label for="nama" class="col-sm-2 col-form-label">Link</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="nama" readonly
+                                           v-bind:value="'http://invedd.com/pernikahan/'+ form.id">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Link Tamu</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="undangan" class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Tamu</th>
+                                    <th>Telepon</th>
+                                    <th>Grup</th>
+                                    <th>Link Undangan</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr v-for="(item,index) in guest" :key="item.id">
+                                    <td>{{index + 1}}</td>
+                                    <td>{{item.nama}}</td>
+                                    <td>{{item.telepon}}</td>
+                                    <td>{{item.nama_grup}}</td>
+                                    <td>http://invedd.com/pernikahan/{{form.id}}/RSVP/{{item.kode}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
