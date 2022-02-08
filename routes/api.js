@@ -28,6 +28,9 @@ router.get('/pernikahan/:id', Pernikahan.getOnePernikahan)
 router.put('/pernikahan', Pernikahan.updatePernikahan)
 router.get('/pernikahan', Pernikahan.getAllPernikahan)
 router.delete('/pernikahan', Pernikahan.deletePernikahn)
+router.post('/pernikahan/qr', Pernikahan.uploadQRAngpau)
+router.get('/pernikahan/angpau/:id', Pernikahan.getAngpau)
+router.put('/pernikahan/angpau', Pernikahan.updateRekeningAngpau)
 
 //Area Sesi
 router.post('/sesi', Sesi.insertSession)
