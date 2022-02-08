@@ -30,9 +30,11 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#acara">Acara</a>
                     </li>
+                    <% if (locals.kode) { %>
                     <li class="nav-item">
                         <a class="nav-link" href="#rsvp">Kehadiran</a>
                     </li>
+                    <% } %>
                     <li class="nav-item">
                         <a class="nav-link" href="#galeri">Galeri</a>
                     </li>
@@ -63,6 +65,7 @@
                     <span class="small bold d-block mt-8">Acara</span>
                 </a>
             </li>
+            <% if (locals.kode) { %>
             <li class="nav-item">
                 <a href="#rsvp" class="nav-link text-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -75,6 +78,7 @@
                     <span class="small bold d-block mt-8">Kehadiran</span>
                 </a>
             </li>
+            <% } %>
             <li class="nav-item">
                 <a href="#galeri" class="nav-link text-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -188,9 +192,11 @@
                                 day: "numeric"
                             })}}</p>
                             <p>{{data.waktu_mulai.substr(0, 5)}} s/d {{data.waktu_selesai.substr(0, 5)}}</p>
+                            <% if (locals.kode) { %>
                             <p class="bold mt-24">Alamat</p>
                             <p>{{data.alamat}}</p>
                             <a v-bind:href="data.url_gmaps" class="btn btn-primary-lg mt-24">Lihat Google Maps</a>
+                            <% } %>
                         </div>
                     </div>
                 </div>
@@ -239,6 +245,7 @@
                class="btn btn-primary-lg btn-gold mt-48">Simpan Dikalender</a>
         </div>
     </section>
+    <% if (locals.kode) { %>
     <section class="section-rsvp" id="rsvp">
         <div class="container" data-aos="fade-up" data-aos-duration="800">
             <div class="row justify-content-center">
@@ -416,6 +423,7 @@
                 </div>
             </div>
     </section>
+    <% } %>
     <div class="container text-center">
         <img class="text-center img-divider" src="/assets/template3/Asset/image/decoration-4.svg"/>
     </div>
@@ -425,6 +433,7 @@
                 <h2 class="txt-kayla txt-gold text-center">Galeri</h2>
             </div>
             <div class="row spotlight-group mt-48">
+                <% if (locals.gallery) { %>
                 <% for(data of gallery) { %>
                 <div class="col-lg-3 col-md-6 col-6">
                     <a class="spotlight" href="/assets/uploads/<%= data.image %>"
@@ -434,6 +443,7 @@
                           class="w-100 img-gallery shadow-1-strong rounded mb-4"
                     /></a>
                 </div>
+                <% } %>
                 <% } %>
             </div>
             <!-- <div class="row spotlight-group mt-48">
