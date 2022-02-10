@@ -10,13 +10,13 @@ canvas {
   height: 100vh;
   background: url(/assets/template1/Asset/image/background-header.png);
   background-size: cover;
-  background-position: center;
+  background-position: top center;
   padding-bottom: 180px;
   @media #{$mobile_device} {
     padding-bottom: 200px;
     background: url(/assets/template1/Asset/image/background-header.png);
     background-size: cover;
-    background-position: bottom;
+    background-position: top center;
     padding-bottom: 50px;
   }
 

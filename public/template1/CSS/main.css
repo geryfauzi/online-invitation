@@ -170,7 +170,7 @@
 
 footer {
   padding: 48px 0;
-  background-color: #efd6d2;
+  background-color: #f4e4e1;
 }
 
 footer a {
@@ -411,7 +411,7 @@ canvas {
   height: 100vh;
   background: url(/assets/template1/Asset/image/background-header.png);
   background-size: cover;
-  background-position: center;
+  background-position: top center;
   padding-bottom: 180px;
 }
 
@@ -420,7 +420,7 @@ canvas {
     padding-bottom: 200px;
     background: url(/assets/template1/Asset/image/background-header.png);
     background-size: cover;
-    background-position: bottom;
+    background-position: top center;
     padding-bottom: 50px;
   }
 }
@@ -673,7 +673,7 @@ canvas {
   content: "";
   position: absolute;
   width: 6px;
-  background-color: #efd6d2;
+  background-color: #f4e4e1;
   top: 0;
   bottom: 0;
   left: 50%;

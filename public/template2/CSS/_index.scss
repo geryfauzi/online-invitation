@@ -170,9 +170,9 @@ canvas {
 }
 
 .section-gallery {
-  padding-top: 96px;
+  padding-top: 48px;
   @media #{$mobile_device} {
-    padding-top: 48px;
+    padding-top: 24px;
   }
   .img-gallery {
     transition: 0.5s;
@@ -340,7 +340,7 @@ canvas {
     .card-ucapan {
       margin-top: 16px;
       padding: 16px;
-      background-color: #fef2f2;
+      background-color: #f3edf2;
       border-radius: 5px;
     }
   }

@@ -170,7 +170,7 @@
 
 footer {
   padding: 48px 0;
-  background-color: #f9f6f8;
+  background-color: #f3edf2;
 }
 
 footer a {
@@ -631,12 +631,12 @@ canvas {
 }
 
 .section-gallery {
-  padding-top: 96px;
+  padding-top: 48px;
 }
 
 @media (max-width: 767px) {
   .section-gallery {
-    padding-top: 48px;
+    padding-top: 24px;
   }
 }
 
@@ -842,7 +842,7 @@ canvas {
 .section-ucapan .ucapan .card-ucapan {
   margin-top: 16px;
   padding: 16px;
-  background-color: #fef2f2;
+  background-color: #f3edf2;
   border-radius: 5px;
 }
 

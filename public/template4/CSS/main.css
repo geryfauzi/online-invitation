@@ -630,12 +630,12 @@ canvas {
 }
 
 .section-gallery {
-  padding-top: 96px;
+  padding-top: 48px;
 }
 
 @media (max-width: 767px) {
   .section-gallery {
-    padding-top: 48px;
+    padding-top: 24px;
   }
 }
 
