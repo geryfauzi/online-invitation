@@ -248,13 +248,13 @@
             <div class="row justify-content-center">
                 <div class="col-12 text-center">
                     <h2 class="txt-kayla">Apakah anda akan hadir?</h2>
-                    <p class="mt-16">Masukkan kode undangan yang telah diberikan untuk konfirmasi
+                    <p class="mt-16" v-if="editMode === false">Masukkan kode undangan yang telah diberikan untuk konfirmasi
                         kehadiran</p>
                 </div>
             </div>
-            <div class="row justify-content-center mt-48">
+            <div class="row justify-content-center mt-48" v-if="editMode === false">
                 <div class="col-lg-4 col-md-8 col-12">
-                    <p class="txt-white bg-red w-100 p-1 txt-14" v-if="error == true">Kode undangan tidak valid,
+                    <p id="txt-info-rsvp" class="txt-white bg-red w-100 p-1 txt-14" v-if="error == true">Kode undangan tidak valid,
                         silahkan coba lagi!</p>
                     <input type="text" width="360" class="form-control input-large mt-8"
                            placeholder="Masukkan kode undangan" v-model="formRSVP.kode"/>
@@ -358,9 +358,9 @@
                             <p>{{formRSVP.jumlah_anak}} Anak - Anak</p>
                             <p>{{formRSVP.ucapan}}</p>
                         </div>
-                        <button v-on:click="setEditMode" v-if="editMode === true"
-                                class="btn btn-primary-lg w-100 mt-24">Ubah Data
-                        </button>
+<!--                        <button v-on:click="setEditMode" v-if="editMode === true"-->
+<!--                                class="btn btn-primary-lg w-100 mt-24">Ubah Data-->
+<!--                        </button>-->
 
                         <div class="mt-48" v-if="editMode === true && formRSVP.rsvp === 'Hadir'">
                             <p class="text-center">Silahkan download kartu undangan dibawah</p>
@@ -513,6 +513,7 @@
     <div class="container text-center">
         <img class="mt-96 text-center img-divider" src="/assets/template4/Asset/image/decoration-3.svg"/>
     </div>
+    <% if (locals.kode) { %>
     <section class="section-protocol mt-96">
         <div class="container">
             <div class="row justify-content-center">
@@ -558,6 +559,7 @@
             </div>
         </div>
     </section>
+    <% } %>
 
     <!-- POPUP
       <div class="modal fade" id="start-modal" tabindex="-1" aria-hidden="true">
