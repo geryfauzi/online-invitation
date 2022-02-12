@@ -170,7 +170,7 @@
 
 footer {
   padding: 48px 0;
-  background-color: #f4e4e1;
+  background-color: #f5f0db;
 }
 
 footer a {
@@ -474,7 +474,7 @@ canvas {
 }
 
 .section-event {
-  background: url(../Asset/image/background-4.png);
+  background: url(../Asset/image/background-acara.png);
   background-size: cover;
   background-position: center;
   padding: 48px 0;
@@ -816,7 +816,7 @@ canvas {
 .section-ucapan .ucapan .card-ucapan {
   margin-top: 16px;
   padding: 16px;
-  background-color: #f1e0d0;
+  background-color: #f5f0db;
   border-radius: 5px;
 }
 

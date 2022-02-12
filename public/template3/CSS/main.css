@@ -465,7 +465,7 @@ canvas {
 
 .section-about {
   overflow: hidden;
-  background: url(../Asset/image/background-1.png);
+  background: url(../Asset/image/background-about.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -474,8 +474,8 @@ canvas {
 
 @media (max-width: 767px) {
   .section-about {
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.8)), to(rgba(255, 255, 255, 0.8))), url(../Asset/image/background-1.png);
-    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(../Asset/image/background-1.png);
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.8)), to(rgba(255, 255, 255, 0.8))), url(../Asset/image/background-about.png);
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(../Asset/image/background-about.png);
     background-size: auto;
     background-repeat: repeat;
   }
@@ -691,7 +691,7 @@ canvas {
 .section-story {
   margin-top: 96px;
   padding: 48px 0;
-  background-image: url(../Asset/image/background-2.png);
+  background-image: url(../Asset/image/background-story.png);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -856,7 +856,7 @@ canvas {
 .section-ucapan .ucapan .card-ucapan {
   margin-top: 16px;
   padding: 16px;
-  background-color: #faf5eb;
+  background-color: #f5ebd8;
   border-radius: 5px;
 }
 
