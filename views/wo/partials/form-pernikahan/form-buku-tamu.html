@@ -59,6 +59,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
+                                    <th>Telepon</th>
                                     <th>Grup</th>
                                     <th>Waktu Checkin</th>
                                     <th>Ucapan</th>
@@ -68,6 +69,7 @@
                                 <tr v-for="(item,index) in guestBook" :key="item.id">
                                     <td>{{index + 1}}</td>
                                     <td>{{item.nama}}</td>
+                                    <td>{{item.telepon}}</td>
                                     <td>{{item.nama_grup}}</td>
                                     <td>{{item.waktu_checkin}}</td>
                                     <td>{{item.ucapan}}</td>
