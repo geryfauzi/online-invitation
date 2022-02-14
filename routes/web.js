@@ -83,13 +83,11 @@ router.get("/pernikahan/:id", (req, res) => {
     }
 });
 
-router.get("/pernikahan/:id/RSVP/:kode", (req, res) => {
+router.get("/pernikahan/:id/RSVP", (req, res) => {
     let connect = DB.config;
     let id = req.params.id;
     let tanggal = "tanggal";
-    let kode = null
-    if (req.params.kode)
-        kode = req.params.kode
+    let kode = "kode"
     try {
         connect.query("SELECT * FROM pernikahan WHERE id = ?", [id], (error, result) => {
             if (!error && result.length > 0) {

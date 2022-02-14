@@ -28,20 +28,22 @@ const updatePernikahan = async (req, res) => {
     let data = req.body
     console.log(data)
     try {
-        connect.query("UPDATE pernikahan SET nama = ?, tanggal = ?, nama_cpp = ?, ayah_cpp = ?, ibu_cpp = ?, nama_cpw = ?, ayah_cpw = ?, ibu_cpw = ?, image_cpp = ?, image_cpw = ?, quote_cover = ?, image_cover = ?, template = ? WHERE id = ?", [data.nama, data.tanggal, data.nama_cpp, data.ayah_cpp, data.ibu_cpp, data.nama_cpw, data.ayah_cpw, data.ibu_cpw, data.image_cpp, data.image_cpw, data.quote_cover, data.image_cover, data.template, data.id], (error, result) => {
-            if (!error)
-                return res.json({
-                    code: 1,
-                    message: "Berhasil memperbarui data pernikahan!"
-                })
-            else {
-                console.log(error.message)
-                return res.json({
-                    code: 0,
-                    message: "Terjadi kesalahan saat memperbarui data!"
-                })
-            }
-        })
+        connect.query("UPDATE pernikahan SET nama = ?, tanggal = ?, nama_cpp = ?, ayah_cpp = ?, ibu_cpp = ?, nama_cpw = ?, ayah_cpw = ?, ibu_cpw = ?, image_cpp = ?, image_cpw = ?, quote_cover = ?, image_cover = ?, template = ?, url_livestreaming = ? WHERE id = ?",
+            [data.nama, data.tanggal, data.nama_cpp, data.ayah_cpp, data.ibu_cpp, data.nama_cpw, data.ayah_cpw, data.ibu_cpw, data.image_cpp, data.image_cpw, data.quote_cover, data.image_cover, data.template, data.url_livestreaming, data.id],
+            (error, result) => {
+                if (!error)
+                    return res.json({
+                        code: 1,
+                        message: "Berhasil memperbarui data pernikahan!"
+                    })
+                else {
+                    console.log(error.message)
+                    return res.json({
+                        code: 0,
+                        message: "Terjadi kesalahan saat memperbarui data!"
+                    })
+                }
+            })
     } catch (e) {
         console.log(e)
     }
