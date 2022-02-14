@@ -118,8 +118,8 @@
             </li>
         </ul>
     </nav>
-    <section class="section-header d-flex align-items-center" 
-    style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/assets/uploads/<%= data.image_cover %>);
+    <section class="section-header d-flex align-items-center"
+             style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/assets/uploads/<%= data.image_cover %>);
     background-size: cover;
     background-position: center;">
         <div class="container my-auto" data-aos="fade-down" data-aos-duration="1000">
@@ -251,17 +251,19 @@
             <div class="row justify-content-center">
                 <div class="col-12 text-center">
                     <h2 class="txt-kayla txt-gold">Apakah anda akan hadir?</h2>
-                    <p class="mt-16" v-if="editMode === false">Masukkan kode undangan yang telah diberikan untuk konfirmasi
+                    <p class="mt-16" v-if="editMode === false && codeLoaded === false">Masukkan kode undangan yang telah
+                        diberikan untuk konfirmasi
                         kehadiran</p>
                 </div>
             </div>
             <div class="row justify-content-center mt-48" v-if="editMode === false">
                 <div class="col-lg-4 col-md-8 col-12">
-                    <p id="txt-info-rsvp" class="txt-white bg-red w-100 p-1 txt-14" v-if="error == true">Kode undangan tidak valid,
-                        silahkan coba lagi!</p>
-                    <input type="text" width="360" class="form-control input-large mt-8"
+                    <p id="txt-info-rsvp" class="txt-white bg-red w-100 p-1 txt-14" v-if="error == true">{{message}}</p>
+                    <input v-if="codeLoaded === false" type="text" width="360" class="form-control input-large mt-8"
                            placeholder="Masukkan kode undangan" v-model="formRSVP.kode"/>
-                    <button v-on:click="checkCode()" class="btn btn-primary-lg mt-16">Konfirmasi</button>
+                    <button v-if="codeLoaded === false" v-on:click="checkCode()" class="btn btn-primary-lg mt-16">
+                        Konfirmasi
+                    </button>
                 </div>
             </div>
             <div class="row justify-content-center mt-48" v-if="confirmation == true">
@@ -361,9 +363,9 @@
                             <p>{{formRSVP.jumlah_anak}} Anak - Anak</p>
                             <p>{{formRSVP.ucapan}}</p>
                         </div>
-<!--                        <button v-on:click="setEditMode" v-if="editMode === true"-->
-<!--                                class="btn btn-primary-lg w-100 mt-24">Ubah Data-->
-<!--                        </button>-->
+                        <!--                        <button v-on:click="setEditMode" v-if="editMode === true"-->
+                        <!--                                class="btn btn-primary-lg w-100 mt-24">Ubah Data-->
+                        <!--                        </button>-->
 
                         <div class="mt-48" v-if="editMode === true && formRSVP.rsvp === 'Hadir'">
                             <p class="text-center">Silahkan download kartu undangan dibawah</p>
@@ -497,64 +499,67 @@
     </section>
     <div class="bg-group">
         <section class="section-livestream">
-          <div class="container">
-            <div class="row justify-content-center">
-              <h2 class="txt-kayla txt-white text-center">Live streaming</h2>
-            </div>
-            <div class="row justify-content-center mt-48">
-              <div class="col-lg-6 col-12 text-center">
-                <div class="video-frame">
-                  <iframe
-                    src="https://www.youtube.com/embed/l3OdDV-DwkA"
-                    title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
-                  ></iframe>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <h2 class="txt-kayla txt-white text-center">Live streaming</h2>
                 </div>
-              </div>
+                <div class="row justify-content-center mt-48">
+                    <div class="col-lg-6 col-12 text-center">
+                        <div class="video-frame">
+                            <iframe
+                                    src="https://www.youtube.com/embed/l3OdDV-DwkA"
+                                    title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen
+                            ></iframe>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </section>
         <div class="container text-center">
-          <img class="py-48 text-center img-divider" src="/assets/template3/Asset/image/decoration-3.svg" />
+            <img class="py-48 text-center img-divider" src="/assets/template3/Asset/image/decoration-3.svg"/>
         </div>
         <section class="section-amplop" id="amplop">
-          <div class="container">
-            <div class="row justify-content-center">
-              <h2 class="txt-kayla txt-white text-center">Amplop Digital</h2>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <h2 class="txt-kayla txt-white text-center">Amplop Digital</h2>
+                </div>
+                <div class="row justify-content-center mt-48">
+                    <div class="col-lg-4 col-12 text-center mt-16">
+                        <div class="card p-4 text-center">
+                            <h5>Kirim via QRIS</h5>
+                            <img class="qris mt-16 mx-auto" src="/assets/template1/Asset/image/qrcode.png"/>
+                            <p class="txt-normal bold mt-16">Romeo</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-12 text-center mt-16">
+                        <div class="card p-4">
+                            <h5>Kirim via Bank</h5>
+                            <p class="txt-normal bold mt-16">BRI</p>
+                            <h6 class="txt-normal mt-8">No. Rekening</h6>
+                            <p id="selectRekening" class="txt-normal bold">105346156415</p>
+                            <p class="txt-normal bold">Romeo</p>
+                            <button class="btn btn-primary-lg mt-16" onclick="copyData(selectRekening)">Salin No
+                                Rekening
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-12 text-center mt-16">
+                        <div class="card p-4">
+                            <h5>Kirim Kado</h5>
+                            <p class="txt-normal bold mt-16">PO BOX NKM33 Jakarta Pusat 10000</p>
+                            <p class="txt-normal mt-16">atau</p>
+                            <p class="txt-normal bold mt-16">Jl. Bumi Lestari Blok A85 No.21 RT 01 RW 17, Tambun
+                                Selatan, Bekasi</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="row justify-content-center mt-48">
-              <div class="col-lg-4 col-12 text-center mt-16">
-                <div class="card p-4 text-center">
-                  <h5>Kirim via QRIS</h5>
-                  <img class="qris mt-16 mx-auto" src="/assets/template1/Asset/image/qrcode.png" />
-                  <p class="txt-normal bold mt-16">Romeo</p>
-                </div>
-              </div>
-              <div class="col-lg-4 col-12 text-center mt-16">
-                <div class="card p-4">
-                  <h5>Kirim via Bank</h5>
-                  <p class="txt-normal bold mt-16">BRI</p>
-                  <h6 class="txt-normal mt-8">No. Rekening</h6>
-                  <p id="selectRekening" class="txt-normal bold">105346156415</p>
-                  <p class="txt-normal bold">Romeo</p>
-                  <button class="btn btn-primary-lg mt-16" onclick="copyData(selectRekening)">Salin No Rekening</button>
-                </div>
-              </div>
-              <div class="col-lg-4 col-12 text-center mt-16">
-                <div class="card p-4">
-                  <h5>Kirim Kado</h5>
-                  <p class="txt-normal bold mt-16">PO BOX NKM33 Jakarta Pusat 10000</p>
-                  <p class="txt-normal mt-16">atau</p>
-                  <p class="txt-normal bold mt-16">Jl. Bumi Lestari Blok A85 No.21 RT 01 RW 17, Tambun Selatan, Bekasi</p>
-                </div>
-              </div>
-            </div>
-          </div>
         </section>
         <div class="rounded"></div>
-      </div>
+    </div>
     <section class="section-ucapan" id="ucapan">
         <div class="container">
             <div class="row justify-content-center">
@@ -699,14 +704,14 @@
 
 <script>
     $(window).scroll(function () {
-            if ($(document).scrollTop() > 50) {
-                $(".navbar-desktop").addClass("bg-white");
-                $(".nav-link").addClass("txt-gold");
-            } else {
-                $(".navbar-desktop").removeClass("bg-white");
-                $(".nav-link").removeClass("txt-gold");
-            }
-        });
+        if ($(document).scrollTop() > 50) {
+            $(".navbar-desktop").addClass("bg-white");
+            $(".nav-link").addClass("txt-gold");
+        } else {
+            $(".navbar-desktop").removeClass("bg-white");
+            $(".nav-link").removeClass("txt-gold");
+        }
+    });
 </script>
 <script type="application/javascript" src="/assets/js/form-undangan.js"></script>
 </body>

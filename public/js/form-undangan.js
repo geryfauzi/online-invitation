@@ -1,6 +1,7 @@
 var app = new Vue({
     el: "#form-undangan",
     data: {
+        codeLoaded: false,
         session: [],
         story: [],
         ucapan: [],
@@ -9,6 +10,7 @@ var app = new Vue({
         confirmation: false,
         editMode: false,
         rsvp: "Hadir",
+        message: 'Kode undangan tidak valid! Silahkan coba lagi.',
         formRSVP: {
             rsvp: "Hadir",
             kode: "",
@@ -38,14 +40,20 @@ var app = new Vue({
                 if (data.code === 0) {
                     this.error = true;
                     this.confirmation = false;
-                    document.getElementById("txt-info-rsvp").innerHTML = data.message
-                } else {
+                    this.message = data.message
+                } else if (data.code === 1) {
                     this.error = false;
                     this.confirmation = true;
                     this.formRSVP = data.data;
                     this.formRSVP.rsvp = this.rsvp;
                     this.guestSession = data.dataSesi;
                     window.location.href = "#" + this.formRSVP.kode
+                    this.session = data.dataSesi
+                } else if (data.code === 2) {
+                    this.error = true
+                    this.confirmation = false
+                    this.message = data.message
+                    this.session = data.dataSesi
                 }
             }
         },
@@ -180,9 +188,19 @@ var app = new Vue({
         setEditMode: function () {
             this.editMode = false;
         },
+        checkHash: function () {
+            if (window.location.hash.length >= 2) {
+                let kode = window.location.hash
+                kode = kode.substring(1, kode.length)
+                this.codeLoaded = true
+                this.formRSVP.kode = kode
+                this.checkCode()
+            }
+        }
     },
     mounted() {
         AOS.init();
+        this.formRSVP.id_pernikahan = idNikahan
         this.loadSession();
         this.loadTimer();
         this.loadStory();
@@ -204,6 +222,6 @@ var app = new Vue({
                 });
             }
         });
-        this.formRSVP.id_pernikahan = idNikahan
+        this.checkHash()
     },
 });

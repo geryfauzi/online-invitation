@@ -245,17 +245,19 @@
             <div class="row justify-content-center">
                 <div class="col-12 text-center">
                     <h2 class="txt-kayla txt-purple">Apakah anda akan hadir?</h2>
-                    <p class="mt-16" v-if="editMode === false">Masukkan kode undangan yang telah diberikan untuk konfirmasi
+                    <p class="mt-16" v-if="editMode === false && codeLoaded === false">Masukkan kode undangan yang telah
+                        diberikan untuk konfirmasi
                         kehadiran</p>
                 </div>
             </div>
             <div class="row justify-content-center mt-48" v-if="editMode === false">
                 <div class="col-lg-4 col-md-8 col-12">
-                    <p id="txt-info-rsvp" class="txt-white bg-red w-100 p-1 txt-14" v-if="error == true">Kode undangan tidak valid,
-                        silahkan coba lagi!</p>
-                    <input type="text" width="360" class="form-control input-large mt-8"
+                    <p id="txt-info-rsvp" class="txt-white bg-red w-100 p-1 txt-14" v-if="error == true">{{message}}</p>
+                    <input v-if="codeLoaded === false" type="text" width="360" class="form-control input-large mt-8"
                            placeholder="Masukkan kode undangan" v-model="formRSVP.kode"/>
-                    <button v-on:click="checkCode()" class="btn btn-primary-lg mt-16">Konfirmasi</button>
+                    <button v-if="codeLoaded === false" v-on:click="checkCode()" class="btn btn-primary-lg mt-16">
+                        Konfirmasi
+                    </button>
                 </div>
             </div>
             <div class="row justify-content-center mt-48" v-if="confirmation == true">
@@ -634,14 +636,14 @@
 
 <script>
     $(window).scroll(function () {
-            if ($(document).scrollTop() > 50) {
-                $(".navbar-desktop").addClass("bg-white");
-                $(".nav-link").addClass("txt-purple");
-            } else {
-                $(".navbar-desktop").removeClass("bg-white");
-                $(".nav-link").removeClass("txt-purple");
-            }
-        });
+        if ($(document).scrollTop() > 50) {
+            $(".navbar-desktop").addClass("bg-white");
+            $(".nav-link").addClass("txt-purple");
+        } else {
+            $(".navbar-desktop").removeClass("bg-white");
+            $(".nav-link").removeClass("txt-purple");
+        }
+    });
 </script>
 <script type="application/javascript" src="/assets/js/form-undangan.js"></script>
 </body>
