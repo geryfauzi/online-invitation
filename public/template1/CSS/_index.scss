@@ -188,6 +188,17 @@ canvas {
   }
 }
 
+.bg-group {
+  background: url(../Asset/image/background-acara.png);
+  .section-livestream {
+    padding: 48px 0;
+  }
+
+  .section-amplop {
+    padding: 48px 0;
+  }
+}
+
 .section-story {
   margin-top: 96px;
   padding: 48px 0;

@@ -423,10 +423,10 @@
                 </div>
             </div>
     </section>
-    <% } %>
     <div class="container text-center">
         <img class="py-48 text-center img-divider" src="/assets/template3/Asset/image/decoration-4.svg"/>
     </div>
+    <% } %>
     <section class="section-gallery" id="galeri">
         <div class="container">
             <div class="row justify-content-center">
@@ -495,6 +495,66 @@
             </div>
         </div>
     </section>
+    <div class="bg-group">
+        <section class="section-livestream">
+          <div class="container">
+            <div class="row justify-content-center">
+              <h2 class="txt-kayla txt-white text-center">Live streaming</h2>
+            </div>
+            <div class="row justify-content-center mt-48">
+              <div class="col-lg-6 col-12 text-center">
+                <div class="video-frame">
+                  <iframe
+                    src="https://www.youtube.com/embed/l3OdDV-DwkA"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="container text-center">
+          <img class="py-48 text-center img-divider" src="/assets/template3/Asset/image/decoration-3.svg" />
+        </div>
+        <section class="section-amplop" id="amplop">
+          <div class="container">
+            <div class="row justify-content-center">
+              <h2 class="txt-kayla txt-white text-center">Amplop Digital</h2>
+            </div>
+            <div class="row justify-content-center mt-48">
+              <div class="col-lg-4 col-12 text-center mt-16">
+                <div class="card p-4 text-center">
+                  <h5>Kirim via QRIS</h5>
+                  <img class="qris mt-16 mx-auto" src="/assets/template1/Asset/image/qrcode.png" />
+                  <p class="txt-normal bold mt-16">Romeo</p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-12 text-center mt-16">
+                <div class="card p-4">
+                  <h5>Kirim via Bank</h5>
+                  <p class="txt-normal bold mt-16">BRI</p>
+                  <h6 class="txt-normal mt-8">No. Rekening</h6>
+                  <p id="selectRekening" class="txt-normal bold">105346156415</p>
+                  <p class="txt-normal bold">Romeo</p>
+                  <button class="btn btn-primary-lg mt-16" onclick="copyData(selectRekening)">Salin No Rekening</button>
+                </div>
+              </div>
+              <div class="col-lg-4 col-12 text-center mt-16">
+                <div class="card p-4">
+                  <h5>Kirim Kado</h5>
+                  <p class="txt-normal bold mt-16">PO BOX NKM33 Jakarta Pusat 10000</p>
+                  <p class="txt-normal mt-16">atau</p>
+                  <p class="txt-normal bold mt-16">Jl. Bumi Lestari Blok A85 No.21 RT 01 RW 17, Tambun Selatan, Bekasi</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="rounded"></div>
+      </div>
     <section class="section-ucapan" id="ucapan">
         <div class="container">
             <div class="row justify-content-center">
@@ -513,10 +573,10 @@
             </div>
         </div>
     </section>
+    <% if (locals.kode) { %>
     <div class="container text-center">
         <img class="mt-96 text-center img-divider" src="/assets/template3/Asset/image/decoration-4.svg"/>
     </div>
-    <% if (locals.kode) { %>
     <section class="section-protocol mt-96">
         <div class="container">
             <div class="row justify-content-center">
