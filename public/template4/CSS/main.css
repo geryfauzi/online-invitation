@@ -193,6 +193,26 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+.video-frame {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.video-frame iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.qris {
+  max-width: 140px;
+}
+
 a {
   text-decoration: none;
 }
@@ -671,6 +691,21 @@ canvas {
           transform: scale(1.05, 1.05);
   -webkit-transition: 0.5s;
   transition: 0.5s;
+}
+
+.bg-group {
+  background: url(../Asset/image/background-group.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-group .section-livestream {
+  padding: 48px 0;
+}
+
+.bg-group .section-amplop {
+  padding: 48px 0;
 }
 
 .section-story {

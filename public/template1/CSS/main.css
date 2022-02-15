@@ -670,6 +670,8 @@ canvas {
 
 .bg-group {
   background: url(../Asset/image/background-acara.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .bg-group .section-livestream {

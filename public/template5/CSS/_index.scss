@@ -209,6 +209,19 @@ canvas {
   }
 }
 
+.bg-group {
+  background: url(../Asset/image/background-about.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  .section-livestream {
+    padding: 48px 0;
+  }
+
+  .section-amplop {
+    padding: 48px 0;
+  }
+}
+
 .section-story {
   margin-top: 96px;
   padding: 48px 0;

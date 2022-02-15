@@ -711,7 +711,6 @@ canvas {
 .bg-group {
   display: block;
   position: relative;
-  background-color: #d19d3e;
   background: url(../Asset/image/background-group.png);
   background-position: center;
   background-repeat: no-repeat;
