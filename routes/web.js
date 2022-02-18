@@ -143,8 +143,18 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               gallery: result1,
               kode,
             });
-          } else {
+          } else if (result[0].template === "6") {
             return res.render("template6", {
+              id: id,
+              data: result[0],
+              title: "Undangan " + result[0].nama,
+              tanggal,
+              date: result[0].tanggal,
+              gallery: result1,
+              kode,
+            });
+          } else {
+            return res.render("template7", {
               id: id,
               data: result[0],
               title: "Undangan " + result[0].nama,
