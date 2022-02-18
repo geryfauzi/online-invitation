@@ -336,7 +336,7 @@
                                         day: "numeric"
                                     })}}</p>
                                     <p class="txt-14">{{data.waktu_mulai.substr(0, 5)}} s/d
-                                        {{data.waktu_mulai.substr(0, 5)}}</p>
+                                        {{data.waktu_selesai.substr(0, 5)}}</p>
                                 </div>
                             </div>
                         </div>
@@ -384,7 +384,7 @@
                                                     day: "numeric"
                                                 })}}</p>
                                                 <p class="txt-14">{{data.waktu_mulai.substr(0, 5)}} s/d
-                                                    {{data.waktu_mulai.substr(0, 5)}}</p>
+                                                    {{data.waktu_selesai.substr(0, 5)}}</p>
                                             </div>
                                         </div>
                                         <!-- <div class="d-flex">
@@ -492,6 +492,7 @@
         </div>
     </section>
     <div class="bg-group">
+        <% if (locals.youtube) { %>
         <section class="section-livestream">
             <div class="container">
                 <div class="row justify-content-center">
@@ -501,7 +502,7 @@
                     <div class="col-lg-6 col-12 text-center">
                         <div class="video-frame">
                             <iframe
-                                    src="https://www.youtube.com/embed/l3OdDV-DwkA"
+                                    src="<%= youtube %>"
                                     title="YouTube video player"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -512,34 +513,40 @@
                 </div>
             </div>
         </section>
+        <% } %>
         <div class="container text-center">
             <img class="py-48 text-center img-divider" src="/assets/template5/Asset/image/decoration-4.svg"/>
         </div>
+        <% if (locals.angpau_qr || locals.angpau_rek_bank) { %>
         <section class="section-amplop" id="amplop">
             <div class="container">
                 <div class="row justify-content-center">
                     <h2 class="txt-kayla text-center">Amplop Digital</h2>
                 </div>
                 <div class="row justify-content-center mt-48">
+                    <% if (locals.angpau_qr) { %>
                     <div class="col-lg-4 col-12 text-center mt-16">
                         <div class="card p-4 text-center">
                             <h5>Kirim via QRIS</h5>
-                            <img class="qris mt-16 mx-auto" src="/assets/template1/Asset/image/qrcode.png"/>
-                            <p class="txt-normal bold mt-16">Romeo</p>
+                            <img class="qris mt-16 mx-auto" src="/assets/uploads/<%= angpau_qr %>"/>
+                            <p class="txt-normal bold mt-16"><%= angpau_rek_nama %></p>
                         </div>
                     </div>
+                    <% } %>
+                    <% if (locals.angpau_rek_bank) { %>
                     <div class="col-lg-4 col-12 text-center mt-16">
                         <div class="card p-4">
                             <h5>Kirim via Bank</h5>
-                            <p class="txt-normal bold mt-16">BRI</p>
+                            <p class="txt-normal bold mt-16"><%= angpau_rek_bank %></p>
                             <h6 class="txt-normal mt-8">No. Rekening</h6>
-                            <p id="selectRekening" class="txt-normal bold">105346156415</p>
-                            <p class="txt-normal bold">Romeo</p>
+                            <p id="selectRekening" class="txt-normal bold"><%= angpau_rek_nomor %></p>
+                            <p class="txt-normal bold"><%= angpau_rek_nama %></p>
                             <button class="btn btn-primary-lg mt-16" onclick="copyData(selectRekening)">Salin No
                                 Rekening
                             </button>
                         </div>
                     </div>
+                    <% } %>
                     <div class="col-lg-4 col-12 text-center mt-16">
                         <div class="card p-4">
                             <h5>Kirim Kado</h5>
@@ -552,6 +559,7 @@
                 </div>
             </div>
         </section>
+        <% } %>
     </div>
     <section class="section-ucapan" id="ucapan">
         <div class="container">
