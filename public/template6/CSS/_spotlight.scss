@@ -1,0 +1,36 @@
+#spotlight {
+  font-family: $txt-playfair;
+}
+
+.spl-footer {
+  width: 60%;
+  margin: 0 auto;
+  padding: 24px;
+  @media #{$mobile_device} {
+    width: 100%;
+  }
+  @media #{$tablet_device} {
+    width: 80%;
+  }
+
+  .spl-title {
+    font-family: $txt-playfair;
+    font-size: 21px;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .spl-description {
+    font-size: 16px;
+    text-align: center;
+  }
+}
+
+.spl-pane > * {
+  @media #{$mobile_device} {
+    width: 100%;
+  }
+  @media #{$tablet_device} {
+    width: 80%;
+  }
+}
