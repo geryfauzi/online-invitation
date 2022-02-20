@@ -5,18 +5,21 @@ const insertPernikahan = async (req, res) => {
     let data = req.body
     console.log(data)
     try {
-        connect.query("INSERT INTO pernikahan(id,id_wo,nama,tanggal,quote_cover,image_cover) VALUES(?,?,?,?,?,?)", [data.id, data.id_wo, data.nama, data.tanggal, data.quote_cover, data.image_cover], (error, result) => {
+        connect.query("INSERT INTO pernikahan(id,id_wo,nama,tanggal,quote_cover,quote_body,image_cover,image_cover_potrait) VALUES(?,?,?,?,?,?,?,?)",
+            [data.id, data.id_wo, data.nama, data.tanggal, data.quote_cover, data.quote_body, data.image_cover, data.image_cover_potrait], (error, result) => {
             if (!error)
                 return res.json({
                     code: 1,
                     message: "Berhasil menyimpan data pernikahan ke basis data!",
                     id: data.id
                 })
-            else
+            else {
+                console.log(error)
                 return res.json({
                     code: 0,
                     message: "Terjadi kesalahan!"
                 })
+            }
         })
     } catch (e) {
         console.log(e)

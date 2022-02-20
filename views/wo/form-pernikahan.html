@@ -63,9 +63,7 @@
 <script type="application/javascript">
     <% if (locals.id) { %>
         let idNikahan = "<%= id %>";
-        <%
-    }
-    %>
+        <% } %>
     let emailWO = "<%= email %>";
 </script>
 <script type="application/javascript">
@@ -75,6 +73,7 @@
             sideMenuIndex: 1,
             formatDate: "yyyy-MM-dd",
             defaultImageCover: '',
+            defaultImageCoverPotrait: '',
             defaultImageCPP: '',
             defaultImageCPW: '',
             defaultImageQR : '',
@@ -97,20 +96,32 @@
                 id: '',
                 id_wo: '',
                 id_pengantin: '',
-                template: '',
                 nama: '',
                 tanggal: '',
-                nama_cpp: '',
-                image_cpp: null,
-                ayah_cpp: '',
-                ibu_cpp: '',
-                nama_cpw: '',
-                image_cpw: null,
-                ayah_cpw: '',
-                ibu_cpw: '',
+                nama_calon1: '',
+                ortu_calon1: '',
+                nama_calon2: '',
+                ortu_calon2: '',
+                image_calon1: null,
+                image_calon2 : null,
                 quote_cover: '',
+                quote_body: '',
                 image_cover: null,
-                url_livestreaming : ''
+                image_cover_potrait: null,
+                switch_gallery: '',
+                switch_story: '',
+                template: '',
+                english_mode: '',
+                url_livestreaming: '',
+                switch_streaming: '',
+                angpau_qr: '',
+                switch_angpau: '',
+                angpau_rek_bank: '',
+                angpau_rek_nomor: '',
+                angpau_rek_nama: '',
+                switch_bank: '',
+                alamat_kado: '',
+                switch_kado: ''
             },
             formSession: {
                 id: '',
@@ -184,6 +195,16 @@
                     console.error(error)
                 }
             },
+            onPhotoChangePotrait: function (e) {
+                try {
+                    let [file] = e.target.files;
+                    if (!file) throw Error("File kosong");
+                    this.form.image_cover_potrait = file;
+                    document.getElementById("labelphotopotrait").innerHTML = this.form.image_cover_potrait.name;
+                } catch (error) {
+                    console.error(error)
+                }
+            },
             validationGeneralInformation: function () {
                 let isValid = true
                 if (this.form.nama === '' || this.form.nama == null)
@@ -191,6 +212,8 @@
                 if (this.form.tanggal === '' || this.form.tanggal == null)
                     isValid = false
                 if (this.form.image_cover === null)
+                    isValid = false
+                if (this.form.image_cover_potrait === null)
                     isValid = false
                 return isValid
             },
@@ -248,6 +271,7 @@
                         let formData = {...this.form}
                         //Image Upload
                         formData.image_cover = await this.photoUpload(this.form.image_cover);
+                        formData.image_cover_potrait = await this.photoUpload(this.form.image_cover_potrait);
                         //Generate Code
                         let kode = formData.nama.replaceAll(' ', '_')
                         kode = kode.replaceAll('&', 'dan')

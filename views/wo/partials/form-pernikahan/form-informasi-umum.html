@@ -26,7 +26,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="photo">Foto Cover*</label>
+                                <label for="photo">Foto Cover Landscape*</label>
                                 <div class="input-group">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="photo"
@@ -37,10 +37,27 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Quote (Opsional)</label>
+                                <label for="photo">Foto Cover Potrait*</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="photopotrait"
+                                               v-on:change="onPhotoChangePotrait" accept="image/*">
+                                        <label class="custom-file-label" id="labelphotopotrait" for="photo">Pilih
+                                            File</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Quote Header (Opsional)</label>
                                 <textarea name="quote" id=quote" class="form-control" rows="3"
                                           placeholder="Masukkan kutipan / quote untuk undangan anda. Quote akan ditampilkan pada undangan online"
                                           spellcheck="false" v-model="form.quote_cover"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Quote Body (Opsional)</label>
+                                <textarea name="quotebody" id=quotebody" class="form-control" rows="5"
+                                          placeholder="Masukkan kutipan / quote untuk undangan anda. Quote akan ditampilkan pada undangan online"
+                                          spellcheck="false" v-model="form.quote_body"></textarea>
                             </div>
                             <% if (locals.id) { %>
                             <div class="form-group">
@@ -49,14 +66,27 @@
                                     <option value="" selected disabled>Pilih template untuk undangan Online (default
                                         Template 1)
                                     </option>
-                                    <option value="1">Template 1</option>
-                                    <option value="2">Template 2</option>
-                                    <option value="3">Template 3</option>
-                                    <option value="4">Template 4</option>
-                                    <option value="5">Template 5</option>
-                                    <option value="6">Template 6</option>
-                                    <option value="7">Template 7</option>
+                                    <option value="1">Template 1 ID</option>
+                                    <option value="2">Template 1 EN</option>
+                                    <option value="3">Template 2 ID</option>
+                                    <option value="4">Template 2 EN</option>
+                                    <option value="5">Template 3 ID</option>
+                                    <option value="6">Template 3 EN</option>
+                                    <option value="7">Template 4 ID</option>
+                                    <option value="8">Template 4 EN</option>
+                                    <option value="9">Template 5 ID</option>
+                                    <option value="10">Template 5 EN</option>
+                                    <option value="11">Template 6 ID</option>
+                                    <option value="12">Template 6 EN</option>
+                                    <option value="13">Template 7 ID</option>
+                                    <option value="14">Template 7 EN</option>
                                 </select>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" id="customSwitch1" v-model="form.switch_livestreaming">
+                                    <label class="custom-control-label" for="customSwitch1">Livestreaming Youtube (Opsional)</label>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="url">URL Livestreaming Youtube (Opsional)</label>
