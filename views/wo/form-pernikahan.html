@@ -113,7 +113,7 @@
                 template: '',
                 english_mode: '',
                 url_livestreaming: '',
-                switch_streaming: '',
+                switch_streaming: true,
                 angpau_qr: '',
                 switch_angpau: '',
                 angpau_rek_bank: '',
@@ -240,10 +240,12 @@
                         //Image Upload
                         if (formData.image_cover != null && formData.image_cover !== this.defaultImageCover)
                             formData.image_cover = await this.photoUpload(this.form.image_cover);
-                        if (formData.image_cpp != null && formData.image_cpp !== this.defaultImageCPP)
-                            formData.image_cpp = await this.photoUpload(this.form.image_cpp);
-                        if (formData.image_cpw != null && formData.image_cpw !== this.defaultImageCPW)
-                            formData.image_cpw = await this.photoUpload(this.form.image_cpw);
+                        if (formData.image_cover_potrait != null && formData.image_cover_potrait !== this.defaultImageCoverPotrait)
+                            formData.image_cover_potrait = await this.photoUpload(this.form.image_cover_potrait);
+                        if (formData.image_calon1 != null && formData.image_calon1 !== this.defaultImageCPP)
+                            formData.image_calon1 = await this.photoUpload(this.form.image_calon1);
+                        if (formData.image_calon2 != null && formData.image_calon2 !== this.defaultImageCPW)
+                            formData.image_calon2 = await this.photoUpload(this.form.image_calon2);
                         //Update ke Database
                         const res = await fetch('/api/pernikahan', {
                             method: 'PUT',
@@ -317,13 +319,17 @@
                         this.defaultImageCover = this.form.image_cover
                         document.getElementById("labelphoto").innerHTML = this.form.image_cover
                     }
-                    if (this.form.image_cpp !== null) {
-                        this.defaultImageCPP = this.form.image_cpp
-                        document.getElementById("image_cpp").innerHTML = this.form.image_cpp
+                    if (this.form.image_cover_potrait !== null) {
+                        this.defaultImageCoverPotrait = this.form.image_cover_potrait
+                        document.getElementById("labelphotopotrait").innerHTML = this.form.image_cover_potrait
                     }
-                    if (this.form.image_cpw !== null) {
-                        this.defaultImageCPW = this.form.image_cpw
-                        document.getElementById("image_cpw").innerHTML = this.form.image_cpw
+                    if (this.form.image_calon1 !== null) {
+                        this.defaultImageCPP = this.form.image_calon1
+                        document.getElementById("image_cpp").innerHTML = this.form.image_calon1
+                    }
+                    if (this.form.image_calon2 !== null) {
+                        this.defaultImageCPW = this.form.image_calon2
+                        document.getElementById("image_cpw").innerHTML = this.form.image_calon2
                     }
                 } catch (e) {
 
@@ -704,9 +710,7 @@
                     this.formExcel.id_pernikahan = idNikahan
                     this.formGroup.id_pernikahan = idNikahan
                     this.formStory.id_pernikahan = idNikahan
-                    this.formAngpau.id_pernikahan = idNikahan
                     this.loadData()
-                    this.loadAngpau()
                     this.loadSession()
                     this.loadGuest()
                     this.loadGuestBook()
