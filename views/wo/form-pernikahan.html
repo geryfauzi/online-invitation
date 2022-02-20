@@ -215,6 +215,12 @@
                     isValid = false
                 if (this.form.image_cover_potrait === null)
                     isValid = false
+                if(this.form.quote_body){
+                    if(this.form.quote_body.length >= 500) {
+                        isValid = false
+                        toastr.warning("Panjang karakter Quote Body tidak boleh lebih dari 500 karakter!")
+                    }//endif
+                }//endif
                 return isValid
             },
             updateValidation: function () {
