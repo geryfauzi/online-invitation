@@ -182,7 +182,7 @@
                 </div>
             </div>
             <div class="row justify-content-center mt-48">
-                <div v-for="data in session" class="col-lg-5 col-md-8 col-12 text-center" data-aos="fade-up"
+                <div v-for="data in session" class="col-lg-5 col-md-8 col-12 text-center mt-16" data-aos="fade-up"
                      data-aos-duration="800">
                     <div class="card py-24">
                         <div class="card-body">
@@ -324,7 +324,7 @@
                                         day: "numeric"
                                     })}}</p>
                                     <p class="txt-14">{{data.waktu_mulai.substr(0, 5)}} s/d
-                                        {{data.waktu_selesai.substr(0, 5)}}</p>
+                                        {{data.waktu_mulai.substr(0, 5)}}</p>
                                 </div>
                             </div>
                         </div>
@@ -351,11 +351,10 @@
 
                         <div class="mt-48" v-if="editMode === true && formRSVP.rsvp === 'Hadir'">
                             <p class="text-center">Silahkan download kartu undangan dibawah</p>
-                            <div class="text-center mt-16">
-                                <a ref="download-card" id="download-card"><p class="txt-normal d-inline">Download
-                                    Kartu</p></a>
+                            <div class="text-center mt-24">
+                                <a id="download-card"><div class="txt-normal d-inline btn-primary-lg">Download Kartu</div></a>
                             </div>
-                            <div id="capture" class="mt-16">
+                            <div id="capture" class="mt-24">
                                 <div class="card mx-auto">
                                     <div class="card-header">
                                         <h4 class="txt-playfair text-center py-24"><%= data.nama %></h4>
@@ -373,7 +372,7 @@
                                                     day: "numeric"
                                                 })}}</p>
                                                 <p class="txt-14">{{data.waktu_mulai.substr(0, 5)}} s/d
-                                                    {{data.waktu_selesai.substr(0, 5)}}</p>
+                                                    {{data.waktu_mulai.substr(0, 5)}}</p>
                                             </div>
                                         </div>
                                         <p class="mt-16">Untuk :</p>
@@ -383,9 +382,7 @@
                                         <div class="py-24 text-center">
                                             <div id="kode-qr" class="qrcode">
                                             </div>
-                                            <p class="mt-4">287198</p>
-                                            <p class="txt-14 mt-24">Link Website</p>
-                                            <p class="txt-14">undangan.com/romeo-juliet</p>
+                                            <p class="mt-4">{{formRSVP.kode}}</p>
                                             <p class="small mt-16">Powered by <span class="bold">Teras Teduh</span></p>
                                         </div>
                                     </div>
@@ -469,7 +466,6 @@
         </div>
     </section>
     <div class="bg-group">
-        <% if (locals.youtube) { %>
         <section class="section-livestream">
             <div class="container">
                 <div class="row justify-content-center">
@@ -477,9 +473,14 @@
                 </div>
                 <div class="row justify-content-center mt-48">
                     <div class="col-lg-6 col-12 text-center">
+                        <div class="card cooming-soon py-24">
+                            <h3 class="my-auto">Cooming Soon</h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12 text-center">
                         <div class="video-frame">
                             <iframe
-                                    src="<%= youtube %>"
+                                    src="https://www.youtube.com/embed/l3OdDV-DwkA"
                                     title="YouTube video player"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -490,40 +491,34 @@
                 </div>
             </div>
         </section>
-        <% } %>
         <div class="container text-center">
             <img class="py-48 text-center img-divider" src="/assets/template2/Asset/image/decoration-4.svg"/>
         </div>
-        <% if (locals.angpau_qr || locals.angpau_rek_bank) { %>
         <section class="section-amplop" id="amplop">
             <div class="container">
                 <div class="row justify-content-center">
                     <h2 class="txt-kayla text-center">Amplop Digital</h2>
                 </div>
                 <div class="row justify-content-center mt-32">
-                    <% if (locals.angpau_qr) { %>
                     <div class="col-lg-4 col-12 text-center mt-16">
                         <div class="card p-4 text-center">
                             <h5>Kirim via QRIS</h5>
-                            <img class="qris mt-16 mx-auto" src="/assets/uploads/<%= angpau_qr %>"/>
-                            <p class="txt-normal bold mt-16"><%= angpau_rek_nama %></p>
+                            <img class="qris mt-16 mx-auto" src="/assets/template2/Asset/image/qrcode.png"/>
+                            <p class="txt-normal bold mt-16">Romeo</p>
                         </div>
                     </div>
-                    <% } %>
-                    <% if (locals.angpau_rek_bank) { %>
                     <div class="col-lg-4 col-12 text-center mt-16">
                         <div class="card p-4">
                             <h5>Kirim via Bank</h5>
-                            <p class="txt-normal bold mt-16"><%= angpau_rek_bank %></p>
+                            <p class="txt-normal bold mt-16">BRI</p>
                             <h6 class="txt-normal mt-8">No. Rekening</h6>
-                            <p id="selectRekening" class="txt-normal bold"><%= angpau_rek_nomor %></p>
-                            <p class="txt-normal bold"><%= angpau_rek_nama %></p>
+                            <p id="selectRekening" class="txt-normal bold">105346156415</p>
+                            <p class="txt-normal bold">Romeo</p>
                             <button class="btn btn-primary-lg mt-16" onclick="copyData(selectRekening)">Salin No
                                 Rekening
                             </button>
                         </div>
                     </div>
-                    <% } %>
                     <div class="col-lg-4 col-12 text-center mt-16">
                         <div class="card p-4">
                             <h5>Kirim Kado</h5>
@@ -536,7 +531,6 @@
                 </div>
             </div>
         </section>
-        <% } %>
     </div>
     <section class="section-ucapan" id="ucapan">
         <div class="container">
@@ -691,6 +685,15 @@
             $(".nav-link").removeClass("txt-purple");
         }
     });
+    function copyData(selectRekening) {
+        var range = document.createRange();
+        range.selectNode(selectRekening);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        document.execCommand("copy");
+        window.getSelection().removeAllRanges();
+        alert("Berhasil Menyalin No Rekening");
+      }
 </script>
 <script type="application/javascript" src="/assets/js/form-undangan.js"></script>
 </body>
