@@ -118,7 +118,8 @@ router.get('/pernikahan/:id', (req, res) => {
         {src: "https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.js"},
         {src: "https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"},
         {src: "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"},
-        {src: "https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"}
+        {src: "https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"},
+        {src: "https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"}
     ];
     const loadCSS = [
         {src: "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"},
