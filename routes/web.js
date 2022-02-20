@@ -4,9 +4,9 @@ const DB = require("../handler/config");
 
 function formatDate(date) {
   var d = new Date(date),
-    month = "" + (d.getMonth() + 1),
-    day = "" + d.getDate(),
-    year = d.getFullYear();
+      month = "" + (d.getMonth() + 1),
+      day = "" + d.getDate(),
+      year = d.getFullYear();
 
   if (month.length < 2) month = "0" + month;
   if (day.length < 2) day = "0" + day;
@@ -36,6 +36,11 @@ router.get("/pernikahan/:id", (req, res) => {
               tanggal,
               date: result[0].tanggal,
               gallery: result1,
+              youtube: result[0].url_livestreaming.replace('watch?v=','embed/'),
+              angpau_qr: result[0].angpau_qr,
+              angpau_rek_bank: result[0].angpau_rek_bank,
+              angpau_rek_nomor: result[0].angpau_rek_nomor,
+              angpau_rek_nama: result[0].angpau_rek_nama
             });
           } else if (result[0].template === "2") {
             return res.render("template2", {
@@ -45,6 +50,11 @@ router.get("/pernikahan/:id", (req, res) => {
               tanggal,
               date: result[0].tanggal,
               gallery: result1,
+              youtube: result[0].url_livestreaming.replace('watch?v=','embed/'),
+              angpau_qr: result[0].angpau_qr,
+              angpau_rek_bank: result[0].angpau_rek_bank,
+              angpau_rek_nomor: result[0].angpau_rek_nomor,
+              angpau_rek_nama: result[0].angpau_rek_nama
             });
           } else if (result[0].template === "3") {
             return res.render("template3", {
@@ -54,6 +64,11 @@ router.get("/pernikahan/:id", (req, res) => {
               tanggal,
               date: result[0].tanggal,
               gallery: result1,
+              youtube: result[0].url_livestreaming.replace('watch?v=','embed/'),
+              angpau_qr: result[0].angpau_qr,
+              angpau_rek_bank: result[0].angpau_rek_bank,
+              angpau_rek_nomor: result[0].angpau_rek_nomor,
+              angpau_rek_nama: result[0].angpau_rek_nama
             });
           } else if (result[0].template === "4") {
             return res.render("template4", {
@@ -63,6 +78,11 @@ router.get("/pernikahan/:id", (req, res) => {
               tanggal,
               date: result[0].tanggal,
               gallery: result1,
+              youtube: result[0].url_livestreaming.replace('watch?v=','embed/'),
+              angpau_qr: result[0].angpau_qr,
+              angpau_rek_bank: result[0].angpau_rek_bank,
+              angpau_rek_nomor: result[0].angpau_rek_nomor,
+              angpau_rek_nama: result[0].angpau_rek_nama
             });
           } else if (result[0].template === "5") {
             return res.render("template5", {
@@ -72,6 +92,39 @@ router.get("/pernikahan/:id", (req, res) => {
               tanggal,
               date: result[0].tanggal,
               gallery: result1,
+              youtube: result[0].url_livestreaming.replace('watch?v=','embed/'),
+              angpau_qr: result[0].angpau_qr,
+              angpau_rek_bank: result[0].angpau_rek_bank,
+              angpau_rek_nomor: result[0].angpau_rek_nomor,
+              angpau_rek_nama: result[0].angpau_rek_nama
+            });
+          } else if (result[0].template === "6") {
+            return res.render("template6", {
+              id: id,
+              data: result[0],
+              title: "Undangan " + result[0].nama,
+              tanggal,
+              date: result[0].tanggal,
+              gallery: result1,
+              youtube: result[0].url_livestreaming.replace('watch?v=','embed/'),
+              angpau_qr: result[0].angpau_qr,
+              angpau_rek_bank: result[0].angpau_rek_bank,
+              angpau_rek_nomor: result[0].angpau_rek_nomor,
+              angpau_rek_nama: result[0].angpau_rek_nama
+            });
+          } else {
+            return res.render("template7", {
+              id: id,
+              data: result[0],
+              title: "Undangan " + result[0].nama,
+              tanggal,
+              date: result[0].tanggal,
+              gallery: result1,
+              youtube: result[0].url_livestreaming.replace('watch?v=','embed/'),
+              angpau_qr: result[0].angpau_qr,
+              angpau_rek_bank: result[0].angpau_rek_bank,
+              angpau_rek_nomor: result[0].angpau_rek_nomor,
+              angpau_rek_nama: result[0].angpau_rek_nama
             });
           }
         });
@@ -102,6 +155,11 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               date: result[0].tanggal,
               gallery: result1,
               kode,
+              youtube: result[0].url_livestreaming.replace('watch?v=','embed/'),
+              angpau_qr: result[0].angpau_qr,
+              angpau_rek_bank: result[0].angpau_rek_bank,
+              angpau_rek_nomor: result[0].angpau_rek_nomor,
+              angpau_rek_nama: result[0].angpau_rek_nama
             });
           } else if (result[0].template === "2") {
             return res.render("template2", {
@@ -112,6 +170,11 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               date: result[0].tanggal,
               gallery: result1,
               kode,
+              youtube: result[0].url_livestreaming.replace('watch?v=','embed/'),
+              angpau_qr: result[0].angpau_qr,
+              angpau_rek_bank: result[0].angpau_rek_bank,
+              angpau_rek_nomor: result[0].angpau_rek_nomor,
+              angpau_rek_nama: result[0].angpau_rek_nama
             });
           } else if (result[0].template === "3") {
             return res.render("template3", {
@@ -122,6 +185,11 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               date: result[0].tanggal,
               gallery: result1,
               kode,
+              youtube: result[0].url_livestreaming.replace('watch?v=','embed/'),
+              angpau_qr: result[0].angpau_qr,
+              angpau_rek_bank: result[0].angpau_rek_bank,
+              angpau_rek_nomor: result[0].angpau_rek_nomor,
+              angpau_rek_nama: result[0].angpau_rek_nama
             });
           } else if (result[0].template === "4") {
             return res.render("template4", {
@@ -132,6 +200,11 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               date: result[0].tanggal,
               gallery: result1,
               kode,
+              youtube: result[0].url_livestreaming.replace('watch?v=','embed/'),
+              angpau_qr: result[0].angpau_qr,
+              angpau_rek_bank: result[0].angpau_rek_bank,
+              angpau_rek_nomor: result[0].angpau_rek_nomor,
+              angpau_rek_nama: result[0].angpau_rek_nama
             });
           } else if (result[0].template === "5") {
             return res.render("template5", {
@@ -142,6 +215,11 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               date: result[0].tanggal,
               gallery: result1,
               kode,
+              youtube: result[0].url_livestreaming.replace('watch?v=','embed/'),
+              angpau_qr: result[0].angpau_qr,
+              angpau_rek_bank: result[0].angpau_rek_bank,
+              angpau_rek_nomor: result[0].angpau_rek_nomor,
+              angpau_rek_nama: result[0].angpau_rek_nama
             });
           } else if (result[0].template === "6") {
             return res.render("template6", {
@@ -152,6 +230,11 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               date: result[0].tanggal,
               gallery: result1,
               kode,
+              youtube: result[0].url_livestreaming.replace('watch?v=','embed/'),
+              angpau_qr: result[0].angpau_qr,
+              angpau_rek_bank: result[0].angpau_rek_bank,
+              angpau_rek_nomor: result[0].angpau_rek_nomor,
+              angpau_rek_nama: result[0].angpau_rek_nama
             });
           } else {
             return res.render("template7", {
@@ -162,6 +245,11 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               date: result[0].tanggal,
               gallery: result1,
               kode,
+              youtube: result[0].url_livestreaming.replace('watch?v=','embed/'),
+              angpau_qr: result[0].angpau_qr,
+              angpau_rek_bank: result[0].angpau_rek_bank,
+              angpau_rek_nomor: result[0].angpau_rek_nomor,
+              angpau_rek_nama: result[0].angpau_rek_nama
             });
           }
         });
