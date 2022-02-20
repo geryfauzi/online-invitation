@@ -354,17 +354,17 @@
                 try {
                     let [file] = e.target.files;
                     if (!file) throw Error("File kosong");
-                    this.form.image_cpp = file;
-                    document.getElementById("image_cpp").innerHTML = this.form.image_cpp.name;
+                    this.form.image_calon1 = file;
+                    document.getElementById("image_cpp").innerHTML = this.form.image_calon1.name;
                 } catch (error) {
                     console.error(error)
                 }
             },
             validationCPPInformation: function () {
                 let isValid = true
-                if (this.form.nama_cpp === '' || this.form.nama_cpp == null)
+                if (this.form.nama_calon1 === '' || this.form.nama_calon1 == null)
                     isValid = false
-                if (this.form.image_cpp === '' || this.form.image_cpp == null)
+                if (this.form.image_calon1 === '' || this.form.image_calon1 == null)
                     isValid = false
                 return isValid
             },
@@ -372,9 +372,9 @@
             //Area Informasi CPW
             validationCPWInformation: function () {
                 let isValid = true
-                if (this.form.nama_cpw === '' || this.form.nama_cpw == null)
+                if (this.form.nama_calon2 === '' || this.form.nama_calon2 == null)
                     isValid = false
-                if (this.form.image_cpw === '' || this.form.image_cpw == null)
+                if (this.form.image_calon2 === '' || this.form.image_calon2 == null)
                     isValid = false
                 return isValid
             },
@@ -382,8 +382,8 @@
                 try {
                     let [file] = e.target.files;
                     if (!file) throw Error("File kosong");
-                    this.form.image_cpw = file;
-                    document.getElementById("image_cpw").innerHTML = this.form.image_cpw.name;
+                    this.form.image_calon2 = file;
+                    document.getElementById("image_cpw").innerHTML = this.form.image_calon2.name;
                 } catch (error) {
                     console.error(error)
                 }
