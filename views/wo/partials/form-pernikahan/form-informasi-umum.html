@@ -83,6 +83,20 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label for="photo">Musik (Opsional)</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="musik"
+                                               v-on:change="onMusicChange" accept=".mp3,audio/*">
+                                        <label class="custom-file-label" id="labelmusik" for="photo"
+                                        v-if="form.musik == null || form.musik == ''">Pilih
+                                            File MP3</label>
+                                        <label class="custom-file-label" id="labelmusik" for="photo"
+                                               v-if="form.musik != null || form.musik != ''">{{defaultMusik}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <div class="custom-control custom-switch">
                                     <input type="checkbox" class="custom-control-input" id="customSwitch1" v-model="form.switch_streaming"
                                     true-value="true" false-value="false">

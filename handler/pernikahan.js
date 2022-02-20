@@ -7,20 +7,20 @@ const insertPernikahan = async (req, res) => {
     try {
         connect.query("INSERT INTO pernikahan(id,id_wo,nama,tanggal,quote_cover,quote_body,image_cover,image_cover_potrait) VALUES(?,?,?,?,?,?,?,?)",
             [data.id, data.id_wo, data.nama, data.tanggal, data.quote_cover, data.quote_body, data.image_cover, data.image_cover_potrait], (error, result) => {
-            if (!error)
-                return res.json({
-                    code: 1,
-                    message: "Berhasil menyimpan data pernikahan ke basis data!",
-                    id: data.id
-                })
-            else {
-                console.log(error)
-                return res.json({
-                    code: 0,
-                    message: "Terjadi kesalahan!"
-                })
-            }
-        })
+                if (!error)
+                    return res.json({
+                        code: 1,
+                        message: "Berhasil menyimpan data pernikahan ke basis data!",
+                        id: data.id
+                    })
+                else {
+                    console.log(error)
+                    return res.json({
+                        code: 0,
+                        message: "Terjadi kesalahan!"
+                    })
+                }
+            })
     } catch (e) {
         console.log(e)
     }
@@ -31,8 +31,8 @@ const updatePernikahan = async (req, res) => {
     let data = req.body
     console.log(data)
     try {
-        connect.query("UPDATE pernikahan SET nama = ?, tanggal = ?, nama_calon1 = ?, ortu_calon1 = ?, nama_calon2 = ?, ortu_calon2 = ?, image_calon1 = ?, image_calon2 = ?, quote_cover = ?, quote_body = ?, image_cover = ?, image_cover_potrait = ?, switch_gallery = ?, switch_story = ?, template = ?, url_livestreaming = ?, switch_streaming = ?, angpau_qr = ?, switch_angpau = ?, angpau_rek_bank = ?, angpau_rek_nomor = ?, angpau_rek_nama = ?, switch_bank = ?, alamat_kado = ?, switch_kado = ? WHERE id = ?",
-            [data.nama, data.tanggal, data.nama_calon1, data.ortu_calon1, data.nama_calon2, data.ortu_calon2, data.image_calon1,data.image_calon2, data.quote_cover, data.quote_body, data.image_cover, data.image_cover_potrait, data.switch_gallery, data.switch_story, data.template, data.url_livestreaming, data.switch_streaming, data.angpau_qr, data.switch_angpau, data.angpau_rek_bank, data.angpau_rek_nomor, data.angpau_rek_nama, data.switch_bank, data.alamat_kado, data.switch_kado,  data.id],
+        connect.query("UPDATE pernikahan SET nama = ?, tanggal = ?, nama_calon1 = ?, ortu_calon1 = ?, nama_calon2 = ?, ortu_calon2 = ?, image_calon1 = ?, image_calon2 = ?, quote_cover = ?, quote_body = ?, image_cover = ?, image_cover_potrait = ?, switch_gallery = ?, switch_story = ?, template = ?, url_livestreaming = ?, switch_streaming = ?, angpau_qr = ?, switch_angpau = ?, angpau_rek_bank = ?, angpau_rek_nomor = ?, angpau_rek_nama = ?, switch_bank = ?, alamat_kado = ?, switch_kado = ?, musik = ? WHERE id = ?",
+            [data.nama, data.tanggal, data.nama_calon1, data.ortu_calon1, data.nama_calon2, data.ortu_calon2, data.image_calon1, data.image_calon2, data.quote_cover, data.quote_body, data.image_cover, data.image_cover_potrait, data.switch_gallery, data.switch_story, data.template, data.url_livestreaming, data.switch_streaming, data.angpau_qr, data.switch_angpau, data.angpau_rek_bank, data.angpau_rek_nomor, data.angpau_rek_nama, data.switch_bank, data.alamat_kado, data.switch_kado, data.musik, data.id],
             (error, result) => {
                 if (!error)
                     return res.json({

@@ -77,6 +77,7 @@
             defaultImageCPP: '',
             defaultImageCPW: '',
             defaultImageQR : '',
+            defaultMusik: '',
             addSession: false,
             editSession: false,
             addGuest: false,
@@ -121,7 +122,8 @@
                 angpau_rek_nama: '',
                 switch_bank: '',
                 alamat_kado: '',
-                switch_kado: ''
+                switch_kado: '',
+                musik: null
             },
             formSession: {
                 id: '',
@@ -247,6 +249,8 @@
                             formData.image_calon2 = await this.photoUpload(this.form.image_calon2);
                         if (formData.angpau_qr != null && formData.angpau_qr !== this.defaultImageQR)
                             formData.angpau_qr = await this.photoUpload(this.form.angpau_qr);
+                        if (formData.musik != null && formData.musik !== this.defaultMusik)
+                            formData.musik = await this.photoUpload(this.form.musik);
                         //Update ke Database
                         const res = await fetch('/api/pernikahan', {
                             method: 'PUT',
@@ -316,25 +320,23 @@
                     const res = await fetch(`/api/pernikahan/${this.form.id}`)
                     const data = await res.json()
                     this.form = data.data[0]
-                    if (this.form.image_cover !== null) {
+                    this.defaultImageQR = this.form.angpau_qr
+                    this.defaultMusik = this.form.musik
+                    if (this.form.image_cover !== null || this.form.image_cover !== '') {
                         this.defaultImageCover = this.form.image_cover
                         document.getElementById("labelphoto").innerHTML = this.form.image_cover
                     }
-                    if (this.form.image_cover_potrait !== null) {
+                    if (this.form.image_cover_potrait !== null || this.form.image_cover_potrait !== '') {
                         this.defaultImageCoverPotrait = this.form.image_cover_potrait
                         document.getElementById("labelphotopotrait").innerHTML = this.form.image_cover_potrait
                     }
-                    if (this.form.image_calon1 !== null) {
+                    if (this.form.image_calon1 !== null || this.form.image_calon1 !== '') {
                         this.defaultImageCPP = this.form.image_calon1
                         document.getElementById("image_cpp").innerHTML = this.form.image_calon1
                     }
-                    if (this.form.image_calon2 !== null) {
+                    if (this.form.image_calon2 !== null || this.form.image_calon2 !== '') {
                         this.defaultImageCPW = this.form.image_calon2
                         document.getElementById("image_cpw").innerHTML = this.form.image_calon2
-                    }
-                    if (this.form.angpau_qr !== null) {
-                        this.defaultImageQR = this.form.angpau_qr
-                        document.getElementById("image_qr").innerHTML = this.form.angpau_qr
                     }
                 } catch (e) {
 
@@ -739,6 +741,16 @@
                     if (!file) throw Error("File kosong");
                     this.formGallery.image = file;
                     document.getElementById("image_gallery").innerHTML = this.formGallery.image.name;
+                } catch (error) {
+                    console.error(error)
+                }
+            },
+            onMusicChange: function (e) {
+                try {
+                    let [file] = e.target.files;
+                    if (!file) throw Error("File kosong");
+                    this.form.musik = file;
+                    document.getElementById("labelmusik").innerHTML = this.form.musik.name;
                 } catch (error) {
                     console.error(error)
                 }
