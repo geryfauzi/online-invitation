@@ -189,12 +189,14 @@ var app = new Vue({
             this.editMode = false;
         },
         checkHash: function () {
-            if (window.location.hash.length >= 2) {
+            if (window.location.hash.length > 6) {
                 let kode = window.location.hash
                 kode = kode.substring(1, kode.length)
-                this.codeLoaded = true
-                this.formRSVP.kode = kode
-                this.checkCode()
+                if (kode.match(/^[0-9]+$/) != null) {
+                    this.codeLoaded = true
+                    this.formRSVP.kode = kode
+                    this.checkCode()
+                }
             }
         }
     },
