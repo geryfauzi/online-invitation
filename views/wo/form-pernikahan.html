@@ -174,13 +174,6 @@
                 kode: '',
                 status: '',
                 id_pernikahan: ''
-            },
-            formAngpau: {
-                id_pernikahan : '',
-                angpau_qr: '',
-                angpau_rek_bank: '',
-                angpau_rek_nomor: '',
-                angpau_rek_nama: ''
             }
         },
         methods: {
@@ -252,6 +245,8 @@
                             formData.image_calon1 = await this.photoUpload(this.form.image_calon1);
                         if (formData.image_calon2 != null && formData.image_calon2 !== this.defaultImageCPW)
                             formData.image_calon2 = await this.photoUpload(this.form.image_calon2);
+                        if (formData.angpau_qr != null && formData.angpau_qr !== this.defaultImageQR)
+                            formData.angpau_qr = await this.photoUpload(this.form.angpau_qr);
                         //Update ke Database
                         const res = await fetch('/api/pernikahan', {
                             method: 'PUT',
@@ -337,24 +332,14 @@
                         this.defaultImageCPW = this.form.image_calon2
                         document.getElementById("image_cpw").innerHTML = this.form.image_calon2
                     }
+                    if (this.form.angpau_qr !== null) {
+                        this.defaultImageQR = this.form.angpau_qr
+                        document.getElementById("image_qr").innerHTML = this.form.angpau_qr
+                    }
                 } catch (e) {
 
                 }
             },
-            loadAngpau: async function(){
-              try{
-                  const res = await fetch(`/api/pernikahan/angpau/${idNikahan}`)
-                  const data = await res.json()
-                  this.formAngpau = data.data
-                  if(this.formAngpau.angpau_qr !== null){
-                      this.defaultImageQR = this.formAngpau.angpau_qr
-                      document.getElementById("image_qr").innerHTML = this.formAngpau.angpau_qr
-                  }
-              }  catch (e) {
-
-              }
-            },
-
             //Area Informasi CPP
             onPhotoCPPChange: function (e) {
                 try {
@@ -762,8 +747,8 @@
                 try {
                     let [file] = e.target.files;
                     if (!file) throw Error("File kosong");
-                    this.formAngpau.angpau_qr = file;
-                    document.getElementById("image_qr").innerHTML = this.formAngpau.angpau_qr.name;
+                    this.form.angpau_qr = file;
+                    document.getElementById("image_qr").innerHTML = this.form.angpau_qr.name;
                 } catch (error) {
                     console.error(error)
                 }
@@ -1016,35 +1001,6 @@
                     return Promise.resolve(data.path);
                 } catch (err) {
                     return Promise.reject(err);
-                }
-            },
-            onUploadQR: async function () {
-                try {
-                    if (this.formAngpau.angpau_qr === '' || this.formAngpau.angpau_qr === null ||
-                        this.formAngpau.angpau_qr === this.defaultImageQR)
-                        toastr.warning("Harap pilih file gambar QR nya!")
-                    else {
-                        let formData = {...this.formAngpau}
-                        //Image Upload
-                        formData.angpau_qr = await this.photoUpload(this.formAngpau.angpau_qr);
-                        //Insert To Database
-                        const res = await fetch('/api/pernikahan/qr', {
-                            method: 'POST',
-                            body: JSON.stringify(formData),
-                            headers: {'Content-Type': "application/json"}
-                        });
-                        const data = await res.json();
-                        //
-                        if (data.code == 0)
-                            toastr.error(data.message);
-                        else {
-                            toastr.success(data.message);
-                            document.getElementById("image_qr").innerHTML = "Silahkan pilih file foto"
-                            this.loadAngpau()
-                        }
-                    }
-                } catch (e) {
-
                 }
             },
             onUploadGallery: async function () {
