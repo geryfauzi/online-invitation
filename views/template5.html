@@ -174,7 +174,7 @@
                 </div>
             </div>
             <div class="row justify-content-center mt-48">
-                <div class="col-lg-5 col-md-8 col-12 text-center" v-for="data in session" data-aos="fade-up"
+                <div class="col-lg-5 col-md-8 col-12 text-center mt-16" v-for="data in session" data-aos="fade-up"
                      data-aos-duration="800">
                     <div class="card py-24">
                         <div class="card-body">
@@ -363,10 +363,10 @@
 
                         <div class="mt-48" v-if="editMode === true">
                             <p class="text-center">Silahkan download kartu undangan dibawah</p>
-                            <div class="text-center mt-16">
-                                <a id="download-card"><p class="txt-normal d-inline">Download Kartu</p></a>
+                            <div class="text-center mt-24">
+                                <a id="download-card"><p class="txt-normal d-inline btn-primary-lg">Download Kartu</p></a>
                             </div>
-                            <div id="capture" class="mt-16">
+                            <div id="capture" class="mt-24">
                                 <div class="card mx-auto">
                                     <div class="card-header">
                                         <h4 class="txt-playfair text-center py-24"><%= data.nama %></h4>
@@ -406,9 +406,7 @@
                                         <div class="py-24 text-center">
                                             <div id="kode-qr" class="qrcode">
                                             </div>
-                                            <p class="mt-8">287198</p>
-                                            <p class="txt-14 mt-24">Link Website</p>
-                                            <p class="txt-14">undangan.com/romeo-juliet</p>
+                                            <p class="mt-8">{{formRSVP.kode}}</p>
                                             <p class="small mt-16">Powered by <span class="bold">Teras Teduh</span></p>
                                         </div>
                                     </div>
@@ -498,6 +496,11 @@
                     <h2 class="txt-kayla text-center">Live streaming</h2>
                 </div>
                 <div class="row justify-content-center mt-48">
+                    <div class="col-lg-6 col-12 text-center">
+                        <div class="card cooming-soon py-24">
+                            <h3 class="my-auto">Cooming Soon</h3>
+                        </div>
+                    </div>
                     <div class="col-lg-6 col-12 text-center">
                         <div class="video-frame">
                             <iframe
@@ -706,6 +709,15 @@
             $(".nav-link").removeClass("txt-purple");
         }
     });
+    function copyData(selectRekening) {
+        var range = document.createRange();
+        range.selectNode(selectRekening);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        document.execCommand("copy");
+        window.getSelection().removeAllRanges();
+        alert("Berhasil Menyalin No Rekening");
+    }
 </script>
 <script type="application/javascript" src="/assets/js/form-undangan.js"></script>
 </body>

@@ -1,409 +1,354 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="description" content=""/>
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors"/>
-    <meta name="generator" content="Hugo 0.84.0"/>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
+    <meta name="generator" content="Hugo 0.84.0" />
     <title><%= title %></title>
 
     <!-- Bootstrap -->
-    <link href="/assets/template1/Library/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/assets/template1/Library/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Spotlight -->
-    <link rel="stylesheet" href="/assets/template1/Library/spotlight/spotlight.min.css"/>
+    <link rel="stylesheet" href="/assets/template1/Library/spotlight/spotlight.min.css" />
 
     <!-- AOS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
     <!-- CSS -->
-    <link href="/assets/template1/CSS/main.css" rel="stylesheet"/>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
-</head>
-<body>
-<main id="form-undangan">
-    <div class="container">
+    <link href="/assets/template1/CSS/main.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+  </head>
+  <body>
+    <main id="form-undangan">
+      <div class="container">
         <nav class="navbar navbar-desktop navbar-expand-lg py-24 fixed-top d-none d-md-none d-lg-block d-xl-block">
-            <div class="collapse navbar-collapse justify-content-center">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#acara">Acara</a>
-                    </li>
-                    <% if (locals.kode) { %>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#rsvp">Kehadiran</a>
-                    </li>
-                    <% } %>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#galeri">Galeri</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#cerita">Cerita</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#ucapan">Ucapan</a>
-                    </li>
-                </ul>
-            </div>
+          <div class="collapse navbar-collapse justify-content-center">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#acara">Acara</a>
+              </li>
+              <% if (locals.kode) { %>
+              <li class="nav-item">
+                <a class="nav-link" href="#rsvp">Kehadiran</a>
+              </li>
+              <% } %>
+              <li class="nav-item">
+                <a class="nav-link" href="#galeri">Galeri</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#cerita">Cerita</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#ucapan">Ucapan</a>
+              </li>
+            </ul>
+          </div>
         </nav>
-    </div>
-    <nav class="navbar navbar-mobile smart-scroll navbar-expand fixed-bottom d-md-block d-lg-none d-xl-none">
+      </div>
+      <nav class="navbar navbar-mobile smart-scroll navbar-expand fixed-bottom d-md-block d-lg-none d-xl-none">
         <ul class="navbar-nav nav-justified w-100">
-            <li class="nav-item">
-                <a href="#acara" class="nav-link text-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                         class="bi bi-calendar3" viewBox="0 0 16 16">
-                        <path
-                                d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"
-                        />
-                        <path
-                                d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
-                        />
-                    </svg>
-                    <span class="small bold d-block mt-8">Acara</span>
-                </a>
-            </li>
-            <% if (locals.kode) { %>
-            <li class="nav-item">
-                <a href="#rsvp" class="nav-link text-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                         class="bi bi-calendar-check" viewBox="0 0 16 16">
-                        <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
-                        <path
-                                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"
-                        />
-                    </svg>
-                    <span class="small bold d-block mt-8">Kehadiran</span>
-                </a>
-            </li>
-            <% } %>
-            <li class="nav-item">
-                <a href="#galeri" class="nav-link text-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                         class="bi bi-card-image" viewBox="0 0 16 16">
-                        <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-                        <path
-                                d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5h13z"
-                        />
-                    </svg>
-                    <span class="small bold d-block mt-8">Galeri</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#cerita" class="nav-link text-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                         class="bi bi-emoji-heart-eyes" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path
-                                d="M11.315 10.014a.5.5 0 0 1 .548.736A4.498 4.498 0 0 1 7.965 13a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .548-.736h.005l.017.005.067.015.252.055c.215.046.515.108.857.169.693.124 1.522.242 2.152.242.63 0 1.46-.118 2.152-.242a26.58 26.58 0 0 0 1.109-.224l.067-.015.017-.004.005-.002zM4.756 4.566c.763-1.424 4.02-.12.952 3.434-4.496-1.596-2.35-4.298-.952-3.434zm6.488 0c1.398-.864 3.544 1.838-.952 3.434-3.067-3.554.19-4.858.952-3.434z"
-                        />
-                    </svg>
-                    <span class="small bold d-block mt-8">Cerita</span>
-                </a>
-            </li>
+          <li class="nav-item">
+            <a href="#acara" class="nav-link text-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
+                <path
+                  d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"
+                />
+                <path
+                  d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
+                />
+              </svg>
+              <span class="small bold d-block mt-8">Acara</span>
+            </a>
+          </li>
+          <% if (locals.kode) { %>
+          <li class="nav-item">
+            <a href="#rsvp" class="nav-link text-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
+                <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+                <path
+                  d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"
+                />
+              </svg>
+              <span class="small bold d-block mt-8">Kehadiran</span>
+            </a>
+          </li>
+          <% } %>
+          <li class="nav-item">
+            <a href="#galeri" class="nav-link text-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-card-image" viewBox="0 0 16 16">
+                <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                <path
+                  d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5h13z"
+                />
+              </svg>
+              <span class="small bold d-block mt-8">Galeri</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#cerita" class="nav-link text-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-emoji-heart-eyes" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                <path
+                  d="M11.315 10.014a.5.5 0 0 1 .548.736A4.498 4.498 0 0 1 7.965 13a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .548-.736h.005l.017.005.067.015.252.055c.215.046.515.108.857.169.693.124 1.522.242 2.152.242.63 0 1.46-.118 2.152-.242a26.58 26.58 0 0 0 1.109-.224l.067-.015.017-.004.005-.002zM4.756 4.566c.763-1.424 4.02-.12.952 3.434-4.496-1.596-2.35-4.298-.952-3.434zm6.488 0c1.398-.864 3.544 1.838-.952 3.434-3.067-3.554.19-4.858.952-3.434z"
+                />
+              </svg>
+              <span class="small bold d-block mt-8">Cerita</span>
+            </a>
+          </li>
 
-            <li class="nav-item">
-                <a href="#ucapan" class="nav-link text-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                         class="bi bi-chat-left-dots" viewBox="0 0 16 16">
-                        <path
-                                d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
-                        />
-                        <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                    </svg>
-                    <span class="small bold d-block mt-8">Ucapan</span>
-                </a>
-            </li>
+          <li class="nav-item">
+            <a href="#ucapan" class="nav-link text-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chat-left-dots" viewBox="0 0 16 16">
+                <path
+                  d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
+                />
+                <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+              </svg>
+              <span class="small bold d-block mt-8">Ucapan</span>
+            </a>
+          </li>
         </ul>
-    </nav>
-    <section class="section-header d-flex align-items-center">
+      </nav>
+      <section class="section-header d-flex align-items-center">
         <div class="container text-center my-auto" data-aos="fade-down" data-aos-duration="1000">
-            <img class="img-decoration" src="/assets/template1/Asset/image/decoration-1.svg"/>
-            <h3 class="txt-playfair">Undangan Pernikahan</h3>
-            <h1 class="mt-24 txt-64"><%= data.nama_cpp.substr(0,data.nama_cpp.indexOf(' ')) %> & <%=
-                data.nama_cpw.substr(0,data.nama_cpw.indexOf(' ')) %></h1>
-            <h3 class="mt-24"><%= new Date(data.tanggal).toLocaleDateString('id-ID', { weekday:"long", year:"numeric",
-                month:"long", day:"numeric"}); %></h3>
+          <img class="img-decoration" src="/assets/template1/Asset/image/decoration-1.svg" />
+          <h3 class="txt-playfair">Undangan Pernikahan</h3>
+          <h1 class="mt-24 txt-64"><%= data.nama_cpp.substr(0,data.nama_cpp.indexOf(' ')) %> & <%= data.nama_cpw.substr(0,data.nama_cpw.indexOf(' ')) %></h1>
+          <h3 class="mt-24"><%= new Date(data.tanggal).toLocaleDateString('id-ID', { weekday:"long", year:"numeric", month:"long", day:"numeric"}); %></h3>
         </div>
-    </section>
-    <section class="section-about text-center txt-white">
+      </section>
+      <section class="section-about text-center txt-white">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6 col-md-8 col-12" data-aos="fade-up" data-aos-duration="800">
-                    <h3 class="bold">Assalamu'alaikum Warahmatullaahi Wabarakaatuh</h3>
-                    <p class="mt-24">Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. Ya Allah
-                        semoga ridho-Mu tercurah mengiringi pernikahan putra-putri kami :</p>
-                </div>
+          <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-12" data-aos="fade-up" data-aos-duration="800">
+              <h3 class="bold">Assalamu'alaikum Warahmatullaahi Wabarakaatuh</h3>
+              <p class="mt-24">Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. Ya Allah semoga ridho-Mu tercurah mengiringi pernikahan putra-putri kami :</p>
             </div>
-            <div class="row mt-96">
-                <div class="col-lg-5 col-12 text-center" data-aos="fade-right" data-aos-duration="1500">
-                    <img class="img-person rounded-circle" src="/assets/uploads/<%= data.image_cpp %>" alt=""/>
-                    <h1 class="txt-kayla txt-white txt-36 mt-32"><%= data.nama_cpp %></h1>
-                    <% if (locals.data.ayah_cpp) { %>
-                    <p class="mt-16">Putra dari pasangan</p>
-                    <p>Bapak <%= data.ayah_cpp %> & Ibu <%= data.ibu_cpp %></p>
-                    <% } %>
-                </div>
-                <div class="col-lg-2 col-12 text-center my-auto" data-aos="fade-up" data-aos-duration="1500">
-                    <img class="img-love" src="/assets/template1/Asset/image/love.svg" alt=""/>
-                </div>
-                <div class="col-lg-5 col-12 text-center" data-aos="fade-left" data-aos-duration="1500">
-                    <img class="img-person rounded-circle" src="/assets/uploads/<%= data.image_cpw %>" alt=""/>
-                    <h1 class="txt-kayla txt-white txt-36 mt-32"><%= data.nama_cpw %></h1>
-                    <% if (locals.data.ayah_cpw) { %>
-                    <p class="mt-16">Putri dari pasangan</p>
-                    <p>Bapak <%= data.ayah_cpw %> & Ibu <%= data.ibu_cpw %></p>
-                    <% } %>
-                </div>
+          </div>
+          <div class="row mt-96">
+            <div class="col-lg-5 col-12 text-center" data-aos="fade-right" data-aos-duration="1500">
+              <img class="img-person rounded-circle" src="/assets/uploads/<%= data.image_cpp %>" alt="" />
+              <h1 class="txt-kayla txt-white txt-36 mt-32"><%= data.nama_cpp %></h1>
+              <% if (locals.data.ayah_cpp) { %>
+              <p class="mt-16">Putra dari pasangan</p>
+              <p>Bapak <%= data.ayah_cpp %> & Ibu <%= data.ibu_cpp %></p>
+              <% } %>
             </div>
+            <div class="col-lg-2 col-12 text-center my-auto" data-aos="fade-up" data-aos-duration="1500">
+              <img class="img-love" src="/assets/template1/Asset/image/love.svg" alt="" />
+            </div>
+            <div class="col-lg-5 col-12 text-center" data-aos="fade-left" data-aos-duration="1500">
+              <img class="img-person rounded-circle" src="/assets/uploads/<%= data.image_cpw %>" alt="" />
+              <h1 class="txt-kayla txt-white txt-36 mt-32"><%= data.nama_cpw %></h1>
+              <% if (locals.data.ayah_cpw) { %>
+              <p class="mt-16">Putri dari pasangan</p>
+              <p>Bapak <%= data.ayah_cpw %> & Ibu <%= data.ibu_cpw %></p>
+              <% } %>
+            </div>
+          </div>
         </div>
-    </section>
-    <section class="section-event" id="acara">
+      </section>
+      <section class="section-event" id="acara">
         <div class="container text-center">
-            <div class="row justify-content-center">
-                <div class="col-lg-6 col-md-8 col-12 text-center">
-                    <h2 class="txt-kayla mt-32">Jadwal Acara</h2>
-                    <p class="mt-16">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila, Bapak / Ibu / Saudara
-                        / i. berkenan hadir untuk memberikan do'a restunya kami ucapkan terimakasih.</p>
-                </div>
+          <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-12 text-center">
+              <h2 class="txt-kayla mt-32">Jadwal Acara</h2>
+              <p class="mt-16">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila, Bapak / Ibu / Saudara / i. berkenan hadir untuk memberikan do'a restunya kami ucapkan terimakasih.</p>
             </div>
-            <div class="row justify-content-center mt-48">
-                <div v-for="data in session" class="col-lg-5 col-md-8 col-12 text-center" data-aos="fade-up"
-                     data-aos-duration="800">
-                    <div class="card py-24">
-                        <div class="card-body">
-                            <h4 class="txt-kayla txt-pink">{{data.nama_sesi}}</h4>
-                            <p class="mt-24">{{new Date(data.tanggal).toLocaleDateString('id-ID', {
-                                weekday: "long",
-                                year: "numeric",
-                                month: "long",
-                                day: "numeric"
-                            })}}</p>
-                            <p>{{data.waktu_mulai.substr(0, 5)}} s/d {{data.waktu_selesai.substr(0, 5)}}</p>
-                            <% if (locals.kode) { %>
-                            <p class="bold mt-24">Alamat</p>
-                            <p>{{data.alamat}}</p>
-                            <a v-bind:href="data.url_gmaps" target="_blank" class="btn btn-primary-lg mt-24">Lihat
-                                Google Maps</a>
-                            <% } %>
-                        </div>
-                    </div>
+          </div>
+          <div class="row justify-content-center mt-48">
+            <div v-for="data in session" class="col-lg-5 col-md-8 col-12 text-center mt-16" data-aos="fade-up" data-aos-duration="800">
+              <div class="card py-24">
+                <div class="card-body">
+                  <h4 class="txt-kayla txt-pink">{{data.nama_sesi}}</h4>
+                  <p class="mt-24">{{new Date(data.tanggal).toLocaleDateString('id-ID', { weekday: "long", year: "numeric", month: "long", day: "numeric" })}}</p>
+                  <p>{{data.waktu_mulai.substr(0, 5)}} s/d {{data.waktu_selesai.substr(0, 5)}}</p>
+                  <% if (locals.kode) { %>
+                  <p class="bold mt-24">Alamat</p>
+                  <p>{{data.alamat}}</p>
+                  <a v-bind:href="data.url_gmaps" target="_blank" class="btn btn-primary-lg mt-24">Lihat Google Maps</a>
+                  <% } %>
                 </div>
+              </div>
             </div>
-            <img class="mt-48 img-divider" src="/assets/template1/Asset/image/decoration-2.svg"/>
-            <h2 class="txt-kayla text-center mt-48">Acara akan diselenggarakan</h2>
-            <div class="row justify-content-center mt-48">
-                <div class="col-2 text-center">
-                    <h3 class="txt-kayla" id="hari">0</h3>
-                    <p>Hari</p>
-                </div>
-                <div class="col-2 text-center">
-                    <h3 class="txt-kayla" id="jam"></h3>
-                    <p>Jam</p>
-                </div>
-                <div class="col-2 text-center">
-                    <h3 class="txt-kayla" id="menit"></h3>
-                    <p>Menit</p>
-                </div>
-                <div class="col-2 text-center">
-                    <h3 class="txt-kayla" id="detik"></h3>
-                    <p>Detik</p>
-                </div>
+          </div>
+          <img class="mt-48 img-divider" src="/assets/template1/Asset/image/decoration-2.svg" />
+          <h2 class="txt-kayla text-center mt-48">Acara akan diselenggarakan</h2>
+          <div class="row justify-content-center mt-48">
+            <div class="col-2 text-center">
+              <h3 class="txt-kayla" id="hari">0</h3>
+              <p>Hari</p>
             </div>
-            <a href="https://calendar.google.com/calendar/u/0/r/eventedit?text=<%= data.nama %>&dates=<%= tanggal %>/<%= tanggal %>"
-               class="btn btn-primary-lg mt-48" target="_blank"
+            <div class="col-2 text-center">
+              <h3 class="txt-kayla" id="jam"></h3>
+              <p>Jam</p>
+            </div>
+            <div class="col-2 text-center">
+              <h3 class="txt-kayla" id="menit"></h3>
+              <p>Menit</p>
+            </div>
+            <div class="col-2 text-center">
+              <h3 class="txt-kayla" id="detik"></h3>
+              <p>Detik</p>
+            </div>
+          </div>
+          <a href="https://calendar.google.com/calendar/u/0/r/eventedit?text=<%= data.nama %>&dates=<%= tanggal %>/<%= tanggal %>" class="btn btn-primary-lg mt-48" target="_blank"
             >Simpan Dikalender</a
-            >
+          >
         </div>
-    </section>
-    <% if (locals.kode) { %>
-    <section class="section-rsvp" id="rsvp">
+      </section>
+      <% if (locals.kode) { %>
+      <section class="section-rsvp" id="rsvp">
         <div class="container" data-aos="fade-up" data-aos-duration="800">
-            <div class="row justify-content-center">
-                <div class="col-12 text-center">
-                    <h2 class="txt-kayla">Apakah anda akan hadir?</h2>
-                    <p class="mt-16" v-if="editMode === false && codeLoaded === false">Masukkan kode undangan yang telah
-                        diberikan untuk konfirmasi kehadiran</p>
-                </div>
+          <div class="row justify-content-center">
+            <div class="col-12 text-center">
+              <h2 class="txt-kayla">Apakah anda akan hadir?</h2>
+              <p class="mt-16" v-if="editMode === false && codeLoaded === false">Masukkan kode undangan yang telah diberikan untuk konfirmasi kehadiran</p>
             </div>
-            <div class="row justify-content-center mt-48" v-if="editMode === false">
-                <div class="col-lg-4 col-md-8 col-12">
-                    <p id="txt-info-rsvp" class="txt-white bg-red w-100 p-1 txt-14" v-if="error === true">
-                        {{message}}</p>
-                    <input v-if="codeLoaded === false" type="text" width="360" class="form-control input-large mt-8"
-                           placeholder="Masukkan kode undangan" v-model="formRSVP.kode" required/>
-                    <button v-if="codeLoaded === false" v-on:click="checkCode()" class="btn btn-primary-lg mt-16">
-                        Konfirmasi
-                    </button>
-                </div>
+          </div>
+          <div class="row justify-content-center mt-48" v-if="editMode === false">
+            <div class="col-lg-4 col-md-8 col-12">
+              <p id="txt-info-rsvp" class="txt-white bg-red w-100 p-1 txt-14" v-if="error === true">{{message}}</p>
+              <input v-if="codeLoaded === false" type="text" width="360" class="form-control input-large mt-8" placeholder="Masukkan kode undangan" v-model="formRSVP.kode" required />
+              <button v-if="codeLoaded === false" v-on:click="checkCode()" class="btn btn-primary-lg mt-16">Konfirmasi</button>
             </div>
-            <div class="row justify-content-center mt-48" v-if="confirmation === true">
-                <div class="col-lg-4 col-md-8 col-12">
-                    <div class="form">
-                        <div class="mt-16 text-center" v-if="editMode === false">
-                            <p>Apakah anda akan hadir?</p>
-                            <button v-on:click="setHadir(true)" id="btn-hadir" class="btn btn-primary-lg mt-24 mr-20">
-                                Bisa Hadir
-                            </button>
-                            <button v-on:click="setHadir(false)" id="btn-tidak-hadir"
-                                    class="btn btn-secondary-lg mt-24">Berhalangan
-                            </button>
-                        </div>
-                        <div class="mt-24" v-if="editMode === false">
-                            <label class="form-label">Nama</label>
-                            <span class="txt-red">*</span>
-                            <input type="text" width="360" class="form-control input-large" placeholder="Masukkan nama"
-                                   v-model="formRSVP.nama" required/>
-                        </div>
-                        <div class="mt-16" v-if="editMode === false">
-                            <label class="form-label">No Telepon</label>
-                            <span class="txt-red">*</span>
-                            <input type="number" width="360" class="form-control input-large"
-                                   placeholder="Masukkan no telepon" v-model="formRSVP.telepon" required/>
-                        </div>
+          </div>
+          <div class="row justify-content-center mt-48" v-if="confirmation === true">
+            <div class="col-lg-4 col-md-8 col-12">
+              <div class="form">
+                <div class="mt-16 text-center" v-if="editMode === false">
+                  <p>Apakah anda akan hadir?</p>
+                  <button v-on:click="setHadir(true)" id="btn-hadir" class="btn btn-primary-lg mt-24 mr-20">Bisa Hadir</button>
+                  <button v-on:click="setHadir(false)" id="btn-tidak-hadir" class="btn btn-secondary-lg mt-24">Berhalangan</button>
+                </div>
+                <div class="mt-24" v-if="editMode === false">
+                  <label class="form-label">Nama</label>
+                  <span class="txt-red">*</span>
+                  <input type="text" width="360" class="form-control input-large" placeholder="Masukkan nama" v-model="formRSVP.nama" required />
+                </div>
+                <div class="mt-16" v-if="editMode === false">
+                  <label class="form-label">No Telepon</label>
+                  <span class="txt-red">*</span>
+                  <input type="number" width="360" class="form-control input-large" placeholder="Masukkan no telepon" v-model="formRSVP.telepon" required />
+                </div>
 
-                        <div class="mt-16" v-if="editMode === false && formRSVP.rsvp === 'Hadir'">
-                            <label class="form-label">Jumlah Tamu (Dewasa)</label>
-                            <span class="txt-red">*</span>
-                            <div class="input-group inline-group">
-                                <div class="input-group-prepend">
-                                    <button v-on:click="setJumlah(false)" class="btn btn-primary-lg btn-minus">-
-                                    </button>
-                                </div>
-                                <input class="form-control quantity txt-normal" min="1" max="5" name="quantity"
-                                       value="1" type="number" v-model="formRSVP.jumlah_dewasa" required/>
-                                <div class="input-group-append">
-                                    <button v-on:click="setJumlah(true)" class="btn btn-primary-lg btn-plus">+</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mt-16" v-if="editMode === false && formRSVP.rsvp === 'Hadir'">
-                            <label class="form-label">Jumlah Tamu (Anak - Anak)</label>
-                            <span class="txt-red">*</span>
-                            <div class="input-group inline-group">
-                                <div class="input-group-prepend">
-                                    <button v-on:click="setJumlahAnak(false)" class="btn btn-primary-lg btn-minus">-
-                                    </button>
-                                </div>
-                                <input class="form-control quantity txt-normal" min="1" max="5" name="quantity"
-                                       value="0" type="number" v-model="formRSVP.jumlah_anak" required/>
-                                <div class="input-group-append">
-                                    <button v-on:click="setJumlahAnak(true)" class="btn btn-primary-lg btn-plus">+
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mt-16" v-if="editMode === false && formRSVP.rsvp === 'Tidak Hadir'">
-                            <label class="form-label">Alasan Tidak Hadir</label>
-                            <input type="text" width="360" class="form-control input-large"
-                                   placeholder="Masukkan alasan" v-model="formRSVP.alasan"/>
-                        </div>
-                        <div class="mt-16" v-if="editMode === false && formRSVP.rsvp === 'Hadir'">
-                            <h6 class="bold">Sesi Pernikahan</h6>
-                            <div class="row">
-                                <div class="col-6 event-session" v-for="data in guestSession">
-                                    <h6 class="card-title bold">{{data.nama_sesi}}</h6>
-                                    <p class="txt-14">{{new Date(data.tanggal).toLocaleDateString('id-ID', {
-                                        weekday: "long",
-                                        year: "numeric",
-                                        month: "long",
-                                        day: "numeric"
-                                    })}}</p>
-                                    <p class="txt-14">{{data.waktu_mulai.substr(0, 5)}} s/d
-                                        {{data.waktu_mulai.substr(0, 5)}}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-16" v-if="editMode === false">
-                            <label class="form-label">Ucapan</label>
-                            <textarea class="form-control input-area" placeholder="Isi pesan/ucapan/doa restu" rows="4"
-                                      v-model="formRSVP.ucapan"></textarea>
-                        </div>
-                        <button v-on:click="onSave()" v-if="editMode === false" class="btn btn-primary-lg w-100 mt-24">
-                            Simpan
-                        </button>
-
-                        <div class="mt-24" v-if="editMode === true">
-                            <p class="bold">{{formRSVP.rsvp}}</p>
-                            <p>{{formRSVP.nama}}</p>
-                            <p>{{formRSVP.telepon}}</p>
-                            <p>{{formRSVP.jumlah_dewasa}} Dewasa</p>
-                            <p>{{formRSVP.jumlah_anak}} Anak - Anak</p>
-                            <p>{{formRSVP.ucapan}}</p>
-                        </div>
-                        <!--                <button v-on:click="setEditMode" v-if="editMode === true" class="btn btn-primary-lg w-100 mt-24">Ubah Data</button>-->
-
-                        <div class="mt-48" v-if="editMode === true && formRSVP.rsvp === 'Hadir'">
-                            <p class="text-center">Silahkan download kartu undangan dibawah</p>
-                            <div class="text-center mt-16">
-                                <a ref="download-card" id="download-card"><p class="txt-normal d-inline">Download
-                                    Kartu</p></a>
-                            </div>
-                            <div id="capture" ref="capture" class="mt-16">
-                                <div class="card mx-auto">
-                                    <div class="card-header">
-                                        <h4 class="txt-playfair text-center py-24"><%= data.nama %></h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <h6 class="vip-badge">VIP Pass</h6>
-                                        <h6 class="bold">Sesi Pernikahan</h6>
-                                        <div class="row">
-                                            <div class="col-6 event-session" v-for="data in guestSession">
-                                                <h6 class="card-title bold">{{data.nama_sesi}}</h6>
-                                                <p class="txt-14">{{new Date(data.tanggal).toLocaleDateString('id-ID', {
-                                                    weekday: "long",
-                                                    year: "numeric",
-                                                    month: "long",
-                                                    day: "numeric"
-                                                })}}</p>
-                                                <p class="txt-14">{{data.waktu_mulai.substr(0, 5)}} s/d
-                                                    {{data.waktu_mulai.substr(0, 5)}}</p>
-                                            </div>
-                                        </div>
-                                        <p class="mt-16">Untuk :</p>
-                                        <h6 class="bold">{{formRSVP.nama}}</h6>
-                                        <p class="mt-16">Kamu diundang diacara pernikahan! Silahkan tunjukan kartu ini
-                                            untuk scan QR Code pada saat masuk lokasi.</p>
-                                        <div class="py-24 text-center">
-                                            <div id="kode-qr" class="qrcode"></div>
-                                            <p class="mt-8">287198</p>
-                                            <p class="txt-14 mt-16">Link Website</p>
-                                            <p class="txt-14">undangan.com/romeo-juliet</p>
-                                            <p class="small mt-16">Powered by <span class="bold">Teras Teduh</span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="mt-16" v-if="editMode === false && formRSVP.rsvp === 'Hadir'">
+                  <label class="form-label">Jumlah Tamu (Dewasa)</label>
+                  <span class="txt-red">*</span>
+                  <div class="input-group inline-group">
+                    <div class="input-group-prepend">
+                      <button v-on:click="setJumlah(false)" class="btn btn-primary-lg btn-minus">-</button>
                     </div>
+                    <input class="form-control quantity txt-normal" min="1" max="5" name="quantity" value="1" type="number" v-model="formRSVP.jumlah_dewasa" required />
+                    <div class="input-group-append">
+                      <button v-on:click="setJumlah(true)" class="btn btn-primary-lg btn-plus">+</button>
+                    </div>
+                  </div>
                 </div>
+
+                <div class="mt-16" v-if="editMode === false && formRSVP.rsvp === 'Hadir'">
+                  <label class="form-label">Jumlah Tamu (Anak - Anak)</label>
+                  <span class="txt-red">*</span>
+                  <div class="input-group inline-group">
+                    <div class="input-group-prepend">
+                      <button v-on:click="setJumlahAnak(false)" class="btn btn-primary-lg btn-minus">-</button>
+                    </div>
+                    <input class="form-control quantity txt-normal" min="1" max="5" name="quantity" value="0" type="number" v-model="formRSVP.jumlah_anak" required />
+                    <div class="input-group-append">
+                      <button v-on:click="setJumlahAnak(true)" class="btn btn-primary-lg btn-plus">+</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-16" v-if="editMode === false && formRSVP.rsvp === 'Tidak Hadir'">
+                  <label class="form-label">Alasan Tidak Hadir</label>
+                  <input type="text" width="360" class="form-control input-large" placeholder="Masukkan alasan" v-model="formRSVP.alasan" />
+                </div>
+                <div class="mt-16" v-if="editMode === false && formRSVP.rsvp === 'Hadir'">
+                  <h6 class="bold">Sesi Pernikahan</h6>
+                  <div class="row">
+                    <div class="col-6 event-session" v-for="data in guestSession">
+                      <h6 class="card-title bold">{{data.nama_sesi}}</h6>
+                      <p class="txt-14">{{new Date(data.tanggal).toLocaleDateString('id-ID', { weekday: "long", year: "numeric", month: "long", day: "numeric" })}}</p>
+                      <p class="txt-14">{{data.waktu_mulai.substr(0, 5)}} s/d {{data.waktu_mulai.substr(0, 5)}}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-16" v-if="editMode === false">
+                  <label class="form-label">Ucapan</label>
+                  <textarea class="form-control input-area" placeholder="Isi pesan/ucapan/doa restu" rows="4" v-model="formRSVP.ucapan"></textarea>
+                </div>
+                <button v-on:click="onSave()" v-if="editMode === false" class="btn btn-primary-lg w-100 mt-24">Simpan</button>
+
+                <div class="mt-24" v-if="editMode === true">
+                  <p class="bold">{{formRSVP.rsvp}}</p>
+                  <p>{{formRSVP.nama}}</p>
+                  <p>{{formRSVP.telepon}}</p>
+                  <p>{{formRSVP.jumlah_dewasa}} Dewasa</p>
+                  <p>{{formRSVP.jumlah_anak}} Anak - Anak</p>
+                  <p>{{formRSVP.ucapan}}</p>
+                </div>
+                <!--                <button v-on:click="setEditMode" v-if="editMode === true" class="btn btn-primary-lg w-100 mt-24">Ubah Data</button>-->
+
+                <div class="mt-48" v-if="editMode === true && formRSVP.rsvp === 'Hadir'">
+                  <p class="text-center">Silahkan download kartu undangan dibawah</p>
+                  <div class="text-center mt-24">
+                    <a id="download-card"><div class="txt-normal d-inline btn-primary-lg">Download Kartu</div></a>
+                  </div>
+                  <div id="capture" ref="capture" class="mt-16">
+                    <div class="card mx-auto">
+                      <div class="card-header">
+                        <h4 class="txt-playfair text-center py-24"><%= data.nama %></h4>
+                      </div>
+                      <div class="card-body">
+                        <h6 class="vip-badge">VIP Pass</h6>
+                        <h6 class="bold">Sesi Pernikahan</h6>
+                        <div class="row">
+                          <div class="col-6 event-session" v-for="data in guestSession">
+                            <h6 class="card-title bold">{{data.nama_sesi}}</h6>
+                            <p class="txt-14">{{new Date(data.tanggal).toLocaleDateString('id-ID', { weekday: "long", year: "numeric", month: "long", day: "numeric" })}}</p>
+                            <p class="txt-14">{{data.waktu_mulai.substr(0, 5)}} s/d {{data.waktu_mulai.substr(0, 5)}}</p>
+                          </div>
+                        </div>
+                        <p class="mt-16">Untuk :</p>
+                        <h6 class="bold">{{formRSVP.nama}}</h6>
+                        <p class="mt-16">Kamu diundang diacara pernikahan! Silahkan tunjukan kartu ini untuk scan QR Code pada saat masuk lokasi.</p>
+                        <div class="py-24 text-center">
+                          <div id="kode-qr" class="qrcode"></div>
+                          <p class="mt-8">{{formRSVP.kode}}</p>
+                          <p class="small mt-16">Powered by <span class="bold">Teras Teduh</span></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-    </section>
-    <div class="container text-center">
-        <img class="py-48 text-center img-divider" src="/assets/template1/Asset/image/decoration-2.svg"/>
-    </div>
-    <% } %>
-    <section class="section-gallery" id="galeri">
+      </section>
+      <div class="container text-center">
+        <img class="py-48 text-center img-divider" src="/assets/template1/Asset/image/decoration-2.svg" />
+      </div>
+      <% } %>
+      <section class="section-gallery" id="galeri">
         <div class="container">
-            <div class="row justify-content-center">
-                <h2 class="txt-kayla text-center">Galeri</h2>
+          <div class="row justify-content-center">
+            <h2 class="txt-kayla text-center">Galeri</h2>
+          </div>
+          <div class="row spotlight-group mt-48">
+            <% if (locals.gallery) { %> <% for(data of gallery) { %>
+            <div class="col-lg-3 col-md-6 col-6">
+              <a class="spotlight" href="/assets/uploads/<%= data.image %>" data-description="<%= data.keterangan %>"
+                ><img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1000" src="/assets/uploads/<%= data.image %>" class="w-100 img-gallery shadow-1-strong rounded mb-4"
+              /></a>
             </div>
-            <div class="row spotlight-group mt-48">
-                <% if (locals.gallery) { %> <% for(data of gallery) { %>
-                <div class="col-lg-3 col-md-6 col-6">
-                    <a class="spotlight" href="/assets/uploads/<%= data.image %>"
-                       data-description="<%= data.keterangan %>"
-                    ><img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1000"
-                          src="/assets/uploads/<%= data.image %>" class="w-100 img-gallery shadow-1-strong rounded mb-4"
-                    /></a>
-                </div>
-                <% } %> <% } %>
-            </div>
-            <!-- <div class="row spotlight-group mt-48">
+            <% } %> <% } %>
+          </div>
+          <!-- <div class="row spotlight-group mt-48">
                       <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
                         <a class="spotlight" href="Asset/image/galeri1.png" data-title="lorem tes" data-description="lorem test"
                           ><img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="Asset/image/galeri1.png" class="w-100 img-gallery shadow-1-strong rounded mb-4"
@@ -433,157 +378,157 @@
                       </div>
                     </div> -->
         </div>
-    </section>
-    <section class="section-story" id="cerita">
+      </section>
+      <section class="section-story" id="cerita">
         <div class="container">
+          <div class="row justify-content-center">
+            <h2 class="txt-kayla txt-white text-center">Cerita Kami</h2>
+          </div>
+          <div class="row justify-content-center mt-48">
+            <div class="timeline">
+              <div v-for="(data,index) in story" v-bind:class="['container-story', (index+1) % 2 == 0 ? 'right' : 'left']">
+                <div class="content">
+                  <h2>{{data.tahun}}</h2>
+                  <p>{{data.story}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="bg-group">
+        <section class="section-livestream">
+          <div class="container">
             <div class="row justify-content-center">
-                <h2 class="txt-kayla txt-white text-center">Cerita Kami</h2>
+              <h2 class="txt-kayla text-center">Live streaming</h2>
             </div>
             <div class="row justify-content-center mt-48">
-                <div class="timeline">
-                    <div v-for="(data,index) in story"
-                         v-bind:class="['container-story', (index+1) % 2 == 0 ? 'right' : 'left']">
-                        <div class="content">
-                            <h2>{{data.tahun}}</h2>
-                            <p>{{data.story}}</p>
-                        </div>
-                    </div>
+              <div class="col-lg-6 col-12 text-center">
+                <div class="card cooming-soon py-24">
+                  <h3 class="my-auto">Cooming Soon</h3>
                 </div>
+              </div>
+              <div class="col-lg-6 col-12 text-center">
+                <div class="video-frame">
+                  <iframe
+                    src="https://www.youtube.com/embed/l3OdDV-DwkA"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
             </div>
-        </div>
-    </section>
-    <div class="bg-group">
-        <section class="section-livestream">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <h2 class="txt-kayla text-center">Live streaming</h2>
-                </div>
-                <div class="row justify-content-center mt-48">
-                    <div class="col-lg-6 col-12 text-center">
-                        <div class="video-frame">
-                            <iframe
-                                    src="https://www.youtube.com/embed/l3OdDV-DwkA"
-                                    title="YouTube video player"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen
-                            ></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </section>
         <div class="container text-center">
-            <img class="py-48 text-center img-divider" src="/assets/template1/Asset/image/decoration-2.svg"/>
+          <img class="py-48 text-center img-divider" src="/assets/template1/Asset/image/decoration-2.svg" />
         </div>
         <section class="section-amplop" id="amplop">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <h2 class="txt-kayla text-center">Amplop Digital</h2>
-                </div>
-                <div class="row justify-content-center mt-48">
-                    <div class="col-lg-4 col-12 text-center mt-16">
-                        <div class="card p-4 text-center">
-                            <h5>Kirim via QRIS</h5>
-                            <img class="qris mt-16 mx-auto" src="/assets/template1/Asset/image/qrcode.png"/>
-                            <p class="txt-normal bold mt-16">Romeo</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-12 text-center mt-16">
-                        <div class="card p-4">
-                            <h5>Kirim via Bank</h5>
-                            <p class="txt-normal bold mt-16">BRI</p>
-                            <h6 class="txt-normal mt-8">No. Rekening</h6>
-                            <p id="selectRekening" class="txt-normal bold">105346156415</p>
-                            <p class="txt-normal bold">Romeo</p>
-                            <button class="btn btn-primary-lg mt-16" onclick="copyData(selectRekening)">Salin No
-                                Rekening
-                            </button>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-12 text-center mt-16">
-                        <div class="card p-4">
-                            <h5>Kirim Kado</h5>
-                            <p class="txt-normal bold mt-16">PO BOX NKM33 Jakarta Pusat 10000</p>
-                            <p class="txt-normal mt-16">atau</p>
-                            <p class="txt-normal bold mt-16">Jl. Bumi Lestari Blok A85 No.21 RT 01 RW 17, Tambun
-                                Selatan, Bekasi</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-    <section class="section-ucapan" id="ucapan">
-        <div class="container">
+          <div class="container">
             <div class="row justify-content-center">
-                <h2 class="txt-kayla text-center">Ucapan</h2>
-                <p class="mt-16 text-center">Doa dan ucapan untuk kedua mempelai</p>
-            </div>
-            <div class="ucapan">
-                <div class="row">
-                    <div class="col-lg-6 col-12" v-for="data in ucapan">
-                        <div class="card-ucapan">
-                            <h6 class="txt-pink bold">{{data.nama}}</h6>
-                            <p class="mt-16">{{data.ucapan}}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <% if (locals.kode) { %>
-    <div class="container text-center">
-        <img class="mt-96 text-center img-divider" src="/assets/template1/Asset/image/decoration-2.svg"/>
-    </div>
-    <section class="section-protocol mt-96">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-5 col-12 text-center">
-                    <h2 class="txt-kayla text-center">Protokol Kesehatan</h2>
-                    <p class="mt-16">Kami sudah berkoordinasi dengan semua pihak terkait pencegahan penularan COVID-19.
-                        Dengan mengikuti prosedur protokol kesehatan untuk mencegah penularan COVID-19.</p>
-                </div>
+              <h2 class="txt-kayla text-center">Amplop Digital</h2>
             </div>
             <div class="row justify-content-center mt-48">
-                <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-duration="800">
-                    <div class="card py-24 align-items-center">
-                        <img class="img-protocol" src="/assets/template1/Asset/image/masker.svg"/>
-                        <div class="card-body text-center">
-                            <p>Tamu wajib memakai masker</p>
-                        </div>
-                    </div>
+              <div class="col-lg-4 col-12 text-center mt-16">
+                <div class="card p-4 text-center">
+                  <h5>Kirim via QRIS</h5>
+                  <img class="qris mt-16 mx-auto" src="/assets/template1/Asset/image/qrcode.png" />
+                  <p class="txt-normal bold mt-16">Romeo</p>
                 </div>
-                <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-duration="800">
-                    <div class="card py-24 align-items-center">
-                        <img class="img-protocol" src="/assets/template1/Asset/image/jaga-jarak.svg"/>
-                        <div class="card-body text-center">
-                            <p>Jaga jarak minimal 1 meter</p>
-                        </div>
-                    </div>
+              </div>
+              <div class="col-lg-4 col-12 text-center mt-16">
+                <div class="card p-4">
+                  <h5>Kirim via Bank</h5>
+                  <p class="txt-normal bold mt-16">BRI</p>
+                  <h6 class="txt-normal mt-8">No. Rekening</h6>
+                  <p id="selectRekening" class="txt-normal bold">105346156415</p>
+                  <p class="txt-normal bold">Romeo</p>
+                  <button class="btn btn-primary-lg mt-16" onclick="copyData(selectRekening)">Salin No Rekening</button>
                 </div>
-                <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-duration="800">
-                    <div class="card py-24 align-items-center">
-                        <img class="img-protocol" src="/assets/template1/Asset/image/suhu.svg"/>
-                        <div class="card-body text-center">
-                            <p>Suhu tubuh tidak lebih dari 37°C</p>
-                        </div>
-                    </div>
+              </div>
+              <div class="col-lg-4 col-12 text-center mt-16">
+                <div class="card p-4">
+                  <h5>Kirim Kado</h5>
+                  <p class="txt-normal bold mt-16">PO BOX NKM33 Jakarta Pusat 10000</p>
+                  <p class="txt-normal mt-16">atau</p>
+                  <p class="txt-normal bold mt-16">Jl. Bumi Lestari Blok A85 No.21 RT 01 RW 17, Tambun Selatan, Bekasi</p>
                 </div>
-                <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-duration="800">
-                    <div class="card py-24 align-items-center">
-                        <img class="img-protocol" src="/assets/template1/Asset/image/cuci-tangan.svg"/>
-                        <div class="card-body text-center">
-                            <p>Cuci tangan menggunakan sabun atau hand sanitizer</p>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
+          </div>
+        </section>
+      </div>
+      <section class="section-ucapan" id="ucapan">
+        <div class="container">
+          <div class="row justify-content-center">
+            <h2 class="txt-kayla text-center">Ucapan</h2>
+            <p class="mt-16 text-center">Doa dan ucapan untuk kedua mempelai</p>
+          </div>
+          <div class="ucapan">
+            <div class="row">
+              <div class="col-lg-6 col-12" v-for="data in ucapan">
+                <div class="card-ucapan">
+                  <h6 class="txt-pink bold">{{data.nama}}</h6>
+                  <p class="mt-16">{{data.ucapan}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    </section>
-    <% } %>
+      </section>
+      <% if (locals.kode) { %>
+      <div class="container text-center">
+        <img class="mt-96 text-center img-divider" src="/assets/template1/Asset/image/decoration-2.svg" />
+      </div>
+      <section class="section-protocol mt-96">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-5 col-12 text-center">
+              <h2 class="txt-kayla text-center">Protokol Kesehatan</h2>
+              <p class="mt-16">Kami sudah berkoordinasi dengan semua pihak terkait pencegahan penularan COVID-19. Dengan mengikuti prosedur protokol kesehatan untuk mencegah penularan COVID-19.</p>
+            </div>
+          </div>
+          <div class="row justify-content-center mt-48">
+            <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-duration="800">
+              <div class="card py-24 align-items-center">
+                <img class="img-protocol" src="/assets/template1/Asset/image/masker.svg" />
+                <div class="card-body text-center">
+                  <p>Tamu wajib memakai masker</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-duration="800">
+              <div class="card py-24 align-items-center">
+                <img class="img-protocol" src="/assets/template1/Asset/image/jaga-jarak.svg" />
+                <div class="card-body text-center">
+                  <p>Jaga jarak minimal 1 meter</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-duration="800">
+              <div class="card py-24 align-items-center">
+                <img class="img-protocol" src="/assets/template1/Asset/image/suhu.svg" />
+                <div class="card-body text-center">
+                  <p>Suhu tubuh tidak lebih dari 37°C</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-duration="800">
+              <div class="card py-24 align-items-center">
+                <img class="img-protocol" src="/assets/template1/Asset/image/cuci-tangan.svg" />
+                <div class="card-body text-center">
+                  <p>Cuci tangan menggunakan sabun atau hand sanitizer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <% } %>
 
-    <!-- POPUP
+      <!-- POPUP
       <div class="modal fade" id="start-modal" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -606,69 +551,69 @@
       </div>
     </div> -->
 
-    <footer class="mt-96">
+      <footer class="mt-96">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-5 col-12 text-center">
-                    <p>Created by:</p>
-                    <h3 class="txt-philosopher">Teras Nirwana</h3>
-                    <div class="d-flex justify-content-center mt-24">
-                        <a href=""><p>Instagram</p></a>
-                        <a href=""><p>Email</p></a>
-                        <a href=""><p>Whatsapp</p></a>
-                    </div>
-                    <p class="mt-24">Copyright 2022 invedd, All rights reserved.</p>
-                </div>
+          <div class="row justify-content-center">
+            <div class="col-lg-5 col-12 text-center">
+              <p>Created by:</p>
+              <h3 class="txt-philosopher">Teras Nirwana</h3>
+              <div class="d-flex justify-content-center mt-24">
+                <a href=""><p>Instagram</p></a>
+                <a href=""><p>Email</p></a>
+                <a href=""><p>Whatsapp</p></a>
+              </div>
+              <p class="mt-24">Copyright 2022 invedd, All rights reserved.</p>
             </div>
+          </div>
         </div>
-    </footer>
-</main>
-<!-- Bootstrap -->
-<script src="/assets/template1/Library/bootstrap/js/bootstrap.bundle.min.js"></script>
+      </footer>
+    </main>
+    <!-- Bootstrap -->
+    <script src="/assets/template1/Library/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<!-- popper -->
-<script
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"
-></script>
+    <!-- popper -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
 
-<!-- AOS -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-<!-- Spotlight -->
-<script src="/assets/template1/Library/spotlight/spotlight.min.js"></script>
+    <!-- Spotlight -->
+    <script src="/assets/template1/Library/spotlight/spotlight.min.js"></script>
 
-<!-- Spotlight -->
-<script src="/assets/template1/Library/jquery/jquery-3.6.0.min.js"></script>
+    <!-- Spotlight -->
+    <script src="/assets/template1/Library/jquery/jquery-3.6.0.min.js"></script>
 
-<!-- html2canvas -->
-<script src="/assets/template1/Library/html2canvas/html2canvas.min.js"></script>
+    <!-- html2canvas -->
+    <script src="/assets/template1/Library/html2canvas/html2canvas.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/dom-to-image-more@2.9.5/dist/dom-to-image-more.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dom-to-image-more@2.9.5/dist/dom-to-image-more.min.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-<script>
-    let idNikahan = "<%= id %>";
-    let tanggalNikahan = "<%= date %>";
-</script>
+    <script>
+      let idNikahan = "<%= id %>";
+      let tanggalNikahan = "<%= date %>";
+    </script>
 
-<script>
-    $(window).scroll(function () {
+    <script>
+      $(window).scroll(function () {
         if ($(document).scrollTop() > 50) {
-            $(".navbar-desktop").addClass("bg-white");
-            $(".nav-link").addClass("txt-pink");
+          $(".navbar-desktop").addClass("bg-white");
+          $(".nav-link").addClass("txt-pink");
         } else {
-            $(".navbar-desktop").removeClass("bg-white");
-            $(".nav-link").removeClass("txt-pink");
+          $(".navbar-desktop").removeClass("bg-white");
+          $(".nav-link").removeClass("txt-pink");
         }
-    });
+      });
 
-    function copyData(selectRekening) {
+      function copyData(selectRekening) {
         var range = document.createRange();
         range.selectNode(selectRekening);
         window.getSelection().removeAllRanges();
@@ -676,8 +621,8 @@
         document.execCommand("copy");
         window.getSelection().removeAllRanges();
         alert("Berhasil Menyalin No Rekening");
-    }
-</script>
-<script type="application/javascript" src="/assets/js/form-undangan.js"></script>
-</body>
+      }
+    </script>
+    <script type="application/javascript" src="/assets/js/form-undangan.js"></script>
+  </body>
 </html>
