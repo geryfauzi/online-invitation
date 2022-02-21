@@ -108,6 +108,14 @@ p {
   line-height: 150%;
 }
 
+.txt-56 {
+  font-size: 56px;
+  line-height: 150%;
+  @media #{$mobile_device} {
+    font-size: 40px;
+  }
+}
+
 .txt-64 {
   font-size: 64px;
   line-height: 150%;

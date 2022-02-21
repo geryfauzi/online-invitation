@@ -23,6 +23,41 @@
   transition: all 0.3s ease-in-out;
 }
 
+.zoom-animation {
+  -webkit-animation: zoom-in-zoom-out 4s infinite;
+          animation: zoom-in-zoom-out 4s infinite;
+}
+
+@-webkit-keyframes zoom-in-zoom-out {
+  0% {
+    -webkit-transform: scale(0.7, 0.7);
+            transform: scale(0.7, 0.7);
+  }
+  50% {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
+  100% {
+    -webkit-transform: scale(0.7, 0.7);
+            transform: scale(0.7, 0.7);
+  }
+}
+
+@keyframes zoom-in-zoom-out {
+  0% {
+    -webkit-transform: scale(0.7, 0.7);
+            transform: scale(0.7, 0.7);
+  }
+  50% {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
+  100% {
+    -webkit-transform: scale(0.7, 0.7);
+            transform: scale(0.7, 0.7);
+  }
+}
+
 .btn-primary-sm {
   color: #fff;
   background-color: #cc796b;
@@ -105,6 +140,22 @@
   -webkit-box-shadow: none;
           box-shadow: none;
   color: #fff;
+}
+
+.btn-music {
+  border-radius: 100px;
+  position: fixed;
+  right: 64px;
+  bottom: 120px;
+  -webkit-box-shadow: 0px 0px 20px #fff;
+          box-shadow: 0px 0px 20px #fff;
+  z-index: 99;
+}
+
+@media (max-width: 767px) {
+  .btn-music {
+    right: 15px;
+  }
 }
 
 .card {
@@ -293,6 +344,17 @@ p {
 .txt-36 {
   font-size: 36px;
   line-height: 150%;
+}
+
+.txt-56 {
+  font-size: 56px;
+  line-height: 150%;
+}
+
+@media (max-width: 767px) {
+  .txt-56 {
+    font-size: 40px;
+  }
 }
 
 .txt-64 {

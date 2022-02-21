@@ -24,6 +24,22 @@
 <body>
 <main id="form-undangan">
     <div class="container">
+        <button class="btn btn-primary-lg btn-music zoom-animation" onclick="togglePlay()" id="btn-playback" data-play="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" id="ic-Volume" class="bi bi-volume-up-fill" style="display: block" viewBox="0 0 16 16">
+              <path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z" />
+              <path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z" />
+              <path
+                d="M8.707 11.182A4.486 4.486 0 0 0 10.025 8a4.486 4.486 0 0 0-1.318-3.182L8 5.525A3.489 3.489 0 0 1 9.025 8 3.49 3.49 0 0 1 8 10.475l.707.707zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z"
+              />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" id="ic-Mute" class="bi bi-volume-mute-fill" style="display: none" viewBox="0 0 16 16">
+              <path
+                d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06zm7.137 2.096a.5.5 0 0 1 0 .708L12.207 8l1.647 1.646a.5.5 0 0 1-.708.708L11.5 8.707l-1.646 1.647a.5.5 0 0 1-.708-.708L10.793 8 9.146 6.354a.5.5 0 1 1 .708-.708L11.5 7.293l1.646-1.647a.5.5 0 0 1 .708 0z"
+              />
+            </svg>
+          </button>
+          <audio id="audiomusic" loop="loop" autoplay src="/assets/uploads/Love-Over-And-Over-Again.mp3"></audio>
+
         <nav class="navbar navbar-desktop navbar-expand-lg py-24 fixed-top d-none d-md-none d-lg-block d-xl-block">
             <div class="collapse navbar-collapse justify-content-center">
                 <ul class="navbar-nav">
@@ -126,8 +142,8 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <h3 class="txt-kayla mt-48">Undangan Pernikahan</h3>
-                    <h1 class="txt-kayla mt-72 txt-64"><%= data.nama_cpp.substr(0,data.nama_cpp.indexOf(' '))
-                        %> & <%= data.nama_cpw.substr(0,data.nama_cpw.indexOf(' ')) %></h1>
+                    <h1 class="txt-kayla mt-72 txt-64"><%= data.nama_calon1.substr(0,data.nama_calon1.indexOf(' '))
+                        %> & <%= data.nama_calon2.substr(0,data.nama_calon2.indexOf(' ')) %></h1>
                     <h3 class="txt-kayla mt-24"><%= new Date(data.tanggal).toLocaleDateString('id-ID', {
                         weekday:"long",
                         year:"numeric", month:"long", day:"numeric"}); %></h3>
@@ -139,30 +155,27 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-8 col-12" data-aos="fade-up" data-aos-duration="800">
-                    <h3 class="bold">Assalamu'alaikum Warahmatullaahi Wabarakaatuh</h3>
-                    <p class="mt-24">Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. Ya Allah
-                        semoga ridho-Mu tercurah mengiringi pernikahan putra-putri kami :</p>
+                    <h3 class="bold"><%= locals.data.quote_cover %></h3>
+                    <p class="mt-24"><%= locals.data.quote_body %></p>
                 </div>
             </div>
             <div class="row mt-96">
                 <div class="col-lg-5 col-12 text-center" data-aos="fade-right" data-aos-duration="1500">
-                    <img class="img-person rounded-circle" src="/assets/uploads/<%= data.image_cpp %>" alt=""/>
-                    <h1 class="txt-kayla txt-green txt-36 mt-32"><%= data.nama_cpp %></h1>
-                    <% if(locals.data.ayah_cpp) { %>
-                    <p class="mt-16">Putra dari pasangan</p>
-                    <p>Bapak <%= data.ayah_cpp %> & Ibu <%= data.ibu_cpp %></p>
-                    <% } %>
+                    <img class="img-person rounded-circle" src="/assets/uploads/<%= data.image_calon1 %>" alt=""/>
+                    <h1 class="txt-kayla txt-green txt-36 mt-32"><%= data.nama_calon1 %></h1>
+                    <% if (locals.data.ortu_calon1) { %>
+                        <p class="mt-16"><%= data.ortu_calon1 %></p>
+                        <% } %>
                 </div>
                 <div class="col-lg-2 col-12 text-center my-auto" data-aos="fade-up" data-aos-duration="1500">
                     <img class="img-love" src="/assets/template4/Asset/image/love.svg" alt=""/>
                 </div>
                 <div class="col-lg-5 col-12 text-center" data-aos="fade-left" data-aos-duration="1500">
-                    <img class="img-person rounded-circle" src="/assets/uploads/<%= data.image_cpw %>" alt=""/>
-                    <h1 class="txt-kayla txt-green txt-36 mt-32"><%= data.nama_cpw %></h1>
-                    <% if(locals.data.ayah_cpw) { %>
-                    <p class="mt-16">Putri dari pasangan</p>
-                    <p>Bapak <%= data.ayah_cpw %> & Ibu <%= data.ibu_cpw %></p>
-                    <% } %>
+                    <img class="img-person rounded-circle" src="/assets/uploads/<%= data.image_calon2 %>" alt=""/>
+                    <h1 class="txt-kayla txt-green txt-36 mt-32"><%= data.nama_calon2 %></h1>
+                    <% if (locals.data.ortu_calon2) { %>
+                        <p class="mt-16"><%= data.ortu_calon2 %></p>
+                        <% } %>
                 </div>
             </div>
         </div>
@@ -628,28 +641,27 @@
     </section>
     <% } %>
 
-    <!-- POPUP
-      <div class="modal fade" id="start-modal" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-body py-24">
-            <div class="container">
-              <div class="row justify-content-center text-center">
-                <div class="col-12">
-                  <h5 class="txt-kayla">Undangan Pernikahan</h5>
-                  <h2 class="txt-kayla txt-36 txt-green mt-24">Romeo & Juliet</h2>
-                  <h5 class="txt-kayla mt-16">Selasa, 22 Februari 2022</h5>
-                  <h5 class="mt-32">Undangan Special Untuk:</h5>
-                  <h3 class="bold">Nama Tamu</h3>
-                  <button type="button" class="btn btn-primary-lg bold" data-bs-dismiss="modal">Buka Undangan</button>
-                  <p class="small mt-16">Powered by <span class="bold">Teras Teduh</span></p>
+    <div class="modal fade" id="start-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body py-24">
+              <div class="container">
+                <div class="row justify-content-center text-center">
+                  <div class="col-12">
+                    <h5 class="txt-playfair">Undangan Pernikahan</h5>
+                    <h2 class="txt-playfair txt-36 txt-pink mt-24"><%= locals.data.nama_calon1 %> & <%= locals.data.nama_calon2 %></h2>
+                    <h5 class="txt-playfair mt-16">Selasa, 22 Februari 2022</h5>
+                    <h5 class="mt-32">Undangan Special Untuk:</h5>
+                    <h4 class="bold">Nama Tamu</h4>
+                    <button id="btn-bukaUndangan" type="button" class="btn btn-primary-lg bold" onclick="togglePlay()" data-bs-dismiss="modal">Buka Undangan</button>
+                    <p class="small mt-16">Powered by <span class="bold">Teras Teduh</span></p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div> -->
 
     <footer class="mt-96">
         <div class="container">
@@ -719,6 +731,30 @@
         window.getSelection().removeAllRanges();
         alert("Berhasil Menyalin No Rekening");
       }
+
+      var myAudio = document.getElementById("audiomusic");
+      var isPlaying = false;
+
+      function togglePlay() {
+        isPlaying ? myAudio.pause() : myAudio.play();
+      }
+
+      myAudio.onplaying = function () {
+        isPlaying = true;
+        document.getElementById("ic-Volume").style.display = "block";
+        document.getElementById("ic-Mute").style.display = "none";
+        document.getElementById("btn-playback").classList.add("zoom-animation");
+      };
+      myAudio.onpause = function () {
+        isPlaying = false;
+        document.getElementById("ic-Volume").style.display = "none";
+        document.getElementById("ic-Mute").style.display = "block";
+        document.getElementById("btn-playback").classList.remove("zoom-animation");
+      };
+
+      $(document).ready(function () {
+        $("#start-modal").modal("show");
+      });
 </script>
 <script type="application/javascript" src="/assets/js/form-undangan.js"></script>
 </body>
