@@ -20,7 +20,8 @@ var app = new Vue({
             alasan: "",
             ucapan: "",
             telepon: "",
-            id_pernikahan: ""
+            id_pernikahan: "",
+            is_vip: ''
         },
     },
     methods: {
