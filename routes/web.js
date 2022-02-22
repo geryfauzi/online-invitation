@@ -315,7 +315,7 @@ router.get("/pernikahan/:id", (req, res) => {
               image_cover_potrait: result[0].image_cover_potrait,
               music: result[0].musik
             });
-          } else {
+          } else if (result[0].template === "14") {
             return res.render("template7-EN", {
               id: id,
               data: result[0],
@@ -337,6 +337,8 @@ router.get("/pernikahan/:id", (req, res) => {
               image_cover_potrait: result[0].image_cover_potrait,
               music: result[0].musik
             });
+          } else {
+            return res.render("404");
           }
         });
       } else return res.render("404");
