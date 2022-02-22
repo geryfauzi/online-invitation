@@ -142,8 +142,7 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <h3 class="txt-kayla mt-48">Undangan Pernikahan</h3>
-                    <h1 class="txt-kayla mt-72 txt-64"><%= data.nama_calon1.substr(0,data.nama_calon1.indexOf(' '))
-                        %> & <%= data.nama_calon2.substr(0,data.nama_calon2.indexOf(' ')) %></h1>
+                    <h1 class="txt-kayla mt-72 txt-64"><%= title %></h1>
                     <h3 class="txt-kayla mt-24"><%= new Date(data.tanggal).toLocaleDateString('id-ID', {
                         weekday:"long",
                         year:"numeric", month:"long", day:"numeric"}); %></h3>
@@ -487,24 +486,25 @@
             </div> -->
         </div>
     </section>
-    <section class="section-story" id="cerita">
+    <% if (switch_story == 'true') { %>
+      <section class="section-story" id="cerita">
         <div class="container">
-            <div class="row justify-content-center">
-                <h2 class="txt-kayla text-center">Cerita Kami</h2>
-            </div>
-            <div class="row justify-content-center mt-48">
-                <div class="timeline">
-                    <div v-for="(data,index) in story"
-                         v-bind:class="['container-story', (index+1) % 2 == 0 ? 'right' : 'left']">
-                        <div class="content">
-                            <h2>{{data.tahun}}</h2>
-                            <p>{{data.story}}</p>
-                        </div>
-                    </div>
+          <div class="row justify-content-center">
+            <h2 class="txt-kayla txt-white text-center">Story</h2>
+          </div>
+          <div class="row justify-content-center mt-48">
+            <div class="timeline">
+              <div v-for="(data,index) in story" v-bind:class="['container-story', (index+1) % 2 == 0 ? 'right' : 'left']">
+                <div class="content">
+                  <h2>{{data.tahun}}</h2>
+                  <p>{{data.story}}</p>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-    </section>
+      </section>
+      <% } %>
     <div class="bg-group">
         <% if (switch_youtube == 'true') { %>
         <section class="section-livestream">

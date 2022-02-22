@@ -142,8 +142,7 @@
                 <div class="col-12 text-center">
                     <img class="img-decoration" src="/assets/template6/Asset/image/decoration-5.svg"/>
                     <h3 class="txt-kayla txt-white2 mt-24">Wedding Invitation</h3>
-                    <h1 class="txt-kayla txt-white2 mt-48 txt-64"><%= data.nama_calon1.substr(0,data.nama_calon1.indexOf(' '))
-                        %> & <%= data.nama_calon2.substr(0,data.nama_calon2.indexOf(' ')) %></h1>
+                    <h1 class="txt-kayla txt-white2 mt-48 txt-64"><%= title %></h1>
                     <h3 class="txt-kayla txt-white2 mt-48"><%= new Date(data.tanggal).toLocaleDateString('en-EN', {
                         weekday:"long",
                         year:"numeric", month:"long", day:"numeric"}); %></h3>
@@ -482,6 +481,7 @@
             </div> -->
         </div>
     </section>
+    <% if (switch_story == 'true') { %>
     <section class="section-story" id="cerita">
         <img class="decoration-header-1" src="/assets/template6/Asset/image/decoration-9.svg" alt="">
         <img class="decoration-header-2" src="/assets/template6/Asset/image/decoration-10.svg" alt="">
@@ -502,6 +502,7 @@
             </div>
         </div>
     </section>
+    <% } %>
     <div class="bg-group">
         <% if (switch_youtube == 'true') { %>
         <section class="section-livestream">
