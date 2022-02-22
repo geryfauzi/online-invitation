@@ -16,7 +16,10 @@ function formatDate(date) {
 
 router.get("/", (req, res) => {
   const title = "Undangan Pernikahan";
-  return res.render("template1", { title });
+  return res.json({
+    data : 'Hello World!',
+    title
+  });
 });
 
 router.get("/pernikahan/:id", (req, res) => {
@@ -37,19 +40,19 @@ router.get("/pernikahan/:id", (req, res) => {
               tanggal,
               date: result[0].tanggal,
               gallery: result1,
-              youtube: result[0].url_livestreaming.replace("watch?v=", "embed/"),
-              angpau_qr: result[0].angpau_qr,
-              angpau_rek_bank: result[0].angpau_rek_bank,
-              angpau_rek_nomor: result[0].angpau_rek_nomor,
-              angpau_rek_nama: result[0].angpau_rek_nama,
+              youtube: (result[0].url_livestreaming != null ? result[0].url_livestreaming.replace("watch?v=", "embed/") : null),
+              angpau_qr: (result[0].angpau_qr != null ? result[0].angpau_qr : null),
+              angpau_rek_bank: (result[0].angpau_rek_bank != null ? result[0].angpau_rek_bank : null),
+              angpau_rek_nomor: (result[0].angpau_rek_nomor != null ? result[0].angpau_rek_nomor : null),
+              angpau_rek_nama: (result[0].angpau_rek_nama != null ? result[0].angpau_rek_nama : null),
               switch_angpau: result[0].switch_angpau,
               switch_bank: result[0].switch_bank,
               switch_kado: result[0].switch_kado,
               switch_youtube: result[0].switch_streaming,
-              alamat_kado: result[0].alamat_kado,
+              alamat_kado: (result[0].alamat_kado != null ? result[0].alamat_kado : null),
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
-              music: result[0].musik
+              music: (result[0].musik != null ? result[0].musik : null)
             });
           } else if (result[0].template === "2") {
             return res.render("template1-EN", {
@@ -315,7 +318,7 @@ router.get("/pernikahan/:id", (req, res) => {
               image_cover_potrait: result[0].image_cover_potrait,
               music: result[0].musik
             });
-          } else if (result[0].template === "14") {
+          } else {
             return res.render("template7-EN", {
               id: id,
               data: result[0],
@@ -337,8 +340,6 @@ router.get("/pernikahan/:id", (req, res) => {
               image_cover_potrait: result[0].image_cover_potrait,
               music: result[0].musik
             });
-          } else {
-            return res.render("404");
           }
         });
       } else return res.render("404");
