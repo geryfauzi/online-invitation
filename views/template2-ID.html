@@ -38,7 +38,7 @@
               />
             </svg>
         </button>
-        <audio id="audiomusic" loop="loop" autoplay src="/assets/uploads/<%= data.musik %>"></audio>
+        <audio id="audiomusic" loop="loop" autoplay src="/assets/uploads/<%= music %>"></audio>
 
         <nav class="navbar navbar-desktop navbar-expand-lg py-24 fixed-top d-none d-md-none d-lg-block d-xl-block">
             <div class="collapse navbar-collapse justify-content-center">
@@ -372,7 +372,7 @@
                                         <h4 class="txt-playfair text-center py-24"><%= data.nama %></h4>
                                     </div>
                                     <div class="card-body">
-                                        <h6 class="vip-badge">VIP Pass</h6>
+                                        <h6 class="vip-badge" v-if="formRSVP.is_vip == 'Ya'">VIP Pass</h6>
                                         <h6 class="bold">Sesi Pernikahan</h6>
                                         <div class="row">
                                             <div class="col-6 event-session" v-for="data in guestSession">
@@ -478,6 +478,7 @@
         </div>
     </section>
     <div class="bg-group">
+        <% if (switch_youtube == 'true') { %>
         <section class="section-livestream">
             <div class="container">
                 <div class="row justify-content-center">
@@ -500,21 +501,26 @@
                 </div>
             </div>
         </section>
+        <% } %>
         <div class="container text-center">
             <img class="py-48 text-center img-divider" src="/assets/template2/Asset/image/decoration-4.svg"/>
         </div>
+        <% if (switch_angpau == 'true' || switch_bank == 'true' || switch_kado == 'true') { %>
         <section class="section-amplop" id="amplop">
             <div class="container">
                 <div class="row justify-content-center">
                     <h2 class="txt-kayla text-center">Amplop Digital</h2>
                 </div>
                 <div class="row justify-content-center mt-32">
+                    <% if (switch_angpau == 'true') { %>
                     <div class="col-lg-4 col-12 text-center mt-16">
                         <div class="card p-4 text-center">
                             <h5>Kirim via QRIS</h5>
                             <img class="qris mt-16 mx-auto" src="/assets/uploads/<%= angpau_qr %>"/>
                         </div>
                     </div>
+                    <% } %>
+                    <% if (switch_bank == 'true') { %>
                     <div class="col-lg-4 col-12 text-center mt-16">
                         <div class="card p-4">
                             <h5>Kirim via Bank</h5>
@@ -527,6 +533,8 @@
                             </button>
                         </div>
                     </div>
+                    <% } %>
+                    <% if (switch_kado == 'true') { %>
                     <div class="col-lg-4 col-12 text-center mt-16">
                         <div class="card p-4">
                             <h5>Kirim Kado</h5>
@@ -536,9 +544,11 @@
                                 Selatan, Bekasi</p>
                         </div>
                     </div>
+                    <% } %>
                 </div>
             </div>
         </section>
+        <% } %>
     </div>
     <section class="section-ucapan" id="ucapan">
         <div class="container">
@@ -721,13 +731,21 @@
 
         var width = $(window).width();
         if (width < 767){
+            <% if(locals.image_cover_potrait) { %>
+            $('.section-header').css("background", "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/assets/uploads/<%= image_cover_potrait %>)");
+            <% } else { %>
             $('.section-header').css("background", "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/assets/uploads/potrait.png)");
+            <% } %>
             $('.section-header').css("background-size", "cover");
             $('.section-header').css("background-position", "center");
             $('.section-header').css("background-repeat", "no-repeat");
             $('.section-header').css("background-repeat", "no-repeat");
         } else{
-            $('.section-header').css("background", "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/assets/uploads/1645372547771.png)");
+           <% if(locals.image_cover) { %>
+                $('.section-header').css("background", "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/assets/uploads/<%= image_cover %>)");
+           <% } else { %>
+                $('.section-header').css("background", "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/assets/uploads/1645372547771.png)");
+            <% } %>
             $('.section-header').css("background-size", "cover");
             $('.section-header').css("background-position", "center");
             $('.section-header').css("background-repeat", "no-repeat");

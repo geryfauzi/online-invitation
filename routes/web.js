@@ -64,6 +64,14 @@ router.get("/pernikahan/:id", (req, res) => {
               angpau_rek_bank: result[0].angpau_rek_bank,
               angpau_rek_nomor: result[0].angpau_rek_nomor,
               angpau_rek_nama: result[0].angpau_rek_nama,
+              switch_angpau: result[0].switch_angpau,
+              switch_bank: result[0].switch_bank,
+              switch_kado: result[0].switch_kado,
+              switch_youtube: result[0].switch_streaming,
+              alamat_kado: result[0].alamat_kado,
+              image_cover: result[0].image_cover,
+              image_cover_potrait: result[0].image_cover_potrait,
+              music: result[0].musik
             });
           } else if (result[0].template === "3") {
             return res.render("template2-ID", {
@@ -78,6 +86,14 @@ router.get("/pernikahan/:id", (req, res) => {
               angpau_rek_bank: result[0].angpau_rek_bank,
               angpau_rek_nomor: result[0].angpau_rek_nomor,
               angpau_rek_nama: result[0].angpau_rek_nama,
+              switch_angpau: result[0].switch_angpau,
+              switch_bank: result[0].switch_bank,
+              switch_kado: result[0].switch_kado,
+              switch_youtube: result[0].switch_streaming,
+              alamat_kado: result[0].alamat_kado,
+              image_cover: result[0].image_cover,
+              image_cover_potrait: result[0].image_cover_potrait,
+              music: result[0].musik
             });
           } else if (result[0].template === "4") {
             return res.render("template2-EN", {
@@ -92,6 +108,14 @@ router.get("/pernikahan/:id", (req, res) => {
               angpau_rek_bank: result[0].angpau_rek_bank,
               angpau_rek_nomor: result[0].angpau_rek_nomor,
               angpau_rek_nama: result[0].angpau_rek_nama,
+              switch_angpau: result[0].switch_angpau,
+              switch_bank: result[0].switch_bank,
+              switch_kado: result[0].switch_kado,
+              switch_youtube: result[0].switch_streaming,
+              alamat_kado: result[0].alamat_kado,
+              image_cover: result[0].image_cover,
+              image_cover_potrait: result[0].image_cover_potrait,
+              music: result[0].musik
             });
           } else if (result[0].template === "5") {
             return res.render("template3-ID", {
@@ -128,6 +152,14 @@ router.get("/pernikahan/:id", (req, res) => {
               angpau_rek_bank: result[0].angpau_rek_bank,
               angpau_rek_nomor: result[0].angpau_rek_nomor,
               angpau_rek_nama: result[0].angpau_rek_nama,
+              switch_angpau: result[0].switch_angpau,
+              switch_bank: result[0].switch_bank,
+              switch_kado: result[0].switch_kado,
+              switch_youtube: result[0].switch_streaming,
+              alamat_kado: result[0].alamat_kado,
+              image_cover: result[0].image_cover,
+              image_cover_potrait: result[0].image_cover_potrait,
+              music: result[0].musik
             });
           } else if (result[0].template === "7") {
             return res.render("template4-ID", {
@@ -142,6 +174,14 @@ router.get("/pernikahan/:id", (req, res) => {
               angpau_rek_bank: result[0].angpau_rek_bank,
               angpau_rek_nomor: result[0].angpau_rek_nomor,
               angpau_rek_nama: result[0].angpau_rek_nama,
+              switch_angpau: result[0].switch_angpau,
+              switch_bank: result[0].switch_bank,
+              switch_kado: result[0].switch_kado,
+              switch_youtube: result[0].switch_streaming,
+              alamat_kado: result[0].alamat_kado,
+              image_cover: result[0].image_cover,
+              image_cover_potrait: result[0].image_cover_potrait,
+              music: result[0].musik
             });
           } else if (result[0].template === "8") {
             return res.render("template4-EN", {
@@ -156,6 +196,14 @@ router.get("/pernikahan/:id", (req, res) => {
               angpau_rek_bank: result[0].angpau_rek_bank,
               angpau_rek_nomor: result[0].angpau_rek_nomor,
               angpau_rek_nama: result[0].angpau_rek_nama,
+              switch_angpau: result[0].switch_angpau,
+              switch_bank: result[0].switch_bank,
+              switch_kado: result[0].switch_kado,
+              switch_youtube: result[0].switch_streaming,
+              alamat_kado: result[0].alamat_kado,
+              image_cover: result[0].image_cover,
+              image_cover_potrait: result[0].image_cover_potrait,
+              music: result[0].musik
             });
           } else if (result[0].template === "9") {
             return res.render("template5-ID", {
@@ -170,6 +218,14 @@ router.get("/pernikahan/:id", (req, res) => {
               angpau_rek_bank: result[0].angpau_rek_bank,
               angpau_rek_nomor: result[0].angpau_rek_nomor,
               angpau_rek_nama: result[0].angpau_rek_nama,
+              switch_angpau: result[0].switch_angpau,
+              switch_bank: result[0].switch_bank,
+              switch_kado: result[0].switch_kado,
+              switch_youtube: result[0].switch_streaming,
+              alamat_kado: result[0].alamat_kado,
+              image_cover: result[0].image_cover,
+              image_cover_potrait: result[0].image_cover_potrait,
+              music: result[0].musik
             });
           } else if (result[0].template === "10") {
             return res.render("template5-EN", {
@@ -184,6 +240,14 @@ router.get("/pernikahan/:id", (req, res) => {
               angpau_rek_bank: result[0].angpau_rek_bank,
               angpau_rek_nomor: result[0].angpau_rek_nomor,
               angpau_rek_nama: result[0].angpau_rek_nama,
+              switch_angpau: result[0].switch_angpau,
+              switch_bank: result[0].switch_bank,
+              switch_kado: result[0].switch_kado,
+              switch_youtube: result[0].switch_streaming,
+              alamat_kado: result[0].alamat_kado,
+              image_cover: result[0].image_cover,
+              image_cover_potrait: result[0].image_cover_potrait,
+              music: result[0].musik
             });
           } else if (result[0].template === "11") {
             return res.render("template6-ID", {
@@ -198,6 +262,14 @@ router.get("/pernikahan/:id", (req, res) => {
               angpau_rek_bank: result[0].angpau_rek_bank,
               angpau_rek_nomor: result[0].angpau_rek_nomor,
               angpau_rek_nama: result[0].angpau_rek_nama,
+              switch_angpau: result[0].switch_angpau,
+              switch_bank: result[0].switch_bank,
+              switch_kado: result[0].switch_kado,
+              switch_youtube: result[0].switch_streaming,
+              alamat_kado: result[0].alamat_kado,
+              image_cover: result[0].image_cover,
+              image_cover_potrait: result[0].image_cover_potrait,
+              music: result[0].musik
             });
           } else if (result[0].template === "12") {
             return res.render("template6-EN", {
@@ -212,6 +284,14 @@ router.get("/pernikahan/:id", (req, res) => {
               angpau_rek_bank: result[0].angpau_rek_bank,
               angpau_rek_nomor: result[0].angpau_rek_nomor,
               angpau_rek_nama: result[0].angpau_rek_nama,
+              switch_angpau: result[0].switch_angpau,
+              switch_bank: result[0].switch_bank,
+              switch_kado: result[0].switch_kado,
+              switch_youtube: result[0].switch_streaming,
+              alamat_kado: result[0].alamat_kado,
+              image_cover: result[0].image_cover,
+              image_cover_potrait: result[0].image_cover_potrait,
+              music: result[0].musik
             });
           } else if (result[0].template === "13") {
             return res.render("template7-ID", {
@@ -226,6 +306,14 @@ router.get("/pernikahan/:id", (req, res) => {
               angpau_rek_bank: result[0].angpau_rek_bank,
               angpau_rek_nomor: result[0].angpau_rek_nomor,
               angpau_rek_nama: result[0].angpau_rek_nama,
+              switch_angpau: result[0].switch_angpau,
+              switch_bank: result[0].switch_bank,
+              switch_kado: result[0].switch_kado,
+              switch_youtube: result[0].switch_streaming,
+              alamat_kado: result[0].alamat_kado,
+              image_cover: result[0].image_cover,
+              image_cover_potrait: result[0].image_cover_potrait,
+              music: result[0].musik
             });
           } else {
             return res.render("template7-EN", {
@@ -240,6 +328,14 @@ router.get("/pernikahan/:id", (req, res) => {
               angpau_rek_bank: result[0].angpau_rek_bank,
               angpau_rek_nomor: result[0].angpau_rek_nomor,
               angpau_rek_nama: result[0].angpau_rek_nama,
+              switch_angpau: result[0].switch_angpau,
+              switch_bank: result[0].switch_bank,
+              switch_kado: result[0].switch_kado,
+              switch_youtube: result[0].switch_streaming,
+              alamat_kado: result[0].alamat_kado,
+              image_cover: result[0].image_cover,
+              image_cover_potrait: result[0].image_cover_potrait,
+              music: result[0].musik
             });
           }
         });
@@ -275,13 +371,20 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               angpau_rek_bank: result[0].angpau_rek_bank,
               angpau_rek_nomor: result[0].angpau_rek_nomor,
               angpau_rek_nama: result[0].angpau_rek_nama,
+              switch_angpau: result[0].switch_angpau,
+              switch_bank: result[0].switch_bank,
+              switch_kado: result[0].switch_kado,
+              switch_youtube: result[0].switch_streaming,
               alamat_kado: result[0].alamat_kado,
+              image_cover: result[0].image_cover,
+              image_cover_potrait: result[0].image_cover_potrait,
+              music: result[0].musik
             });
           } else if (result[0].template === "2") {
             return res.render("template1-EN", {
               id: id,
               data: result[0],
-              title: "Undangan " + result[0].nama,
+              title: "Invitation " + result[0].nama,
               tanggal,
               date: result[0].tanggal,
               gallery: result1,
@@ -291,6 +394,14 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               angpau_rek_bank: result[0].angpau_rek_bank,
               angpau_rek_nomor: result[0].angpau_rek_nomor,
               angpau_rek_nama: result[0].angpau_rek_nama,
+              switch_angpau: result[0].switch_angpau,
+              switch_bank: result[0].switch_bank,
+              switch_kado: result[0].switch_kado,
+              switch_youtube: result[0].switch_streaming,
+              alamat_kado: result[0].alamat_kado,
+              image_cover: result[0].image_cover,
+              image_cover_potrait: result[0].image_cover_potrait,
+              music: result[0].musik
             });
           } else if (result[0].template === "3") {
             return res.render("template2-ID", {
@@ -306,12 +417,20 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               angpau_rek_bank: result[0].angpau_rek_bank,
               angpau_rek_nomor: result[0].angpau_rek_nomor,
               angpau_rek_nama: result[0].angpau_rek_nama,
+              switch_angpau: result[0].switch_angpau,
+              switch_bank: result[0].switch_bank,
+              switch_kado: result[0].switch_kado,
+              switch_youtube: result[0].switch_streaming,
+              alamat_kado: result[0].alamat_kado,
+              image_cover: result[0].image_cover,
+              image_cover_potrait: result[0].image_cover_potrait,
+              music: result[0].musik
             });
           } else if (result[0].template === "4") {
             return res.render("template2-EN", {
               id: id,
               data: result[0],
-              title: "Undangan " + result[0].nama,
+              title: "Invitation " + result[0].nama,
               tanggal,
               date: result[0].tanggal,
               gallery: result1,
@@ -321,6 +440,14 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               angpau_rek_bank: result[0].angpau_rek_bank,
               angpau_rek_nomor: result[0].angpau_rek_nomor,
               angpau_rek_nama: result[0].angpau_rek_nama,
+              switch_angpau: result[0].switch_angpau,
+              switch_bank: result[0].switch_bank,
+              switch_kado: result[0].switch_kado,
+              switch_youtube: result[0].switch_streaming,
+              alamat_kado: result[0].alamat_kado,
+              image_cover: result[0].image_cover,
+              image_cover_potrait: result[0].image_cover_potrait,
+              music: result[0].musik
             });
           } else if (result[0].template === "5") {
             return res.render("template3-ID", {
@@ -336,12 +463,20 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               angpau_rek_bank: result[0].angpau_rek_bank,
               angpau_rek_nomor: result[0].angpau_rek_nomor,
               angpau_rek_nama: result[0].angpau_rek_nama,
+              switch_angpau: result[0].switch_angpau,
+              switch_bank: result[0].switch_bank,
+              switch_kado: result[0].switch_kado,
+              switch_youtube: result[0].switch_streaming,
+              alamat_kado: result[0].alamat_kado,
+              image_cover: result[0].image_cover,
+              image_cover_potrait: result[0].image_cover_potrait,
+              music: result[0].musik
             });
           } else if (result[0].template === "6") {
             return res.render("template3-EN", {
               id: id,
               data: result[0],
-              title: "Undangan " + result[0].nama,
+              title: "Invitation " + result[0].nama,
               tanggal,
               date: result[0].tanggal,
               gallery: result1,
@@ -351,6 +486,14 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               angpau_rek_bank: result[0].angpau_rek_bank,
               angpau_rek_nomor: result[0].angpau_rek_nomor,
               angpau_rek_nama: result[0].angpau_rek_nama,
+              switch_angpau: result[0].switch_angpau,
+              switch_bank: result[0].switch_bank,
+              switch_kado: result[0].switch_kado,
+              switch_youtube: result[0].switch_streaming,
+              alamat_kado: result[0].alamat_kado,
+              image_cover: result[0].image_cover,
+              image_cover_potrait: result[0].image_cover_potrait,
+              music: result[0].musik
             });
           } else if (result[0].template === "7") {
             return res.render("template4-ID", {
@@ -366,12 +509,20 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               angpau_rek_bank: result[0].angpau_rek_bank,
               angpau_rek_nomor: result[0].angpau_rek_nomor,
               angpau_rek_nama: result[0].angpau_rek_nama,
+              switch_angpau: result[0].switch_angpau,
+              switch_bank: result[0].switch_bank,
+              switch_kado: result[0].switch_kado,
+              switch_youtube: result[0].switch_streaming,
+              alamat_kado: result[0].alamat_kado,
+              image_cover: result[0].image_cover,
+              image_cover_potrait: result[0].image_cover_potrait,
+              music: result[0].musik
             });
           } else if (result[0].template === "8") {
             return res.render("template4-EN", {
               id: id,
               data: result[0],
-              title: "Undangan " + result[0].nama,
+              title: "Invitation " + result[0].nama,
               tanggal,
               date: result[0].tanggal,
               gallery: result1,
@@ -381,6 +532,14 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               angpau_rek_bank: result[0].angpau_rek_bank,
               angpau_rek_nomor: result[0].angpau_rek_nomor,
               angpau_rek_nama: result[0].angpau_rek_nama,
+              switch_angpau: result[0].switch_angpau,
+              switch_bank: result[0].switch_bank,
+              switch_kado: result[0].switch_kado,
+              switch_youtube: result[0].switch_streaming,
+              alamat_kado: result[0].alamat_kado,
+              image_cover: result[0].image_cover,
+              image_cover_potrait: result[0].image_cover_potrait,
+              music: result[0].musik
             });
           } else if (result[0].template === "9") {
             return res.render("template5-ID", {
@@ -396,12 +555,20 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               angpau_rek_bank: result[0].angpau_rek_bank,
               angpau_rek_nomor: result[0].angpau_rek_nomor,
               angpau_rek_nama: result[0].angpau_rek_nama,
+              switch_angpau: result[0].switch_angpau,
+              switch_bank: result[0].switch_bank,
+              switch_kado: result[0].switch_kado,
+              switch_youtube: result[0].switch_streaming,
+              alamat_kado: result[0].alamat_kado,
+              image_cover: result[0].image_cover,
+              image_cover_potrait: result[0].image_cover_potrait,
+              music: result[0].musik
             });
           } else if (result[0].template === "10") {
             return res.render("template5-EN", {
               id: id,
               data: result[0],
-              title: "Undangan " + result[0].nama,
+              title: "Invitation " + result[0].nama,
               tanggal,
               date: result[0].tanggal,
               gallery: result1,
@@ -411,6 +578,14 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               angpau_rek_bank: result[0].angpau_rek_bank,
               angpau_rek_nomor: result[0].angpau_rek_nomor,
               angpau_rek_nama: result[0].angpau_rek_nama,
+              switch_angpau: result[0].switch_angpau,
+              switch_bank: result[0].switch_bank,
+              switch_kado: result[0].switch_kado,
+              switch_youtube: result[0].switch_streaming,
+              alamat_kado: result[0].alamat_kado,
+              image_cover: result[0].image_cover,
+              image_cover_potrait: result[0].image_cover_potrait,
+              music: result[0].musik
             });
           } else if (result[0].template === "11") {
             return res.render("template6-ID", {
@@ -426,12 +601,20 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               angpau_rek_bank: result[0].angpau_rek_bank,
               angpau_rek_nomor: result[0].angpau_rek_nomor,
               angpau_rek_nama: result[0].angpau_rek_nama,
+              switch_angpau: result[0].switch_angpau,
+              switch_bank: result[0].switch_bank,
+              switch_kado: result[0].switch_kado,
+              switch_youtube: result[0].switch_streaming,
+              alamat_kado: result[0].alamat_kado,
+              image_cover: result[0].image_cover,
+              image_cover_potrait: result[0].image_cover_potrait,
+              music: result[0].musik
             });
           } else if (result[0].template === "12") {
             return res.render("template6-EN", {
               id: id,
               data: result[0],
-              title: "Undangan " + result[0].nama,
+              title: "Invitation " + result[0].nama,
               tanggal,
               date: result[0].tanggal,
               gallery: result1,
@@ -441,6 +624,14 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               angpau_rek_bank: result[0].angpau_rek_bank,
               angpau_rek_nomor: result[0].angpau_rek_nomor,
               angpau_rek_nama: result[0].angpau_rek_nama,
+              switch_angpau: result[0].switch_angpau,
+              switch_bank: result[0].switch_bank,
+              switch_kado: result[0].switch_kado,
+              switch_youtube: result[0].switch_streaming,
+              alamat_kado: result[0].alamat_kado,
+              image_cover: result[0].image_cover,
+              image_cover_potrait: result[0].image_cover_potrait,
+              music: result[0].musik
             });
           } else if (result[0].template === "13") {
             return res.render("template7-ID", {
@@ -456,12 +647,20 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               angpau_rek_bank: result[0].angpau_rek_bank,
               angpau_rek_nomor: result[0].angpau_rek_nomor,
               angpau_rek_nama: result[0].angpau_rek_nama,
+              switch_angpau: result[0].switch_angpau,
+              switch_bank: result[0].switch_bank,
+              switch_kado: result[0].switch_kado,
+              switch_youtube: result[0].switch_streaming,
+              alamat_kado: result[0].alamat_kado,
+              image_cover: result[0].image_cover,
+              image_cover_potrait: result[0].image_cover_potrait,
+              music: result[0].musik
             });
           } else {
             return res.render("template7-EN", {
               id: id,
               data: result[0],
-              title: "Undangan " + result[0].nama,
+              title: "Invitation " + result[0].nama,
               tanggal,
               date: result[0].tanggal,
               gallery: result1,
@@ -471,6 +670,14 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               angpau_rek_bank: result[0].angpau_rek_bank,
               angpau_rek_nomor: result[0].angpau_rek_nomor,
               angpau_rek_nama: result[0].angpau_rek_nama,
+              switch_angpau: result[0].switch_angpau,
+              switch_bank: result[0].switch_bank,
+              switch_kado: result[0].switch_kado,
+              switch_youtube: result[0].switch_streaming,
+              alamat_kado: result[0].alamat_kado,
+              image_cover: result[0].image_cover,
+              image_cover_potrait: result[0].image_cover_potrait,
+              music: result[0].musik
             });
           }
         });

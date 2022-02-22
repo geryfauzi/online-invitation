@@ -38,7 +38,7 @@
               />
             </svg>
         </button>
-        <audio id="audiomusic" loop="loop" autoplay src="/assets/uploads/<%= data.musik %>"></audio>
+        <audio id="audiomusic" loop="loop" autoplay src="/assets/uploads/<%= music %>"></audio>
 
         <nav class="navbar navbar-desktop navbar-expand-lg py-24 fixed-top d-none d-md-none d-lg-block d-xl-block">
             <div class="collapse navbar-collapse justify-content-center">
@@ -205,11 +205,11 @@
                                 month: "long",
                                 day: "numeric"
                             })}}</p>
-                            <p>{{data.waktu_mulai.substr(0, 5)}} s/d {{data.waktu_selesai.substr(0, 5)}}</p>
+                            <p>{{data.waktu_mulai.substr(0, 5)}} - {{data.waktu_selesai.substr(0, 5)}}</p>
                             <% if (locals.kode) { %>
-                            <p class="bold mt-24">Alamat</p>
+                            <p class="bold mt-24">Location</p>
                             <p>{{data.alamat}}</p>
-                            <a v-bind:href="data.url_gmaps" class="btn btn-primary-lg mt-24">Lihat Google Maps</a>
+                            <a v-bind:href="data.url_gmaps" class="btn btn-primary-lg mt-24">Open Google Maps</a>
                             <% } %>
                         </div>
                     </div>
@@ -333,7 +333,7 @@
                                         month: "long",
                                         day: "numeric"
                                     })}}</p>
-                                    <p class="txt-14">{{data.waktu_mulai.substr(0, 5)}} s/d
+                                    <p class="txt-14">{{data.waktu_mulai.substr(0, 5)}} -
                                         {{data.waktu_mulai.substr(0, 5)}}</p>
                                 </div>
                             </div>
@@ -351,8 +351,8 @@
                             <p class="bold">{{formRSVP.rsvp}}</p>
                             <p>{{formRSVP.nama}}</p>
                             <p>{{formRSVP.telepon}}</p>
-                            <p>{{formRSVP.jumlah_dewasa}} Dewasa</p>
-                            <p>{{formRSVP.jumlah_anak}} Anak - Anak</p>
+                            <p>{{formRSVP.jumlah_dewasa}} Adult</p>
+                            <p>{{formRSVP.jumlah_anak}} Children</p>
                             <p>{{formRSVP.ucapan}}</p>
                         </div>
                         <!--                        <button v-on:click="setEditMode" v-if="editMode === true"-->
@@ -370,7 +370,7 @@
                                         <h4 class="txt-playfair text-center py-24"><%= data.nama %></h4>
                                     </div>
                                     <div class="card-body">
-                                        <h6 class="vip-badge">VIP Pass</h6>
+                                        <h6 class="vip-badge" v-if="formRSVP.is_vip == 'Ya'">VIP Pass</h6>
                                         <h6 class="bold">Session</h6>
                                         <div class="row">
                                             <div class="col-6 event-session" v-for="data in guestSession">
@@ -381,7 +381,7 @@
                                                     month: "long",
                                                     day: "numeric"
                                                 })}}</p>
-                                                <p class="txt-14">{{data.waktu_mulai.substr(0, 5)}} s/d
+                                                <p class="txt-14">{{data.waktu_mulai.substr(0, 5)}} -
                                                     {{data.waktu_mulai.substr(0, 5)}}</p>
                                             </div>
                                         </div>
@@ -475,6 +475,7 @@
         </div>
     </section>
     <div class="bg-group">
+        <% if (switch_youtube == 'true') { %>
         <section class="section-livestream">
             <div class="container">
                 <div class="row justify-content-center">
@@ -497,24 +498,29 @@
                 </div>
             </div>
         </section>
+        <% } %>
         <div class="container text-center">
             <img class="py-48 text-center img-divider" src="/assets/template2/Asset/image/decoration-4.svg"/>
         </div>
+        <% if (switch_angpau == 'true' || switch_bank == 'true' || switch_kado == 'true') { %>
         <section class="section-amplop" id="amplop">
             <div class="container">
                 <div class="row justify-content-center">
                     <h2 class="txt-kayla text-center">Gift</h2>
                 </div>
                 <div class="row justify-content-center mt-32">
+                    <% if (switch_angpau == 'true') { %>
                     <div class="col-lg-4 col-12 text-center mt-16">
                         <div class="card p-4 text-center">
-                            <h5>Kirim via QRIS</h5>
+                            <h5>Via QRIS</h5>
                             <img class="qris mt-16 mx-auto" src="/assets/uploads/<%= angpau_qr %>"/>
                         </div>
                     </div>
+                    <% } %>
+                    <% if (switch_bank == 'true') { %>
                     <div class="col-lg-4 col-12 text-center mt-16">
                         <div class="card p-4">
-                            <h5>Kirim via Bank</h5>
+                            <h5>Via Bank</h5>
                             <p class="txt-normal bold mt-16"><%= angpau_rek_bank %></p>
                             <h6 class="txt-normal mt-8">No. Rekening</h6>
                             <p id="selectRekening" class="txt-normal bold"><%= angpau_rek_nomor %></p>
@@ -524,18 +530,22 @@
                             </button>
                         </div>
                     </div>
+                    <% } %>
+                    <% if (switch_kado == 'true') { %>
                     <div class="col-lg-4 col-12 text-center mt-16">
                         <div class="card p-4">
-                            <h5>Kirim Kado</h5>
+                            <h5>Send Gift</h5>
                             <p class="txt-normal bold mt-16">PO BOX NKM33 Jakarta Pusat 10000</p>
                             <p class="txt-normal mt-16">atau</p>
                             <p class="txt-normal bold mt-16">Jl. Bumi Lestari Blok A85 No.21 RT 01 RW 17, Tambun
                                 Selatan, Bekasi</p>
                         </div>
                     </div>
+                    <% } %>
                 </div>
             </div>
         </section>
+        <% } %>
     </div>
     <section class="section-ucapan" id="ucapan">
         <div class="container">
@@ -710,19 +720,26 @@
         document.getElementById("ic-Mute").style.display = "block";
         document.getElementById("btn-playback").classList.remove("zoom-animation");
       };
-
       $(document).ready(function () {
         $("#start-modal").modal("show");
 
         var width = $(window).width();
         if (width < 767){
+            <% if(locals.image_cover_potrait) { %>
+            $('.section-header').css("background", "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/assets/uploads/<%= image_cover_potrait %>)");
+            <% } else { %>
             $('.section-header').css("background", "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/assets/uploads/potrait.png)");
+            <% } %>
             $('.section-header').css("background-size", "cover");
             $('.section-header').css("background-position", "center");
             $('.section-header').css("background-repeat", "no-repeat");
             $('.section-header').css("background-repeat", "no-repeat");
         } else{
-            $('.section-header').css("background", "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/assets/uploads/1645372547771.png)");
+           <% if(locals.image_cover) { %>
+                $('.section-header').css("background", "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/assets/uploads/<%= image_cover %>)");
+           <% } else { %>
+                $('.section-header').css("background", "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/assets/uploads/1645372547771.png)");
+            <% } %>
             $('.section-header').css("background-size", "cover");
             $('.section-header').css("background-position", "center");
             $('.section-header').css("background-repeat", "no-repeat");
