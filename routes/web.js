@@ -53,7 +53,8 @@ router.get("/pernikahan/:id", (req, res) => {
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
               music: (result[0].musik != null ? result[0].musik : null),
-              switch_story: (result[0].switch_story != null ? result[0].switch_story : null)
+              switch_story: (result[0].switch_story != null ? result[0].switch_story : null),
+              switch_gallery: (result[0].switch_gallery != null ? result[0].switch_gallery : null)
             });
           } else if (result[0].template === "2") {
             return res.render("template1-EN", {
@@ -76,7 +77,8 @@ router.get("/pernikahan/:id", (req, res) => {
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
               music: (result[0].musik != null ? result[0].musik : null),
-              switch_story: (result[0].switch_story != null ? result[0].switch_story : null)
+              switch_story: (result[0].switch_story != null ? result[0].switch_story : null),
+              switch_gallery: (result[0].switch_gallery != null ? result[0].switch_gallery : null)
             });
           } else if (result[0].template === "3") {
             return res.render("template2-ID", {
@@ -99,7 +101,8 @@ router.get("/pernikahan/:id", (req, res) => {
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
               music: (result[0].musik != null ? result[0].musik : null),
-              switch_story: (result[0].switch_story != null ? result[0].switch_story : null)
+              switch_story: (result[0].switch_story != null ? result[0].switch_story : null),
+              switch_gallery: (result[0].switch_gallery != null ? result[0].switch_gallery : null)
             });
           } else if (result[0].template === "4") {
             return res.render("template2-EN", {
@@ -122,7 +125,8 @@ router.get("/pernikahan/:id", (req, res) => {
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
               music: (result[0].musik != null ? result[0].musik : null),
-              switch_story: (result[0].switch_story != null ? result[0].switch_story : null)
+              switch_story: (result[0].switch_story != null ? result[0].switch_story : null),
+              switch_gallery: (result[0].switch_gallery != null ? result[0].switch_gallery : null)
             });
           } else if (result[0].template === "5") {
             return res.render("template3-ID", {
@@ -145,7 +149,8 @@ router.get("/pernikahan/:id", (req, res) => {
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
               music: (result[0].musik != null ? result[0].musik : null),
-              switch_story: (result[0].switch_story != null ? result[0].switch_story : null)
+              switch_story: (result[0].switch_story != null ? result[0].switch_story : null),
+              switch_gallery: (result[0].switch_gallery != null ? result[0].switch_gallery : null)
             });
           } else if (result[0].template === "6") {
             return res.render("template3-EN", {
@@ -168,7 +173,8 @@ router.get("/pernikahan/:id", (req, res) => {
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
               music: (result[0].musik != null ? result[0].musik : null),
-              switch_story: (result[0].switch_story != null ? result[0].switch_story : null)
+              switch_story: (result[0].switch_story != null ? result[0].switch_story : null),
+              switch_gallery: (result[0].switch_gallery != null ? result[0].switch_gallery : null)
             });
           } else if (result[0].template === "7") {
             return res.render("template4-ID", {
@@ -191,7 +197,8 @@ router.get("/pernikahan/:id", (req, res) => {
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
               music: (result[0].musik != null ? result[0].musik : null),
-              switch_story: (result[0].switch_story != null ? result[0].switch_story : null)
+              switch_story: (result[0].switch_story != null ? result[0].switch_story : null),
+              switch_gallery: (result[0].switch_gallery != null ? result[0].switch_gallery : null)
             });
           } else if (result[0].template === "8") {
             return res.render("template4-EN", {
@@ -214,7 +221,8 @@ router.get("/pernikahan/:id", (req, res) => {
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
               music: (result[0].musik != null ? result[0].musik : null),
-              switch_story: (result[0].switch_story != null ? result[0].switch_story : null)
+              switch_story: (result[0].switch_story != null ? result[0].switch_story : null),
+              switch_gallery: (result[0].switch_gallery != null ? result[0].switch_gallery : null)
             });
           } else if (result[0].template === "9") {
             return res.render("template5-ID", {
@@ -237,7 +245,8 @@ router.get("/pernikahan/:id", (req, res) => {
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
               music: (result[0].musik != null ? result[0].musik : null),
-              switch_story: (result[0].switch_story != null ? result[0].switch_story : null)
+              switch_story: (result[0].switch_story != null ? result[0].switch_story : null),
+              switch_gallery: (result[0].switch_gallery != null ? result[0].switch_gallery : null)
             });
           } else if (result[0].template === "10") {
             return res.render("template5-EN", {
@@ -260,7 +269,8 @@ router.get("/pernikahan/:id", (req, res) => {
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
               music: (result[0].musik != null ? result[0].musik : null),
-              switch_story: (result[0].switch_story != null ? result[0].switch_story : null)
+              switch_story: (result[0].switch_story != null ? result[0].switch_story : null),
+              switch_gallery: (result[0].switch_gallery != null ? result[0].switch_gallery : null)
             });
           } else if (result[0].template === "11") {
             return res.render("template6-ID", {
@@ -283,7 +293,8 @@ router.get("/pernikahan/:id", (req, res) => {
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
               music: (result[0].musik != null ? result[0].musik : null),
-              switch_story: (result[0].switch_story != null ? result[0].switch_story : null)
+              switch_story: (result[0].switch_story != null ? result[0].switch_story : null),
+              switch_gallery: (result[0].switch_gallery != null ? result[0].switch_gallery : null)
             });
           } else if (result[0].template === "12") {
             return res.render("template6-EN", {
@@ -306,7 +317,8 @@ router.get("/pernikahan/:id", (req, res) => {
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
               music: (result[0].musik != null ? result[0].musik : null),
-              switch_story: (result[0].switch_story != null ? result[0].switch_story : null)
+              switch_story: (result[0].switch_story != null ? result[0].switch_story : null),
+              switch_gallery: (result[0].switch_gallery != null ? result[0].switch_gallery : null)
             });
           } else if (result[0].template === "13") {
             return res.render("template7-ID", {
@@ -329,7 +341,8 @@ router.get("/pernikahan/:id", (req, res) => {
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
               music: (result[0].musik != null ? result[0].musik : null),
-              switch_story: (result[0].switch_story != null ? result[0].switch_story : null)
+              switch_story: (result[0].switch_story != null ? result[0].switch_story : null),
+              switch_gallery: (result[0].switch_gallery != null ? result[0].switch_gallery : null)
             });
           } else {
             return res.render("template7-EN", {
@@ -352,7 +365,8 @@ router.get("/pernikahan/:id", (req, res) => {
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
               music: (result[0].musik != null ? result[0].musik : null),
-              switch_story: (result[0].switch_story != null ? result[0].switch_story : null)
+              switch_story: (result[0].switch_story != null ? result[0].switch_story : null),
+              switch_gallery: (result[0].switch_gallery != null ? result[0].switch_gallery : null)
             });
           }
         });
@@ -396,7 +410,8 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
               music: (result[0].musik != null ? result[0].musik : null),
-              switch_story: (result[0].switch_story != null ? result[0].switch_story : null)
+              switch_story: (result[0].switch_story != null ? result[0].switch_story : null),
+              switch_gallery: (result[0].switch_gallery != null ? result[0].switch_gallery : null)
             });
           } else if (result[0].template === "2") {
             return res.render("template1-EN", {
@@ -420,7 +435,8 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
               music: (result[0].musik != null ? result[0].musik : null),
-              switch_story: (result[0].switch_story != null ? result[0].switch_story : null)
+              switch_story: (result[0].switch_story != null ? result[0].switch_story : null),
+              switch_gallery: (result[0].switch_gallery != null ? result[0].switch_gallery : null)
             });
           } else if (result[0].template === "3") {
             return res.render("template2-ID", {
@@ -444,7 +460,8 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
               music: (result[0].musik != null ? result[0].musik : null),
-              switch_story: (result[0].switch_story != null ? result[0].switch_story : null)
+              switch_story: (result[0].switch_story != null ? result[0].switch_story : null),
+              switch_gallery: (result[0].switch_gallery != null ? result[0].switch_gallery : null)
             });
           } else if (result[0].template === "4") {
             return res.render("template2-EN", {
@@ -468,7 +485,8 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
               music: (result[0].musik != null ? result[0].musik : null),
-              switch_story: (result[0].switch_story != null ? result[0].switch_story : null)
+              switch_story: (result[0].switch_story != null ? result[0].switch_story : null),
+              switch_gallery: (result[0].switch_gallery != null ? result[0].switch_gallery : null)
             });
           } else if (result[0].template === "5") {
             return res.render("template3-ID", {
@@ -492,7 +510,8 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
               music: (result[0].musik != null ? result[0].musik : null),
-              switch_story: (result[0].switch_story != null ? result[0].switch_story : null)
+              switch_story: (result[0].switch_story != null ? result[0].switch_story : null),
+              switch_gallery: (result[0].switch_gallery != null ? result[0].switch_gallery : null)
             });
           } else if (result[0].template === "6") {
             return res.render("template3-EN", {
@@ -516,7 +535,8 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
               music: (result[0].musik != null ? result[0].musik : null),
-              switch_story: (result[0].switch_story != null ? result[0].switch_story : null)
+              switch_story: (result[0].switch_story != null ? result[0].switch_story : null),
+              switch_gallery: (result[0].switch_gallery != null ? result[0].switch_gallery : null)
             });
           } else if (result[0].template === "7") {
             return res.render("template4-ID", {
@@ -540,7 +560,8 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
               music: (result[0].musik != null ? result[0].musik : null),
-              switch_story: (result[0].switch_story != null ? result[0].switch_story : null)
+              switch_story: (result[0].switch_story != null ? result[0].switch_story : null),
+              switch_gallery: (result[0].switch_gallery != null ? result[0].switch_gallery : null)
             });
           } else if (result[0].template === "8") {
             return res.render("template4-EN", {
@@ -564,7 +585,8 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
               music: (result[0].musik != null ? result[0].musik : null),
-              switch_story: (result[0].switch_story != null ? result[0].switch_story : null)
+              switch_story: (result[0].switch_story != null ? result[0].switch_story : null),
+              switch_gallery: (result[0].switch_gallery != null ? result[0].switch_gallery : null)
             });
           } else if (result[0].template === "9") {
             return res.render("template5-ID", {
@@ -588,7 +610,8 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
               music: (result[0].musik != null ? result[0].musik : null),
-              switch_story: (result[0].switch_story != null ? result[0].switch_story : null)
+              switch_story: (result[0].switch_story != null ? result[0].switch_story : null),
+              switch_gallery: (result[0].switch_gallery != null ? result[0].switch_gallery : null)
             });
           } else if (result[0].template === "10") {
             return res.render("template5-EN", {
@@ -612,7 +635,8 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
               music: (result[0].musik != null ? result[0].musik : null),
-              switch_story: (result[0].switch_story != null ? result[0].switch_story : null)
+              switch_story: (result[0].switch_story != null ? result[0].switch_story : null),
+              switch_gallery: (result[0].switch_gallery != null ? result[0].switch_gallery : null)
             });
           } else if (result[0].template === "11") {
             return res.render("template6-ID", {
@@ -636,7 +660,8 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
               music: (result[0].musik != null ? result[0].musik : null),
-              switch_story: (result[0].switch_story != null ? result[0].switch_story : null)
+              switch_story: (result[0].switch_story != null ? result[0].switch_story : null),
+              switch_gallery: (result[0].switch_gallery != null ? result[0].switch_gallery : null)
             });
           } else if (result[0].template === "12") {
             return res.render("template6-EN", {
@@ -660,7 +685,8 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
               music: (result[0].musik != null ? result[0].musik : null),
-              switch_story: (result[0].switch_story != null ? result[0].switch_story : null)
+              switch_story: (result[0].switch_story != null ? result[0].switch_story : null),
+              switch_gallery: (result[0].switch_gallery != null ? result[0].switch_gallery : null)
             });
           } else if (result[0].template === "13") {
             return res.render("template7-ID", {
@@ -684,7 +710,8 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
               music: (result[0].musik != null ? result[0].musik : null),
-              switch_story: (result[0].switch_story != null ? result[0].switch_story : null)
+              switch_story: (result[0].switch_story != null ? result[0].switch_story : null),
+              switch_gallery: (result[0].switch_gallery != null ? result[0].switch_gallery : null)
             });
           } else {
             return res.render("template7-EN", {
@@ -708,7 +735,8 @@ router.get("/pernikahan/:id/RSVP", (req, res) => {
               image_cover: result[0].image_cover,
               image_cover_potrait: result[0].image_cover_potrait,
               music: (result[0].musik != null ? result[0].musik : null),
-              switch_story: (result[0].switch_story != null ? result[0].switch_story : null)
+              switch_story: (result[0].switch_story != null ? result[0].switch_story : null),
+              switch_gallery: (result[0].switch_gallery != null ? result[0].switch_gallery : null)
             });
           }
         });

@@ -51,12 +51,16 @@
                         <a class="nav-link" href="#rsvp">RSVP</a>
                     </li>
                     <% } %>
+                    <% if (switch_gallery == 'true') { %>
                     <li class="nav-item">
                         <a class="nav-link" href="#galeri">Gallery</a>
                     </li>
+                    <% } %>
+                    <% if (switch_story == 'true') { %>
                     <li class="nav-item">
                         <a class="nav-link" href="#cerita">Story</a>
                     </li>
+                    <% } %>
                     <li class="nav-item">
                         <a class="nav-link" href="#ucapan">Greetings</a>
                     </li>
@@ -95,6 +99,7 @@
                 </a>
             </li>
             <% } %>
+            <% if (switch_gallery == 'true') { %>
             <li class="nav-item">
                 <a href="#galeri" class="nav-link text-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -107,6 +112,8 @@
                     <span class="small bold d-block mt-8">Gallery</span>
                 </a>
             </li>
+            <% } %>
+            <% if (switch_story == 'true') { %>
             <li class="nav-item">
                 <a href="#cerita" class="nav-link text-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -119,7 +126,7 @@
                     <span class="small bold d-block mt-8">Story</span>
                 </a>
             </li>
-
+            <% } %>
             <li class="nav-item">
                 <a href="#ucapan" class="nav-link text-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -430,6 +437,7 @@
         <img class="py-48 text-center img-divider" src="/assets/template5/Asset/image/decoration-4.svg"/>
     </div>
     <% } %>
+    <% if (switch_gallery == 'true') { %>
     <section class="section-gallery" id="galeri">
         <div class="container">
             <div class="row justify-content-center">
@@ -449,37 +457,9 @@
                 <% } %>
                 <% } %>
             </div>
-            <!-- <div class="row spotlight-group mt-48">
-              <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-                <a class="spotlight" href="/assets/template5/Asset/image/galeri1.png" data-title="lorem tes" data-description="lorem test"
-                  ><img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template5/Asset/image/galeri1.png" class="w-100 img-gallery shadow-1-strong rounded mb-4"
-                /></a>
-                <a class="spotlight" href="/assets/template5/Asset/image/galeri2.png" data-title="lorem tes" data-description="lorem test">
-                  <img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template5/Asset/image/galeri2.png" class="w-100 img-gallery shadow-1-strong rounded mb-4" />
-                </a>
-              </div>
-              <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-                <a class="spotlight" href="/assets/template5/Asset/image/galeri1.png" data-title="lorem tes" data-description="lorem test">
-                  <img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template5/Asset/image/galeri1.png" class="w-100 img-gallery shadow-1-strong rounded mb-4" />
-                </a>
-                <a class="spotlight" href="/assets/template5/Asset/image/galeri4.png" data-title="lorem tes" data-description="lorem test"
-                  ><img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template5/Asset/image/galeri4.png" class="w-100 img-gallery shadow-1-strong rounded mb-4"
-                /></a>
-                <a class="spotlight" href="/assets/template5/Asset/image/galeri1.png" data-title="lorem tes" data-description="lorem test">
-                  <img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template5/Asset/image/galeri1.png" class="w-100 img-gallery shadow-1-strong rounded mb-4" />
-                </a>
-              </div>
-              <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-                <a class="spotlight" href="/assets/template5/Asset/image/galeri2.png" data-title="lorem tes" data-description="lorem test">
-                  <img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template5/Asset/image/galeri2.png" class="w-100 img-gallery shadow-1-strong rounded mb-4" />
-                </a>
-                <a class="spotlight" href="/assets/template5/Asset/image/galeri1.png" data-title="lorem tes" data-description="lorem test"
-                  ><img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template5/Asset/image/galeri1.png" class="w-100 img-gallery shadow-1-strong rounded mb-4"
-                /></a>
-              </div>
-            </div> -->
         </div>
     </section>
+    <% } %>
     <% if (switch_story == 'true') { %>
         <section class="section-story" id="cerita">
           <div class="container">
