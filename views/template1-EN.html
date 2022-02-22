@@ -170,7 +170,7 @@
         <div class="container text-center">
           <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8 col-12 text-center">
-              <h2 class="txt-kayla mt-32">Event schedule</h2>
+              <h2 class="txt-kayla mt-32">Event Schedule</h2>
               <p class="mt-16">The Wedding will be held on:</p>
             </div>
           </div>
@@ -324,7 +324,7 @@
                         <div class="row">
                           <div class="col-6 event-session" v-for="data in guestSession">
                             <h6 class="card-title bold">{{data.nama_sesi}}</h6>
-                            <p class="txt-14">{{new Date(data.tanggal).toLocaleDateString('id-ID', { weekday: "long", year: "numeric", month: "long", day: "numeric" })}}</p>
+                            <p class="txt-14">{{new Date(data.tanggal).toLocaleDateString('en-EN', { weekday: "long", year: "numeric", month: "long", day: "numeric" })}}</p>
                             <p class="txt-14">{{data.waktu_mulai.substr(0, 5)}} s/d {{data.waktu_mulai.substr(0, 5)}}</p>
                           </div>
                         </div>

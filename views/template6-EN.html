@@ -186,9 +186,8 @@
         <div class="container text-center">
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-8 col-12 text-center">
-                    <h2 class="txt-kayla txt-white2 mt-32">Event schedule</h2>
-                    <p class="mt-16 txt-white2">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila, Bapak / Ibu / Saudara
-                        / i. berkenan hadir untuk memberikan do'a restunya kami ucapkan terimakasih.</p>
+                    <h2 class="txt-kayla txt-white2 mt-32">Event Schedule</h2>
+                    <p class="mt-16 txt-white2">The Wedding will be held on:</p>
                 </div>
             </div>
             <div class="row justify-content-center mt-48">
@@ -197,7 +196,7 @@
                     <div class="card py-24">
                         <div class="card-body">
                             <h4 class="txt-kayla txt-brown">{{data.nama_sesi}}</h4>
-                            <p class="mt-24">{{new Date(data.tanggal).toLocaleDateString('id-ID', {
+                            <p class="mt-24">{{new Date(data.tanggal).toLocaleDateString('en-EN', {
                                 weekday: "long",
                                 year: "numeric",
                                 month: "long",
@@ -345,7 +344,7 @@
                                 <div class="col-6 event-session" v-for="data in guestSession">
                                     <h6 class="card-title bold">{{data.nama_sesi}}</h6>
                                     <p class="txt-14">
-                                        {{new Date(data.tanggal).toLocaleDateString('id-ID', {
+                                        {{new Date(data.tanggal).toLocaleDateString('en-EN', {
                                         weekday: "long",
                                         year: "numeric",
                                         month: "long",
@@ -393,7 +392,7 @@
                                         <div class="row">
                                             <div class="col-6 event-session" v-for="data in guestSession">
                                                 <h6 class="card-title bold">{{data.nama_sesi}}</h6>
-                                                <p class="txt-14">{{new Date(data.tanggal).toLocaleDateString('id-ID', {
+                                                <p class="txt-14">{{new Date(data.tanggal).toLocaleDateString('en-EN', {
                                                     weekday: "long",
                                                     year: "numeric",
                                                     month: "long",
