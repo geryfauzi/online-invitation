@@ -9,16 +9,16 @@
     <title><%= title %></title>
 
     <!-- Bootstrap -->
-    <link href="/assets/template6/Library/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/assets/template3/Library/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 
     <!-- Spotlight -->
-    <link rel="stylesheet" href="/assets/template6/Library/spotlight/spotlight.min.css"/>
+    <link rel="stylesheet" href="/assets/template3/Library/spotlight/spotlight.min.css"/>
 
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
 
     <!-- CSS -->
-    <link href="/assets/template6/CSS/main.css" rel="stylesheet"/>
+    <link href="/assets/template3/CSS/main.css" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
 </head>
 <body>
@@ -37,8 +37,8 @@
                 d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06zm7.137 2.096a.5.5 0 0 1 0 .708L12.207 8l1.647 1.646a.5.5 0 0 1-.708.708L11.5 8.707l-1.646 1.647a.5.5 0 0 1-.708-.708L10.793 8 9.146 6.354a.5.5 0 1 1 .708-.708L11.5 7.293l1.646-1.647a.5.5 0 0 1 .708 0z"
               />
             </svg>
-          </button>
-          <audio id="audiomusic" loop="loop" autoplay src="/assets/uploads/Love-Over-And-Over-Again.mp3"></audio>
+        </button>
+        <audio id="audiomusic" loop="loop" autoplay src="/assets/uploads/Love-Over-And-Over-Again.mp3"></audio>
 
         <nav class="navbar navbar-desktop navbar-expand-lg py-24 fixed-top d-none d-md-none d-lg-block d-xl-block">
             <div class="collapse navbar-collapse justify-content-center">
@@ -135,24 +135,23 @@
         </ul>
     </nav>
     <section class="section-header d-flex align-items-center">
-        <img id="decoration-header-top" class="decoration-header-1" src="/assets/template6/Asset/image/decoration-6.svg" alt="">
-        <img id="decoration-header-bottom" class="decoration-header-2" src="/assets/template6/Asset/image/decoration-7.svg" alt="">
         <div class="container my-auto" data-aos="fade-down" data-aos-duration="1000">
             <div class="row">
                 <div class="col-12 text-center">
-                    <img class="img-decoration" src="/assets/template6/Asset/image/decoration-5.svg"/>
-                    <h3 class="txt-kayla txt-white2 mt-24">Undangan Pernikahan</h3>
-                    <h1 class="txt-kayla txt-white2 mt-48 txt-64"><%= data.nama_calon1.substr(0,data.nama_calon1.indexOf(' '))
+                    <img class="img-decoration" src="/assets/template3/Asset/image/decoration-1.svg"/>
+                    <h3 class="txt-playfair txt-gold mt-48">Undangan Pernikahan</h3>
+                    <h1 class="txt-kayla txt-gold mt-72 txt-56"><%= data.nama_calon1.substr(0,data.nama_calon1.indexOf(' '))
                         %> & <%= data.nama_calon2.substr(0,data.nama_calon2.indexOf(' ')) %></h1>
-                    <h3 class="txt-kayla txt-white2 mt-48"><%= new Date(data.tanggal).toLocaleDateString('id-ID', {
+                    <h3 class="txt-playfair txt-gold mt-48"><%= new Date(data.tanggal).toLocaleDateString('id-ID', {
                         weekday:"long",
                         year:"numeric", month:"long", day:"numeric"}); %></h3>
+                    <img class="img-decoration mt-48" src="/assets/template3/Asset/image/decoration-2.svg"/>
                 </div>
             </div>
         </div>
+        <div class="rounded"></div>
     </section>
-    <section class="section-about text-center">
-        <img class="decoration-header-2" src="/assets/template6/Asset/image/decoration-7.svg" alt="">
+    <section class="section-about mt-48 text-center">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-8 col-12" data-aos="fade-up" data-aos-duration="800">
@@ -163,17 +162,17 @@
             <div class="row mt-96">
                 <div class="col-lg-5 col-12 text-center" data-aos="fade-right" data-aos-duration="1500">
                     <img class="img-person rounded-circle" src="/assets/uploads/<%= data.image_calon1 %>" alt=""/>
-                    <h1 class="txt-kayla txt-brown txt-36 mt-32"><%= data.nama_calon1 %></h1>
+                    <h1 class="txt-kayla txt-gold txt-36 mt-32"><%= data.nama_calon1 %></h1>
                     <% if (locals.data.ortu_calon1) { %>
                     <p class="mt-16"><%= data.ortu_calon1 %></p>
                     <% } %>
                 </div>
                 <div class="col-lg-2 col-12 text-center my-auto" data-aos="fade-up" data-aos-duration="1500">
-                    <img class="img-love" src="/assets/template6/Asset/image/love.svg" alt=""/>
+                    <img class="img-love" src="/assets/template3/Asset/image/love.svg" alt=""/>
                 </div>
                 <div class="col-lg-5 col-12 text-center" data-aos="fade-left" data-aos-duration="1500">
                     <img class="img-person rounded-circle" src="/assets/uploads/<%= data.image_calon2 %>" alt=""/>
-                    <h1 class="txt-kayla txt-brown txt-36 mt-32"><%= data.nama_calon2 %></h1>
+                    <h1 class="txt-kayla txt-gold txt-36 mt-32"><%= data.nama_calon2 %></h1>
                     <% if (locals.data.ortu_calon2) { %>
                     <p class="mt-16"><%= data.ortu_calon2 %></p>
                     <% } %>
@@ -185,8 +184,8 @@
         <div class="container text-center">
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-8 col-12 text-center">
-                    <h2 class="txt-kayla txt-white2 mt-32">Jadwal Acara</h2>
-                    <p class="mt-16 txt-white2">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila, Bapak / Ibu / Saudara
+                    <h2 class="txt-kayla txt-white mt-32">Jadwal Acara</h2>
+                    <p class="mt-16">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila, Bapak / Ibu / Saudara
                         / i. berkenan hadir untuk memberikan do'a restunya kami ucapkan terimakasih.</p>
                 </div>
             </div>
@@ -195,7 +194,7 @@
                      data-aos-duration="800">
                     <div class="card py-24">
                         <div class="card-body">
-                            <h4 class="txt-kayla txt-brown">{{data.nama_sesi}}</h4>
+                            <h4 class="txt-kayla txt-gold">{{data.nama_sesi}}</h4>
                             <p class="mt-24">{{new Date(data.tanggal).toLocaleDateString('id-ID', {
                                 weekday: "long",
                                 year: "numeric",
@@ -215,14 +214,14 @@
                 <!--              <div-->
                 <!--                class="card py-24"-->
                 <!--                style="-->
-                <!--                  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(..//assets/template6/Asset/image/event-2.png);-->
+                <!--                  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(..//assets/template3/Asset/image/event-2.png);-->
                 <!--                  background-position: center;-->
                 <!--                  background-repeat: no-repeat;-->
                 <!--                  background-size: cover;-->
                 <!--                "-->
                 <!--              >-->
                 <!--                <div class="card-body">-->
-                <!--                  <h4 class="txt-kayla txt-brown">Resepsi Pernikahan</h4>-->
+                <!--                  <h4 class="txt-kayla txt-pink">Resepsi Pernikahan</h4>-->
                 <!--                  <p class="mt-24">Selasa, 22 Februari 2022</p>-->
                 <!--                  <p>09.00 s/d 13.00</p>-->
                 <!--                  <p class="bold mt-24">Alamat</p>-->
@@ -232,9 +231,9 @@
                 <!--              </div>-->
                 <!--            </div>-->
             </div>
-            <img class="mt-48 img-divider" src="/assets/template6/Asset/image/decoration-3.svg"/>
-            <h2 class="txt-kayla txt-white2 text-center mt-48">Acara akan diselenggarakan</h2>
-            <div class="row justify-content-center mt-48 txt-white">
+            <img class="mt-48 img-divider" src="/assets/template3/Asset/image/decoration-3.svg"/>
+            <h2 class="txt-kayla txt-pink text-center mt-48">Acara akan diselenggarakan</h2>
+            <div class="row justify-content-center mt-48">
                 <div class="col-2 text-center">
                     <h3 class="txt-kayla" id="hari">1</h3>
                     <p>Hari</p>
@@ -261,7 +260,7 @@
         <div class="container" data-aos="fade-up" data-aos-duration="800">
             <div class="row justify-content-center">
                 <div class="col-12 text-center">
-                    <h2 class="txt-kayla">Apakah anda akan hadir?</h2>
+                    <h2 class="txt-kayla txt-gold">Apakah anda akan hadir?</h2>
                     <p class="mt-16" v-if="editMode === false && codeLoaded === false">Masukkan kode undangan yang telah
                         diberikan untuk konfirmasi
                         kehadiran</p>
@@ -272,7 +271,7 @@
                     <p id="txt-info-rsvp" class="txt-white bg-red w-100 p-1 txt-14" v-if="error == true">{{message}}</p>
                     <input v-if="codeLoaded === false" type="text" width="360" class="form-control input-large mt-8"
                            placeholder="Masukkan kode undangan" v-model="formRSVP.kode"/>
-                    <button v-if="codeLoaded === false" v-on:click="checkCode()" class="btn btn-primary-lg btn-brown mt-16">
+                    <button v-if="codeLoaded === false" v-on:click="checkCode()" class="btn btn-primary-lg mt-16">
                         Konfirmasi
                     </button>
                 </div>
@@ -311,7 +310,7 @@
                                     </button>
                                 </div>
                                 <input class="form-control quantity txt-normal" min="1" max="5" name="quantity"
-                                       value="1" type="number" v-model="formRSVP.jumlah_dewasa"/>
+                                       value="1" type="number" v-model="formRSVP.jumlah_dewasa" required/>
                                 <div class="input-group-append">
                                     <button v-on:click="setJumlah(true)" class="btn btn-primary-lg btn-plus">+</button>
                                 </div>
@@ -327,7 +326,7 @@
                                     </button>
                                 </div>
                                 <input class="form-control quantity txt-normal" min="1" max="5" name="quantity"
-                                       value="1" type="number" v-model="formRSVP.jumlah_anak"/>
+                                       value="1" type="number" v-model="formRSVP.jumlah_anak" required/>
                                 <div class="input-group-append">
                                     <button v-on:click="setJumlahAnak(true)" class="btn btn-primary-lg btn-plus">+
                                     </button>
@@ -424,7 +423,7 @@
                                             <div id="kode-qr" class="qrcode">
                                             </div>
                                             <p class="mt-8">{{formRSVP.kode}}</p>
-                                            <p class="small mt-16">Powered by <span class="bold">Teras Teduh</span></p>
+                                            <p class="small mt-16">Powered by <span class="bold">Invedd</span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -434,11 +433,14 @@
                 </div>
             </div>
     </section>
+    <div class="container text-center">
+        <img class="py-48 text-center img-divider" src="/assets/template3/Asset/image/decoration-4.svg"/>
+    </div>
     <% } %>
     <section class="section-gallery" id="galeri">
         <div class="container">
             <div class="row justify-content-center">
-                <h2 class="txt-kayla txt-brown text-center">Galeri</h2>
+                <h2 class="txt-kayla txt-gold text-center">Galeri</h2>
             </div>
             <div class="row spotlight-group mt-48">
                 <% if (locals.gallery) { %>
@@ -456,41 +458,39 @@
             </div>
             <!-- <div class="row spotlight-group mt-48">
               <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-                <a class="spotlight" href="/assets/template6/Asset/image/galeri1.png" data-title="lorem tes" data-description="lorem test"
-                  ><img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template6/Asset/image/galeri1.png" class="w-100 img-gallery shadow-1-strong rounded mb-4"
+                <a class="spotlight" href="/assets/template3/Asset/image/galeri1.png" data-title="lorem tes" data-description="lorem test"
+                  ><img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template3/Asset/image/galeri1.png" class="w-100 img-gallery shadow-1-strong rounded mb-4"
                 /></a>
-                <a class="spotlight" href="/assets/template6/Asset/image/galeri2.png" data-title="lorem tes" data-description="lorem test">
-                  <img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template6/Asset/image/galeri2.png" class="w-100 img-gallery shadow-1-strong rounded mb-4" />
+                <a class="spotlight" href="/assets/template3/Asset/image/galeri2.png" data-title="lorem tes" data-description="lorem test">
+                  <img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template3/Asset/image/galeri2.png" class="w-100 img-gallery shadow-1-strong rounded mb-4" />
                 </a>
               </div>
               <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-                <a class="spotlight" href="/assets/template6/Asset/image/galeri1.png" data-title="lorem tes" data-description="lorem test">
-                  <img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template6/Asset/image/galeri1.png" class="w-100 img-gallery shadow-1-strong rounded mb-4" />
+                <a class="spotlight" href="/assets/template3/Asset/image/galeri1.png" data-title="lorem tes" data-description="lorem test">
+                  <img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template3/Asset/image/galeri1.png" class="w-100 img-gallery shadow-1-strong rounded mb-4" />
                 </a>
-                <a class="spotlight" href="/assets/template6/Asset/image/galeri4.png" data-title="lorem tes" data-description="lorem test"
-                  ><img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template6/Asset/image/galeri4.png" class="w-100 img-gallery shadow-1-strong rounded mb-4"
+                <a class="spotlight" href="/assets/template3/Asset/image/galeri4.png" data-title="lorem tes" data-description="lorem test"
+                  ><img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template3/Asset/image/galeri4.png" class="w-100 img-gallery shadow-1-strong rounded mb-4"
                 /></a>
-                <a class="spotlight" href="/assets/template6/Asset/image/galeri1.png" data-title="lorem tes" data-description="lorem test">
-                  <img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template6/Asset/image/galeri1.png" class="w-100 img-gallery shadow-1-strong rounded mb-4" />
+                <a class="spotlight" href="/assets/template3/Asset/image/galeri1.png" data-title="lorem tes" data-description="lorem test">
+                  <img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template3/Asset/image/galeri1.png" class="w-100 img-gallery shadow-1-strong rounded mb-4" />
                 </a>
               </div>
               <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-                <a class="spotlight" href="/assets/template6/Asset/image/galeri2.png" data-title="lorem tes" data-description="lorem test">
-                  <img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template6/Asset/image/galeri2.png" class="w-100 img-gallery shadow-1-strong rounded mb-4" />
+                <a class="spotlight" href="/assets/template3/Asset/image/galeri2.png" data-title="lorem tes" data-description="lorem test">
+                  <img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template3/Asset/image/galeri2.png" class="w-100 img-gallery shadow-1-strong rounded mb-4" />
                 </a>
-                <a class="spotlight" href="/assets/template6/Asset/image/galeri1.png" data-title="lorem tes" data-description="lorem test"
-                  ><img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template6/Asset/image/galeri1.png" class="w-100 img-gallery shadow-1-strong rounded mb-4"
+                <a class="spotlight" href="/assets/template3/Asset/image/galeri1.png" data-title="lorem tes" data-description="lorem test"
+                  ><img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template3/Asset/image/galeri1.png" class="w-100 img-gallery shadow-1-strong rounded mb-4"
                 /></a>
               </div>
             </div> -->
         </div>
     </section>
     <section class="section-story" id="cerita">
-        <img class="decoration-header-1" src="/assets/template6/Asset/image/decoration-9.svg" alt="">
-        <img class="decoration-header-2" src="/assets/template6/Asset/image/decoration-10.svg" alt="">
         <div class="container">
             <div class="row justify-content-center">
-                <h2 class="txt-kayla text-center">Cerita Kami</h2>
+                <h2 class="txt-kayla txt-gold text-center">Cerita Kami</h2>
             </div>
             <div class="row justify-content-center mt-48">
                 <div class="timeline">
@@ -509,7 +509,7 @@
         <section class="section-livestream">
             <div class="container">
                 <div class="row justify-content-center">
-                    <h2 class="txt-kayla txt-white2 text-center">Live streaming</h2>
+                    <h2 class="txt-kayla txt-white text-center">Live streaming</h2>
                 </div>
                 <div class="row justify-content-center mt-48">
                     <div class="col-lg-6 col-12 text-center">
@@ -520,7 +520,7 @@
                     <div class="col-lg-6 col-12 text-center">
                         <div class="video-frame">
                             <iframe
-                                    src="https://www.youtube.com/embed/l3OdDV-DwkA"
+                                    src="<%= youtube %>"
                                     title="YouTube video player"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -532,28 +532,27 @@
             </div>
         </section>
         <div class="container text-center">
-            <img class="py-48 text-center img-divider" src="/assets/template6/Asset/image/decoration-3.svg"/>
+            <img class="py-48 text-center img-divider" src="/assets/template3/Asset/image/decoration-3.svg"/>
         </div>
         <section class="section-amplop" id="amplop">
             <div class="container">
                 <div class="row justify-content-center">
-                    <h2 class="txt-kayla txt-white2 text-center">Amplop Digital</h2>
+                    <h2 class="txt-kayla txt-white text-center">Amplop Digital</h2>
                 </div>
                 <div class="row justify-content-center mt-48">
                     <div class="col-lg-4 col-12 text-center mt-16">
                         <div class="card p-4 text-center">
                             <h5>Kirim via QRIS</h5>
                             <img class="qris mt-16 mx-auto" src="/assets/template1/Asset/image/qrcode.png"/>
-                            <p class="txt-normal bold mt-16">Romeo</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-12 text-center mt-16">
                         <div class="card p-4">
                             <h5>Kirim via Bank</h5>
-                            <p class="txt-normal bold mt-16">BRI</p>
+                            <p class="txt-normal bold mt-16"><%= angpau_rek_bank %></p>
                             <h6 class="txt-normal mt-8">No. Rekening</h6>
-                            <p id="selectRekening" class="txt-normal bold">105346156415</p>
-                            <p class="txt-normal bold">Romeo</p>
+                            <p id="selectRekening" class="txt-normal bold"><%= angpau_rek_nomor %></p>
+                            <p class="txt-normal bold"><%= angpau_rek_nama %></p>
                             <button class="btn btn-primary-lg mt-16" onclick="copyData(selectRekening)">Salin No
                                 Rekening
                             </button>
@@ -571,78 +570,76 @@
                 </div>
             </div>
         </section>
+        <div class="rounded"></div>
     </div>
-    <div class="bg-group-cream">
-        <section class="section-ucapan" id="ucapan">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <h2 class="txt-kayla text-center">Ucapan</h2>
-                    <p class="mt-16 text-center">Doa dan ucapan untuk kedua mempelai</p>
-                </div>
-                <div class="ucapan">
-                    <div class="row">
-                        <div class="col-lg-6 col-12" v-for="data in ucapan">
-                            <div class="card-ucapan">
-                                <h6 class="txt-brown bold">{{data.nama}}</h6>
-                                <p class="mt-16">{{data.ucapan}}</p>
-                            </div>
+    <section class="section-ucapan" id="ucapan">
+        <div class="container">
+            <div class="row justify-content-center">
+                <h2 class="txt-kayla txt-gold text-center">Ucapan</h2>
+                <p class="mt-16 text-center">Doa dan ucapan untuk kedua mempelai</p>
+            </div>
+            <div class="ucapan">
+                <div class="row">
+                    <div class="col-lg-6 col-12" v-for="data in ucapan">
+                        <div class="card-ucapan">
+                            <h6 class="txt-gold bold">{{data.nama}}</h6>
+                            <p class="mt-16">{{data.ucapan}}</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <% if (locals.kode) { %>
-        <div class="container text-center">
-            <img class="mt-96 text-center img-divider" src="/assets/template6/Asset/image/decoration-8.svg"/>
         </div>
-        <section class="section-protocol mt-96">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-5 col-12 text-center">
-                        <h2 class="txt-kayla text-center">Protokol Kesehatan</h2>
-                        <p class="mt-16">Kami sudah berkoordinasi dengan semua pihak terkait pencegahan penularan COVID-19.
-                            Dengan mengikuti prosedur protokol kesehatan untuk mencegah penularan COVID-19.</p>
+    </section>
+    <% if (locals.kode) { %>
+    <div class="container text-center">
+        <img class="mt-96 text-center img-divider" src="/assets/template3/Asset/image/decoration-4.svg"/>
+    </div>
+    <section class="section-protocol mt-96">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-12 text-center">
+                    <h2 class="txt-kayla txt-gold text-center">Protokol Kesehatan</h2>
+                    <p class="mt-16">Kami sudah berkoordinasi dengan semua pihak terkait pencegahan penularan COVID-19.
+                        Dengan mengikuti prosedur protokol kesehatan untuk mencegah penularan COVID-19.</p>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-48">
+                <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-duration="800">
+                    <div class="card py-24 align-items-center">
+                        <img class="img-protocol" src="/assets/template3/Asset/image/masker.svg"/>
+                        <div class="card-body text-center">
+                            <p>Tamu wajib memakai masker</p>
+                        </div>
                     </div>
                 </div>
-                <div class="row justify-content-center mt-48">
-                    <div class="col-lg-3 col-6 mt-16" data-aos="fade-up" data-aos-duration="800">
-                        <div class="card py-24 align-items-center">
-                            <img class="img-protocol" src="/assets/template6/Asset/image/masker.svg"/>
-                            <div class="card-body text-center">
-                                <p>Tamu wajib memakai masker</p>
-                            </div>
+                <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-duration="800">
+                    <div class="card py-24 align-items-center">
+                        <img class="img-protocol" src="/assets/template3/Asset/image/jaga-jarak.svg"/>
+                        <div class="card-body text-center">
+                            <p>Jaga jarak minimal 1 meter</p>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-6 mt-16" data-aos="fade-up" data-aos-duration="800">
-                        <div class="card py-24 align-items-center">
-                            <img class="img-protocol" src="/assets/template6/Asset/image/jaga-jarak.svg"/>
-                            <div class="card-body text-center">
-                                <p>Jaga jarak minimal 1 meter</p>
-                            </div>
+                </div>
+                <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-duration="800">
+                    <div class="card py-24 align-items-center">
+                        <img class="img-protocol" src="/assets/template3/Asset/image/suhu.svg"/>
+                        <div class="card-body text-center">
+                            <p>Suhu tubuh tidak lebih dari 37°C</p>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-6 mt-16" data-aos="fade-up" data-aos-duration="800">
-                        <div class="card py-24 align-items-center">
-                            <img class="img-protocol" src="/assets/template6/Asset/image/suhu.svg"/>
-                            <div class="card-body text-center">
-                                <p>Suhu tubuh tidak lebih dari 37°C</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6 mt-16" data-aos="fade-up" data-aos-duration="800">
-                        <div class="card py-24 align-items-center">
-                            <img class="img-protocol" src="/assets/template6/Asset/image/cuci-tangan.svg"/>
-                            <div class="card-body text-center">
-                                <p>Cuci tangan menggunakan sabun atau hand sanitizer</p>
-                            </div>
+                </div>
+                <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-duration="800">
+                    <div class="card py-24 align-items-center">
+                        <img class="img-protocol" src="/assets/template3/Asset/image/cuci-tangan.svg"/>
+                        <div class="card-body text-center">
+                            <p>Cuci tangan menggunakan sabun atau hand sanitizer</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <% } %>
-    </div>
-
+        </div>
+    </section>
+    <% } %>
     <div class="modal fade" id="start-modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
@@ -650,13 +647,8 @@
               <div class="container">
                 <div class="row justify-content-center text-center">
                   <div class="col-12">
-                    <h5 class="txt-playfair">Undangan Pernikahan</h5>
-                    <h2 class="txt-playfair txt-36 txt-pink mt-24"><%= locals.data.nama_calon1 %> & <%= locals.data.nama_calon2 %></h2>
-                    <h5 class="txt-playfair mt-16">Selasa, 22 Februari 2022</h5>
-                    <h5 class="mt-32">Undangan Special Untuk:</h5>
-                    <h4 class="bold">Nama Tamu</h4>
                     <button id="btn-bukaUndangan" type="button" class="btn btn-primary-lg bold" onclick="togglePlay()" data-bs-dismiss="modal">Buka Undangan</button>
-                    <p class="small mt-16">Powered by <span class="bold">Teras Teduh</span></p>
+                    <p class="small mt-16">Powered by <span class="bold">Invedd</span></p>
                   </div>
                 </div>
               </div>
@@ -665,25 +657,25 @@
         </div>
     </div>
 
-    <footer>
+    <footer class="mt-96">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-5 col-12 text-center">
-                    <p class="txt-white2">Created by:</p>
-                    <h3 class="txt-philosopher txt-white2">Teras Nirwana</h3>
+                    <p>Created by:</p>
+                    <h3 class="txt-philosopher">Invedd</h3>
                     <div class="d-flex justify-content-center mt-24">
-                        <a href=""><p>Instagram</p></a>
-                        <a href=""><p>Email</p></a>
+                        <!-- <a href=""><p>Instagram</p></a>
+                        <a href=""><p>Email</p></a> -->
                         <a href=""><p>Whatsapp</p></a>
                     </div>
-                    <p class="mt-24 txt-white2">Copyright 2022 invedd, All rights reserved.</p>
+                    <p class="mt-24">Copyright 2022 invedd, All rights reserved.</p>
                 </div>
             </div>
         </div>
     </footer>
 </main>
 <!-- Bootstrap -->
-<script src="/assets/template6/Library/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/template3/Library/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- popper -->
 <script
@@ -696,13 +688,13 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
 <!-- Spotlight -->
-<script src="/assets/template6/Library/spotlight/spotlight.min.js"></script>
+<script src="/assets/template3/Library/spotlight/spotlight.min.js"></script>
 
 <!-- Spotlight -->
-<script src="/assets/template6/Library/jquery/jquery-3.6.0.min.js"></script>
+<script src="/assets/template3/Library/jquery/jquery-3.6.0.min.js"></script>
 
 <!-- html2canvas -->
-<script src="/assets/template6/Library/html2canvas/html2canvas.min.js"></script>
+<script src="/assets/template3/Library/html2canvas/html2canvas.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -720,10 +712,10 @@
     $(window).scroll(function () {
         if ($(document).scrollTop() > 50) {
             $(".navbar-desktop").addClass("bg-white");
-            $(".nav-link").addClass("txt-brown");
+            $(".nav-link").addClass("txt-gold");
         } else {
             $(".navbar-desktop").removeClass("bg-white");
-            $(".nav-link").removeClass("txt-brown");
+            $(".nav-link").removeClass("txt-gold");
         }
     });
     function copyData(selectRekening) {
@@ -736,7 +728,7 @@
         alert("Berhasil Menyalin No Rekening");
     }
     
-      var myAudio = document.getElementById("audiomusic");
+    var myAudio = document.getElementById("audiomusic");
       var isPlaying = false;
 
       function togglePlay() {
@@ -766,10 +758,6 @@
             $('.section-header').css("background-position", "center");
             $('.section-header').css("background-repeat", "no-repeat");
             $('.section-header').css("background-repeat", "no-repeat");
-            $('#decoration-header-top').attr('src','/assets/template6/Asset/image/decoration-12.svg');
-            $('#decoration-header-bottom').attr('src','/assets/template6/Asset/image/decoration-13.svg');
-            $('#decoration-header-top').css("display", "block");
-            $('#decoration-header-bottom').css("display", "block");
         } else{
             $('.section-header').css("background", "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/assets/uploads/1645372547771.png)");
             $('.section-header').css("background-size", "cover");
@@ -777,7 +765,6 @@
             $('.section-header').css("background-repeat", "no-repeat");
         }
       });
-
 </script>
 <script type="application/javascript" src="/assets/js/form-undangan.js"></script>
 </body>

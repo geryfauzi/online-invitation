@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors"/>
+    <meta name="generator" content="Hugo 0.84.0"/>
+    <title><%= title %></title>
+
+    <!-- Bootstrap -->
+    <link href="/assets/template4/Library/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Spotlight -->
+    <link rel="stylesheet" href="/assets/template4/Library/spotlight/spotlight.min.css"/>
+
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+
+    <!-- CSS -->
+    <link href="/assets/template4/CSS/main.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+</head>
+<body>
+<main id="form-undangan">
+    <div class="container">
+        <button class="btn btn-primary-lg btn-music zoom-animation" onclick="togglePlay()" id="btn-playback" data-play="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" id="ic-Volume" class="bi bi-volume-up-fill" style="display: block" viewBox="0 0 16 16">
+              <path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z" />
+              <path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z" />
+              <path
+                d="M8.707 11.182A4.486 4.486 0 0 0 10.025 8a4.486 4.486 0 0 0-1.318-3.182L8 5.525A3.489 3.489 0 0 1 9.025 8 3.49 3.49 0 0 1 8 10.475l.707.707zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z"
+              />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" id="ic-Mute" class="bi bi-volume-mute-fill" style="display: none" viewBox="0 0 16 16">
+              <path
+                d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06zm7.137 2.096a.5.5 0 0 1 0 .708L12.207 8l1.647 1.646a.5.5 0 0 1-.708.708L11.5 8.707l-1.646 1.647a.5.5 0 0 1-.708-.708L10.793 8 9.146 6.354a.5.5 0 1 1 .708-.708L11.5 7.293l1.646-1.647a.5.5 0 0 1 .708 0z"
+              />
+            </svg>
+          </button>
+          <audio id="audiomusic" loop="loop" autoplay src="/assets/uploads/Love-Over-And-Over-Again.mp3"></audio>
+
+        <nav class="navbar navbar-desktop navbar-expand-lg py-24 fixed-top d-none d-md-none d-lg-block d-xl-block">
+            <div class="collapse navbar-collapse justify-content-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#acara">Schedule</a>
+                    </li>
+                    <% if (locals.kode) { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#rsvp">RSVP</a>
+                    </li>
+                    <% } %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#galeri">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#cerita">Story</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#ucapan">Greetings</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <nav class="navbar navbar-mobile smart-scroll navbar-expand fixed-bottom d-md-block d-lg-none d-xl-none">
+        <ul class="navbar-nav nav-justified w-100">
+            <li class="nav-item">
+                <a href="#acara" class="nav-link text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                         class="bi bi-calendar3" viewBox="0 0 16 16">
+                        <path
+                                d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"
+                        />
+                        <path
+                                d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
+                        />
+                    </svg>
+                    <span class="small bold d-block mt-8">Schedule</span>
+                </a>
+            </li>
+            <% if (locals.kode) { %>
+            <li class="nav-item">
+                <a href="#rsvp" class="nav-link text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                         class="bi bi-calendar-check" viewBox="0 0 16 16">
+                        <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                        <path
+                                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"
+                        />
+                    </svg>
+                    <span class="small bold d-block mt-8">RSVP</span>
+                </a>
+            </li>
+            <% } %>
+            <li class="nav-item">
+                <a href="#galeri" class="nav-link text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                         class="bi bi-card-image" viewBox="0 0 16 16">
+                        <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                        <path
+                                d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5h13z"
+                        />
+                    </svg>
+                    <span class="small bold d-block mt-8">Gallery</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#cerita" class="nav-link text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                         class="bi bi-emoji-heart-eyes" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path
+                                d="M11.315 10.014a.5.5 0 0 1 .548.736A4.498 4.498 0 0 1 7.965 13a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .548-.736h.005l.017.005.067.015.252.055c.215.046.515.108.857.169.693.124 1.522.242 2.152.242.63 0 1.46-.118 2.152-.242a26.58 26.58 0 0 0 1.109-.224l.067-.015.017-.004.005-.002zM4.756 4.566c.763-1.424 4.02-.12.952 3.434-4.496-1.596-2.35-4.298-.952-3.434zm6.488 0c1.398-.864 3.544 1.838-.952 3.434-3.067-3.554.19-4.858.952-3.434z"
+                        />
+                    </svg>
+                    <span class="small bold d-block mt-8">Story</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="#ucapan" class="nav-link text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                         class="bi bi-chat-left-dots" viewBox="0 0 16 16">
+                        <path
+                                d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
+                        />
+                        <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                    </svg>
+                    <span class="small bold d-block mt-8">Greetings</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <section class="section-header d-flex align-items-center"
+             style="background: url(/assets/template4/Asset/image/img.png);
+    background-size: cover;
+    background-position: center;">
+        <div class="container my-auto" data-aos="fade-down" data-aos-duration="1000">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h3 class="txt-kayla mt-48">Wedding Invitation</h3>
+                    <h1 class="txt-kayla mt-72 txt-64"><%= data.nama_calon1.substr(0,data.nama_calon1.indexOf(' '))
+                        %> & <%= data.nama_calon2.substr(0,data.nama_calon2.indexOf(' ')) %></h1>
+                    <h3 class="txt-kayla mt-24"><%= new Date(data.tanggal).toLocaleDateString('en-EN', {
+                        weekday:"long",
+                        year:"numeric", month:"long", day:"numeric"}); %></h3>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-about mt-48 text-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-8 col-12" data-aos="fade-up" data-aos-duration="800">
+                    <h3 class="bold"><%= locals.data.quote_cover %></h3>
+                    <p class="mt-24"><%= locals.data.quote_body %></p>
+                    <p class="mt-24 bold">We cordially invite you to the wedding of</p>
+                </div>
+            </div>
+            <div class="row mt-96">
+                <div class="col-lg-5 col-12 text-center" data-aos="fade-right" data-aos-duration="1500">
+                    <img class="img-person rounded-circle" src="/assets/uploads/<%= data.image_calon1 %>" alt=""/>
+                    <h1 class="txt-kayla txt-green txt-36 mt-32"><%= data.nama_calon1 %></h1>
+                    <% if (locals.data.ortu_calon1) { %>
+                        <p class="mt-16"><%= data.ortu_calon1 %></p>
+                        <% } %>
+                </div>
+                <div class="col-lg-2 col-12 text-center my-auto" data-aos="fade-up" data-aos-duration="1500">
+                    <img class="img-love" src="/assets/template4/Asset/image/love.svg" alt=""/>
+                </div>
+                <div class="col-lg-5 col-12 text-center" data-aos="fade-left" data-aos-duration="1500">
+                    <img class="img-person rounded-circle" src="/assets/uploads/<%= data.image_calon2 %>" alt=""/>
+                    <h1 class="txt-kayla txt-green txt-36 mt-32"><%= data.nama_calon2 %></h1>
+                    <% if (locals.data.ortu_calon2) { %>
+                        <p class="mt-16"><%= data.ortu_calon2 %></p>
+                        <% } %>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-event" id="acara">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-8 col-12 text-center">
+                    <h2 class="txt-kayla mt-32">Event schedule</h2>
+                    <p class="mt-16">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila, Bapak / Ibu / Saudara
+                        / i. berkenan hadir untuk memberikan do'a restunya kami ucapkan terimakasih.</p>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-48">
+                <div class="col-lg-5 col-md-8 col-12 text-center mt-16" v-for="data in session" data-aos="fade-up"
+                     data-aos-duration="800">
+                    <div class="card py-24">
+                        <div class="card-body">
+                            <h4 class="txt-kayla txt-green">{{data.nama_sesi}}</h4>
+                            <p class="mt-24">{{new Date(data.tanggal).toLocaleDateString('id-ID', {
+                                weekday: "long",
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric"
+                            })}}</p>
+                            <p>{{data.waktu_mulai.substr(0, 5)}} s/d {{data.waktu_selesai.substr(0, 5)}}</p>
+                            <% if (locals.kode) { %>
+                            <p class="bold mt-24">Alamat</p>
+                            <p>{{data.alamat}}</p>
+                            <a v-bind:href="data.url_gmaps" class="btn btn-primary-lg mt-24">Lihat Google Maps</a>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+                <!--            <div class="col-lg-5 col-md-8 col-12 text-center card-margin" data-aos="fade-up" data-aos-duration="800">-->
+                <!--              <div-->
+                <!--                class="card py-24"-->
+                <!--                style="-->
+                <!--                  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(..//assets/template4/Asset/image/event-2.png);-->
+                <!--                  background-position: center;-->
+                <!--                  background-repeat: no-repeat;-->
+                <!--                  background-size: cover;-->
+                <!--                "-->
+                <!--              >-->
+                <!--                <div class="card-body">-->
+                <!--                  <h4 class="txt-kayla txt-green">Resepsi Pernikahan</h4>-->
+                <!--                  <p class="mt-24">Selasa, 22 Februari 2022</p>-->
+                <!--                  <p>09.00 s/d 13.00</p>-->
+                <!--                  <p class="bold mt-24">Alamat</p>-->
+                <!--                  <p>KP. Goalpara RT 004/001 Desa Cisarua Kecamatan Sukaraja Kab Sukabumi</p>-->
+                <!--                  <a href="#" class="btn btn-primary-lg mt-24">Lihat Google Maps</a>-->
+                <!--                </div>-->
+                <!--              </div>-->
+                <!--            </div>-->
+            </div>
+            <img class="mt-48 img-divider" src="/assets/template4/Asset/image/decoration-3.svg"/>
+            <h2 class="txt-kayla txt-pink text-center mt-48">Countdown to Wedding Ceremony</h2>
+            <div class="row justify-content-center mt-48">
+                <div class="col-2 text-center">
+                    <h3 class="txt-kayla" id="hari">1</h3>
+                    <p>Days</p>
+                </div>
+                <div class="col-2 text-center">
+                    <h3 class="txt-kayla" id="jam">4</h3>
+                    <p>Hours</p>
+                </div>
+                <div class="col-2 text-center">
+                    <h3 class="txt-kayla" id="menit">15</h3>
+                    <p>Minutes</p>
+                </div>
+                <div class="col-2 text-center">
+                    <h3 class="txt-kayla" id="detik">24</h3>
+                    <p>Seconds</p>
+                </div>
+            </div>
+            <a href="https://calendar.google.com/calendar/u/0/r/eventedit?text=<%= data.nama %>&dates=<%= tanggal %>/<%= tanggal %>"
+               class="btn btn-primary-lg btn-gold mt-48">Add to Calendar</a>
+        </div>
+    </section>
+    <% if (locals.kode) { %>
+    <section class="section-rsvp" id="rsvp">
+        <div class="container" data-aos="fade-up" data-aos-duration="800">
+            <div class="row justify-content-center">
+                <div class="col-12 text-center">
+                    <h2 class="txt-kayla">Attendance</h2>
+                    <p class="mt-16" v-if="editMode === false && codeLoaded === false">Please input the invitation code applied to confirm your attendance</p>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-48" v-if="editMode === false">
+                <div class="col-lg-4 col-md-8 col-12">
+                    <p id="txt-info-rsvp" class="txt-white bg-red w-100 p-1 txt-14" v-if="error == true">{{message}}</p>
+                    <input v-if="codeLoaded === false" type="text" width="360" class="form-control input-large mt-8"
+                           placeholder="Input the invitation code" v-model="formRSVP.kode"/>
+                    <button v-if="codeLoaded === false" v-on:click="checkCode()" class="btn btn-primary-lg mt-16">
+                        Confirm
+                    </button>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-48" v-if="confirmation == true">
+                <div class="col-lg-4 col-md-8 col-12">
+                    <div class="form">
+                        <div class="mt-16 text-center" v-if="editMode === false">
+                            <p>Apakah anda akan hadir?</p>
+                            <button v-on:click="setHadir(true)" id="btn-hadir" class="btn btn-primary-lg mt-24 mr-20">Yes</button>
+                            <button v-on:click="setHadir(false)" id="btn-tidak-hadir"
+                                    class="btn btn-secondary-lg mt-24">No
+                            </button>
+                        </div>
+                        <div class="mt-24" v-if="editMode === false">
+                            <label class="form-label">Name</label>
+                            <span class="txt-red">*</span>
+                            <input type="text" width="360" class="form-control input-large"
+                                   placeholder="Input your name" v-model="formRSVP.nama" required/>
+                        </div>
+                        <div class="mt-16" v-if="editMode === false">
+                            <label class="form-label">Phone Number</label>
+                            <span class="txt-red">*</span>
+                            <input type="number" width="360" class="form-control input-large"
+                                   placeholder="Input Phone Number" v-model="formRSVP.telepon" required/>
+                        </div>
+
+                        <div class="mt-16" v-if="editMode === false && formRSVP.rsvp === 'Hadir'">
+                            <label class="form-label">Adult (pax)</label>
+                            <span class="txt-red">*</span>
+                            <div class="input-group inline-group">
+                                <div class="input-group-prepend">
+                                    <button v-on:click="setJumlah(false)" class="btn btn-primary-lg btn-minus">-
+                                    </button>
+                                </div>
+                                <input class="form-control quantity txt-normal" min="1" max="5" name="quantity"
+                                       value="1" type="number" v-model="formRSVP.jumlah_dewasa"/>
+                                <div class="input-group-append">
+                                    <button v-on:click="setJumlah(true)" class="btn btn-primary-lg btn-plus">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-16" v-if="editMode === false && formRSVP.rsvp === 'Hadir'">
+                            <label class="form-label">Children (pax)</label>
+                            <span class="txt-red">*</span>
+                            <div class="input-group inline-group">
+                                <div class="input-group-prepend">
+                                    <button v-on:click="setJumlahAnak(false)" class="btn btn-primary-lg btn-minus">-
+                                    </button>
+                                </div>
+                                <input class="form-control quantity txt-normal" min="1" max="5" name="quantity"
+                                       value="1" type="number" v-model="formRSVP.jumlah_anak"/>
+                                <div class="input-group-append">
+                                    <button v-on:click="setJumlahAnak(true)" class="btn btn-primary-lg btn-plus">+
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-16" v-if="editMode === false && formRSVP.rsvp === 'Tidak Hadir'">
+                            <label class="form-label">Reason</label>
+                            <input type="text" width="360" class="form-control input-large"
+                                   placeholder="Input the reason" v-model="formRSVP.alasan"/>
+                        </div>
+                        <div class="mt-16" v-if="editMode === false && formRSVP.rsvp === 'Hadir'">
+                            <h6 class="bold">Session</h6>
+                            <div class="row">
+                                <div class="col-6 event-session" v-for="data in guestSession">
+                                    <h6 class="card-title bold">{{data.nama_sesi}}</h6>
+                                    <p class="txt-14">
+                                        {{new Date(data.tanggal).toLocaleDateString('id-ID', {
+                                        weekday: "long",
+                                        year: "numeric",
+                                        month: "long",
+                                        day: "numeric"
+                                    })}}</p>
+                                    <p class="txt-14">{{data.waktu_mulai.substr(0, 5)}} s/d
+                                        {{data.waktu_mulai.substr(0, 5)}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-16" v-if="editMode === false">
+                            <label class="form-label">Remark for the bride and groom</label>
+                            <textarea class="form-control input-area" placeholder="Input prayers or greetings"
+                                      rows="4" v-model="formRSVP.ucapan"></textarea>
+                        </div>
+                        <button v-on:click="onSave()" v-if="editMode === false"
+                                class="btn btn-primary-lg w-100 mt-24">Simpan
+                        </button>
+
+                        <div class="mt-24" v-if="editMode === true">
+                            <p class="bold">{{formRSVP.rsvp}}</p>
+                            <p>{{formRSVP.nama}}</p>
+                            <p>{{formRSVP.telepon}}</p>
+                            <p>{{formRSVP.jumlah_dewasa}} Dewasa</p>
+                            <p>{{formRSVP.jumlah_anak}} Anak - Anak</p>
+                            <p>{{formRSVP.ucapan}}</p>
+                        </div>
+                        <!--                        <button v-on:click="setEditMode" v-if="editMode === true"-->
+                        <!--                                class="btn btn-primary-lg w-100 mt-24">Ubah Data-->
+                        <!--                        </button>-->
+
+                        <div class="mt-48" v-if="editMode === true && formRSVP.rsvp === 'Hadir'">
+                            <p class="text-center">Download your invitation card down below</p>
+                            <div class="text-center mt-24">
+                                <a id="download-card"><div class="txt-normal d-inline btn-primary-lg">Download Invitation</div></a>
+                            </div>
+                            <div id="capture" class="mt-24">
+                                <div class="card mx-auto">
+                                    <div class="card-header">
+                                        <h4 class="txt-playfair text-center py-24"><%= data.nama %></h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <h6 class="vip-badge">VIP Pass</h6>
+                                        <h6 class="bold">Session</h6>
+                                        <div class="row">
+                                            <div class="col-6 event-session" v-for="data in guestSession">
+                                                <h6 class="card-title bold">{{data.nama_sesi}}</h6>
+                                                <p class="txt-14">{{new Date(data.tanggal).toLocaleDateString('id-ID', {
+                                                    weekday: "long",
+                                                    year: "numeric",
+                                                    month: "long",
+                                                    day: "numeric"
+                                                })}}</p>
+                                                <p class="txt-14">{{data.waktu_mulai.substr(0, 5)}} s/d
+                                                    {{data.waktu_mulai.substr(0, 5)}}</p>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="d-flex">
+                                          <div class="mr-20 p-1">
+                                            <h6 class="card-title bold">Akad</h6>
+                                            <p class="txt-14">22 Februari 2022</p>
+                                            <p class="txt-14">08.00 s/d 09.00</p>
+                                          </div>
+                                          <div class="p-1">
+                                            <h6 class="card-title bold">Resepsi</h6>
+                                            <p class="txt-14">22 Februari 2022</p>
+                                            <p class="txt-14">08.00 s/d 09.00</p>
+                                          </div>
+                                        </div> -->
+                                        <p class="mt-16">For :</p>
+                                        <h6 class="bold">{{formRSVP.nama}}</h6>
+                                        <p class="mt-16">You are invited to the wedding! Please show this card for QR Code scan during checkin</p>
+                                        <div class="py-24 text-center">
+                                            <div id="kode-qr" class="qrcode">
+                                            </div>
+                                            <p class="mt-8">{{formRSVP.kode}}</p>
+                                            <p class="small mt-16">Powered by <span class="bold">Invedd</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <div class="container text-center">
+        <img class="py-48 text-center img-divider" src="/assets/template4/Asset/image/decoration-3.svg"/>
+    </div>
+    <% } %>
+    <section class="section-gallery" id="galeri">
+        <div class="container">
+            <div class="row justify-content-center">
+                <h2 class="txt-kayla text-center">Gallery</h2>
+            </div>
+            <div class="row spotlight-group mt-48">
+                <% if (locals.gallery) { %>
+                <% for(data of gallery) { %>
+                <div class="col-lg-3 col-md-6 col-6">
+                    <a class="spotlight" href="/assets/uploads/<%= data.image %>"
+                       data-description="<%= data.keterangan %>"
+                    ><img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1000"
+                          src="/assets/uploads/<%= data.image %>"
+                          class="w-100 img-gallery shadow-1-strong rounded mb-4"
+                    /></a>
+                </div>
+                <% } %>
+                <% } %>
+            </div>
+            <!-- <div class="row spotlight-group mt-48">
+              <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+                <a class="spotlight" href="/assets/template4/Asset/image/galeri1.png" data-title="lorem tes" data-description="lorem test"
+                  ><img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template4/Asset/image/galeri1.png" class="w-100 img-gallery shadow-1-strong rounded mb-4"
+                /></a>
+                <a class="spotlight" href="/assets/template4/Asset/image/galeri2.png" data-title="lorem tes" data-description="lorem test">
+                  <img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template4/Asset/image/galeri2.png" class="w-100 img-gallery shadow-1-strong rounded mb-4" />
+                </a>
+              </div>
+              <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+                <a class="spotlight" href="/assets/template4/Asset/image/galeri1.png" data-title="lorem tes" data-description="lorem test">
+                  <img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template4/Asset/image/galeri1.png" class="w-100 img-gallery shadow-1-strong rounded mb-4" />
+                </a>
+                <a class="spotlight" href="/assets/template4/Asset/image/galeri4.png" data-title="lorem tes" data-description="lorem test"
+                  ><img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template4/Asset/image/galeri4.png" class="w-100 img-gallery shadow-1-strong rounded mb-4"
+                /></a>
+                <a class="spotlight" href="/assets/template4/Asset/image/galeri1.png" data-title="lorem tes" data-description="lorem test">
+                  <img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template4/Asset/image/galeri1.png" class="w-100 img-gallery shadow-1-strong rounded mb-4" />
+                </a>
+              </div>
+              <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+                <a class="spotlight" href="/assets/template4/Asset/image/galeri2.png" data-title="lorem tes" data-description="lorem test">
+                  <img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template4/Asset/image/galeri2.png" class="w-100 img-gallery shadow-1-strong rounded mb-4" />
+                </a>
+                <a class="spotlight" href="/assets/template4/Asset/image/galeri1.png" data-title="lorem tes" data-description="lorem test"
+                  ><img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template4/Asset/image/galeri1.png" class="w-100 img-gallery shadow-1-strong rounded mb-4"
+                /></a>
+              </div>
+            </div> -->
+        </div>
+    </section>
+    <section class="section-story" id="cerita">
+        <div class="container">
+            <div class="row justify-content-center">
+                <h2 class="txt-kayla text-center">Story</h2>
+            </div>
+            <div class="row justify-content-center mt-48">
+                <div class="timeline">
+                    <div v-for="(data,index) in story"
+                         v-bind:class="['container-story', (index+1) % 2 == 0 ? 'right' : 'left']">
+                        <div class="content">
+                            <h2>{{data.tahun}}</h2>
+                            <p>{{data.story}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="bg-group">
+        <section class="section-livestream">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <h2 class="txt-kayla text-center">Live streaming</h2>
+                </div>
+                <div class="row justify-content-center mt-48">
+                    <div class="col-lg-6 col-12 text-center">
+                        <div class="card cooming-soon py-24">
+                            <h3 class="my-auto">Cooming Soon</h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12 text-center">
+                        <div class="video-frame">
+                            <iframe
+                                    src="<%= youtube %>"
+                                    title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen
+                            ></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="container text-center">
+            <img class="py-48 text-center img-divider" src="/assets/template4/Asset/image/decoration-3.svg"/>
+        </div>
+        <section class="section-amplop" id="amplop">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <h2 class="txt-kayla text-center">Gift</h2>
+                </div>
+                <div class="row justify-content-center mt-48">
+                    <div class="col-lg-4 col-12 text-center mt-16">
+                        <div class="card p-4 text-center">
+                            <h5>Kirim via QRIS</h5>
+                            <img class="qris mt-16 mx-auto" src="/assets/template1/Asset/image/qrcode.png"/>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-12 text-center mt-16">
+                        <div class="card p-4">
+                            <h5>Kirim via Bank</h5>
+                            <p class="txt-normal bold mt-16"><%= angpau_rek_bank %></p>
+                            <h6 class="txt-normal mt-8">No. Rekening</h6>
+                            <p id="selectRekening" class="txt-normal bold"><%= angpau_rek_nomor %></p>
+                            <p class="txt-normal bold"><%= angpau_rek_nama %></p>
+                            <button class="btn btn-primary-lg mt-16" onclick="copyData(selectRekening)">Salin No
+                                Rekening
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-12 text-center mt-16">
+                        <div class="card p-4">
+                            <h5>Kirim Kado</h5>
+                            <p class="txt-normal bold mt-16">PO BOX NKM33 Jakarta Pusat 10000</p>
+                            <p class="txt-normal mt-16">atau</p>
+                            <p class="txt-normal bold mt-16">Jl. Bumi Lestari Blok A85 No.21 RT 01 RW 17, Tambun
+                                Selatan, Bekasi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <section class="section-ucapan" id="ucapan">
+        <div class="container">
+            <div class="row justify-content-center">
+                <h2 class="txt-kayla text-center">Prayers and greetings to the bride and groom</h2>
+            </div>
+            <div class="ucapan">
+                <div class="row">
+                    <div class="col-lg-6 col-12" v-for="data in ucapan">
+                        <div class="card-ucapan">
+                            <h6 class="txt-green bold">{{data.nama}}</h6>
+                            <p class="mt-16">{{data.ucapan}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <% if (locals.kode) { %>
+    <div class="container text-center">
+        <img class="mt-96 text-center img-divider" src="/assets/template4/Asset/image/decoration-3.svg"/>
+    </div>
+    <section class="section-protocol mt-96">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-12 text-center">
+                    <h2 class="txt-kayla text-center">Health Protocol</h2>
+                    <p class="mt-16">With all respect, due to pandemic COVID-19, every guest must follow the health protocols.</p>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-48">
+                <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-duration="800">
+                    <div class="card py-24 align-items-center">
+                        <img class="img-protocol" src="/assets/template4/Asset/image/masker.svg"/>
+                        <div class="card-body text-center">
+                            <p>Wear a Mask</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-duration="800">
+                    <div class="card py-24 align-items-center">
+                        <img class="img-protocol" src="/assets/template4/Asset/image/jaga-jarak.svg"/>
+                        <div class="card-body text-center">
+                            <p>Keep the distance</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-duration="800">
+                    <div class="card py-24 align-items-center">
+                        <img class="img-protocol" src="/assets/template4/Asset/image/suhu.svg"/>
+                        <div class="card-body text-center">
+                            <p>Healthy body temperature must be below 37°C</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-duration="800">
+                    <div class="card py-24 align-items-center">
+                        <img class="img-protocol" src="/assets/template4/Asset/image/cuci-tangan.svg"/>
+                        <div class="card-body text-center">
+                            <p>Always wash your hands with soap/hand sanitizer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <% } %>
+
+    <div class="modal fade" id="start-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body py-24">
+              <div class="container">
+                <div class="row justify-content-center text-center">
+                  <div class="col-12">
+                    <button id="btn-bukaUndangan" type="button" class="btn btn-primary-lg bold" onclick="togglePlay()" data-bs-dismiss="modal">Open Invitation</button>
+                    <p class="small mt-16">Powered by <span class="bold">Invedd</span></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <footer class="mt-96">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-12 text-center">
+                    <p>Created by:</p>
+                    <h3 class="txt-philosopher">Invedd</h3>
+                    <div class="d-flex justify-content-center mt-24">
+                        <!-- <a href=""><p>Instagram</p></a>
+                        <a href=""><p>Email</p></a> -->
+                        <a href=""><p>Whatsapp</p></a>
+                    </div>
+                    <p class="mt-24">Copyright 2022 invedd, All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</main>
+<!-- Bootstrap -->
+<script src="/assets/template4/Library/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- popper -->
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"
+></script>
+
+<!-- AOS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<!-- Spotlight -->
+<script src="/assets/template4/Library/spotlight/spotlight.min.js"></script>
+
+<!-- Spotlight -->
+<script src="/assets/template4/Library/jquery/jquery-3.6.0.min.js"></script>
+
+<!-- html2canvas -->
+<script src="/assets/template4/Library/html2canvas/html2canvas.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dom-to-image-more@2.9.5/dist/dom-to-image-more.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script>
+    let idNikahan = "<%= id %>";
+    let tanggalNikahan = "<%= date %>";
+</script>
+
+<script>
+    $(window).scroll(function () {
+        if ($(document).scrollTop() > 50) {
+            $(".navbar-desktop").addClass("bg-white");
+        } else {
+            $(".navbar-desktop").removeClass("bg-white");
+        }
+    });
+    function copyData(selectRekening) {
+        var range = document.createRange();
+        range.selectNode(selectRekening);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        document.execCommand("copy");
+        window.getSelection().removeAllRanges();
+        alert("Berhasil Menyalin No Rekening");
+      }
+
+      var myAudio = document.getElementById("audiomusic");
+      var isPlaying = false;
+
+      function togglePlay() {
+        isPlaying ? myAudio.pause() : myAudio.play();
+      }
+
+      myAudio.onplaying = function () {
+        isPlaying = true;
+        document.getElementById("ic-Volume").style.display = "block";
+        document.getElementById("ic-Mute").style.display = "none";
+        document.getElementById("btn-playback").classList.add("zoom-animation");
+      };
+      myAudio.onpause = function () {
+        isPlaying = false;
+        document.getElementById("ic-Volume").style.display = "none";
+        document.getElementById("ic-Mute").style.display = "block";
+        document.getElementById("btn-playback").classList.remove("zoom-animation");
+      };
+
+      $(document).ready(function () {
+        $("#start-modal").modal("show");
+      });
+</script>
+<script type="application/javascript" src="/assets/js/form-undangan.js"></script>
+</body>
+</html>
