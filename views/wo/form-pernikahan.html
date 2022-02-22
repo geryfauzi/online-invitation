@@ -870,13 +870,15 @@
                         toastr.warning("Harap isi semua form yang wajib diisi!")
                         return
                     }
-                    if ((this.formGuest.jumlah_dewasa < 1 || this.formGuest.jumlah_dewasa > 2) && this.formGuest.is_family === 'Tidak') {
-                        toastr.warning("Jumlah tamu dewasa minimal 1 dan maksimal 2!")
-                        return
-                    }
-                    if ((this.formGuest.jumlah_anak < 0 || this.formGuest.jumlah_anak > 2) && this.formGuest.is_family === 'Tidak') {
-                        toastr.warning("Jumlah tamu anak - anak minimal 0 dan maksimal 2!")
-                        return
+                    if (this.formGuest.is_family === 'Tidak') {
+                        if(this.formGuest.jumlah_dewasa < 1 || this.formGuest.jumlah_dewasa > 2) {
+                            toastr.warning("Jumlah tamu dewasa minimal 1 dan maksimal 2!")
+                            return
+                        }
+                        if(this.formGuest.jumlah_anak < 0 || this.formGuest.jumlah_anak > 2){
+                            toastr.warning("Jumlah tamu anak - anak minimal 0 dan maksimal 2!")
+                            return
+                        }
                     }
                     let formData = {...this.formGuest}
                     //Mengisi data yang masih kosong
@@ -905,13 +907,15 @@
                         toastr.warning("Harap isi semua form yang wajib diisi!")
                         return
                     }
-                    if (this.formGuest.jumlah_dewasa < 1 || this.formGuest.jumlah_dewasa > 2) {
-                        toastr.warning("Jumlah tamu dewasa minimal 1 dan maksimal 2!")
-                        return
-                    }
-                    if (this.formGuest.jumlah_anak < 0 || this.formGuest.jumlah_anak > 2) {
-                        toastr.warning("Jumlah tamu anak - anak minimal 0 dan maksimal 2!")
-                        return
+                    if (this.formGuest.is_family === 'Tidak') {
+                        if(this.formGuest.jumlah_dewasa < 1 || this.formGuest.jumlah_dewasa > 2) {
+                            toastr.warning("Jumlah tamu dewasa minimal 1 dan maksimal 2!")
+                            return
+                        }
+                        if(this.formGuest.jumlah_anak < 0 || this.formGuest.jumlah_anak > 2){
+                            toastr.warning("Jumlah tamu anak - anak minimal 0 dan maksimal 2!")
+                            return
+                        }
                     }
                     let formData = {...this.formGuest}
                     //Update Database
