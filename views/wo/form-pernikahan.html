@@ -149,6 +149,7 @@
                 is_vip: '',
                 is_family: '',
                 ucapan: '',
+                is_special: '',
                 sesi: []
             },
             formGallery: {
@@ -622,6 +623,7 @@
                     this.formGuest.kode = this.guest[index].kode
                     this.formGuest.is_vip = this.guest[index].is_vip
                     this.formGuest.ucapan = this.guest[index].ucapan
+                    this.formGuest.is_special = this.guest[index].is_special
                     //Mengambil data sesi
                     try {
                         const res = await fetch(`/api/sesi/detail/${this.formGuest.id}`)

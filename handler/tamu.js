@@ -15,7 +15,7 @@ const getWeddingGuest = async (req, res) => {
   let id = req.params.id;
   try {
     connect.query(
-      "SELECT tamu.id, tamu.id_grup, grup.nama AS nama_grup, tamu.nama, tamu.telepon, tamu.jumlah_dewasa, tamu.jumlah_anak, tamu.rsvp, tamu.kehadiran, tamu.id_pernikahan, tamu.kode, tamu.is_vip, tamu.is_family, tamu.ucapan, COUNT(detail_sesi.id_sesi) AS jumlah_sesi FROM tamu LEFT JOIN detail_sesi ON tamu.id = detail_sesi.id_tamu LEFT JOIN grup ON tamu.id_grup = grup.id WHERE tamu.id_pernikahan = ? GROUP BY tamu.id ORDER BY tamu.id DESC",
+      "SELECT tamu.id, tamu.id_grup, grup.nama AS nama_grup, tamu.nama, tamu.telepon, tamu.jumlah_dewasa, tamu.jumlah_anak, tamu.rsvp, tamu.kehadiran, tamu.id_pernikahan, tamu.kode, tamu.is_vip, tamu.is_family, tamu.is_special, tamu.ucapan, COUNT(detail_sesi.id_sesi) AS jumlah_sesi FROM tamu LEFT JOIN detail_sesi ON tamu.id = detail_sesi.id_tamu LEFT JOIN grup ON tamu.id_grup = grup.id WHERE tamu.id_pernikahan = ? GROUP BY tamu.id ORDER BY tamu.id DESC",
       [id],
       (error, result) => {
         console.log(result);
@@ -34,8 +34,8 @@ const insertGuest = async (req, res) => {
   let data = req.body;
   try {
     connect.query(
-      "INSERT INTO tamu(nama,telepon,jumlah_dewasa,jumlah_anak,id_pernikahan,id_grup,kode,is_vip,is_family) VALUES(?,?,?,?,?,?,?,?,?)",
-      [data.nama, data.telepon, data.jumlah_dewasa, data.jumlah_anak, data.id_pernikahan, data.id_grup, data.kode, data.is_vip, data.is_family],
+      "INSERT INTO tamu(nama,telepon,jumlah_dewasa,jumlah_anak,id_pernikahan,id_grup,kode,is_vip,is_family,is_special) VALUES(?,?,?,?,?,?,?,?,?,?)",
+      [data.nama, data.telepon, data.jumlah_dewasa, data.jumlah_anak, data.id_pernikahan, data.id_grup, data.kode, data.is_vip, data.is_family,data.is_special],
       (error, result) => {
         if (!error) {
           data.sesi.forEach((item) => {
@@ -113,8 +113,8 @@ const updateGuest = async (req, res) => {
   let data = req.body;
   try {
     connect.query(
-      "UPDATE tamu SET nama = ?, telepon = ?, jumlah_dewasa = ?, jumlah_anak = ?, id_grup = ?, is_family = ?, is_vip = ? WHERE id = ?",
-      [data.nama, data.telepon, data.jumlah_dewasa, data.jumlah_anak, data.id_grup, data.is_family, data.is_vip, data.id],
+      "UPDATE tamu SET nama = ?, telepon = ?, jumlah_dewasa = ?, jumlah_anak = ?, id_grup = ?, is_family = ?, is_vip = ?, is_special = ? WHERE id = ?",
+      [data.nama, data.telepon, data.jumlah_dewasa, data.jumlah_anak, data.id_grup, data.is_family, data.is_vip, data.is_special, data.id],
       (error, result) => {
         if (!error) {
           data.sesi.forEach((item) => {
