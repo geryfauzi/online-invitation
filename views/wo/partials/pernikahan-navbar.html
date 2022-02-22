@@ -75,6 +75,16 @@
                 <% } %>
                 <% if (locals.id) { %>
                 <li class="nav-item">
+                    <a href="javascript:void(0)" v-on:click="setSideMenuIndex(12)"  v-bind:class="[isActiveSideMenu(12) ? 'active' : '', 'nav-link']">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Tamu Spesial
+                        </p>
+                    </a>
+                </li>
+                <% } %>
+                <% if (locals.id) { %>
+                <li class="nav-item">
                     <a href="javascript:void(0)" v-on:click="setSideMenuIndex(7)"  v-bind:class="[isActiveSideMenu(7) ? 'active' : '', 'nav-link']">
                         <i class="nav-icon fas fa-table"></i>
                         <p>

@@ -1,0 +1,36 @@
+<div v-show="sideMenuIndex == 12">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Tamu Spesial</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="spesial" class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Tamu</th>
+                                    <th>Link Undangan</th>
+                                    <th>Kode RSVP</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr v-for="(item,index) in guest.filter(row => row.is_special == 'Iya')" :key="item.id">
+                                    <td>{{index + 1}}</td>
+                                    <td>{{item.nama}}</td>
+                                    <td>http://invedd.com/pernikahan/{{form.id}}/RSVP/{{item.nama}}</td>
+                                    <td>{{item.kode}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
