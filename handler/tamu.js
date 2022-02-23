@@ -169,7 +169,7 @@ const checkCode = async (req, res) => {
       connect.query("SELECT * FROM tamu WHERE kode = ? AND id_pernikahan = ? AND rsvp = 'Belum Dikonfirmasi'",[data.kode, data.id_pernikahan],(error2,result2) => {
         if(result2.length > 0) {
           connect.query(
-              "SELECT tamu.kode, detail_sesi.id_sesi, detail_sesi.id_tamu, sesi.nama_sesi, sesi.tanggal, sesi.waktu_mulai, sesi.waktu_selesai FROM tamu JOIN detail_sesi ON tamu.id = detail_sesi.id_tamu JOIN sesi ON sesi.id = detail_sesi.id_sesi WHERE tamu.kode = ?",
+              "SELECT tamu.kode, detail_sesi.id_sesi, detail_sesi.id_tamu, sesi.nama_sesi, sesi.tanggal, sesi.waktu_mulai, sesi.waktu_selesai, sesi.alamat, sesi.url_gmaps FROM tamu JOIN detail_sesi ON tamu.id = detail_sesi.id_tamu JOIN sesi ON sesi.id = detail_sesi.id_sesi WHERE tamu.kode = ?",
               [data.kode],
               (error1, result1) => {
                 return res.json({ code: 1, data: result[0], dataSesi: result1 });
@@ -177,7 +177,7 @@ const checkCode = async (req, res) => {
           );
         } else {
           connect.query(
-              "SELECT tamu.kode, detail_sesi.id_sesi, detail_sesi.id_tamu, sesi.nama_sesi, sesi.tanggal, sesi.waktu_mulai, sesi.waktu_selesai FROM tamu JOIN detail_sesi ON tamu.id = detail_sesi.id_tamu JOIN sesi ON sesi.id = detail_sesi.id_sesi WHERE tamu.kode = ?",
+              "SELECT tamu.kode, detail_sesi.id_sesi, detail_sesi.id_tamu, sesi.nama_sesi, sesi.tanggal, sesi.waktu_mulai, sesi.waktu_selesai, sesi.alamat, sesi.url_gmaps FROM tamu JOIN detail_sesi ON tamu.id = detail_sesi.id_tamu JOIN sesi ON sesi.id = detail_sesi.id_sesi WHERE tamu.kode = ?",
               [data.kode],
               (error1, result1) => {
                 return res.json({ code: 2, data: result[0], dataSesi: result1, message : "Kode undangan sudah diisi, silahkan hubungi pengantin jika ingin merubah kehadiran" });

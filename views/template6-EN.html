@@ -38,7 +38,7 @@
               />
             </svg>
           </button>
-          <audio id="audiomusic" loop="loop" autoplay src="/assets/uploads/music/Love-Over-And-Over-Again.mp3"></audio>
+          <audio id="audiomusic" loop="loop" autoplay src="/assets/uploads/<%= music %>"></audio>
 
         <nav class="navbar navbar-desktop navbar-expand-lg py-24 fixed-top d-none d-md-none d-lg-block d-xl-block">
             <div class="collapse navbar-collapse justify-content-center">
@@ -51,12 +51,16 @@
                         <a class="nav-link" href="#rsvp">RSVP</a>
                     </li>
                     <% } %>
+                    <% if (switch_gallery == 'true') { %>
                     <li class="nav-item">
                         <a class="nav-link" href="#galeri">Gallery</a>
                     </li>
+                    <% } %>
+                    <% if (switch_story == 'true') { %>
                     <li class="nav-item">
                         <a class="nav-link" href="#cerita">Story</a>
                     </li>
+                    <% } %>
                     <li class="nav-item">
                         <a class="nav-link" href="#ucapan">Greetings</a>
                     </li>
@@ -95,6 +99,7 @@
                 </a>
             </li>
             <% } %>
+            <% if (switch_gallery == 'true') { %>
             <li class="nav-item">
                 <a href="#galeri" class="nav-link text-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -107,6 +112,8 @@
                     <span class="small bold d-block mt-8">Gallery</span>
                 </a>
             </li>
+            <% } %>
+            <% if (switch_story == 'true') { %>
             <li class="nav-item">
                 <a href="#cerita" class="nav-link text-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -119,6 +126,7 @@
                     <span class="small bold d-block mt-8">Story</span>
                 </a>
             </li>
+            <% } %>
 
             <li class="nav-item">
                 <a href="#ucapan" class="nav-link text-center">
@@ -142,8 +150,7 @@
                 <div class="col-12 text-center">
                     <img class="img-decoration" src="/assets/template6/Asset/image/decoration-5.svg"/>
                     <h3 class="txt-kayla txt-white2 mt-24">Wedding Invitation</h3>
-                    <h1 class="txt-kayla txt-white2 mt-48 txt-64"><%= data.nama_calon1.substr(0,data.nama_calon1.indexOf(' '))
-                        %> & <%= data.nama_calon2.substr(0,data.nama_calon2.indexOf(' ')) %></h1>
+                    <h1 class="txt-kayla txt-white2 mt-48 txt-64"><%= title %></h1>
                     <h3 class="txt-kayla txt-white2 mt-48"><%= new Date(data.tanggal).toLocaleDateString('en-EN', {
                         weekday:"long",
                         year:"numeric", month:"long", day:"numeric"}); %></h3>
@@ -157,7 +164,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-8 col-12" data-aos="fade-up" data-aos-duration="800">
                     <h3 class="bold"><%= locals.data.quote_cover %></h3>
-                    <p class="mt-24"><%= locals.data.quote_body %></p>
+                    <p class="mt-24"><%- locals.data.quote_body %></p>
                     <p class="mt-24 bold">We cordially invite you to the wedding of</p>
                 </div>
             </div>
@@ -202,35 +209,15 @@
                                 month: "long",
                                 day: "numeric"
                             })}}</p>
-                            <p>{{data.waktu_mulai.substr(0, 5)}} s/d {{data.waktu_selesai.substr(0, 5)}}</p>
+                            <p>{{data.waktu_mulai.substr(0, 5)}} - {{data.waktu_selesai.substr(0, 5)}}</p>
                             <% if (locals.kode) { %>
-                            <p class="bold mt-24">Alamat</p>
+                            <p class="bold mt-24">Location</p>
                             <p>{{data.alamat}}</p>
-                            <a v-bind:href="data.url_gmaps" class="btn btn-primary-lg mt-24">Lihat Google Maps</a>
+                            <a v-bind:href="data.url_gmaps" target="_blank" class="btn btn-primary-lg mt-24">Open Google Maps</a>
                             <% } %>
                         </div>
                     </div>
                 </div>
-                <!--            <div class="col-lg-5 col-md-8 col-12 text-center card-margin" data-aos="fade-up" data-aos-duration="800">-->
-                <!--              <div-->
-                <!--                class="card py-24"-->
-                <!--                style="-->
-                <!--                  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(..//assets/template6/Asset/image/event-2.png);-->
-                <!--                  background-position: center;-->
-                <!--                  background-repeat: no-repeat;-->
-                <!--                  background-size: cover;-->
-                <!--                "-->
-                <!--              >-->
-                <!--                <div class="card-body">-->
-                <!--                  <h4 class="txt-kayla txt-brown">Resepsi Pernikahan</h4>-->
-                <!--                  <p class="mt-24">Selasa, 22 Februari 2022</p>-->
-                <!--                  <p>09.00 s/d 13.00</p>-->
-                <!--                  <p class="bold mt-24">Alamat</p>-->
-                <!--                  <p>KP. Goalpara RT 004/001 Desa Cisarua Kecamatan Sukaraja Kab Sukabumi</p>-->
-                <!--                  <a href="#" class="btn btn-primary-lg mt-24">Lihat Google Maps</a>-->
-                <!--                </div>-->
-                <!--              </div>-->
-                <!--            </div>-->
             </div>
             <img class="mt-48 img-divider" src="/assets/template6/Asset/image/decoration-3.svg"/>
             <h2 class="txt-kayla txt-white2 text-center mt-48">Countdown to Wedding Ceremony</h2>
@@ -252,8 +239,8 @@
                     <p>Seconds</p>
                 </div>
             </div>
-            <a href="https://calendar.google.com/calendar/u/0/r/eventedit?text=<%= data.nama %>&dates=<%= tanggal %>/<%= tanggal %>"
-               class="btn btn-primary-lg btn-gold mt-48">Add to Calendar</a>
+            <a href="https://calendar.google.com/calendar/u/0/r/eventedit?text=<%= data.nama %>&dates=<%= tanggal %>/<%= tanggalSelesai %>"
+               class="btn btn-primary-lg btn-gold mt-48" target="_blank">Add to Calendar</a>
         </div>
     </section>
     <% if (locals.kode) { %>
@@ -350,8 +337,8 @@
                                         month: "long",
                                         day: "numeric"
                                     })}}</p>
-                                    <p class="txt-14">{{data.waktu_mulai.substr(0, 5)}} s/d
-                                        {{data.waktu_mulai.substr(0, 5)}}</p>
+                                    <p class="txt-14">{{data.waktu_mulai.substr(0, 5)}} -
+                                        {{data.waktu_selesai.substr(0, 5)}}</p>
                                 </div>
                             </div>
                         </div>
@@ -368,8 +355,8 @@
                             <p class="bold">{{formRSVP.rsvp}}</p>
                             <p>{{formRSVP.nama}}</p>
                             <p>{{formRSVP.telepon}}</p>
-                            <p>{{formRSVP.jumlah_dewasa}} Dewasa</p>
-                            <p>{{formRSVP.jumlah_anak}} Anak - Anak</p>
+                            <p>{{formRSVP.jumlah_dewasa}} Adult</p>
+                            <p>{{formRSVP.jumlah_anak}} Children</p>
                             <p>{{formRSVP.ucapan}}</p>
                         </div>
                         <!--                        <button v-on:click="setEditMode" v-if="editMode === true"-->
@@ -387,7 +374,7 @@
                                         <h4 class="txt-playfair text-center py-24"><%= data.nama %></h4>
                                     </div>
                                     <div class="card-body">
-                                        <h6 class="vip-badge">VIP Pass</h6>
+                                        <h6 class="vip-badge" v-if="formRSVP.is_vip == 'Ya'">VIP Pass</h6>
                                         <h6 class="bold">Session</h6>
                                         <div class="row">
                                             <div class="col-6 event-session" v-for="data in guestSession">
@@ -398,20 +385,20 @@
                                                     month: "long",
                                                     day: "numeric"
                                                 })}}</p>
-                                                <p class="txt-14">{{data.waktu_mulai.substr(0, 5)}} s/d
-                                                    {{data.waktu_mulai.substr(0, 5)}}</p>
+                                                <p class="txt-14">{{data.waktu_mulai.substr(0, 5)}} -
+                                                    {{data.waktu_selesai.substr(0, 5)}}</p>
                                             </div>
                                         </div>
                                         <!-- <div class="d-flex">
                                           <div class="mr-20 p-1">
                                             <h6 class="card-title bold">Akad</h6>
                                             <p class="txt-14">22 Februari 2022</p>
-                                            <p class="txt-14">08.00 s/d 09.00</p>
+                                            <p class="txt-14">08.00 - 09.00</p>
                                           </div>
                                           <div class="p-1">
                                             <h6 class="card-title bold">Resepsi</h6>
                                             <p class="txt-14">22 Februari 2022</p>
-                                            <p class="txt-14">08.00 s/d 09.00</p>
+                                            <p class="txt-14">08.00 - 09.00</p>
                                           </div>
                                         </div> -->
                                         <p class="mt-16">For :</p>
@@ -432,6 +419,7 @@
             </div>
     </section>
     <% } %>
+    <% if (switch_gallery == 'true') { %>
     <section class="section-gallery" id="galeri">
         <div class="container">
             <div class="row justify-content-center">
@@ -451,37 +439,10 @@
                 <% } %>
                 <% } %>
             </div>
-            <!-- <div class="row spotlight-group mt-48">
-              <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-                <a class="spotlight" href="/assets/template6/Asset/image/galeri1.png" data-title="lorem tes" data-description="lorem test"
-                  ><img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template6/Asset/image/galeri1.png" class="w-100 img-gallery shadow-1-strong rounded mb-4"
-                /></a>
-                <a class="spotlight" href="/assets/template6/Asset/image/galeri2.png" data-title="lorem tes" data-description="lorem test">
-                  <img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template6/Asset/image/galeri2.png" class="w-100 img-gallery shadow-1-strong rounded mb-4" />
-                </a>
-              </div>
-              <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-                <a class="spotlight" href="/assets/template6/Asset/image/galeri1.png" data-title="lorem tes" data-description="lorem test">
-                  <img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template6/Asset/image/galeri1.png" class="w-100 img-gallery shadow-1-strong rounded mb-4" />
-                </a>
-                <a class="spotlight" href="/assets/template6/Asset/image/galeri4.png" data-title="lorem tes" data-description="lorem test"
-                  ><img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template6/Asset/image/galeri4.png" class="w-100 img-gallery shadow-1-strong rounded mb-4"
-                /></a>
-                <a class="spotlight" href="/assets/template6/Asset/image/galeri1.png" data-title="lorem tes" data-description="lorem test">
-                  <img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template6/Asset/image/galeri1.png" class="w-100 img-gallery shadow-1-strong rounded mb-4" />
-                </a>
-              </div>
-              <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-                <a class="spotlight" href="/assets/template6/Asset/image/galeri2.png" data-title="lorem tes" data-description="lorem test">
-                  <img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template6/Asset/image/galeri2.png" class="w-100 img-gallery shadow-1-strong rounded mb-4" />
-                </a>
-                <a class="spotlight" href="/assets/template6/Asset/image/galeri1.png" data-title="lorem tes" data-description="lorem test"
-                  ><img loading="lazy" data-aos="zoom-in-up" data-aos-duration="1500" src="/assets/template6/Asset/image/galeri1.png" class="w-100 img-gallery shadow-1-strong rounded mb-4"
-                /></a>
-              </div>
-            </div> -->
         </div>
     </section>
+    <% } %>
+    <% if (switch_story == 'true') { %>
     <section class="section-story" id="cerita">
         <img class="decoration-header-1" src="/assets/template6/Asset/image/decoration-9.svg" alt="">
         <img class="decoration-header-2" src="/assets/template6/Asset/image/decoration-10.svg" alt="">
@@ -502,7 +463,9 @@
             </div>
         </div>
     </section>
+    <% } %>
     <div class="bg-group">
+        <% if (switch_youtube == 'true') { %>
         <section class="section-livestream">
             <div class="container">
                 <div class="row justify-content-center">
@@ -525,24 +488,29 @@
                 </div>
             </div>
         </section>
+        <% } %>
         <div class="container text-center">
             <img class="py-48 text-center img-divider" src="/assets/template6/Asset/image/decoration-3.svg"/>
         </div>
+        <% if (switch_angpau == 'true' || switch_bank == 'true' || switch_kado == 'true') { %>
         <section class="section-amplop" id="amplop">
             <div class="container">
                 <div class="row justify-content-center">
                     <h2 class="txt-kayla txt-white2 text-center">Gift</h2>
                 </div>
                 <div class="row justify-content-center mt-48">
+                    <% if (switch_angpau == 'true') { %>
                     <div class="col-lg-4 col-12 text-center mt-16">
                         <div class="card p-4 text-center">
-                            <h5>Kirim via QRIS</h5>
+                            <h5>Via QRIS</h5>
                             <img class="qris mt-16 mx-auto" src="/assets/template1/Asset/image/qrcode.png"/>
                         </div>
                     </div>
+                    <% } %>
+                    <% if (switch_bank == 'true') { %>
                     <div class="col-lg-4 col-12 text-center mt-16">
                         <div class="card p-4">
-                            <h5>Kirim via Bank</h5>
+                            <h5>Via Bank</h5>
                             <p class="txt-normal bold mt-16"><%= angpau_rek_bank %></p>
                             <h6 class="txt-normal mt-8">No. Rekening</h6>
                             <p id="selectRekening" class="txt-normal bold"><%= angpau_rek_nomor %></p>
@@ -552,18 +520,22 @@
                             </button>
                         </div>
                     </div>
+                    <% } %>
+                    <% if (switch_kado == 'true') { %>
                     <div class="col-lg-4 col-12 text-center mt-16">
                         <div class="card p-4">
-                            <h5>Kirim Kado</h5>
+                            <h5>Send Gift</h5>
                             <p class="txt-normal bold mt-16">PO BOX NKM33 Jakarta Pusat 10000</p>
                             <p class="txt-normal mt-16">atau</p>
                             <p class="txt-normal bold mt-16">Jl. Bumi Lestari Blok A85 No.21 RT 01 RW 17, Tambun
                                 Selatan, Bekasi</p>
                         </div>
                     </div>
+                    <% } %>
                 </div>
             </div>
         </section>
+        <% } %>
     </div>
     <div class="bg-group-cream">
         <section class="section-ucapan" id="ucapan">
@@ -721,7 +693,7 @@
         window.getSelection().removeAllRanges();
         alert("Berhasil Menyalin No Rekening");
     }
-    
+
       var myAudio = document.getElementById("audiomusic");
       var isPlaying = false;
 
@@ -747,17 +719,21 @@
 
         var width = $(window).width();
         if (width < 767){
+            <% if(locals.image_cover_potrait) { %>
+            $('.section-header').css("background", "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/assets/uploads/<%= image_cover_potrait %>)");
+            <% } else { %>
             $('.section-header').css("background", "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/assets/uploads/potrait.png)");
+            <% } %>
             $('.section-header').css("background-size", "cover");
             $('.section-header').css("background-position", "center");
             $('.section-header').css("background-repeat", "no-repeat");
             $('.section-header').css("background-repeat", "no-repeat");
-            $('#decoration-header-top').attr('src','/assets/template6/Asset/image/decoration-12.svg');
-            $('#decoration-header-bottom').attr('src','/assets/template6/Asset/image/decoration-13.svg');
-            $('#decoration-header-top').css("display", "block");
-            $('#decoration-header-bottom').css("display", "block");
         } else{
-            $('.section-header').css("background", "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/assets/uploads/1645372547771.png)");
+           <% if(locals.image_cover) { %>
+                $('.section-header').css("background", "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/assets/uploads/<%= image_cover %>)");
+           <% } else { %>
+                $('.section-header').css("background", "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/assets/uploads/1645372547771.png)");
+            <% } %>
             $('.section-header').css("background-size", "cover");
             $('.section-header').css("background-position", "center");
             $('.section-header').css("background-repeat", "no-repeat");

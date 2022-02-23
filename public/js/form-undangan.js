@@ -20,7 +20,9 @@ var app = new Vue({
             alasan: "",
             ucapan: "",
             telepon: "",
-            id_pernikahan: ""
+            id_pernikahan: "",
+            is_vip: '',
+            is_family: ''
         },
     },
     methods: {
@@ -126,32 +128,87 @@ var app = new Vue({
             }
         },
         setJumlah: function (params) {
-            if (params) {
-                if (this.formRSVP.jumlah_dewasa === 2) {
-                    //TODO Nothing
-                } else this.formRSVP.jumlah_dewasa = parseInt(this.formRSVP.jumlah_dewasa) + 1;
+            if (this.formRSVP.is_family === 'Tidak') {
+                if (params) {
+                    if (this.formRSVP.jumlah_dewasa === 2) {
+                        //TODO Nothing
+                    } else this.formRSVP.jumlah_dewasa = parseInt(this.formRSVP.jumlah_dewasa) + 1;
+                } else {
+                    if (this.formRSVP.jumlah_dewasa === 1) {
+                        //TODO Nothing
+                    } else this.formRSVP.jumlah_dewasa = parseInt(this.formRSVP.jumlah_dewasa) - 1;
+                }
             } else {
-                if (this.formRSVP.jumlah_dewasa === 1) {
-                    //TODO Nothing
-                } else this.formRSVP.jumlah_dewasa = parseInt(this.formRSVP.jumlah_dewasa) - 1;
+                if (params) {
+                    if (this.formRSVP.jumlah_dewasa === 2) {
+                        //TODO Nothing
+                    } else this.formRSVP.jumlah_dewasa = parseInt(this.formRSVP.jumlah_dewasa) + 1;
+                } else {
+                    if (this.formRSVP.jumlah_dewasa === 1) {
+                        //TODO Nothing
+                    } else this.formRSVP.jumlah_dewasa = parseInt(this.formRSVP.jumlah_dewasa) - 1;
+                }
             }
         },
         setJumlahAnak: function (params) {
-            if (params) {
-                if (this.formRSVP.jumlah_anak === 2) {
-                    //TODO Nothing
-                } else this.formRSVP.jumlah_anak = parseInt(this.formRSVP.jumlah_anak) + 1;
+            if (this.formRSVP.is_family === 'Tidak') {
+                if (params) {
+                    if (this.formRSVP.jumlah_anak === 2) {
+                        //TODO Nothing
+                    } else this.formRSVP.jumlah_anak = parseInt(this.formRSVP.jumlah_anak) + 1;
+                } else {
+                    if (this.formRSVP.jumlah_anak === 0) {
+                        //TODO Nothing
+                    } else this.formRSVP.jumlah_anak = parseInt(this.formRSVP.jumlah_anak) - 1;
+                }
             } else {
-                if (this.formRSVP.jumlah_anak === 0) {
-                    //TODO Nothing
-                } else this.formRSVP.jumlah_anak = parseInt(this.formRSVP.jumlah_anak) - 1;
+                if (params) {
+                    if (this.formRSVP.jumlah_anak === 2) {
+                        //TODO Nothing
+                    } else this.formRSVP.jumlah_anak = parseInt(this.formRSVP.jumlah_anak) + 1;
+                } else {
+                    if (this.formRSVP.jumlah_anak === 0) {
+                        //TODO Nothing
+                    } else this.formRSVP.jumlah_anak = parseInt(this.formRSVP.jumlah_anak) - 1;
+                }
             }
         },
         onSave: async function () {
             try {
-                if (this.formRSVP.jumlah_dewasa < 1 || this.formRSVP.jumlah_dewasa > 2) toastr.warning("Jumlah tamu dewasa minimal 1, maksimal 2!");
-                else if (this.formRSVP.jumlah_anak < 0 || this.formRSVP.jumlah_anak > 2) toastr.warning("Jumlah tamu anak - anak minimal 0, maksimal 2!");
-                else {
+                if (this.formRSVP.is_family === 'Tidak') {
+                    if (this.formRSVP.jumlah_dewasa < 1 || this.formRSVP.jumlah_dewasa > 2) toastr.warning("Jumlah tamu dewasa minimal 1, maksimal 2!");
+                    else if (this.formRSVP.jumlah_anak < 0 || this.formRSVP.jumlah_anak > 2) toastr.warning("Jumlah tamu anak - anak minimal 0, maksimal 2!");
+                    else {
+                        let formData = {...this.formRSVP};
+                        const res = await fetch("/api/tamu/rsvp", {
+                            method: "PUT",
+                            body: JSON.stringify(formData),
+                            headers: {"Content-Type": "application/json"},
+                        });
+                        const data = await res.json();
+                        //
+                        if (data.code === 0) toastr.error(data.message);
+                        else {
+                            toastr.success(data.message);
+                            this.guestSession = data.data;
+                            this.editMode = true;
+                            this.loadUcapan();
+                            this.$nextTick(function () {
+                                window.domtoimage = domtoimage;
+                                var container = document.getElementById("capture");
+                                domtoimage.toPng(container).then(function (dataUrl) {
+                                    var link = document.getElementById("download-card");
+                                    link.download = "undangan.png";
+                                    link.href = dataUrl;
+                                });
+                                //Set QR
+                                window.QRCode = window.QRCode;
+                                new QRCode(document.getElementById("kode-qr"), this.formRSVP.kode);
+                                //
+                            });
+                        }
+                    }
+                } else {
                     let formData = {...this.formRSVP};
                     const res = await fetch("/api/tamu/rsvp", {
                         method: "PUT",
