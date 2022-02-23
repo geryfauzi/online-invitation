@@ -295,7 +295,7 @@
                     <div class="col-6 event-session" v-for="data in guestSession">
                       <h6 class="card-title bold">{{data.nama_sesi}}</h6>
                       <p class="txt-14">{{new Date(data.tanggal).toLocaleDateString('en-EN', { weekday: "long", year: "numeric", month: "long", day: "numeric" })}}</p>
-                      <p class="txt-14">{{data.waktu_mulai.substr(0, 5)}} - {{data.waktu_mulai.substr(0, 5)}}</p>
+                      <p class="txt-14">{{data.waktu_mulai.substr(0, 5)}} - {{data.waktu_selesai.substr(0, 5)}}</p>
                     </div>
                   </div>
                 </div>
@@ -332,7 +332,7 @@
                           <div class="col-6 event-session" v-for="data in guestSession">
                             <h6 class="card-title bold">{{data.nama_sesi}}</h6>
                             <p class="txt-14">{{new Date(data.tanggal).toLocaleDateString('en-EN', { weekday: "long", year: "numeric", month: "long", day: "numeric" })}}</p>
-                            <p class="txt-14">{{data.waktu_mulai.substr(0, 5)}} s/d {{data.waktu_mulai.substr(0, 5)}}</p>
+                            <p class="txt-14">{{data.waktu_mulai.substr(0, 5)}} s/d {{data.waktu_selesai.substr(0, 5)}}</p>
                           </div>
                         </div>
                         <p class="mt-16">For :</p>
