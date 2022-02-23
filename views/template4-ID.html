@@ -212,31 +212,11 @@
                             <% if (locals.kode) { %>
                             <p class="bold mt-24">Alamat</p>
                             <p>{{data.alamat}}</p>
-                            <a v-bind:href="data.url_gmaps" class="btn btn-primary-lg mt-24">Lihat Google Maps</a>
+                            <a v-bind:href="data.url_gmaps" target="_blank" class="btn btn-primary-lg mt-24">Lihat Google Maps</a>
                             <% } %>
                         </div>
                     </div>
                 </div>
-                <!--            <div class="col-lg-5 col-md-8 col-12 text-center card-margin" data-aos="fade-up" data-aos-duration="800">-->
-                <!--              <div-->
-                <!--                class="card py-24"-->
-                <!--                style="-->
-                <!--                  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(..//assets/template4/Asset/image/event-2.png);-->
-                <!--                  background-position: center;-->
-                <!--                  background-repeat: no-repeat;-->
-                <!--                  background-size: cover;-->
-                <!--                "-->
-                <!--              >-->
-                <!--                <div class="card-body">-->
-                <!--                  <h4 class="txt-kayla txt-green">Resepsi Pernikahan</h4>-->
-                <!--                  <p class="mt-24">Selasa, 22 Februari 2022</p>-->
-                <!--                  <p>09.00 s/d 13.00</p>-->
-                <!--                  <p class="bold mt-24">Alamat</p>-->
-                <!--                  <p>KP. Goalpara RT 004/001 Desa Cisarua Kecamatan Sukaraja Kab Sukabumi</p>-->
-                <!--                  <a href="#" class="btn btn-primary-lg mt-24">Lihat Google Maps</a>-->
-                <!--                </div>-->
-                <!--              </div>-->
-                <!--            </div>-->
             </div>
             <img class="mt-48 img-divider" src="/assets/template4/Asset/image/decoration-3.svg"/>
             <h2 class="txt-kayla txt-pink text-center mt-48">Acara akan diselenggarakan</h2>
@@ -259,7 +239,7 @@
                 </div>
             </div>
             <a href="https://calendar.google.com/calendar/u/0/r/eventedit?text=<%= data.nama %>&dates=<%= tanggal %>/<%= tanggalSelesai %>"
-               class="btn btn-primary-lg btn-gold mt-48">Simpan Dikalender</a>
+               class="btn btn-primary-lg btn-gold mt-48" target="_blank">Simpan Dikalender</a>
         </div>
     </section>
     <% if (locals.kode) { %>
