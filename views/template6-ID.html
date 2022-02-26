@@ -528,10 +528,7 @@
                     <div class="col-lg-4 col-12 text-center mt-16">
                         <div class="card p-4">
                             <h5>Kirim Kado</h5>
-                            <p class="txt-normal bold mt-16">PO BOX NKM33 Jakarta Pusat 10000</p>
-                            <p class="txt-normal mt-16">atau</p>
-                            <p class="txt-normal bold mt-16">Jl. Bumi Lestari Blok A85 No.21 RT 01 RW 17, Tambun
-                                Selatan, Bekasi</p>
+                            <p class="txt-normal bold my-auto"><%= alamat_kado %></p>
                         </div>
                     </div>
                     <% } %>
@@ -573,6 +570,17 @@
                     </div>
                 </div>
                 <div class="row justify-content-center mt-48">
+                    <div class="col-lg-6 col-12" data-aos="fade-up" data-aos-duration="800">
+                      <div class="card py-24 align-items-center">
+                        <img class="img-protocol" src="/assets/template6/Asset/image/vaksin.svg" />
+                        <div class="card-body text-center">
+                          <h4 class="txt-playfair bold">Wajib Vaksinasi 2x</h4>
+                          <p>Tamu undangan diharapkan sudah melakukan vaksinasi minimal 2x untuk menghadiri acara pernikahan demi menjaga kesehatan seluruh tamu undangan.</p>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center mt-24">
                     <div class="col-lg-3 col-6 mt-16" data-aos="fade-up" data-aos-duration="800">
                         <div class="card py-24 align-items-center">
                             <img class="img-protocol" src="/assets/template6/Asset/image/masker.svg"/>
@@ -619,8 +627,8 @@
                 <div class="row justify-content-center text-center">
                   <div class="col-12">
                     <h5 class="txt-kayla">Undangan Pernikahan</h5>
-                    <h2 class="txt-kayla txt-36 txt-pink mt-24">Romeo & Juliet</h2>
-                    <h5 class="txt-kayla mt-16">Selasa, 22 Februari 2022</h5>
+                    <h2 class="txt-kayla txt-36 txt-pink mt-24"><%= title %></h2>
+                    <h5 class="txt-kayla mt-16"><%= new Date(date).toLocaleDateString('id-ID', { weekday:"long", year:"numeric", month:"long", day:"numeric"}); %></h5>
                     <h5 class="mt-32">Undangan Special Untuk:</h5>
                     <h3 class="bold">Nama Tamu</h3>
                     <button id="btn-bukaUndangan" type="button" class="btn btn-primary-lg bold" onclick="togglePlay()" data-bs-dismiss="modal">Buka Undangan</button>
@@ -642,7 +650,7 @@
                     <div class="d-flex justify-content-center mt-24">
                         <!-- <a href=""><p>Instagram</p></a>
                         <a href=""><p>Email</p></a> -->
-                        <a href=""><p>Whatsapp</p></a>
+                        <a target="_blank" href="https://wa.me/6281394482484?text=Hai, saya mau membuat undangan digital untuk acara saya"><p>Whatsapp</p></a>
                     </div>
                     <p class="mt-24 txt-white2">Copyright 2022 invedd, All rights reserved.</p>
                 </div>
