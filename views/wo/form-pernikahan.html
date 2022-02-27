@@ -150,7 +150,7 @@
                 is_vip: '',
                 is_family: '',
                 ucapan: '',
-                is_special: '',
+                is_special: 'Tidak',
                 sesi: []
             },
             formGallery: {
@@ -692,6 +692,7 @@
                 this.formGuest.kode = ''
                 this.formGuest.is_vip = ''
                 this.formGuest.ucapan = ''
+                this.formGuest.is_special = 'Tidak'
             },
             clearGuestBookForm: function () {
                 this.formGuestBook.kode = ""
@@ -772,14 +773,16 @@
                 let isValid = true
                 if (this.formGuest.nama === '' || this.formGuest.nama == null)
                     isValid = false
-                if (this.formGuest.telepon === '' || this.formGuest.telepon == null)
-                    isValid = false
-                if (this.formGuest.jumlah_dewasa === '' || this.formGuest.jumlah_dewasa == null)
-                    isValid = false
-                if (this.formGuest.is_vip === '' || this.formGuest.is_vip == null)
-                    isValid = false
-                if (this.formGuest.sesi[0] === '' || this.formGuest.sesi[0] == null)
-                    isValid = false
+                if (this.formGuest.is_special === 'Tidak'){
+                    if (this.formGuest.telepon === '' || this.formGuest.telepon == null)
+                        isValid = false
+                    if (this.formGuest.jumlah_dewasa === '' || this.formGuest.jumlah_dewasa == null)
+                        isValid = false
+                    if (this.formGuest.is_vip === '' || this.formGuest.is_vip == null)
+                        isValid = false
+                    if (this.formGuest.sesi[0] === '' || this.formGuest.sesi[0] == null)
+                        isValid = false
+                }
                 return isValid
             },
             validationGallery: function () {
