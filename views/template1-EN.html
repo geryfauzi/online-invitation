@@ -492,6 +492,7 @@
               <p class="mt-16">With all respect, due to pandemic COVID-19, every guest must follow the health protocols.</p>
             </div>
           </div>
+          <% if (locals.switch_vaksin == 'true') { %>
           <div class="row justify-content-center mt-48">
             <div class="col-lg-6 col-12" data-aos="fade-up" data-aos-duration="800">
               <div class="card py-24 align-items-center">
@@ -503,6 +504,7 @@
               </div>
             </div>
           </div>
+          <% } %>
           <div class="row justify-content-center mt-24">
             <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-duration="800">
               <div class="card py-24 align-items-center">
@@ -551,8 +553,10 @@
                     <h2 class="txt-36 txt-pink mt-24"><%= title %></h2>
                     <h5 class="mt-16"><%= new Date(date).toLocaleDateString('en-EN', { weekday:"long", year:"numeric", month:"long", day:"numeric"}); %></h5>
                     <!-- <h5 class="mt-16"><%= new Date(data.tanggal).toLocaleDateString('en-EN', { weekday:"long", year:"numeric", month:"long", day:"numeric"}); %></h5> -->
-                    <h5 class="mt-32">Special Invitation For:</h5>
-                    <h3 class="bold">Nama Tamu</h3>
+                    <% if (locals.nama_tamu) { %> <h5 class="mt-32">Special Invitation For:</h5> <% } %>
+                    <h5 class="mt-32" v-if="codeLoaded == true">Invitation For:</h5>
+                    <% if (locals.nama_tamu) { %> <h3 class="bold"><%= locals.nama_tamu %></h3> <% } %>
+                    <h3 class="bold" v-if="codeLoaded == true">{{formRSVP.nama}}</h3>
                     <button id="btn-bukaUndangan" type="button" class="btn btn-primary-lg bold" onclick="togglePlay()" data-bs-dismiss="modal">Open Invitation</button>
                     <p class="small mt-16">Powered by <span class="bold">Invedd</span></p>
                   </div>
