@@ -24,6 +24,7 @@
 <body>
 <main id="form-undangan">
     <div class="container">
+        <% if (locals.music) { %>
         <button class="btn btn-primary-lg btn-music zoom-animation" onclick="togglePlay()" id="btn-playback" data-play="false">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" id="ic-Volume" class="bi bi-volume-up-fill" style="display: block" viewBox="0 0 16 16">
               <path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z" />
@@ -39,7 +40,8 @@
             </svg>
           </button>
           <audio id="audiomusic" loop="loop" autoplay src="/assets/uploads/<%= music %>"></audio>
-
+        <% } %>
+        
         <nav class="navbar navbar-desktop navbar-expand-lg py-24 fixed-top d-none d-md-none d-lg-block d-xl-block">
             <div class="collapse navbar-collapse justify-content-center">
                 <ul class="navbar-nav">
@@ -638,7 +640,7 @@
                     <h5 class="txt-kayla">Undangan Pernikahan</h5>
                     <h2 class="txt-kayla txt-36 txt-pink mt-24"><%= title %></h2>
                     <h5 class="txt-kayla mt-16"><%= new Date(date).toLocaleDateString('id-ID', { weekday:"long", year:"numeric", month:"long", day:"numeric"}); %></h5>
-                    <h5 class="mt-32">Undangan Special Untuk:</h5>
+                    <h5 class="mt-32">Undangan kepada Bapak/Ibu/Saudara/i:</h5>
                     <h3 class="bold">Nama Tamu</h3>
                     <button id="btn-bukaUndangan" type="button" class="btn btn-primary-lg bold" onclick="togglePlay()" data-bs-dismiss="modal">Buka Undangan</button>
                     <p class="small mt-16">Powered by <span class="bold">Invedd</span></p>
