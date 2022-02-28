@@ -41,7 +41,7 @@
           </button>
           <audio id="audiomusic" loop="loop" autoplay src="/assets/uploads/<%= music %>"></audio>
         <% } %>
-        
+
         <nav class="navbar navbar-desktop navbar-expand-lg py-24 fixed-top d-none d-md-none d-lg-block d-xl-block">
             <div class="collapse navbar-collapse justify-content-center">
                 <ul class="navbar-nav">
@@ -248,6 +248,27 @@
                class="btn btn-primary-lg btn-gold mt-48" target="_blank">Simpan Dikalender</a>
         </div>
     </section>
+    <% if (locals.nama_tamu) { %>
+        <section class="section-rsvp" id="rsvp">
+          <div class="container" data-aos="fade-up" data-aos-duration="800">
+            <div class="row justify-content-center">
+              <div class="col-12 text-center">
+                <h2 class="txt-kayla">Beri ucapan untuk pengantin</h2>
+              </div>
+            </div>
+            <div class="row justify-content-center mt-48" v-if="confirmation === true">
+              <div class="col-lg-4 col-md-8 col-12">
+                <div class="form">
+                  <div class="mt-16" v-if="editMode === false">
+                    <textarea class="form-control input-area" placeholder="Isi pesan/ucapan/doa restu" rows="4" v-model="formRSVP.ucapan"></textarea>
+                  </div>
+                  <button v-on:click="onSave()" v-if="editMode === false" class="btn btn-primary-lg w-100 mt-24">Simpan</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+    <% } %>
     <% if (locals.kode) { %>
     <section class="section-rsvp" id="rsvp">
         <div class="container" data-aos="fade-up" data-aos-duration="800">
@@ -501,10 +522,10 @@
             </div>
         </section>
         <% } %>
+        <% if (switch_angpau == 'true' || switch_bank == 'true' || switch_kado == 'true') { %>
         <div class="container text-center">
             <img class="py-48 text-center img-divider" src="/assets/template7/Asset/image/decoration-3.svg"/>
         </div>
-        <% if (switch_angpau == 'true' || switch_bank == 'true' || switch_kado == 'true') { %>
         <section class="section-amplop" id="amplop">
             <div class="container">
                 <div class="row justify-content-center">
@@ -640,8 +661,10 @@
                     <h5 class="txt-kayla">Undangan Pernikahan</h5>
                     <h2 class="txt-kayla txt-36 txt-pink mt-24"><%= title %></h2>
                     <h5 class="txt-kayla mt-16"><%= new Date(date).toLocaleDateString('id-ID', { weekday:"long", year:"numeric", month:"long", day:"numeric"}); %></h5>
-                    <h5 class="mt-32">Undangan kepada Bapak/Ibu/Saudara/i:</h5>
-                    <h3 class="bold">Nama Tamu</h3>
+                    <% if (locals.nama_tamu) { %> <h5 class="mt-32">Kepada Bapak/Ibu/Saudara/i:</h5> <% } %>
+                    <h5 class="mt-32" v-if="codeLoaded == true">Kepada Bapak/Ibu/Saudara/i:</h5>
+                    <% if (locals.nama_tamu) { %> <h3 class="bold"><%= locals.nama_tamu %></h3> <% } %>
+                    <h3 class="bold" v-if="codeLoaded == true">{{formRSVP.nama}}</h3>
                     <button id="btn-bukaUndangan" type="button" class="btn btn-primary-lg bold" onclick="togglePlay()" data-bs-dismiss="modal">Buka Undangan</button>
                     <p class="small mt-16">Powered by <span class="bold">Invedd</span></p>
                   </div>

@@ -243,6 +243,27 @@
                class="btn btn-primary-lg btn-gold mt-48" target="_blank">Add to Calendar</a>
         </div>
     </section>
+    <% if (locals.nama_tamu) { %>
+        <section class="section-rsvp" id="rsvp">
+          <div class="container" data-aos="fade-up" data-aos-duration="800">
+            <div class="row justify-content-center">
+              <div class="col-12 text-center">
+                <h2 class="txt-kayla">Remark for the bride and groom</h2>
+              </div>
+            </div>
+            <div class="row justify-content-center mt-48" v-if="confirmation === true">
+              <div class="col-lg-4 col-md-8 col-12">
+                <div class="form">
+                  <div class="mt-16" v-if="editMode === false">
+                    <textarea class="form-control input-area" placeholder="Input prayers or greetings" rows="4" v-model="formRSVP.ucapan"></textarea>
+                  </div>
+                  <button v-on:click="onSave()" v-if="editMode === false" class="btn btn-primary-lg w-100 mt-24">Save</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+    <% } %>
     <% if (locals.kode) { %>
     <section class="section-rsvp" id="rsvp">
         <div class="container" data-aos="fade-up" data-aos-duration="800">
@@ -418,11 +439,11 @@
                 </div>
             </div>
     </section>
+    <% } %>
+    <% if (switch_gallery == 'true') { %>
     <div class="container text-center">
         <img class="py-48 text-center img-divider" src="/assets/template3/Asset/image/decoration-4.svg"/>
     </div>
-    <% } %>
-    <% if (switch_gallery == 'true') { %>
     <section class="section-gallery" id="galeri">
         <div class="container">
             <div class="row justify-content-center">
@@ -622,8 +643,10 @@
                     <h5 class="txt-playfair">Wedding Invitation</h5>
                     <h2 class="txt-kayla txt-36 txt-pink mt-24"><%= title %></h2>
                     <h5 class="txt-playfair mt-16"><%= new Date(date).toLocaleDateString('en-EN', { weekday:"long", year:"numeric", month:"long", day:"numeric"}); %></h5>
-                    <h5 class="mt-32">Special Invitation For:</h5>
-                    <h3 class="bold">Nama Tamu</h3>
+                    <% if (locals.nama_tamu) { %> <h5 class="mt-32">Special Invitation For:</h5> <% } %>
+                    <h5 class="mt-32" v-if="codeLoaded == true">Special Invitation For:</h5>
+                    <% if (locals.nama_tamu) { %> <h3 class="bold"><%= locals.nama_tamu %></h3> <% } %>
+                    <h3 class="bold" v-if="codeLoaded == true">{{formRSVP.nama}}</h3>
                     <button id="btn-bukaUndangan" type="button" class="btn btn-primary-lg bold" onclick="togglePlay()" data-bs-dismiss="modal">Open Invitation</button>
                     <p class="small mt-16">Powered by <span class="bold">Invedd</span></p>
                   </div>
