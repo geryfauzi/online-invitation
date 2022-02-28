@@ -115,6 +115,16 @@
                 <% } %>
                 <% if (locals.id) { %>
                 <li class="nav-item">
+                    <a href="javascript:void(0)" v-on:click="setSideMenuIndex(13)"  v-bind:class="[isActiveSideMenu(13) ? 'active' : '', 'nav-link']">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Meja Tamu
+                        </p>
+                    </a>
+                </li>
+                <% } %>
+                <% if (locals.id) { %>
+                <li class="nav-item">
                     <a href="javascript:void(0)" v-on:click="setSideMenuIndex(10)"  v-bind:class="[isActiveSideMenu(10) ? 'active' : '', 'nav-link']">
                         <i class="nav-icon fas fa-table"></i>
                         <p>

@@ -1,0 +1,113 @@
+<div v-show="sideMenuIndex == 13">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <div class="card card-info">
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label for="kode" class="col-sm-2 col-form-label">Kode Tamu*</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="kode" placeholder="Masukkan Kode Tamu"
+                                           v-model="formMejaTamu.kode">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-info float-right" style="margin-right: 20px"
+                                    v-on:click="onCheckMejaTamu">Cari
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" v-show="addMejaTamu == true">
+                <div class="col">
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Tambah Tamu Baru</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label for="kode" class="col-sm-2 col-form-label">Kode Tamu*</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="kode" v-model="formMejaTamu.kode" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="kode" class="col-sm-2 col-form-label">Nama</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="nama" v-model="formMejaTamu.nama">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="kode" class="col-sm-2 col-form-label">RSVP Dewasa</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="jumlah_dewasa" v-model="formMejaTamu.jumlah_dewasa">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="kode" class="col-sm-2 col-form-label">RSVP Anak</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="jumlah_anak" v-model="formMejaTamu.jumlah_anak">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="is_vip" class="col-sm-2 col-form-label">VIP</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="is_vip" v-model="formMejaTamu.is_vip">
+                                        <option value="" selected disabled>Apakah Tamu Ini Termasuk VIP ?</option>
+                                        <option value="Ya">Ya</option>
+                                        <option value="Tidak">Tidak</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="is_family" class="col-sm-2 col-form-label">Bagian Keluarga*</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="is_family" v-model="formMejaTamu.is_family">
+                                        <option value="" selected disabled>Apakah Tamu Ini Termasuk Bagian Keluarga
+                                            Pengantin ?
+                                        </option>
+                                        <option value="Ya">Ya</option>
+                                        <option value="Tidak">Tidak</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="id_grup" class="col-sm-2 col-form-label">Grup</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="id_grup" v-model="formMejaTamu.id_grup">
+                                        <option value="" selected disabled>Termasuk Grup Manakah Tamu Ini ?</option>
+                                        <option v-for="data in group" v-bind:value="data.id">{{data.nama}}</option>
+                                    </select>
+                                </div>
+                            </div>
+<!--                            <div class="form-group row">-->
+<!--                                <label for="status" class="col-sm-2 col-form-label">Status Kehadiran*</label>-->
+<!--                                <div class="col-sm-10">-->
+<!--                                    <select class="form-control" id="status" v-model="formGuestBook.status">-->
+<!--                                        <option value="" selected disabled>Pilih status kehadiran untuk tamu ini-->
+<!--                                        </option>-->
+<!--                                        <option value="Check In">Check In</option>-->
+<!--                                        <option value="Check Out">Check Out</option>-->
+<!--                                    </select>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button class="btn btn-default float-right"
+                                    v-on:click="setMejaTamu(false)">Batal
+                            </button>
+                            <button class="btn btn-info float-right" style="margin-right: 20px"
+                                    v-on:click="onSaveMejaTamu()">Check In
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

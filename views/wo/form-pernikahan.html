@@ -50,6 +50,7 @@
         <%- include('./partials/form-pernikahan/form-story.html') %>
         <%- include('./partials/form-pernikahan/form-link-undangan.html') %>
         <%- include('./partials/form-pernikahan/form-angpau.html') %>
+        <%- include('./partials/form-pernikahan/form-meja-tamu.html') %>
         <% } %>
     </div>
 </div>
@@ -87,7 +88,7 @@
             editGroup: false,
             addStory: false,
             editStory: false,
-            addGuestBook: false,
+            addMejaTamu: false,
             session: [],
             guest: [],
             guestBook: [],
@@ -174,10 +175,18 @@
                 tahun: '',
                 story: ''
             },
-            formGuestBook: {
+            formMejaTamu: {
                 kode: '',
-                status: '',
-                id_pernikahan: ''
+                nama: '',
+                kehadiran: '',
+                id_pernikahan: '',
+                waktu_checkin: '',
+                telepon: '',
+                id_grup: '',
+                is_vip: '',
+                is_family: '',
+                jumlah_dewasa: '',
+                jumlah_anak: '',
             }
         },
         methods: {
@@ -504,12 +513,34 @@
 
                 }
             },
-            onSaveGuestBook: async function () {
+            onSaveMejaTamu: async function (){
+                try{
+                    let formData = {...this.formMejaTamu}
+                    formData.kehadiran = 'Check In'
+                    const res = await fetch('/api/tamu/checkin',{
+                        method: 'POST',
+                        body: JSON.stringify(formData),
+                        headers: {'Content-Type': "application/json"}
+                    })
+                    const data = await res.json();
+                    if (data.code === 0)
+                        toastr.error(data.message);
+                    else {
+                        toastr.success(data.message);
+                        this.formMejaTamu.kode = ''
+                        this.addMejaTamu = false
+                        this.loadGuestBook()
+                    }
+                }catch (e) {
+                    console.log(e)
+                }
+            },
+            onCheckMejaTamu: async function () {
                 try {
-                    if (this.formGuestBook.kode === "" || this.formGuestBook.status === "")
+                    if (this.formMejaTamu.kode === "")
                         toastr.warning("Harap isi semua form yang wajib diisi!")
                     else {
-                        let formData = {...this.formGuestBook}
+                        let formData = {...this.formMejaTamu}
                         //Insert To Database
                         formData.id_pernikahan = idNikahan
                         const res = await fetch('/api/tamu/kehadiran', {
@@ -523,8 +554,8 @@
                             toastr.error(data.message);
                         else {
                             toastr.success(data.message);
-                            this.setAddGuestBook(false)
-                            this.loadGuestBook()
+                            this.formMejaTamu = data.data
+                            this.addMejaTamu = true
                         }
                     }
                 } catch (e) {
@@ -657,9 +688,11 @@
                 if (!params)
                     this.clearGuestForm()
             },
-            setAddGuestBook: function (params) {
-                this.clearGuestBookForm()
-                this.addGuestBook = params
+            setMejaTamu: function (params) {
+                this.addMejaTamu = params
+                if (!params) {
+
+                }
             },
             setAddStory: function (params) {
                 this.addStory = params
