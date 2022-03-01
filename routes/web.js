@@ -826,7 +826,7 @@ router.get("/pernikahan/:id/RSVP/:nama", (req, res) => {
     let tanggal = "tanggal";
     let tanggalSelesai = "tanggal";
     let nama_tamu = req.params.nama
-    nama_tamu = nama_tamu.replaceAll('%20',' ')
+    nama_tamu = decodeURIComponent(nama_tamu)
     try {
         connect.query("SELECT * FROM pernikahan WHERE id = ?", [id], (error, result) => {
             console.log(result);

@@ -51,6 +51,7 @@ router.get('/tamu/ucapan/:id', Tamu.getUcapan)
 router.post('/tamu/kehadiran', Tamu.insertGuestBook)
 router.delete('/tamu', Tamu.deleteGuest)
 router.post('/tamu/checkin', Tamu.checkIn)
+router.post('/tamu/ucapan', Tamu.sendGreetings)
 
 //Area Gallery
 router.post('/gallery', Gallery.insertGallery)

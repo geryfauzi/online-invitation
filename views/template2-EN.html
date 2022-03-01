@@ -41,7 +41,7 @@
         </button>
         <audio id="audiomusic" loop="loop" autoplay src="/assets/uploads/<%= music %>"></audio>
         <% } %>
-        
+
         <nav class="navbar navbar-desktop navbar-expand-lg py-24 fixed-top d-none d-md-none d-lg-block d-xl-block">
             <div class="collapse navbar-collapse justify-content-center">
                 <ul class="navbar-nav">
@@ -255,13 +255,14 @@
                 <h2 class="txt-kayla">Remark for the bride and groom</h2>
               </div>
             </div>
-            <div class="row justify-content-center mt-48" v-if="confirmation === true">
+            <div class="row justify-content-center mt-48">
               <div class="col-lg-4 col-md-8 col-12">
                 <div class="form">
-                  <div class="mt-16" v-if="editMode === false">
+                  <div class="mt-16">
+                      <p id="txt-info-rsvp" class="txt-white bg-red w-100 p-1 txt-14" v-if="error === true">Please fill the form!</p>
                     <textarea class="form-control input-area" placeholder="Input prayers or greetings" rows="4" v-model="formRSVP.ucapan"></textarea>
                   </div>
-                  <button v-on:click="onSave()" v-if="editMode === false" class="btn btn-primary-lg w-100 mt-24">Save</button>
+                  <button v-on:click="kirimUcapan()" v-if="editMode === false" class="btn btn-primary-lg w-100 mt-24">Save</button>
                 </div>
               </div>
             </div>
@@ -699,6 +700,11 @@
     let idNikahan = "<%= id %>";
     let tanggalNikahan = "<%= date %>";
 </script>
+<% if (locals.nama_tamu) { %>
+<script type="application/javascript">
+    let namaTamu = "<%= nama_tamu %>"
+</script>
+<% } %>
 
 <script>
     $(window).scroll(function () {

@@ -256,13 +256,14 @@
                 <h2 class="txt-kayla">Beri ucapan untuk pengantin</h2>
               </div>
             </div>
-            <div class="row justify-content-center mt-48" v-if="confirmation === true">
+            <div class="row justify-content-center mt-48">
               <div class="col-lg-4 col-md-8 col-12">
                 <div class="form">
-                  <div class="mt-16" v-if="editMode === false">
+                  <div class="mt-16">
+                      <p id="txt-info-rsvp" class="txt-white bg-red w-100 p-1 txt-14" v-if="error === true">Harap isi form ucapannya!</p>
                     <textarea class="form-control input-area" placeholder="Isi pesan/ucapan/doa restu" rows="4" v-model="formRSVP.ucapan"></textarea>
                   </div>
-                  <button v-on:click="onSave()" v-if="editMode === false" class="btn btn-primary-lg w-100 mt-24">Simpan</button>
+                  <button v-on:click="kirimUcapan()" v-if="editMode === false" class="btn btn-primary-lg w-100 mt-24">Simpan</button>
                 </div>
               </div>
             </div>
@@ -725,6 +726,11 @@
     let idNikahan = "<%= id %>";
     let tanggalNikahan = "<%= date %>";
 </script>
+<% if (locals.nama_tamu) { %>
+<script type="application/javascript">
+    let namaTamu = "<%= nama_tamu %>"
+</script>
+<% } %>
 
 <script>
     $(window).scroll(function () {

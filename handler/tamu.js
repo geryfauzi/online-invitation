@@ -286,6 +286,22 @@ const deleteGuest = async (req, res) => {
     }
 };
 
+const sendGreetings = async (req, res) => {
+    let connect = DB.config
+    let data = req.body
+    try {
+        connect.query("UPDATE tamu SET rsvp = ?, ucapan = ? WHERE id_pernikahan = ? AND nama = ?",
+            [data.rsvp, data.ucapan, data.id_pernikahan, data.nama], (error, result) => {
+                if (!error)
+                    return res.json({code: 1})
+                else
+                    return res.json({code: 0})
+            })
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 module.exports = {
     getWeddingGuest,
     insertGuest,
@@ -297,5 +313,6 @@ module.exports = {
     getUcapan,
     insertGuestBook,
     deleteGuest,
-    checkIn
+    checkIn,
+    sendGreetings
 };

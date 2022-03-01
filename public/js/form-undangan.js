@@ -242,6 +242,32 @@ var app = new Vue({
                 console.log(e);
             }
         },
+        kirimUcapan: async function () {
+            try {
+                if (this.formRSVP.ucapan === '' || this.formRSVP.ucapan == null)
+                    this.error = true
+                else {
+                    this.error = false
+                    let formData = {...this.formRSVP}
+                    formData.rsvp = "Tidak Hadir"
+                    formData.nama = namaTamu
+                    formData.id_pernikahan = idNikahan
+                    const res = await fetch('/api/tamu/ucapan', {
+                        method: 'POST',
+                        body: JSON.stringify(formData),
+                        headers: {"Content-Type": "application/json"},
+
+                    })
+                    const data = await res.json()
+                    if (data.code > 0) {
+                        this.editMode = true
+                        this.loadUcapan()
+                    }
+                }
+            } catch (e) {
+                console.log(e)
+            }
+        },
         setEditMode: function () {
             this.editMode = false;
         },
