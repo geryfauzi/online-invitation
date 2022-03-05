@@ -557,6 +557,8 @@
                             toastr.success(data.message);
                             this.formMejaTamu = data.data
                             this.addMejaTamu = true
+                            this.formMejaTamu.sesi = data.sesi
+                            console.log(this.formMejaTamu)
                         }
                     }
                 } catch (e) {

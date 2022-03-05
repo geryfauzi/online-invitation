@@ -245,9 +245,17 @@ const insertGuestBook = async (req, res) => {
     //Pengecekan untuk tamu yang cekin
     try {
         //Cek apakah kode valid
-        connect.query("SELECT * FROM tamu WHERE kode = ? AND id_pernikahan = ?", [data.kode, data.id_pernikahan], (kesalahan, hasil) => {
-            if (hasil.length <= 0) return res.json({code: 0, message: "Kode tamu ini tidak valid!"});
-            else return res.json({code: 1, data: hasil[0]})
+        connect.query("SELECT * FROM tamu WHERE kode = ? AND id_pernikahan = ? AND kehadiran = 'Belum Dikonfirmasi'", [data.kode, data.id_pernikahan], (kesalahan, hasil) => {
+            if (hasil.length <= 0) return res.json({
+                code: 0,
+                message: "Kode tamu ini tidak valid atau tamu sudah check in!"
+            });
+            else {
+                connect.query("SELECT sesi.nama_sesi, sesi.waktu_mulai, sesi.waktu_selesai FROM sesi JOIN detail_sesi ON sesi.id = detail_sesi.id_sesi WHERE detail_sesi.id_tamu = ?",
+                    [hasil[0].id], (error, result) => {
+                        return res.json({code: 1, data: hasil[0], sesi: result})
+                    })
+            }
         });
     } catch (e) {
         console.log(e);
