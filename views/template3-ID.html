@@ -193,8 +193,9 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-8 col-12 text-center">
                     <h2 class="txt-kayla txt-white mt-32">Jadwal Acara</h2>
-                    <p class="mt-16">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila, Bapak / Ibu / Saudara
-                        / i. berkenan hadir untuk memberikan do'a restunya kami ucapkan terimakasih.</p>
+                    <% if (locals.nama_tamu) { %> <p class="mt-16">Diharapkan untuk memberikan doa restu.</p> <% } %>
+                    <p class="mt-16" v-if="codeLoaded == true">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila, Bapak / Ibu / Saudara / i. 
+                        berkenan hadir untuk memberikan do'a restunya kami ucapkan terimakasih.</p>
                 </div>
             </div>
             <div class="row justify-content-center mt-48">
@@ -670,9 +671,8 @@
                     <p>Created by:</p>
                     <h3 class="txt-philosopher">Invedd</h3>
                     <div class="d-flex justify-content-center mt-24">
-                        <!-- <a href=""><p>Instagram</p></a>
-                        <a href=""><p>Email</p></a> -->
                         <a target="_blank" href="https://wa.me/6281394482484?text=Hai, saya mau membuat undangan digital untuk acara saya"><p>Whatsapp</p></a>
+                        <a target="_blank" href="https://www.instagram.com/invedd_com/"><p>Instagram</p></a>
                     </div>
                     <p class="mt-24">Copyright 2022 invedd, All rights reserved.</p>
                 </div>
