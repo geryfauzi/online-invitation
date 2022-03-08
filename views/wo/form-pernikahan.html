@@ -791,6 +791,7 @@
                     if (!file) throw Error("File kosong");
                     this.form.musik = file;
                     document.getElementById("labelmusik").innerHTML = this.form.musik.name;
+                    this.defaultMusik = this.form.musik.name
                 } catch (error) {
                     console.error(error)
                 }
@@ -1120,6 +1121,31 @@
 
                 }
             },
+            onDeleteMusic: async function () {
+                try {
+                    let confirmAction = confirm("Apakah anda ingin menghapus musik ini ?");
+                    if (confirmAction) {
+                        let formData = {...this.form}
+                        const res = await fetch('/api/musik', {
+                            method: 'DELETE',
+                            body: JSON.stringify(formData),
+                            headers: {'Content-Type': "application/json"}
+                        });
+                        const data = await res.json();
+                        //
+                        if (data.code == 0)
+                            toastr.error(data.message);
+                        else {
+                            toastr.success(data.message);
+                            this.loadData()
+                        }
+                    } else {
+                        //TODO Nothing
+                    }
+                } catch (e) {
+
+                }
+            },
             onDeleteStory: async function (index) {
                 try {
                     let confirmAction = confirm("Apakah anda ingin menghapus story ini ?");
@@ -1243,6 +1269,38 @@
                             })
                         })
                     }, 300)
+                    $('#spesial').DataTable().destroy()
+                    setTimeout(() => {
+                        this.$nextTick(function () {
+                            $('#spesial').DataTable({
+                                "destroy": true,
+                                "retrieve": true,
+                                "paging": true,
+                                "lengthChange": true,
+                                "searching": true,
+                                "ordering": true,
+                                "info": true,
+                                "autoWidth": false,
+                                "responsive": true,
+                            })
+                        })
+                    }, 300)
+                    $('#undangan').DataTable().destroy()
+                    setTimeout(() => {
+                        this.$nextTick(function () {
+                            $('#undangan').DataTable({
+                                "destroy": true,
+                                "retrieve": true,
+                                "paging": true,
+                                "lengthChange": true,
+                                "searching": true,
+                                "ordering": true,
+                                "info": true,
+                                "autoWidth": false,
+                                "responsive": true,
+                            })
+                        })
+                    }, 300)
                 } catch (e) {
 
                 }
@@ -1349,6 +1407,16 @@
                     var pdf = new jsPDF("p", "pt", "a4")
                     pdf.autoTable({html: '#undangan'})
                     pdf.save('Link Undangan ' + this.form.nama + '.pdf')
+                }
+            },
+            downloadSpecialInvitationLink: function () {
+                if (this.guest.filter(row => row.is_special === 'Iya').length === 0)
+                    toastr.warning("Maaf, belum ada data tamu satupun!")
+                else {
+                    window.jsPDF = window.jspdf.jsPDF
+                    var pdf = new jsPDF("p", "pt", "a4")
+                    pdf.autoTable({html: '#spesial'})
+                    pdf.save('Link Undangan Tamu Spesial ' + this.form.nama + '.pdf')
                 }
             },
             downloadGuestExcel: function (type, fn, dl) {

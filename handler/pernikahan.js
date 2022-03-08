@@ -1,4 +1,5 @@
 const DB = require('./config')
+const fs = require("fs");
 
 const insertPernikahan = async (req, res) => {
     let connect = DB.config
@@ -139,6 +140,28 @@ const updateRekeningAngpau = async (req, res) => {
     }
 }
 
+const deleteMusic = async (req,res) => {
+    let connect = DB.config
+    let data = req.body
+    let path = `./public/uploads/${data.musik}`
+    fs.unlink(path,(error) => {
+            connect.query("UPDATE pernikahan SET musik = NULL WHERE id = ?",[data.id], (err,result) => {
+                if(!err)
+                    return res.json({
+                        code : 1,
+                        message : "Berhasil menghapus file!"
+                    })
+                else {
+                    console.log(err)
+                    return res.json({
+                        code : 0,
+                        message : "Terjadi kesalahan saat mengahpus file dari database!"
+                    })
+                }
+            })
+    })
+}
+
 module.exports = {
     insertPernikahan,
     getOnePernikahan,
@@ -147,5 +170,6 @@ module.exports = {
     deletePernikahn,
     uploadQRAngpau,
     getAngpau,
-    updateRekeningAngpau
+    updateRekeningAngpau,
+    deleteMusic
 }

@@ -31,6 +31,7 @@ router.delete('/pernikahan', Pernikahan.deletePernikahn)
 router.post('/pernikahan/qr', Pernikahan.uploadQRAngpau)
 router.get('/pernikahan/angpau/:id', Pernikahan.getAngpau)
 router.put('/pernikahan/angpau', Pernikahan.updateRekeningAngpau)
+router.delete('/musik', Pernikahan.deleteMusic)
 
 //Area Sesi
 router.post('/sesi', Sesi.insertSession)

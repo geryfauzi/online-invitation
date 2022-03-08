@@ -96,6 +96,11 @@
                                     </div>
                                 </div>
                             </div>
+                            <div>
+                                <button type="submit" class="btn btn-primary" style="margin-bottom: 10px"
+                                        v-on:click="onDeleteMusic" v-if="defaultMusic != '' || defaultMusic != null">Hapus Musik
+                                </button>
+                            </div>
                             <div class="form-group">
                                 <div class="custom-control custom-switch">
                                     <input type="checkbox" class="custom-control-input" id="customSwitch1" v-model="form.switch_streaming"

@@ -48,7 +48,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr v-for="(item,index) in guest" :key="item.id">
+                                <tr v-for="(item,index) in guest.filter(row => row.is_special == 'Tidak')" :key="item.id">
                                     <td>{{index + 1}}</td>
                                     <td>{{item.nama}}</td>
                                     <td>{{item.telepon}}</td>
