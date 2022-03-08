@@ -180,9 +180,9 @@
           <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8 col-12 text-center">
               <h2 class="txt-kayla mt-32">Jadwal Acara</h2>
-              <p class="mt-16" v-if="codeLoaded == true">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila, Bapak / Ibu / Saudara / i.
-                berkenan hadir untuk memberikan do'a restunya kami ucapkan terimakasih.</p>
-              <p class="mt-16" v-if="codeLoaded == false">Diharapkan untuk memberikan doa restu.</p>
+              <% if (locals.kode) { %> <p class="mt-16">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila, Bapak / Ibu / Saudara / i.
+                berkenan hadir untuk memberikan do'a restunya kami ucapkan terimakasih.</p> <% } %>
+              <% if (!locals.kode) { %>  <p class="mt-16" v-if="codeLoaded == false">Diharapkan untuk memberikan doa restu.</p> <% } %>
             </div>
           </div>
           <div class="row justify-content-center mt-48">
