@@ -21,7 +21,7 @@
                                 <tr v-for="(item,index) in guest.filter(row => row.is_special == 'Iya')" :key="item.id">
                                     <td>{{index + 1}}</td>
                                     <td>{{item.nama}}</td>
-                                    <td>http://invedd.com/pernikahan/{{form.id}}/RSVP/{{item.nama}}</td>
+                                    <td>http://invedd.com/pernikahan/{{form.id}}/RSVP/{{encodeURIComponent(item.nama)}}</td>
                                 </tr>
                                 </tbody>
                             </table>
