@@ -78,7 +78,7 @@
             defaultImageCoverPotrait: '',
             defaultImageCPP: '',
             defaultImageCPW: '',
-            defaultImageQR : '',
+            defaultImageQR: '',
             defaultMusik: '',
             addSession: false,
             editSession: false,
@@ -106,7 +106,7 @@
                 nama_calon2: '',
                 ortu_calon2: '',
                 image_calon1: null,
-                image_calon2 : null,
+                image_calon2: null,
                 quote_cover: '',
                 quote_body: '',
                 image_cover: null,
@@ -222,8 +222,8 @@
                     isValid = false
                 if (this.form.image_cover_potrait === null)
                     isValid = false
-                if(this.form.quote_body){
-                    if(this.form.quote_body.length >= 500) {
+                if (this.form.quote_body) {
+                    if (this.form.quote_body.length >= 500) {
                         isValid = false
                         toastr.warning("Panjang karakter Quote Body tidak boleh lebih dari 500 karakter!")
                     }//endif
@@ -452,14 +452,14 @@
                 return isValid
             },
             validationAngpau: function () {
-              let isValid = true
-              if(this.formAngpau.angpau_rek_bank !== '' || this.formAngpau.angpau_rek_bank !== null){
-                  if(this.formAngpau.angpau_rek_nomor === '' || this.formAngpau.angpau_rek_nomor === null)
-                      isValid = false
-                  if(this.formAngpau.angpau_rek_nama === '' || this.formAngpau.angpau_rek_nama === null)
-                      isValid = false
-              } else
-                  isValid = false
+                let isValid = true
+                if (this.formAngpau.angpau_rek_bank !== '' || this.formAngpau.angpau_rek_bank !== null) {
+                    if (this.formAngpau.angpau_rek_nomor === '' || this.formAngpau.angpau_rek_nomor === null)
+                        isValid = false
+                    if (this.formAngpau.angpau_rek_nama === '' || this.formAngpau.angpau_rek_nama === null)
+                        isValid = false
+                } else
+                    isValid = false
                 return isValid
             },
             onSaveSession: async function () {
@@ -514,11 +514,11 @@
 
                 }
             },
-            onSaveMejaTamu: async function (){
-                try{
+            onSaveMejaTamu: async function () {
+                try {
                     let formData = {...this.formMejaTamu}
                     formData.kehadiran = 'Check In'
-                    const res = await fetch('/api/tamu/checkin',{
+                    const res = await fetch('/api/tamu/checkin', {
                         method: 'POST',
                         body: JSON.stringify(formData),
                         headers: {'Content-Type': "application/json"}
@@ -532,7 +532,7 @@
                         this.addMejaTamu = false
                         this.loadGuestBook()
                     }
-                }catch (e) {
+                } catch (e) {
                     console.log(e)
                 }
             },
@@ -809,7 +809,7 @@
                 let isValid = true
                 if (this.formGuest.nama === '' || this.formGuest.nama == null)
                     isValid = false
-                if (this.formGuest.is_special === 'Tidak'){
+                if (this.formGuest.is_special === 'Tidak') {
                     if (this.formGuest.telepon === '' || this.formGuest.telepon == null)
                         isValid = false
                     if (this.formGuest.jumlah_dewasa === '' || this.formGuest.jumlah_dewasa == null)
@@ -913,11 +913,11 @@
                         return
                     }
                     if (this.formGuest.is_family === 'Tidak') {
-                        if(this.formGuest.jumlah_dewasa < 1 || this.formGuest.jumlah_dewasa > 2) {
+                        if (this.formGuest.jumlah_dewasa < 1 || this.formGuest.jumlah_dewasa > 2) {
                             toastr.warning("Jumlah tamu dewasa minimal 1 dan maksimal 2!")
                             return
                         }
-                        if(this.formGuest.jumlah_anak < 0 || this.formGuest.jumlah_anak > 2){
+                        if (this.formGuest.jumlah_anak < 0 || this.formGuest.jumlah_anak > 2) {
                             toastr.warning("Jumlah tamu anak - anak minimal 0 dan maksimal 2!")
                             return
                         }
@@ -925,6 +925,8 @@
                     let formData = {...this.formGuest}
                     //Mengisi data yang masih kosong
                     formData.kode = this.generateCode()
+                    if (formData.is_special === 'Iya')
+                        formData.kode = null
                     const res = await fetch('/api/tamu', {
                         method: 'POST',
                         body: JSON.stringify(formData),
@@ -950,16 +952,18 @@
                         return
                     }
                     if (this.formGuest.is_family === 'Tidak') {
-                        if(this.formGuest.jumlah_dewasa < 1 || this.formGuest.jumlah_dewasa > 2) {
+                        if (this.formGuest.jumlah_dewasa < 1 || this.formGuest.jumlah_dewasa > 2) {
                             toastr.warning("Jumlah tamu dewasa minimal 1 dan maksimal 2!")
                             return
                         }
-                        if(this.formGuest.jumlah_anak < 0 || this.formGuest.jumlah_anak > 2){
+                        if (this.formGuest.jumlah_anak < 0 || this.formGuest.jumlah_anak > 2) {
                             toastr.warning("Jumlah tamu anak - anak minimal 0 dan maksimal 2!")
                             return
                         }
                     }
                     let formData = {...this.formGuest}
+                    if(formData.is_special === 'Tidak' && formData.kode == null)
+                        formData.kode = this.generateCode()
                     //Update Database
                     const res = await fetch('/api/tamu', {
                         method: 'PUT',
@@ -1349,9 +1353,9 @@
             },
             downloadGuestExcel: function (type, fn, dl) {
                 var elt = document.getElementById('tamu');
-                var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+                var wb = XLSX.utils.table_to_book(elt, {sheet: "sheet1"});
                 return dl ?
-                    XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
+                    XLSX.write(wb, {bookType: type, bookSST: true, type: 'base64'}) :
                     XLSX.writeFile(wb, fn || ('MySheetName.' + (type || 'xlsx')));
             }
         },
