@@ -729,6 +729,7 @@
         alert("Berhasil Menyalin No Rekening");
       }
 
+      <% if (locals.music) { %>
       var myAudio = document.getElementById("audiomusic");
       var isPlaying = false;
 
@@ -748,6 +749,7 @@
         document.getElementById("ic-Mute").style.display = "block";
         document.getElementById("btn-playback").classList.remove("zoom-animation");
       };
+      <% } %>
 
       $(document).ready(function () {
         $("#start-modal").modal("show");

@@ -734,25 +734,27 @@
         alert("Berhasil Menyalin No Rekening");
     }
 
-    var myAudio = document.getElementById("audiomusic");
-    var isPlaying = false;
+      <% if (locals.music) { %>
+      var myAudio = document.getElementById("audiomusic");
+      var isPlaying = false;
 
-    function togglePlay() {
-      isPlaying ? myAudio.pause() : myAudio.play();
-    }
+      function togglePlay() {
+        isPlaying ? myAudio.pause() : myAudio.play();
+      }
 
-    myAudio.onplaying = function () {
-      isPlaying = true;
-      document.getElementById("ic-Volume").style.display = "block";
-      document.getElementById("ic-Mute").style.display = "none";
-      document.getElementById("btn-playback").classList.add("zoom-animation");
-    };
-    myAudio.onpause = function () {
-      isPlaying = false;
-      document.getElementById("ic-Volume").style.display = "none";
-      document.getElementById("ic-Mute").style.display = "block";
-      document.getElementById("btn-playback").classList.remove("zoom-animation");
-    };
+      myAudio.onplaying = function () {
+        isPlaying = true;
+        document.getElementById("ic-Volume").style.display = "block";
+        document.getElementById("ic-Mute").style.display = "none";
+        document.getElementById("btn-playback").classList.add("zoom-animation");
+      };
+      myAudio.onpause = function () {
+        isPlaying = false;
+        document.getElementById("ic-Volume").style.display = "none";
+        document.getElementById("ic-Mute").style.display = "block";
+        document.getElementById("btn-playback").classList.remove("zoom-animation");
+      };
+      <% } %>
 
     $(document).ready(function () {
       $("#start-modal").modal("show");
